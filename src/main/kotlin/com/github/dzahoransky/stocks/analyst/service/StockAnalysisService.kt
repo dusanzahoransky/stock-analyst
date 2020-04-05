@@ -21,8 +21,8 @@ fun main() {
     val stocks = mutableListOf<StockInfo>()
     StockScrapperService().use {
         stocks.addAll(it.scrape(
-            tickerRepo.test()
-//            tickerRepo.nasdaq100()
+//            tickerRepo.test()
+            tickerRepo.nasdaq100()
         ))
     }
     val stocksOutFile = File("src/main/resources/stocks.json")
@@ -30,6 +30,23 @@ fun main() {
     mapper.writeValue(stocksOutFile, stocks)
 
     //LOAD stocks from JSON file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
 
     // do the calculations

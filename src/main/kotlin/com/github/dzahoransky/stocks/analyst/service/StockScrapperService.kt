@@ -41,7 +41,7 @@ class StockScrapperService : AutoCloseable {
             } catch (e: Exception) {
                 println("Failed to process ${ticker}: ${e.message}")
             }
-            Thread.sleep(5000)   //avoid hitting hit rate limit
+            Thread.sleep(10000)   //avoid hitting hit rate limit
         }
         return stockInfo
     }
