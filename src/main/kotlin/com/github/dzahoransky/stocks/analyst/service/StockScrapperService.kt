@@ -1,7 +1,5 @@
 package com.github.dzahoransky.stocks.analyst.service
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
 import com.github.dzahoransky.stocks.analyst.model.StockTicker
 import com.github.dzahoransky.stocks.analyst.model.yahoo.PeriodMeasure
@@ -11,11 +9,14 @@ import org.openqa.selenium.PageLoadStrategy
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import java.io.File
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
-import kotlin.random.nextInt
 
-class StockScrapperService : AutoCloseable{
+class StockScrapperService : AutoCloseable {
+    companion object {
+        const val MILLION = 1000L * 1000L
+        const val BILLION = MILLION * 1000L
+        const val TRILLION = BILLION * 1000L
+    }
 
     private val driver: ChromeDriver
 
@@ -27,21 +28,21 @@ class StockScrapperService : AutoCloseable{
         options.addArguments("--headless") // only if you are ACTUALLY running headless
 
         driver = ChromeDriver(options)
-        driver.manage().timeouts().setScriptTimeout(3000, TimeUnit.SECONDS)
+//        driver.manage().timeouts().setScriptTimeout(3000, TimeUnit.SECONDS)
     }
 
     fun scrape(tickers: List<StockTicker>): List<StockInfo> {
-        val random = Random(System.currentTimeMillis())
         val stockInfo = mutableListOf<StockInfo>()
-        for(ticker in tickers){
+        for (ticker in tickers) {
             try {
+                println("Scraping ticker $ticker")
                 stockInfo.add(scrapeYahoo(ticker))
-            } catch (e: Exception){
-                println("Failed to process ${ticker.symbol}: ${e.message}")
+            } catch (e: Exception) {
+                println("Failed to process ${ticker}: ${e.message}")
             }
-            Thread.sleep(random.nextLong() % 1000)   //hopefully will avoid Yahoo detecting robot calls
+            Thread.sleep(5000)   //avoid hitting hit rate limit
         }
-        return tickers.map { ticker -> scrapeYahoo(ticker) }
+        return stockInfo
     }
 
     fun scrapeYahoo(ticker: StockTicker): StockInfo {
@@ -60,26 +61,40 @@ class StockScrapperService : AutoCloseable{
 
         val measures = mutableListOf<PeriodMeasure>()
 
-        for (i in headers.indices){
-            if(i == 0) continue //header column
+        for (i in headers.indices) {
+            if (i == 0) continue //header column
 
             var rowIndex = 0
-            val columnIndex = i +1 //xpath indexing starts at 1
+            val columnIndex = i + 1 //xpath indexing starts at 1
             measures.add(PeriodMeasure(
                 period = headers[i].text,
-                marketCap = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text,
-                enterpriseValue = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text,
-                trailingPE = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                forwardPE = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                priceEarningGrowth = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                priceSales = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                priceBook = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                enterpriseValueRevenue = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toFloat(),
-                enterpriseValueEBITDA = valueRows[rowIndex].findElement(By.xpath("./td[$columnIndex]")).text.toFloat()
+                marketCap = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.let { parseLong(it) },
+                enterpriseValue = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.let { parseLong(it) },
+                trailingPE = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                forwardPE = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                priceEarningGrowth = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                priceSales = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                priceBook = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                enterpriseValueRevenue = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
+                enterpriseValueEBITDA = valueRows[rowIndex].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull()
             ))
         }
 
         return Statistics(measures)
+    }
+
+    /**
+     * Converts 1.56T into a long 1 560 000 000 000
+     */
+    private fun parseLong(yahooNumber: String): Long? {
+        val convertedNumber: Float?
+        when (yahooNumber.last()) {
+            'M' -> convertedNumber = yahooNumber.dropLast(1).toFloat() * MILLION
+            'B' -> convertedNumber = yahooNumber.dropLast(1).toFloat() * BILLION
+            'T' -> convertedNumber = yahooNumber.dropLast(1).toFloat() * TRILLION
+            else -> convertedNumber = yahooNumber.toFloatOrNull()
+        }
+        return convertedNumber.let { it?.toLong() }
     }
 
     override fun close() {
