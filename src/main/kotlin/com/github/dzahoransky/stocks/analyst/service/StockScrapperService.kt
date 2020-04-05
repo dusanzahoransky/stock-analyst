@@ -9,7 +9,8 @@ import org.openqa.selenium.PageLoadStrategy
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import java.io.File
-import kotlin.random.Random
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class StockScrapperService : AutoCloseable {
     companion object {
@@ -59,15 +60,16 @@ class StockScrapperService : AutoCloseable {
         val headers = valuationMeasuresTable.findElements(By.xpath(".//thead/tr/th"))  // [empty]	Current	12/31/2019	9/30/2019	6/30/2019	3/31/2019
         val valueRows = valuationMeasuresTable.findElements(By.xpath(".//tbody/tr"))
 
-        val measures = mutableListOf<PeriodMeasure>()
+        val measures = mutableMapOf<String, PeriodMeasure>()
 
         for (i in headers.indices) {
             if (i == 0) continue //header column
 
             var rowIndex = 0
             val columnIndex = i + 1 //xpath indexing starts at 1
-            measures.add(PeriodMeasure(
-                period = headers[i].text,
+            val period = headers[i].text.let { parseDate(it) }
+            measures.put(period, PeriodMeasure(
+                period = period,
                 marketCap = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.let { parseLong(it) },
                 enterpriseValue = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.let { parseLong(it) },
                 trailingPE = valueRows[rowIndex++].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull(),
@@ -95,6 +97,16 @@ class StockScrapperService : AutoCloseable {
             else -> convertedNumber = yahooNumber.toFloatOrNull()
         }
         return convertedNumber.let { it?.toLong() }
+    }
+
+    /**
+     * Converts 10/31/2019 into a string in ISO local date 2019-10-31
+     */
+    private fun parseDate(yahooDate: String): String {
+        if (yahooDate == "Current") {
+            return LocalDate.now().toString()
+        }
+        return LocalDate.parse(yahooDate, DateTimeFormatter.ofPattern("M/d/yyyy")).toString()
     }
 
     override fun close() {

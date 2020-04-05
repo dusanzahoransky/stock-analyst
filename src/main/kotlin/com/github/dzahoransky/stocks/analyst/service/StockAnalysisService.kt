@@ -1,7 +1,10 @@
 package com.github.dzahoransky.stocks.analyst.service
 
+import TickerRepo
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import com.github.dzahoransky.stocks.analyst.model.AnalysisResult
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
 import com.github.dzahoransky.stocks.analyst.model.yahoo.AveragePeriodMeasure
@@ -9,129 +12,32 @@ import com.github.dzahoransky.stocks.analyst.model.yahoo.Statistics
 import java.io.File
 
 fun main() {
-    val mapper = jacksonObjectMapper()
+    val mapper = jacksonObjectMapper().registerModule(ParameterNamesModule())
+        .registerModule(Jdk8Module())
+        .registerModule(JavaTimeModule())
 
     //SCRAPE stocks
-//    val stocks = mutableListOf<StockInfo>()
-//    StockScrapperService().use {
-//        stocks.addAll(it.scrape(listOf(
-//            StockTicker("MSFT"),
-//            StockTicker("AAPL"),
-//            StockTicker("AMZN"),
-//            StockTicker("GOOG"),
-//            StockTicker("GOOGL"),
-//            StockTicker("FB"),
-//            StockTicker("INTC"),
-//            StockTicker("PEP"),
-//            StockTicker("CMCSA"),
-//            StockTicker("CSCO"),
-//            StockTicker("ADBE"),
-//            StockTicker("NFLX"),
-//            StockTicker("COST"),
-//            StockTicker("NVDA"),
-//            StockTicker("AMGN"),
-//            StockTicker("PYPL"),
-//            StockTicker("GILD"),
-//            StockTicker("TXN"),
-//            StockTicker("CHTR"),
-//            StockTicker("AVGO"),
-//            StockTicker("TSLA"),
-//            StockTicker("QCOM"),
-//            StockTicker("SBUX"),
-//            StockTicker("TMUS"),
-//            StockTicker("MDLZ"),
-//            StockTicker("FISV"),
-//            StockTicker("INTU"),
-//            StockTicker("VRTX"),
-//            StockTicker("REGN"),
-//            StockTicker("BIIB"),
-//            StockTicker("ADP"),
-//            StockTicker("BKNG"),
-//            StockTicker("ISRG"),
-//            StockTicker("AMD"),
-//            StockTicker("WBA"),
-//            StockTicker("CSX"),
-//            StockTicker("ATVI"),
-//            StockTicker("MU"),
-//            StockTicker("AMAT"),
-//            StockTicker("JD"),
-//            StockTicker("ADI"),
-//            StockTicker("ILMN"),
-//            StockTicker("ADSK"),
-//            StockTicker("EXC"),
-//            StockTicker("XEL"),
-//            StockTicker("MNST"),
-//            StockTicker("LRCX"),
-//            StockTicker("KHC"),
-//            StockTicker("EA"),
-//            StockTicker("CTSH"),
-//            StockTicker("BIDU"),
-//            StockTicker("EBAY"),
-//            StockTicker("ROST"),
-//            StockTicker("MELI"),
-//            StockTicker("VRSK"),
-//            StockTicker("ORLY"),
-//            StockTicker("MAR"),
-//            StockTicker("NTES"),
-//            StockTicker("NXPI"),
-//            StockTicker("SIRI"),
-//            StockTicker("WDAY"),
-//            StockTicker("PAYX"),
-//            StockTicker("CSGP"),
-//            StockTicker("KLAC"),
-//            StockTicker("WLTW"),
-//            StockTicker("PCAR"),
-//            StockTicker("VRSN"),
-//            StockTicker("LULU"),
-//            StockTicker("XLNX"),
-//            StockTicker("CTAS"),
-//            StockTicker("CERN"),
-//            StockTicker("ANSS"),
-//            StockTicker("FAST"),
-//            StockTicker("ALXN"),
-//            StockTicker("SNPS"),
-//            StockTicker("SGEN"),
-//            StockTicker("DLTR"),
-//            StockTicker("IDXX"),
-//            StockTicker("CTXS"),
-//            StockTicker("CPRT"),
-//            StockTicker("SPLK"),
-//            StockTicker("ASML"),
-//            StockTicker("CDNS"),
-//            StockTicker("MCHP"),
-//            StockTicker("INCY"),
-//            StockTicker("CHKP"),
-//            StockTicker("BMRN"),
-//            StockTicker("SWKS"),
-//            StockTicker("CDW"),
-//            StockTicker("MXIM"),
-//            StockTicker("TTWO"),
-//            StockTicker("TCOM"),
-//            StockTicker("ALGN"),
-//            StockTicker("WDC"),
-//            StockTicker("NTAP"),
-//            StockTicker("ULTA"),
-//            StockTicker("FOXA"),
-//            StockTicker("LBTYK"),
-//            StockTicker("EXPE"),
-//            StockTicker("FOX"),
-//            StockTicker("UAL"),
-//            StockTicker("AAL"),
-//            StockTicker("LBTYA")
-//        )))
-//    }
-//    val stocksOutFile = File("src/main/resources/stocks.json")
-//    println("Saving scraped stocks into: ${stocksOutFile.absolutePath}")
-//    mapper.writeValue(stocksOutFile, stocks)
+    val tickerRepo = TickerRepo()
+    val stocks = mutableListOf<StockInfo>()
+    StockScrapperService().use {
+        stocks.addAll(it.scrape(
+            tickerRepo.test()
+//            tickerRepo.nasdaq100()
+        ))
+    }
+    val stocksOutFile = File("src/main/resources/stocks.json")
+    println("Saving scraped stocks into: ${stocksOutFile.absolutePath}")
+    mapper.writeValue(stocksOutFile, stocks)
 
     //LOAD stocks from JSON file
-    val stocks = mapper.readValue(mapper.javaClass.getResourceAsStream("/stocks.json"), jacksonTypeRef<List<StockInfo>>())
+//    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
 
     // do the calculations
     val statisticsAverage = StockAnalysisService().statisticsAverage(stocks)
+    val allPeriods = StockAnalysisService().allPeriods(statisticsAverage)
 
     // result for UI to display
-    val result = AnalysisResult(statisticsAverage = statisticsAverage, stocks = stocks)
+    val result = AnalysisResult(allPeriods, statisticsAverage, stocks)
 
     val resultOutFile = File("src/main/resources/output.json")
     println("Saving analysis output into: ${resultOutFile.absolutePath}")
@@ -140,57 +46,61 @@ fun main() {
 
 class StockAnalysisService {
 
+    fun allPeriods(statisticsAverage: Statistics): List<String> {
+        return statisticsAverage.periodValuationMeasures.keys.toList().sorted().reversed()
+    }
+
     fun statisticsAverage(stocks: List<StockInfo>): Statistics {
 
-        val averages = mutableListOf<AveragePeriodMeasure>()
+        val averages = mutableMapOf<String, AveragePeriodMeasure>()
 
         for (stock in stocks) {
-            for (i in stock.statistics.periodValuationMeasures.indices) {
-                val measure = stock.statistics.periodValuationMeasures[i]
-                if (averages.size <= i) {
-                    averages.add(AveragePeriodMeasure(measure.copy()))
+            for (measure in stock.statistics.periodValuationMeasures.values) {
+                val averageForPeriod = averages.get(measure.period)
+                if (averageForPeriod == null) {
+                    averages.put(measure.period, AveragePeriodMeasure(measure.copy()))
                 } else {
                     if (measure.marketCap != null) {
-                        averages[i].periodMeasure.marketCap = sum(averages[i].periodMeasure.marketCap, measure.marketCap)
-                        averages[i].marketCapCount++
+                        averageForPeriod.periodMeasure.marketCap = sum(averageForPeriod.periodMeasure.marketCap, measure.marketCap)
+                        averageForPeriod.marketCapCount++
                     }
                     if (measure.enterpriseValue != null) {
-                        averages[i].periodMeasure.enterpriseValue = sum(averages[i].periodMeasure.enterpriseValue, measure.enterpriseValue)
-                        averages[i].enterpriseValueCount++
+                        averageForPeriod.periodMeasure.enterpriseValue = sum(averageForPeriod.periodMeasure.enterpriseValue, measure.enterpriseValue)
+                        averageForPeriod.enterpriseValueCount++
                     }
                     if (measure.trailingPE != null) {
-                        averages[i].periodMeasure.trailingPE = sum(averages[i].periodMeasure.trailingPE, measure.trailingPE)
-                        averages[i].trailingPECount++
+                        averageForPeriod.periodMeasure.trailingPE = sum(averageForPeriod.periodMeasure.trailingPE, measure.trailingPE)
+                        averageForPeriod.trailingPECount++
                     }
                     if (measure.forwardPE != null) {
-                        averages[i].periodMeasure.forwardPE = sum(averages[i].periodMeasure.forwardPE, measure.forwardPE)
-                        averages[i].forwardPECount++
+                        averageForPeriod.periodMeasure.forwardPE = sum(averageForPeriod.periodMeasure.forwardPE, measure.forwardPE)
+                        averageForPeriod.forwardPECount++
                     }
                     if (measure.priceEarningGrowth != null) {
-                        averages[i].periodMeasure.priceEarningGrowth = sum(averages[i].periodMeasure.priceEarningGrowth, measure.priceEarningGrowth)
-                        averages[i].priceEarningGrowthCount++
+                        averageForPeriod.periodMeasure.priceEarningGrowth = sum(averageForPeriod.periodMeasure.priceEarningGrowth, measure.priceEarningGrowth)
+                        averageForPeriod.priceEarningGrowthCount++
                     }
                     if (measure.priceSales != null) {
-                        averages[i].periodMeasure.priceSales = sum(averages[i].periodMeasure.priceSales, measure.priceSales)
-                        averages[i].priceSalesCount++
+                        averageForPeriod.periodMeasure.priceSales = sum(averageForPeriod.periodMeasure.priceSales, measure.priceSales)
+                        averageForPeriod.priceSalesCount++
                     }
                     if (measure.priceBook != null) {
-                        averages[i].periodMeasure.priceBook = sum(averages[i].periodMeasure.priceBook, measure.priceBook)
-                        averages[i].priceBookCount++
+                        averageForPeriod.periodMeasure.priceBook = sum(averageForPeriod.periodMeasure.priceBook, measure.priceBook)
+                        averageForPeriod.priceBookCount++
                     }
                     if (measure.enterpriseValueRevenue != null) {
-                        averages[i].periodMeasure.enterpriseValueRevenue = sum(averages[i].periodMeasure.enterpriseValueRevenue, measure.enterpriseValueRevenue)
-                        averages[i].enterpriseValueRevenueCount++
+                        averageForPeriod.periodMeasure.enterpriseValueRevenue = sum(averageForPeriod.periodMeasure.enterpriseValueRevenue, measure.enterpriseValueRevenue)
+                        averageForPeriod.enterpriseValueRevenueCount++
                     }
                     if (measure.enterpriseValueEBITDA != null) {
-                        averages[i].periodMeasure.enterpriseValueEBITDA = sum(averages[i].periodMeasure.enterpriseValueEBITDA, measure.enterpriseValueEBITDA)
-                        averages[i].enterpriseValueEBITDACount++
+                        averageForPeriod.periodMeasure.enterpriseValueEBITDA = sum(averageForPeriod.periodMeasure.enterpriseValueEBITDA, measure.enterpriseValueEBITDA)
+                        averageForPeriod.enterpriseValueEBITDACount++
                     }
                 }
             }
         }
 
-        for (average in averages) {
+        for (average in averages.values) {
             average.periodMeasure.marketCap = div(average.periodMeasure.marketCap, stocks.size)
             average.periodMeasure.enterpriseValue = div(average.periodMeasure.enterpriseValue, stocks.size)
             average.periodMeasure.trailingPE = div(average.periodMeasure.trailingPE, stocks.size)
@@ -202,7 +112,8 @@ class StockAnalysisService {
             average.periodMeasure.enterpriseValueEBITDA = div(average.periodMeasure.enterpriseValueEBITDA, stocks.size)
         }
 
-        return Statistics(averages.map { avg -> avg.periodMeasure })
+
+        return Statistics(averages.entries.map { it.key to it.value.periodMeasure }.toMap())    //unwrap AveragePeriodMeasure back to PeriodMeasure
     }
 
     /**
