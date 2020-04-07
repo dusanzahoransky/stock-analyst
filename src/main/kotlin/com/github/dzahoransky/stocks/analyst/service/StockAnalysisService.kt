@@ -8,6 +8,8 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import com.github.dzahoransky.stocks.analyst.model.AnalysisResult
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
 import com.github.dzahoransky.stocks.analyst.model.yahoo.AveragePeriodMeasure
+import com.github.dzahoransky.stocks.analyst.model.yahoo.AverageStatistics
+import com.github.dzahoransky.stocks.analyst.model.yahoo.PeriodMeasure
 import com.github.dzahoransky.stocks.analyst.model.yahoo.Statistics
 import java.io.File
 
@@ -21,8 +23,8 @@ fun main() {
     val stocks = mutableListOf<StockInfo>()
     StockScrapperService().use {
         stocks.addAll(it.scrape(
-//            tickerRepo.test()
-            tickerRepo.nasdaq100()
+            tickerRepo.test()
+//            tickerRepo.nasdaq100()
         ))
     }
     val stocksOutFile = File("src/main/resources/stocks.json")
@@ -30,23 +32,6 @@ fun main() {
     mapper.writeValue(stocksOutFile, stocks)
 
     //LOAD stocks from JSON file
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
 
     // do the calculations
@@ -69,55 +54,72 @@ class StockAnalysisService {
 
     fun statisticsAverage(stocks: List<StockInfo>): Statistics {
 
-        val averages = mutableMapOf<String, AveragePeriodMeasure>()
+        val averageStatistics = AverageStatistics(Statistics("AVERAGES"))
 
         for (stock in stocks) {
             for (measure in stock.statistics.periodValuationMeasures.values) {
-                val averageForPeriod = averages.get(measure.period)
+                val averageForPeriod = averageStatistics.periodValuationMeasures.get(measure.period)
                 if (averageForPeriod == null) {
-                    averages.put(measure.period, AveragePeriodMeasure(measure.copy()))
+                    averageStatistics.periodValuationMeasures.put(measure.period, AveragePeriodMeasure(measure.copy()))
                 } else {
-                    if (measure.marketCap != null) {
-                        averageForPeriod.periodMeasure.marketCap = sum(averageForPeriod.periodMeasure.marketCap, measure.marketCap)
-                        averageForPeriod.marketCapCount++
-                    }
-                    if (measure.enterpriseValue != null) {
-                        averageForPeriod.periodMeasure.enterpriseValue = sum(averageForPeriod.periodMeasure.enterpriseValue, measure.enterpriseValue)
-                        averageForPeriod.enterpriseValueCount++
-                    }
-                    if (measure.trailingPE != null) {
-                        averageForPeriod.periodMeasure.trailingPE = sum(averageForPeriod.periodMeasure.trailingPE, measure.trailingPE)
-                        averageForPeriod.trailingPECount++
-                    }
-                    if (measure.forwardPE != null) {
-                        averageForPeriod.periodMeasure.forwardPE = sum(averageForPeriod.periodMeasure.forwardPE, measure.forwardPE)
-                        averageForPeriod.forwardPECount++
-                    }
-                    if (measure.priceEarningGrowth != null) {
-                        averageForPeriod.periodMeasure.priceEarningGrowth = sum(averageForPeriod.periodMeasure.priceEarningGrowth, measure.priceEarningGrowth)
-                        averageForPeriod.priceEarningGrowthCount++
-                    }
-                    if (measure.priceSales != null) {
-                        averageForPeriod.periodMeasure.priceSales = sum(averageForPeriod.periodMeasure.priceSales, measure.priceSales)
-                        averageForPeriod.priceSalesCount++
-                    }
-                    if (measure.priceBook != null) {
-                        averageForPeriod.periodMeasure.priceBook = sum(averageForPeriod.periodMeasure.priceBook, measure.priceBook)
-                        averageForPeriod.priceBookCount++
-                    }
-                    if (measure.enterpriseValueRevenue != null) {
-                        averageForPeriod.periodMeasure.enterpriseValueRevenue = sum(averageForPeriod.periodMeasure.enterpriseValueRevenue, measure.enterpriseValueRevenue)
-                        averageForPeriod.enterpriseValueRevenueCount++
-                    }
-                    if (measure.enterpriseValueEBITDA != null) {
-                        averageForPeriod.periodMeasure.enterpriseValueEBITDA = sum(averageForPeriod.periodMeasure.enterpriseValueEBITDA, measure.enterpriseValueEBITDA)
-                        averageForPeriod.enterpriseValueEBITDACount++
-                    }
+                    addToPeriodAverage(averageForPeriod, measure)
                 }
+            }
+
+            if(stock.statistics.price != null){
+                averageStatistics.statistics.price = sum(averageStatistics.statistics.price, stock.statistics.price)
+                averageStatistics.priceCountNumber++
+            }
+            if(stock.statistics.totalCashPerShare != null){
+                averageStatistics.statistics.totalCashPerShare = sum(averageStatistics.statistics.totalCashPerShare, stock.statistics.totalCashPerShare)
+                averageStatistics.totalCashPerShareCount++
+            }
+            if(stock.statistics.totalDebtEquity != null){
+                averageStatistics.statistics.totalDebtEquity = sum(averageStatistics.statistics.totalDebtEquity, stock.statistics.totalDebtEquity)
+                averageStatistics.totalDebtEquityCount++
+            }
+            if(stock.statistics.quarterlyRevenueGrowth != null){
+                averageStatistics.statistics.quarterlyRevenueGrowth = sum(averageStatistics.statistics.quarterlyRevenueGrowth, stock.statistics.quarterlyRevenueGrowth)
+                averageStatistics.quarterlyRevenueGrowthCount++
+            }
+            if(stock.statistics.quarterlyEarningsGrowth != null){
+                averageStatistics.statistics.quarterlyEarningsGrowth = sum(averageStatistics.statistics.quarterlyEarningsGrowth, stock.statistics.quarterlyEarningsGrowth)
+                averageStatistics.quarterlyEarningsGrowthCount++
+            }
+            if(stock.statistics.dilutedEarningPerShare != null){
+                averageStatistics.statistics.dilutedEarningPerShare = sum(averageStatistics.statistics.dilutedEarningPerShare, stock.statistics.dilutedEarningPerShare)
+                averageStatistics.dilutedEarningPerShareCount++
+            }
+            if(stock.statistics.week52Change != null){
+                averageStatistics.statistics.week52Change = sum(averageStatistics.statistics.week52Change, stock.statistics.week52Change)
+                averageStatistics.week52ChangeCount++
+            }
+            if(stock.statistics.week52Low != null){
+                averageStatistics.statistics.week52Low = sum(averageStatistics.statistics.week52Low, stock.statistics.week52Low)
+                averageStatistics.week52LowCount++
+            }
+            if(stock.statistics.week52High != null){
+                averageStatistics.statistics.week52High = sum(averageStatistics.statistics.week52High, stock.statistics.week52High)
+                averageStatistics.week52HighCount++
+            }
+            if(stock.statistics.dilutedEarningPerShare != null){
+                averageStatistics.statistics.dilutedEarningPerShare = sum(averageStatistics.statistics.dilutedEarningPerShare, stock.statistics.dilutedEarningPerShare)
+                averageStatistics.dilutedEarningPerShareCount++
             }
         }
 
-        for (average in averages.values) {
+        averageStatistics.statistics.priceCountNumber = averageStatistics
+        averageStatistics.statistics.periodValuationMeasures = averageStatistics
+        averageStatistics.statistics.totalCashPerShareCount = averageStatistics
+        averageStatistics.statistics.totalDebtEquityCount = averageStatistics
+        averageStatistics.statistics.quarterlyRevenueGrowthCount = averageStatistics
+        averageStatistics.statistics.quarterlyEarningsGrowthCount = averageStatistics
+        averageStatistics.statistics.dilutedEarningPerShareCount = averageStatistics
+        averageStatistics.statistics.week52ChangeCount = averageStatistics
+        averageStatistics.statistics.week52LowCount = averageStatistics
+        averageStatistics.statistics.week52HighCount = averageStatistics
+
+        for (average in averageStatistics.periodValuationMeasures.values) {
             average.periodMeasure.marketCap = div(average.periodMeasure.marketCap, stocks.size)
             average.periodMeasure.enterpriseValue = div(average.periodMeasure.enterpriseValue, stocks.size)
             average.periodMeasure.trailingPE = div(average.periodMeasure.trailingPE, stocks.size)
@@ -129,8 +131,49 @@ class StockAnalysisService {
             average.periodMeasure.enterpriseValueEBITDA = div(average.periodMeasure.enterpriseValueEBITDA, stocks.size)
         }
 
+        averageStatistics.statistics.periodValuationMeasures = averageStatistics.periodValuationMeasures.entries
+            .map { it.key to it.value.periodMeasure }.toMap() as MutableMap<String, PeriodMeasure> //unwrap AveragePeriodMeasure back to PeriodMeasure
 
-        return Statistics(averages.entries.map { it.key to it.value.periodMeasure }.toMap())    //unwrap AveragePeriodMeasure back to PeriodMeasure
+        return averageStatistics.statistics
+    }
+
+    private fun addToPeriodAverage(averageForPeriod: AveragePeriodMeasure, measure: PeriodMeasure) {
+        if (measure.marketCap != null) {
+            averageForPeriod.periodMeasure.marketCap = sum(averageForPeriod.periodMeasure.marketCap, measure.marketCap)
+            averageForPeriod.marketCapCount++
+        }
+        if (measure.enterpriseValue != null) {
+            averageForPeriod.periodMeasure.enterpriseValue = sum(averageForPeriod.periodMeasure.enterpriseValue, measure.enterpriseValue)
+            averageForPeriod.enterpriseValueCount++
+        }
+        if (measure.trailingPE != null) {
+            averageForPeriod.periodMeasure.trailingPE = sum(averageForPeriod.periodMeasure.trailingPE, measure.trailingPE)
+            averageForPeriod.trailingPECount++
+        }
+        if (measure.forwardPE != null) {
+            averageForPeriod.periodMeasure.forwardPE = sum(averageForPeriod.periodMeasure.forwardPE, measure.forwardPE)
+            averageForPeriod.forwardPECount++
+        }
+        if (measure.priceEarningGrowth != null) {
+            averageForPeriod.periodMeasure.priceEarningGrowth = sum(averageForPeriod.periodMeasure.priceEarningGrowth, measure.priceEarningGrowth)
+            averageForPeriod.priceEarningGrowthCount++
+        }
+        if (measure.priceSales != null) {
+            averageForPeriod.periodMeasure.priceSales = sum(averageForPeriod.periodMeasure.priceSales, measure.priceSales)
+            averageForPeriod.priceSalesCount++
+        }
+        if (measure.priceBook != null) {
+            averageForPeriod.periodMeasure.priceBook = sum(averageForPeriod.periodMeasure.priceBook, measure.priceBook)
+            averageForPeriod.priceBookCount++
+        }
+        if (measure.enterpriseValueRevenue != null) {
+            averageForPeriod.periodMeasure.enterpriseValueRevenue = sum(averageForPeriod.periodMeasure.enterpriseValueRevenue, measure.enterpriseValueRevenue)
+            averageForPeriod.enterpriseValueRevenueCount++
+        }
+        if (measure.enterpriseValueEBITDA != null) {
+            averageForPeriod.periodMeasure.enterpriseValueEBITDA = sum(averageForPeriod.periodMeasure.enterpriseValueEBITDA, measure.enterpriseValueEBITDA)
+            averageForPeriod.enterpriseValueEBITDACount++
+        }
     }
 
     /**

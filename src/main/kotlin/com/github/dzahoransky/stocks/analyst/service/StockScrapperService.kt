@@ -6,6 +6,7 @@ import com.github.dzahoransky.stocks.analyst.model.yahoo.PeriodMeasure
 import com.github.dzahoransky.stocks.analyst.model.yahoo.Statistics
 import org.openqa.selenium.By
 import org.openqa.selenium.PageLoadStrategy
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import java.io.File
@@ -48,13 +49,52 @@ class StockScrapperService : AutoCloseable {
 
     fun scrapeYahoo(ticker: StockTicker): StockInfo {
         val statistics = parseStatistics(ticker)
-        return StockInfo(ticker, statistics)
+        return StockInfo(statistics.companyName, ticker, statistics)
     }
 
     private fun parseStatistics(ticker: StockTicker): Statistics {
         driver.get("https://finance.yahoo.com/quote/${ticker.symbol}/key-statistics?p=${ticker.symbol}")
 
-        val mainDiv = driver.findElements(By.xpath("//div[@id='Main']")).first()
+        val mainDiv = driver.findElement(By.id("Main"))
+        val measures = parseValuationMeasures(mainDiv)
+
+        val headerInfo = driver.findElement(By.id("quote-header-info"))
+        val companyName = headerInfo.findElement(By.xpath(".//h1")).text
+        val price = headerInfo.findElement(By.xpath("./div[3]//span[1]")).text.toDoubleOrNull()
+        val change = headerInfo.findElement(By.xpath("./div[3]//span[2]")).text
+
+        val balanceSheet = mainDiv.findElement(By.xpath(".//div[h3/span='Balance Sheet']"))
+        val totalCashPerShare = balanceSheet.findElement(By.xpath(".//tbody/tr[2]/td[2]")).text.toDoubleOrNull()
+        val totalDebtEquity = balanceSheet.findElement(By.xpath(".//tbody/tr[4]/td[2]")).text.toDoubleOrNull()
+
+        val incomeStatement = mainDiv.findElement(By.xpath(".//div[h3/span='Income Statement']"))
+        val dilutedEPS = incomeStatement.findElement(By.xpath(".//tbody/tr[7]/td[2]")).text.toDoubleOrNull()
+        val quarterlyRevenueGrowth = incomeStatement.findElement(By.xpath(".//tbody/tr[3]/td[2]")).text.let { parsePercentage(it) }
+        val quarterlyEarningsGrowth = incomeStatement.findElement(By.xpath(".//tbody/tr[8]/td[2]")).text.let { parsePercentage(it) }
+
+        val stockPriceHistory = mainDiv.findElement(By.xpath(".//div[h3/span='Stock Price History']"))
+
+        val week52Change = stockPriceHistory.findElement(By.xpath(".//tbody/tr[2]/td[2]")).text.let { parsePercentage(it) }
+        val week52Low = stockPriceHistory.findElement(By.xpath(".//tbody/tr[5]/td[2]")).text.toDoubleOrNull()
+        val week52High = stockPriceHistory.findElement(By.xpath(".//tbody/tr[4]/td[2]")).text.toDoubleOrNull()
+
+        return Statistics(
+            companyName,
+            price,
+            change,
+            measures,
+            totalCashPerShare,
+            totalDebtEquity,
+            quarterlyRevenueGrowth,
+            quarterlyEarningsGrowth,
+            dilutedEPS,
+            week52Change,
+            week52Low,
+            week52High
+        )
+    }
+
+    private fun parseValuationMeasures(mainDiv: WebElement): MutableMap<String, PeriodMeasure> {
         val valuationMeasuresTable = mainDiv.findElements(By.xpath(".//*[h2/span='Valuation Measures']//table")).first()
 
         val headers = valuationMeasuresTable.findElements(By.xpath(".//thead/tr/th"))  // [empty]	Current	12/31/2019	9/30/2019	6/30/2019	3/31/2019
@@ -81,8 +121,7 @@ class StockScrapperService : AutoCloseable {
                 enterpriseValueEBITDA = valueRows[rowIndex].findElement(By.xpath("./td[$columnIndex]")).text.toDoubleOrNull()
             ))
         }
-
-        return Statistics(measures)
+        return measures
     }
 
     /**
@@ -97,6 +136,13 @@ class StockScrapperService : AutoCloseable {
             else -> convertedNumber = yahooNumber.toFloatOrNull()
         }
         return convertedNumber.let { it?.toLong() }
+    }
+
+    /**
+     * Converts 1.56T into a long 1 560 000 000 000
+     */
+    private fun parsePercentage(percentageNumber: String): Double? {
+        return percentageNumber.dropLast(1).toDoubleOrNull()
     }
 
     /**
