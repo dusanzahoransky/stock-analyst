@@ -2,7 +2,7 @@ package com.github.dzahoransky.stocks.analyst.model.yahoo
 
 data class AverageStatistics(
     var statistics: Statistics,
-    var priceCountNumber: Int = 0,
+    var priceCount: Int = 0,
     var periodValuationMeasures: MutableMap<String, AveragePeriodMeasure> = mutableMapOf(),
     var totalCashPerShareCount: Int = 0,
     var totalDebtEquityCount: Int = 0,

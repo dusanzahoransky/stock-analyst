@@ -1,1 +1,250 @@
-{"statisticsAllPeriods":["2020-04-08","2019-12-31","2019-09-30","2019-06-30","2019-03-31"],"statisticsAverage":{"companyName":"AVERAGES","price":430.28000000000003,"change":"","periodValuationMeasures":{"2020-04-08":{"period":"2020-04-08","marketCap":1104999940096,"enterpriseValue":1079999954944,"trailingPE":22.735,"forwardPE":21.505000000000003,"priceEarningGrowth":2.085,"priceSales":6.43,"priceBook":11.14,"enterpriseValueRevenue":6.0649999999999995,"enterpriseValueEBITDA":14.86},"2019-12-31":{"period":"2019-12-31","marketCap":1245000040448,"enterpriseValue":1219999956992,"trailingPE":27.225,"forwardPE":25.535,"priceEarningGrowth":2.405,"priceSales":7.325,"priceBook":12.775,"enterpriseValueRevenue":22.494999999999997,"enterpriseValueEBITDA":53.7},"2019-09-30":{"period":"2019-09-30","marketCap":1027574956032,"enterpriseValue":1010000003072,"trailingPE":23.245,"forwardPE":21.86,"priceEarningGrowth":3.49,"priceSales":6.33,"priceBook":10.344999999999999,"enterpriseValueRevenue":23.095,"enterpriseValueEBITDA":55.94499999999999},"2019-06-30":{"period":"2019-06-30","marketCap":970319986688,"enterpriseValue":958574985216,"trailingPE":23.174999999999997,"forwardPE":21.04,"priceEarningGrowth":1.875,"priceSales":6.095,"priceBook":9.629999999999999,"enterpriseValueRevenue":23.21,"enterpriseValueEBITDA":60.099999999999994},"2019-03-31":{"period":"2019-03-31","marketCap":900264984576,"enterpriseValue":890009976832,"trailingPE":21.465,"forwardPE":19.945,"priceEarningGrowth":1.9700000000000002,"priceSales":5.65,"priceBook":8.615,"enterpriseValueRevenue":21.965,"enterpriseValueEBITDA":56.285}},"totalCashPerShare":42.14,"totalDebtEquity":209.55,"quarterlyRevenueGrowth":22.6,"quarterlyEarningsGrowth":49.699999999999996,"dilutedEarningPerShare":36.68,"week52Change":70.12,"week52Low":288.85,"week52High":518.55},"stocks":[{"companyName":"Microsoft Corporation (MSFT)","ticker":{"symbol":"MSFT","exchange":"NASDAQ"},"statistics":{"companyName":"Microsoft Corporation (MSFT)","price":165.12,"change":"-0.15 (-0.09%)","periodValuationMeasures":{"2020-04-08":{"period":"2020-04-08","marketCap":1159999913984,"enterpriseValue":1100000002048,"trailingPE":26.5,"forwardPE":24.39,"priceEarningGrowth":2.67,"priceSales":8.75,"priceBook":10.51,"enterpriseValueRevenue":8.19,"enterpriseValueEBITDA":17.04},"2019-12-31":{"period":"2019-12-31","marketCap":1200000073728,"enterpriseValue":1140000030720,"trailingPE":29.75,"forwardPE":28.9,"priceEarningGrowth":2.78,"priceSales":9.4,"priceBook":11.32,"enterpriseValueRevenue":30.88,"enterpriseValueEBITDA":63.53},"2019-09-30":{"period":"2019-09-30","marketCap":1059999907840,"enterpriseValue":1010000003072,"trailingPE":27.48,"forwardPE":26.45,"priceEarningGrowth":4.94,"priceSales":8.57,"priceBook":10.37,"enterpriseValueRevenue":30.43,"enterpriseValueEBITDA":61.73},"2019-06-30":{"period":"2019-06-30","marketCap":1029999951872,"enterpriseValue":973969948672,"trailingPE":29.77,"forwardPE":26.11,"priceEarningGrowth":2.3,"priceSales":8.51,"priceBook":10.79,"enterpriseValueRevenue":28.89,"enterpriseValueEBITDA":60.16},"2019-03-31":{"period":"2019-03-31","marketCap":904860008448,"enterpriseValue":856049975296,"trailingPE":27.36,"forwardPE":23.31,"priceEarningGrowth":2.12,"priceSales":7.74,"priceBook":9.81,"enterpriseValueRevenue":28.0,"enterpriseValueEBITDA":60.79}},"totalCashPerShare":17.65,"totalDebtEquity":79.15,"quarterlyRevenueGrowth":13.7,"quarterlyEarningsGrowth":38.3,"dilutedEarningPerShare":5.74,"week52Change":38.56,"week52Low":118.58,"week52High":190.7}},{"companyName":"Apple Inc. (AAPL)","ticker":{"symbol":"AAPL","exchange":"NASDAQ"},"statistics":{"companyName":"Apple Inc. (AAPL)","price":265.16,"change":"+2.69 (+1.02%)","periodValuationMeasures":{"2020-04-08":{"period":"2020-04-08","marketCap":1049999966208,"enterpriseValue":1059999907840,"trailingPE":18.97,"forwardPE":18.62,"priceEarningGrowth":1.5,"priceSales":4.11,"priceBook":11.77,"enterpriseValueRevenue":3.94,"enterpriseValueEBITDA":12.68},"2019-12-31":{"period":"2019-12-31","marketCap":1290000007168,"enterpriseValue":1299999883264,"trailingPE":24.7,"forwardPE":22.17,"priceEarningGrowth":2.03,"priceSales":5.25,"priceBook":14.23,"enterpriseValueRevenue":14.11,"enterpriseValueEBITDA":43.87},"2019-09-30":{"period":"2019-09-30","marketCap":995150004224,"enterpriseValue":1010000003072,"trailingPE":19.01,"forwardPE":17.27,"priceEarningGrowth":2.04,"priceSales":4.09,"priceBook":10.32,"enterpriseValueRevenue":15.76,"enterpriseValueEBITDA":50.16},"2019-06-30":{"period":"2019-06-30","marketCap":910640021504,"enterpriseValue":943180021760,"trailingPE":16.58,"forwardPE":15.97,"priceEarningGrowth":1.45,"priceSales":3.68,"priceBook":8.47,"enterpriseValueRevenue":17.53,"enterpriseValueEBITDA":60.04},"2019-03-31":{"period":"2019-03-31","marketCap":895669960704,"enterpriseValue":923969978368,"trailingPE":15.57,"forwardPE":16.58,"priceEarningGrowth":1.82,"priceSales":3.56,"priceBook":7.42,"enterpriseValueRevenue":15.93,"enterpriseValueEBITDA":51.78}},"totalCashPerShare":24.49,"totalDebtEquity":130.4,"quarterlyRevenueGrowth":8.9,"quarterlyEarningsGrowth":11.4,"dilutedEarningPerShare":12.6,"week52Change":31.56,"week52Low":170.27,"week52High":327.85}}]}
+{
+  "statisticsAllPeriods": [
+    "2020-04-08",
+    "2019-12-31",
+    "2019-09-30",
+    "2019-06-30",
+    "2019-03-31"
+  ],
+  "statisticsAverage": {
+    "companyName": "AVERAGES",
+    "price": 211.46,
+    "change": "",
+    "periodValuationMeasures": {
+      "2020-04-08": {
+        "period": "2020-04-08",
+        "marketCap": 2409999892480,
+        "enterpriseValue": 2349999980544,
+        "trailingPE": 49.46,
+        "forwardPE": 48.56,
+        "priceEarningGrowth": 4.67,
+        "priceSales": 13.98,
+        "priceBook": 24.25,
+        "enterpriseValueRevenue": 13.23,
+        "enterpriseValueEBITDA": 32.42
+      },
+      "2019-12-31": {
+        "period": "2019-12-31",
+        "marketCap": 2490000080896,
+        "enterpriseValue": 2439999913984,
+        "trailingPE": 54.45,
+        "forwardPE": 51.07,
+        "priceEarningGrowth": 4.81,
+        "priceSales": 14.65,
+        "priceBook": 25.55,
+        "enterpriseValueRevenue": 44.989999999999995,
+        "enterpriseValueEBITDA": 107.4
+      },
+      "2019-09-30": {
+        "period": "2019-09-30",
+        "marketCap": 2055149912064,
+        "enterpriseValue": 2020000006144,
+        "trailingPE": 46.49,
+        "forwardPE": 43.72,
+        "priceEarningGrowth": 6.98,
+        "priceSales": 12.66,
+        "priceBook": 20.689999999999998,
+        "enterpriseValueRevenue": 46.19,
+        "enterpriseValueEBITDA": 111.88999999999999
+      },
+      "2019-06-30": {
+        "period": "2019-06-30",
+        "marketCap": 1940639973376,
+        "enterpriseValue": 1917149970432,
+        "trailingPE": 46.349999999999994,
+        "forwardPE": 42.08,
+        "priceEarningGrowth": 3.75,
+        "priceSales": 12.19,
+        "priceBook": 19.259999999999998,
+        "enterpriseValueRevenue": 46.42,
+        "enterpriseValueEBITDA": 120.19999999999999
+      },
+      "2019-03-31": {
+        "period": "2019-03-31",
+        "marketCap": 1800529969152,
+        "enterpriseValue": 1780019953664,
+        "trailingPE": 42.93,
+        "forwardPE": 39.89,
+        "priceEarningGrowth": 3.9400000000000004,
+        "priceSales": 11.3,
+        "priceBook": 17.23,
+        "enterpriseValueRevenue": 43.93,
+        "enterpriseValueEBITDA": 112.57
+      }
+    },
+    "totalCashPerShare": 21.07,
+    "totalDebtEquity": 104.775,
+    "quarterlyRevenueGrowth": 11.3,
+    "quarterlyEarningsGrowth": 24.849999999999998,
+    "dilutedEarningPerShare": 9.17,
+    "week52Change": 35.06,
+    "week52Low": 144.425,
+    "week52High": 259.275
+  },
+  "stocks": [
+    {
+      "companyName": "Microsoft Corporation (MSFT)",
+      "ticker": {
+        "symbol": "MSFT",
+        "exchange": "NASDAQ"
+      },
+      "statistics": {
+        "companyName": "Microsoft Corporation (MSFT)",
+        "price": 163.49,
+        "change": "-1.78 (-1.08%)",
+        "periodValuationMeasures": {
+          "2020-04-08": {
+            "period": "2020-04-08",
+            "marketCap": 1259999985664,
+            "enterpriseValue": 1200000073728,
+            "trailingPE": 28.79,
+            "forwardPE": 26.53,
+            "priceEarningGrowth": 2.9,
+            "priceSales": 9.5,
+            "priceBook": 11.42,
+            "enterpriseValueRevenue": 8.94,
+            "enterpriseValueEBITDA": 18.6
+          },
+          "2019-12-31": {
+            "period": "2019-12-31",
+            "marketCap": 1200000073728,
+            "enterpriseValue": 1140000030720,
+            "trailingPE": 29.75,
+            "forwardPE": 28.9,
+            "priceEarningGrowth": 2.78,
+            "priceSales": 9.4,
+            "priceBook": 11.32,
+            "enterpriseValueRevenue": 30.88,
+            "enterpriseValueEBITDA": 63.53
+          },
+          "2019-09-30": {
+            "period": "2019-09-30",
+            "marketCap": 1059999907840,
+            "enterpriseValue": 1010000003072,
+            "trailingPE": 27.48,
+            "forwardPE": 26.45,
+            "priceEarningGrowth": 4.94,
+            "priceSales": 8.57,
+            "priceBook": 10.37,
+            "enterpriseValueRevenue": 30.43,
+            "enterpriseValueEBITDA": 61.73
+          },
+          "2019-06-30": {
+            "period": "2019-06-30",
+            "marketCap": 1029999951872,
+            "enterpriseValue": 973969948672,
+            "trailingPE": 29.77,
+            "forwardPE": 26.11,
+            "priceEarningGrowth": 2.3,
+            "priceSales": 8.51,
+            "priceBook": 10.79,
+            "enterpriseValueRevenue": 28.89,
+            "enterpriseValueEBITDA": 60.16
+          },
+          "2019-03-31": {
+            "period": "2019-03-31",
+            "marketCap": 904860008448,
+            "enterpriseValue": 856049975296,
+            "trailingPE": 27.36,
+            "forwardPE": 23.31,
+            "priceEarningGrowth": 2.12,
+            "priceSales": 7.74,
+            "priceBook": 9.81,
+            "enterpriseValueRevenue": 28.0,
+            "enterpriseValueEBITDA": 60.79
+          }
+        },
+        "totalCashPerShare": 17.65,
+        "totalDebtEquity": 79.15,
+        "quarterlyRevenueGrowth": 13.7,
+        "quarterlyEarningsGrowth": 38.3,
+        "dilutedEarningPerShare": 5.74,
+        "week52Change": 38.56,
+        "week52Low": 118.58,
+        "week52High": 190.7
+      }
+    },
+    {
+      "companyName": "Apple Inc. (AAPL)",
+      "ticker": {
+        "symbol": "AAPL",
+        "exchange": "NASDAQ"
+      },
+      "statistics": {
+        "companyName": "Apple Inc. (AAPL)",
+        "price": 259.43,
+        "change": "-3.04 (-1.16%)",
+        "periodValuationMeasures": {
+          "2020-04-08": {
+            "period": "2020-04-08",
+            "marketCap": 1149999906816,
+            "enterpriseValue": 1149999906816,
+            "trailingPE": 20.67,
+            "forwardPE": 22.03,
+            "priceEarningGrowth": 1.77,
+            "priceSales": 4.48,
+            "priceBook": 12.83,
+            "enterpriseValueRevenue": 4.29,
+            "enterpriseValueEBITDA": 13.82
+          },
+          "2019-12-31": {
+            "period": "2019-12-31",
+            "marketCap": 1290000007168,
+            "enterpriseValue": 1299999883264,
+            "trailingPE": 24.7,
+            "forwardPE": 22.17,
+            "priceEarningGrowth": 2.03,
+            "priceSales": 5.25,
+            "priceBook": 14.23,
+            "enterpriseValueRevenue": 14.11,
+            "enterpriseValueEBITDA": 43.87
+          },
+          "2019-09-30": {
+            "period": "2019-09-30",
+            "marketCap": 995150004224,
+            "enterpriseValue": 1010000003072,
+            "trailingPE": 19.01,
+            "forwardPE": 17.27,
+            "priceEarningGrowth": 2.04,
+            "priceSales": 4.09,
+            "priceBook": 10.32,
+            "enterpriseValueRevenue": 15.76,
+            "enterpriseValueEBITDA": 50.16
+          },
+          "2019-06-30": {
+            "period": "2019-06-30",
+            "marketCap": 910640021504,
+            "enterpriseValue": 943180021760,
+            "trailingPE": 16.58,
+            "forwardPE": 15.97,
+            "priceEarningGrowth": 1.45,
+            "priceSales": 3.68,
+            "priceBook": 8.47,
+            "enterpriseValueRevenue": 17.53,
+            "enterpriseValueEBITDA": 60.04
+          },
+          "2019-03-31": {
+            "period": "2019-03-31",
+            "marketCap": 895669960704,
+            "enterpriseValue": 923969978368,
+            "trailingPE": 15.57,
+            "forwardPE": 16.58,
+            "priceEarningGrowth": 1.82,
+            "priceSales": 3.56,
+            "priceBook": 7.42,
+            "enterpriseValueRevenue": 15.93,
+            "enterpriseValueEBITDA": 51.78
+          }
+        },
+        "totalCashPerShare": 24.49,
+        "totalDebtEquity": 130.4,
+        "quarterlyRevenueGrowth": 8.9,
+        "quarterlyEarningsGrowth": 11.4,
+        "dilutedEarningPerShare": 12.6,
+        "week52Change": 31.56,
+        "week52Low": 170.27,
+        "week52High": 327.85
+      }
+    }
+  ]
+}

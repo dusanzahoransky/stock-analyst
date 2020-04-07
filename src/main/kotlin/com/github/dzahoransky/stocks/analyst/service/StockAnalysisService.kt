@@ -23,8 +23,8 @@ fun main() {
     val stocks = mutableListOf<StockInfo>()
     StockScrapperService().use {
         stocks.addAll(it.scrape(
-            tickerRepo.test()
-//            tickerRepo.nasdaq100()
+//            tickerRepo.test()
+            tickerRepo.nasdaq100()
         ))
     }
     val stocksOutFile = File("src/main/resources/stocks.json")
@@ -68,7 +68,7 @@ class StockAnalysisService {
 
             if(stock.statistics.price != null){
                 averageStatistics.statistics.price = sum(averageStatistics.statistics.price, stock.statistics.price)
-                averageStatistics.priceCountNumber++
+                averageStatistics.priceCount++
             }
             if(stock.statistics.totalCashPerShare != null){
                 averageStatistics.statistics.totalCashPerShare = sum(averageStatistics.statistics.totalCashPerShare, stock.statistics.totalCashPerShare)
@@ -108,27 +108,26 @@ class StockAnalysisService {
             }
         }
 
-        averageStatistics.statistics.priceCountNumber = averageStatistics
-        averageStatistics.statistics.periodValuationMeasures = averageStatistics
-        averageStatistics.statistics.totalCashPerShareCount = averageStatistics
-        averageStatistics.statistics.totalDebtEquityCount = averageStatistics
-        averageStatistics.statistics.quarterlyRevenueGrowthCount = averageStatistics
-        averageStatistics.statistics.quarterlyEarningsGrowthCount = averageStatistics
-        averageStatistics.statistics.dilutedEarningPerShareCount = averageStatistics
-        averageStatistics.statistics.week52ChangeCount = averageStatistics
-        averageStatistics.statistics.week52LowCount = averageStatistics
-        averageStatistics.statistics.week52HighCount = averageStatistics
+        averageStatistics.statistics.price = div(averageStatistics.statistics.price, averageStatistics.priceCount)
+        averageStatistics.statistics.totalCashPerShare = div(averageStatistics.statistics.totalCashPerShare, averageStatistics.totalCashPerShareCount)
+        averageStatistics.statistics.totalDebtEquity = div(averageStatistics.statistics.totalDebtEquity, averageStatistics.totalDebtEquityCount)
+        averageStatistics.statistics.quarterlyRevenueGrowth = div(averageStatistics.statistics.quarterlyRevenueGrowth, averageStatistics.quarterlyRevenueGrowthCount)
+        averageStatistics.statistics.quarterlyEarningsGrowth = div(averageStatistics.statistics.quarterlyEarningsGrowth, averageStatistics.quarterlyEarningsGrowthCount)
+        averageStatistics.statistics.dilutedEarningPerShare = div(averageStatistics.statistics.dilutedEarningPerShare, averageStatistics.dilutedEarningPerShareCount)
+        averageStatistics.statistics.week52Change = div(averageStatistics.statistics.week52Change, averageStatistics.week52ChangeCount)
+        averageStatistics.statistics.week52Low = div(averageStatistics.statistics.week52Low, averageStatistics.week52LowCount)
+        averageStatistics.statistics.week52High = div(averageStatistics.statistics.week52High, averageStatistics.week52HighCount)
 
         for (average in averageStatistics.periodValuationMeasures.values) {
-            average.periodMeasure.marketCap = div(average.periodMeasure.marketCap, stocks.size)
-            average.periodMeasure.enterpriseValue = div(average.periodMeasure.enterpriseValue, stocks.size)
-            average.periodMeasure.trailingPE = div(average.periodMeasure.trailingPE, stocks.size)
-            average.periodMeasure.forwardPE = div(average.periodMeasure.forwardPE, stocks.size)
-            average.periodMeasure.priceEarningGrowth = div(average.periodMeasure.priceEarningGrowth, stocks.size)
-            average.periodMeasure.priceSales = div(average.periodMeasure.priceSales, stocks.size)
-            average.periodMeasure.priceBook = div(average.periodMeasure.priceBook, stocks.size)
-            average.periodMeasure.enterpriseValueRevenue = div(average.periodMeasure.enterpriseValueRevenue, stocks.size)
-            average.periodMeasure.enterpriseValueEBITDA = div(average.periodMeasure.enterpriseValueEBITDA, stocks.size)
+            average.periodMeasure.marketCap = div(average.periodMeasure.marketCap, average.marketCapCount)
+            average.periodMeasure.enterpriseValue = div(average.periodMeasure.enterpriseValue, average.enterpriseValueCount)
+            average.periodMeasure.trailingPE = div(average.periodMeasure.trailingPE, average.trailingPECount)
+            average.periodMeasure.forwardPE = div(average.periodMeasure.forwardPE, average.forwardPECount)
+            average.periodMeasure.priceEarningGrowth = div(average.periodMeasure.priceEarningGrowth, average.priceEarningGrowthCount)
+            average.periodMeasure.priceSales = div(average.periodMeasure.priceSales, average.priceSalesCount)
+            average.periodMeasure.priceBook = div(average.periodMeasure.priceBook, average.priceBookCount)
+            average.periodMeasure.enterpriseValueRevenue = div(average.periodMeasure.enterpriseValueRevenue, average.enterpriseValueRevenueCount)
+            average.periodMeasure.enterpriseValueEBITDA = div(average.periodMeasure.enterpriseValueEBITDA, average.enterpriseValueEBITDACount)
         }
 
         averageStatistics.statistics.periodValuationMeasures = averageStatistics.periodValuationMeasures.entries
