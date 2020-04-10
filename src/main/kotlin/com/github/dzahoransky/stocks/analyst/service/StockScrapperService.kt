@@ -82,7 +82,6 @@ class StockScrapperService : AutoCloseable {
             companyName,
             price,
             change,
-            measures,
             totalCashPerShare,
             totalDebtEquity,
             quarterlyRevenueGrowth,
@@ -90,7 +89,8 @@ class StockScrapperService : AutoCloseable {
             dilutedEPS,
             week52Change,
             week52Low,
-            week52High
+            week52High,
+            measures
         )
     }
 

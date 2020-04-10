@@ -4,6 +4,7 @@ import TickerRepo
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import com.github.dzahoransky.stocks.analyst.model.AnalysisResult
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
@@ -19,20 +20,20 @@ fun main() {
         .registerModule(JavaTimeModule())
 
     //SCRAPE stocks
-    val tickerRepo = TickerRepo()
-    val stocks = mutableListOf<StockInfo>()
-    StockScrapperService().use {
-        stocks.addAll(it.scrape(
-//            tickerRepo.test()
-            tickerRepo.nasdaq100()
-        ))
-    }
-    val stocksOutFile = File("src/main/resources/stocks.json")
-    println("Saving scraped stocks into: ${stocksOutFile.absolutePath}")
-    mapper.writeValue(stocksOutFile, stocks)
+//    val tickerRepo = TickerRepo()
+//    val stocks = mutableListOf<StockInfo>()
+//    StockScrapperService().use {
+//        stocks.addAll(it.scrape(
+////            tickerRepo.test()
+//            tickerRepo.nasdaq100()
+//        ))
+//    }
+//    val stocksOutFile = File("src/main/resources/stocks.json")
+//    println("Saving scraped stocks into: ${stocksOutFile.absolutePath}")
+//    mapper.writeValue(stocksOutFile, stocks)
 
     //LOAD stocks from JSON file
-//    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
+    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
 
     // do the calculations
     val statisticsAverage = StockAnalysisService().statisticsAverage(stocks)
