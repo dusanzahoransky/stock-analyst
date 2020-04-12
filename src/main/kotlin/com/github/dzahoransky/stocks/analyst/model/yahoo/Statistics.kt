@@ -12,5 +12,5 @@ data class Statistics(
     var week52Change: Double? = 0.0,
     var week52Low: Double? = 0.0,
     var week52High: Double? = 0.0,
-    var periodValuationMeasures: MutableMap<String, PeriodMeasure> = mutableMapOf()
+    var periodValuationMeasures: Map<String, PeriodMeasure> = mutableMapOf()
 )

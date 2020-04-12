@@ -1,119 +1,336 @@
-import com.github.dzahoransky.stocks.analyst.model.StockTicker
-
+@Suppress("SpellCheckingInspection")
 class TickerRepo {
 
-    fun test(): List<StockTicker> {
+    fun invested(): List<String> {
         return listOf(
-            StockTicker("MSFT"),
-            StockTicker("AAPL")
+            *investedInAud().toTypedArray(),
+            *investedInUsd().toTypedArray(),
+            *investedInGbp().toTypedArray(),
+            *investedInEur().toTypedArray()
         )
     }
 
-    fun nasdaq100(): List<StockTicker> {
+    fun eur(): List<String> {
         return listOf(
-            StockTicker("MSFT"),
-            StockTicker("AAPL"),
-            StockTicker("AMZN"),
-            StockTicker("GOOG"),
-            StockTicker("GOOGL"),
-            StockTicker("FB"),
-            StockTicker("INTC"),
-            StockTicker("PEP"),
-            StockTicker("CMCSA"),
-            StockTicker("CSCO"),
-            StockTicker("ADBE"),
-            StockTicker("NFLX"),
-            StockTicker("COST"),
-            StockTicker("NVDA"),
-            StockTicker("AMGN"),
-            StockTicker("PYPL"),
-            StockTicker("GILD"),
-            StockTicker("TXN"),
-            StockTicker("CHTR"),
-            StockTicker("AVGO"),
-            StockTicker("TSLA"),
-            StockTicker("QCOM"),
-            StockTicker("SBUX"),
-            StockTicker("TMUS"),
-            StockTicker("MDLZ"),
-            StockTicker("FISV"),
-            StockTicker("INTU"),
-            StockTicker("VRTX"),
-            StockTicker("REGN"),
-            StockTicker("BIIB"),
-            StockTicker("ADP"),
-            StockTicker("BKNG"),
-            StockTicker("ISRG"),
-            StockTicker("AMD"),
-            StockTicker("WBA"),
-            StockTicker("CSX"),
-            StockTicker("ATVI"),
-            StockTicker("MU"),
-            StockTicker("AMAT"),
-            StockTicker("JD"),
-            StockTicker("ADI"),
-            StockTicker("ILMN"),
-            StockTicker("ADSK"),
-            StockTicker("EXC"),
-            StockTicker("XEL"),
-            StockTicker("MNST"),
-            StockTicker("LRCX"),
-            StockTicker("KHC"),
-            StockTicker("EA"),
-            StockTicker("CTSH"),
-            StockTicker("BIDU"),
-            StockTicker("EBAY"),
-            StockTicker("ROST"),
-            StockTicker("MELI"),
-            StockTicker("VRSK"),
-            StockTicker("ORLY"),
-            StockTicker("MAR"),
-            StockTicker("NTES"),
-            StockTicker("NXPI"),
-            StockTicker("SIRI"),
-            StockTicker("WDAY"),
-            StockTicker("PAYX"),
-            StockTicker("CSGP"),
-            StockTicker("KLAC"),
-            StockTicker("WLTW"),
-            StockTicker("PCAR"),
-            StockTicker("VRSN"),
-            StockTicker("LULU"),
-            StockTicker("XLNX"),
-            StockTicker("CTAS"),
-            StockTicker("CERN"),
-            StockTicker("ANSS"),
-            StockTicker("FAST"),
-            StockTicker("ALXN"),
-            StockTicker("SNPS"),
-            StockTicker("SGEN"),
-            StockTicker("DLTR"),
-            StockTicker("IDXX"),
-            StockTicker("CTXS"),
-            StockTicker("CPRT"),
-            StockTicker("SPLK"),
-            StockTicker("ASML"),
-            StockTicker("CDNS"),
-            StockTicker("MCHP"),
-            StockTicker("INCY"),
-            StockTicker("CHKP"),
-            StockTicker("BMRN"),
-            StockTicker("SWKS"),
-            StockTicker("CDW"),
-            StockTicker("MXIM"),
-            StockTicker("TTWO"),
-            StockTicker("TCOM"),
-            StockTicker("ALGN"),
-            StockTicker("WDC"),
-            StockTicker("NTAP"),
-            StockTicker("ULTA"),
-            StockTicker("FOXA"),
-            StockTicker("LBTYK"),
-            StockTicker("EXPE"),
-            StockTicker("FOX"),
-            StockTicker("UAL"),
-            StockTicker("AAL"),
-            StockTicker("LBTYA")
+            *investedInEur().toTypedArray(),
+            *watchListEur().toTypedArray()
+        )
+    }
+
+    fun aud(): List<String> {
+        return listOf(
+            *investedInAud().toTypedArray(),
+            *watchListAud().toTypedArray()
+        )
+    }
+
+    fun audIndices(): List<String> {
+        return listOf(
+            *investedIndicesInAud().toTypedArray(),
+            *watchListIndicesAud().toTypedArray()
+        )
+    }
+
+    fun usd(): List<String> {
+        return listOf(
+            *investedInUsd().toTypedArray(),
+            *watchListUsd().toTypedArray()
+        )
+    }
+
+    fun gbp(): List<String> {
+        return listOf(
+            *investedInGbp().toTypedArray(),
+            *watchListGbp().toTypedArray()
+        )
+    }
+
+    fun gbpIndices(): List<String> {
+        return listOf(
+            *investedIndicesInGbp().toTypedArray(),
+            *watchListIndicesGbp().toTypedArray()
+        )
+    }
+
+    fun chf(): List<String> {
+        return listOf(
+            *investedInChf().toTypedArray(),
+            *watchListChf().toTypedArray()
+        )
+    }
+
+    fun investedInEur(): List<String> {
+        return listOf(
+
+        )
+    }
+
+    fun investedInGbp(): List<String> {
+        return listOf(
+            "RYA:FTSE"
+        )
+    }
+
+    fun investedIndicesInGbp(): List<String> {
+        return listOf(
+            "VUSA:FTSE",
+            "VFEM:FTSE"
+        )
+    }
+
+    fun watchListIndicesGbp(): List<String> {
+        return listOf(
+            "VUSA:FTSE",
+            "VFEM:FTSE",
+            "VUKE:FTSE",
+            "VMID:FTSE",
+            "VHYL:FTSE",
+            "VWRL:FTSE",
+            "VEVE:FTSE",
+            "VDEV:FTSE",
+            "VAPX:FTSE",
+            "VJPN:FTSE"
+        )
+    }
+
+    fun investedInUsd(): List<String> {
+        return listOf(
+            "GOOGL:NASDAQ",
+            "GOOG:NASDAQ",
+            "INTC:NASDAQ",
+            "MAR:NASDAQ",
+            "GRPN:NASDAQ",
+            "AAl:NASDAQ",
+            "UAL:NASDAQ",
+            "LTM:NYSE",
+            "BKNG:NASDAQ",
+            "DAL:NASDAQ",
+            "MSFT:NASDAQ",
+            "EB:NASDAQ",
+            "CMCSA:NASDAQ",
+            "CTSH:NASDAQ",
+            "ALXN:NASDAQ",
+            "EBAY:NASDAQ",
+            "TMUS:NASDAQ",
+            "FB:NASDAQ",
+            "GILD:NASDAQ",
+            "QCOM:NASDAQ",
+            "AMAT:NASDAQ",
+            "CHTR:NASDAQ",
+            "AVGO:NASDAQ"
+        )
+    }
+
+    fun watchListUsd(): List<String> {
+        return listOf(
+            "AMD:NASDAQ",
+            "BABA:NASDAQ",
+            "CAJ:NASDAQ",
+            "ZHN:NYSE",
+            "CLDR:NASDAQ",
+            "NET:NASDAQ",
+            "DAL:NASDAQ",
+            "DOCU:NYSE",
+            "HUBS:NASDAQ",
+            "MA:NASDAQ",
+            "NFLX:NASDAQ",
+            "OKTA:NASDAQ",
+            "PYPL:NASDAQ",
+            "REGI:NASDAQ",
+            "WORK:NASDAQ",
+            "SNE:NASDAQ",
+            "SQ:NASDAQ",
+            "ZEN:NASDAQ",
+            "ZM:NASDAQ",
+            "PD:NASDAQ",
+            "BIDU:NASDAQ",
+            "ROK:NASDAQ",
+            "EMR:NYSE",
+            "HON:NYSE"
+        )
+    }
+
+    fun watchListEur(): List<String> {
+        return listOf(
+            "SIE:DAX",
+            "LHA:DAX",
+            "KU2:DAX",
+            "SU:PA"
+        )
+    }
+
+    fun watchListChf(): List<String> {
+        return listOf(
+            "ABBN:SIX"
+        )
+    }
+    fun investedInChf(): List<String> {
+        return listOf(
+        )
+    }
+
+    fun watchListGbp(): List<String> {
+        return listOf(
+            "IAG:FTSE"
+        )
+    }
+
+    fun watchListAud(): List<String> {
+        return listOf(
+            "ANZ:ASX",
+            "APT:ASX",
+            "CBA:ASX",
+            "ING:ASX",
+            "NAB:ASX",
+            "QAN:ASX",
+            "SEK:ASX",
+            "SYD:ASX",
+            "VAH:ASX",
+            "WTC:ASX",
+            "XRO:ASX"
+        )
+    }
+
+    fun watchListIndicesAud(): List<String> {
+        return listOf(
+            "A200:ASX",
+            "VAS:ASX",
+            "VHY:ASX",
+            "ETHI:ASX",
+            "IOO:ASX",
+            "QLTY:ASX",
+            "RBTZ:ASX",
+            "UMAX:ASX",
+            "VESG:ASX",
+            "VEU:ASX",
+            "VGE:ASX",
+            "VGS:ASX"
+        )
+    }
+
+    fun investedIndicesInAud(): List<String> {
+        return listOf(
+            "VTS:ASX",
+            "VEU:ASX",
+            "VAP:ASX",
+            "VAP:ASX",
+            "VGE:ASX",
+            "NDQ:ASX",
+            "IVV:ASX",
+            "ASIA:ASX"
+        )
+    }
+
+    fun investedInAud(): List<String> {
+        return listOf(
+        )
+    }
+
+    fun nasdaq100(): List<String> {
+        return listOf(
+            "MSFT:NASDAQ",
+            "AAPL:NASDAQ",
+            "AMZN:NASDAQ",
+            "GOOG:NASDAQ",
+            "GOOGL:NASDAQ",
+            "FB:NASDAQ",
+            "INTC:NASDAQ",
+            "PEP:NASDAQ",
+            "CMCSA:NASDAQ",
+            "CSCO:NASDAQ",
+            "ADBE:NASDAQ",
+            "NFLX:NASDAQ",
+            "COST:NASDAQ",
+            "NVDA:NASDAQ",
+            "AMGN:NASDAQ",
+            "PYPL:NASDAQ",
+            "GILD:NASDAQ",
+            "TXN:NASDAQ",
+            "CHTR:NASDAQ",
+            "AVGO:NASDAQ",
+            "TSLA:NASDAQ",
+            "QCOM:NASDAQ",
+            "SBUX:NASDAQ",
+            "TMUS:NASDAQ",
+            "MDLZ:NASDAQ",
+            "FISV:NASDAQ",
+            "INTU:NASDAQ",
+            "VRTX:NASDAQ",
+            "REGN:NASDAQ",
+            "BIIB:NASDAQ",
+            "ADP:NASDAQ",
+            "BKNG:NASDAQ",
+            "ISRG:NASDAQ",
+            "AMD:NASDAQ",
+            "WBA:NASDAQ",
+            "CSX:NASDAQ",
+            "ATVI:NASDAQ",
+            "MU:NASDAQ",
+            "AMAT:NASDAQ",
+            "JD:NASDAQ",
+            "ADI:NASDAQ",
+            "ILMN:NASDAQ",
+            "ADSK:NASDAQ",
+            "EXC:NASDAQ",
+            "XEL:NASDAQ",
+            "MNST:NASDAQ",
+            "LRCX:NASDAQ",
+            "KHC:NASDAQ",
+            "EA:NASDAQ",
+            "CTSH:NASDAQ",
+            "BIDU:NASDAQ",
+            "EBAY:NASDAQ",
+            "ROST:NASDAQ",
+            "MELI:NASDAQ",
+            "VRSK:NASDAQ",
+            "ORLY:NASDAQ",
+            "MAR:NASDAQ",
+            "NTES:NASDAQ",
+            "NXPI:NASDAQ",
+            "SIRI:NASDAQ",
+            "WDAY:NASDAQ",
+            "PAYX:NASDAQ",
+            "CSGP:NASDAQ",
+            "KLAC:NASDAQ",
+            "WLTW:NASDAQ",
+            "PCAR:NASDAQ",
+            "VRSN:NASDAQ",
+            "LULU:NASDAQ",
+            "XLNX:NASDAQ",
+            "CTAS:NASDAQ",
+            "CERN:NASDAQ",
+            "ANSS:NASDAQ",
+            "FAST:NASDAQ",
+            "ALXN:NASDAQ",
+            "SNPS:NASDAQ",
+            "SGEN:NASDAQ",
+            "DLTR:NASDAQ",
+            "IDXX:NASDAQ",
+            "CTXS:NASDAQ",
+            "CPRT:NASDAQ",
+            "SPLK:NASDAQ",
+            "ASML:NASDAQ",
+            "CDNS:NASDAQ",
+            "MCHP:NASDAQ",
+            "INCY:NASDAQ",
+            "CHKP:NASDAQ",
+            "BMRN:NASDAQ",
+            "SWKS:NASDAQ",
+            "CDW:NASDAQ",
+            "MXIM:NASDAQ",
+            "TTWO:NASDAQ",
+            "TCOM:NASDAQ",
+            "ALGN:NASDAQ",
+            "WDC:NASDAQ",
+            "NTAP:NASDAQ",
+            "ULTA:NASDAQ",
+            "FOXA:NASDAQ",
+            "LBTYK:NASDAQ",
+            "EXPE:NASDAQ",
+            "FOX:NASDAQ",
+            "UAL:NASDAQ",
+            "AAL:NASDAQ",
+            "LBTYA:NASDAQ"
         )
     }
 }

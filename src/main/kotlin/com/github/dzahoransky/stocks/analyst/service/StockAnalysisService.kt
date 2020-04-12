@@ -1,10 +1,11 @@
 package com.github.dzahoransky.stocks.analyst.service
 
 import TickerRepo
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule
 import com.github.dzahoransky.stocks.analyst.model.AnalysisResult
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
@@ -12,39 +13,53 @@ import com.github.dzahoransky.stocks.analyst.model.yahoo.AveragePeriodMeasure
 import com.github.dzahoransky.stocks.analyst.model.yahoo.AverageStatistics
 import com.github.dzahoransky.stocks.analyst.model.yahoo.PeriodMeasure
 import com.github.dzahoransky.stocks.analyst.model.yahoo.Statistics
-import java.io.File
+import com.github.dzahoransky.stocks.analyst.repository.AnalysisRepo
+import com.github.dzahoransky.stocks.analyst.repository.StockRepo
 
 fun main() {
     val mapper = jacksonObjectMapper().registerModule(ParameterNamesModule())
         .registerModule(Jdk8Module())
         .registerModule(JavaTimeModule())
+    mapper.serializationConfig.without(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 
-    //SCRAPE stocks
-//    val tickerRepo = TickerRepo()
-//    val stocks = mutableListOf<StockInfo>()
-//    StockScrapperService().use {
-//        stocks.addAll(it.scrape(
-////            tickerRepo.test()
-//            tickerRepo.nasdaq100()
-//        ))
-//    }
-//    val stocksOutFile = File("src/main/resources/stocks.json")
-//    println("Saving scraped stocks into: ${stocksOutFile.absolutePath}")
-//    mapper.writeValue(stocksOutFile, stocks)
+    val tickerRepo = TickerRepo()
 
-    //LOAD stocks from JSON file
-    val stocks = mapper.readValue(File("src/main/resources/stocks.json"), jacksonTypeRef<List<StockInfo>>())
+    scrapeAndAnalyse(tickerRepo.aud(), "aud", mapper)
+    scrapeAndAnalyse(tickerRepo.chf(), "chf", mapper)
+    scrapeAndAnalyse(tickerRepo.eur(), "eur", mapper)
+    scrapeAndAnalyse(tickerRepo.gbp(), "gbp", mapper)
+    scrapeAndAnalyse(tickerRepo.usd(), "usd", mapper)
+    scrapeAndAnalyse(tickerRepo.nasdaq100(), "nasdaq100", mapper)
+//    scrapeAndAnalyse(tickerRepo.audIndices(), "aud", mapper)
+//    scrapeAndAnalyse(tickerRepo.gbpIndices(), "aud", mapper)
 
-    // do the calculations
+//    loadAndAnalyse("/home/dusan/Workspaces/stock-analyst/src/main/resources/Stocks-aud-2020-04-11.json", "aud", mapper)
+}
+
+fun scrapeAndAnalyse(stockTickers: List<String>, label: String, mapper: ObjectMapper) {
+    val stocksFile = scrapeAndStore(stockTickers, label, mapper)
+    loadAndAnalyse(stocksFile, label, mapper)
+}
+
+fun scrapeAndStore(stockTickers: List<String>, label: String, mapper: ObjectMapper): String {
+    val stocks = mutableListOf<StockInfo>()
+    StockScrapperService().use {
+        stocks.addAll(it.scrape(stockTickers))
+    }
+    val stockRepo = StockRepo(mapper)
+    return stockRepo.store(stocks, label)
+}
+
+fun loadAndAnalyse(filePath: String, label: String, mapper: ObjectMapper): String {
+    val stockRepo = StockRepo(mapper)
+    val stocks = stockRepo.findById(filePath)
+
     val statisticsAverage = StockAnalysisService().statisticsAverage(stocks)
     val allPeriods = StockAnalysisService().allPeriods(statisticsAverage)
-
-    // result for UI to display
     val result = AnalysisResult(allPeriods, statisticsAverage, stocks)
 
-    val resultOutFile = File("src/main/resources/output.json")
-    println("Saving analysis output into: ${resultOutFile.absolutePath}")
-    mapper.writeValue(resultOutFile, result)
+    val analysisRepo = AnalysisRepo(mapper)
+    return analysisRepo.store(result, label)
 }
 
 class StockAnalysisService {
@@ -61,49 +76,49 @@ class StockAnalysisService {
             for (measure in stock.statistics.periodValuationMeasures.values) {
                 val averageForPeriod = averageStatistics.periodValuationMeasures.get(measure.period)
                 if (averageForPeriod == null) {
-                    averageStatistics.periodValuationMeasures.put(measure.period, AveragePeriodMeasure(measure.copy()))
+                    averageStatistics.periodValuationMeasures.put(measure.period, AveragePeriodMeasure(PeriodMeasure()))
                 } else {
                     addToPeriodAverage(averageForPeriod, measure)
                 }
             }
 
-            if(stock.statistics.price != null){
+            if (stock.statistics.price != null) {
                 averageStatistics.statistics.price = sum(averageStatistics.statistics.price, stock.statistics.price)
                 averageStatistics.priceCount++
             }
-            if(stock.statistics.totalCashPerShare != null){
+            if (stock.statistics.totalCashPerShare != null) {
                 averageStatistics.statistics.totalCashPerShare = sum(averageStatistics.statistics.totalCashPerShare, stock.statistics.totalCashPerShare)
                 averageStatistics.totalCashPerShareCount++
             }
-            if(stock.statistics.totalDebtEquity != null){
+            if (stock.statistics.totalDebtEquity != null) {
                 averageStatistics.statistics.totalDebtEquity = sum(averageStatistics.statistics.totalDebtEquity, stock.statistics.totalDebtEquity)
                 averageStatistics.totalDebtEquityCount++
             }
-            if(stock.statistics.quarterlyRevenueGrowth != null){
+            if (stock.statistics.quarterlyRevenueGrowth != null) {
                 averageStatistics.statistics.quarterlyRevenueGrowth = sum(averageStatistics.statistics.quarterlyRevenueGrowth, stock.statistics.quarterlyRevenueGrowth)
                 averageStatistics.quarterlyRevenueGrowthCount++
             }
-            if(stock.statistics.quarterlyEarningsGrowth != null){
+            if (stock.statistics.quarterlyEarningsGrowth != null) {
                 averageStatistics.statistics.quarterlyEarningsGrowth = sum(averageStatistics.statistics.quarterlyEarningsGrowth, stock.statistics.quarterlyEarningsGrowth)
                 averageStatistics.quarterlyEarningsGrowthCount++
             }
-            if(stock.statistics.dilutedEarningPerShare != null){
+            if (stock.statistics.dilutedEarningPerShare != null) {
                 averageStatistics.statistics.dilutedEarningPerShare = sum(averageStatistics.statistics.dilutedEarningPerShare, stock.statistics.dilutedEarningPerShare)
                 averageStatistics.dilutedEarningPerShareCount++
             }
-            if(stock.statistics.week52Change != null){
+            if (stock.statistics.week52Change != null) {
                 averageStatistics.statistics.week52Change = sum(averageStatistics.statistics.week52Change, stock.statistics.week52Change)
                 averageStatistics.week52ChangeCount++
             }
-            if(stock.statistics.week52Low != null){
+            if (stock.statistics.week52Low != null) {
                 averageStatistics.statistics.week52Low = sum(averageStatistics.statistics.week52Low, stock.statistics.week52Low)
                 averageStatistics.week52LowCount++
             }
-            if(stock.statistics.week52High != null){
+            if (stock.statistics.week52High != null) {
                 averageStatistics.statistics.week52High = sum(averageStatistics.statistics.week52High, stock.statistics.week52High)
                 averageStatistics.week52HighCount++
             }
-            if(stock.statistics.dilutedEarningPerShare != null){
+            if (stock.statistics.dilutedEarningPerShare != null) {
                 averageStatistics.statistics.dilutedEarningPerShare = sum(averageStatistics.statistics.dilutedEarningPerShare, stock.statistics.dilutedEarningPerShare)
                 averageStatistics.dilutedEarningPerShareCount++
             }
@@ -132,7 +147,7 @@ class StockAnalysisService {
         }
 
         averageStatistics.statistics.periodValuationMeasures = averageStatistics.periodValuationMeasures.entries
-            .map { it.key to it.value.periodMeasure }.toMap() as MutableMap<String, PeriodMeasure> //unwrap AveragePeriodMeasure back to PeriodMeasure
+            .map { it.key to it.value.periodMeasure }.toMap() //unwrap AveragePeriodMeasure back to PeriodMeasure
 
         return averageStatistics.statistics
     }

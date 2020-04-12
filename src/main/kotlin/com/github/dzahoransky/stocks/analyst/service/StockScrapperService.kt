@@ -1,17 +1,21 @@
 package com.github.dzahoransky.stocks.analyst.service
 
+import com.github.dzahoransky.stocks.analyst.model.Exchange.*
 import com.github.dzahoransky.stocks.analyst.model.StockInfo
 import com.github.dzahoransky.stocks.analyst.model.StockTicker
 import com.github.dzahoransky.stocks.analyst.model.yahoo.PeriodMeasure
 import com.github.dzahoransky.stocks.analyst.model.yahoo.Statistics
-import org.openqa.selenium.By
-import org.openqa.selenium.PageLoadStrategy
-import org.openqa.selenium.WebElement
+import org.openqa.selenium.*
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
+import org.openqa.selenium.remote.RemoteWebDriver
+import org.openqa.selenium.support.ui.WebDriverWait
+import org.slf4j.LoggerFactory
 import java.io.File
 import java.time.LocalDate
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+
 
 class StockScrapperService : AutoCloseable {
     companion object {
@@ -20,40 +24,67 @@ class StockScrapperService : AutoCloseable {
         const val TRILLION = BILLION * 1000L
     }
 
-    private val driver: ChromeDriver
+    private val driver: RemoteWebDriver
+    private val logger = LoggerFactory.getLogger(this::class.java)
 
     init {
-        System.setProperty("webdriver.chrome.driver", File(this.javaClass.getResource("/chromedriver").toURI()).absolutePath)
+        System.setProperty("webdriver.chrome.driver", File("src/main/resources/chromedriver").absolutePath)
         val options = ChromeOptions()
         //To solve an issue with: Timed out receiving message from renderer: 0.100 https://stackoverflow.com/questions/48450594/selenium-timed-out-receiving-message-from-renderer
-        options.setPageLoadStrategy(PageLoadStrategy.EAGER)
-        options.addArguments("--headless") // only if you are ACTUALLY running headless
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL)
+        options.addArguments("--headless")
 
         driver = ChromeDriver(options)
-//        driver.manage().timeouts().setScriptTimeout(3000, TimeUnit.SECONDS)
+//        System.setProperty("webdriver.gecko.driver", File("src/main/resources/geckodriver").absolutePath)
+//        driver = FirefoxDriver()
     }
 
-    fun scrape(tickers: List<StockTicker>): List<StockInfo> {
+    /**
+     * @ticker a combination of exchange and stock name such as ASX:VTS, NASDAQ:MSFT
+     */
+    fun scrape(tickers: List<String>): List<StockInfo> {
         val stockInfo = mutableListOf<StockInfo>()
         for (ticker in tickers) {
             try {
-                println("Scraping ticker $ticker")
-                stockInfo.add(scrapeYahoo(ticker))
+                logger.debug("Scraping ticker $ticker")
+                stockInfo.add(scrapeYahoo(StockTicker.fromString(ticker)))
             } catch (e: Exception) {
-                println("Failed to process ${ticker}: ${e.message}")
+                logger.error("Failed to process ${ticker}: ${e.message}")
             }
-            Thread.sleep(10000)   //avoid hitting hit rate limit
+            Thread.sleep(7000)   //avoid hitting hit rate limit
         }
         return stockInfo
     }
 
-    fun scrapeYahoo(ticker: StockTicker): StockInfo {
-        val statistics = parseStatistics(ticker)
-        return StockInfo(statistics.companyName, ticker, statistics)
+    fun toYahooTickerFormat(ticker: StockTicker): String {
+        val (symbol, exchange) = ticker
+        return when (exchange) {
+            ASX -> "$symbol.AX"
+            DAX -> "$symbol.DE"
+            SIX -> "$symbol.SW"
+            FTSE -> "$symbol.L"
+            else -> symbol
+        }
     }
 
-    private fun parseStatistics(ticker: StockTicker): Statistics {
-        driver.get("https://finance.yahoo.com/quote/${ticker.symbol}/key-statistics?p=${ticker.symbol}")
+    fun scrapeYahoo(ticker: StockTicker): StockInfo {
+        val yahooTickerFormat = toYahooTickerFormat(ticker)
+        val statistics = parseStatistics(yahooTickerFormat)
+        val timestamp = ZonedDateTime.now()
+        return StockInfo(null,
+            timestamp,
+            ticker.symbol,
+            ticker.exchange,
+            statistics.companyName,
+            statistics)
+    }
+
+    private fun parseStatistics(ticker: String): Statistics {
+        val statisticsUrl = "https://finance.yahoo.com/quote/${ticker}/key-statistics?p=${ticker}"
+        logger.debug("Fetching statistics: $statisticsUrl")
+        driver.get(statisticsUrl)
+
+        waitToLoadJs()
 
         val mainDiv = driver.findElement(By.id("Main"))
         val measures = parseValuationMeasures(mainDiv)
@@ -94,11 +125,23 @@ class StockScrapperService : AutoCloseable {
         )
     }
 
-    private fun parseValuationMeasures(mainDiv: WebElement): MutableMap<String, PeriodMeasure> {
-        val valuationMeasuresTable = mainDiv.findElements(By.xpath(".//*[h2/span='Valuation Measures']//table")).first()
+    /**
+     * Avoid https://www.selenium.dev/exceptions/#stale_element_reference.html
+     */
+    private fun waitToLoadJs() {
+        val wait = WebDriverWait(driver, 10)
+        Thread.sleep(3000)
+        wait.until {
+            fun apply(driver: WebDriver): Boolean {
+                return (driver as JavascriptExecutor).executeScript("return document.readyState") == "complete"
+            }
+        }
+    }
 
-        val headers = valuationMeasuresTable.findElements(By.xpath(".//thead/tr/th"))  // [empty]	Current	12/31/2019	9/30/2019	6/30/2019	3/31/2019
-        val valueRows = valuationMeasuresTable.findElements(By.xpath(".//tbody/tr"))
+    private fun parseValuationMeasures(mainDiv: WebElement): MutableMap<String, PeriodMeasure> {
+        val statisticsValuationMeasuresTable = mainDiv.findElements(By.xpath(".//*[h2/span='Valuation Measures']//table")).first()
+        val headers = statisticsValuationMeasuresTable.findElements(By.xpath(".//thead/tr/th"))  // [empty]	Current	12/31/2019	9/30/2019	6/30/2019	3/31/2019
+        val valueRows = statisticsValuationMeasuresTable.findElements(By.xpath(".//tbody/tr"))
 
         val measures = mutableMapOf<String, PeriodMeasure>()
 
@@ -123,6 +166,7 @@ class StockScrapperService : AutoCloseable {
         }
         return measures
     }
+
 
     /**
      * Converts 1.56T into a long 1 560 000 000 000

@@ -11,4 +11,7 @@ data class PeriodMeasure(
     var priceBook: Double?,
     var enterpriseValueRevenue: Double?,
     var enterpriseValueEBITDA: Double?
-)
+){
+    constructor(): this("", null, null, null, null, null, null, null, null, null)
+
+}
