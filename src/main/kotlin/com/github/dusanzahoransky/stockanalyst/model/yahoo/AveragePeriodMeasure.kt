@@ -1,4 +1,4 @@
-package com.github.dzahoransky.stocks.analyst.model.yahoo
+package com.github.dusanzahoransky.stockanalyst.model.yahoo
 
 data class AveragePeriodMeasure(
     var periodMeasure: PeriodMeasure,
