@@ -1,0 +1,715 @@
+{
+  "defaultKeyStatistics": {
+    "annualHoldingsTurnover": {},
+    "enterpriseToRevenue": {
+      "raw": 9.005,
+      "fmt": "9.01"
+    },
+    "beta3Year": {},
+    "profitMargins": {
+      "raw": 0.33016,
+      "fmt": "33.02%"
+    },
+    "enterpriseToEbitda": {
+      "raw": 19.734,
+      "fmt": "19.73"
+    },
+    "52WeekChange": {
+      "raw": 0.36422956,
+      "fmt": "36.42%"
+    },
+    "morningStarRiskRating": {},
+    "forwardEps": {
+      "raw": 6.19,
+      "fmt": "6.19"
+    },
+    "revenueQuarterlyGrowth": {},
+    "sharesOutstanding": {
+      "raw": 7606049792,
+      "fmt": "7.61B",
+      "longFmt": "7,606,049,792"
+    },
+    "fundInceptionDate": {},
+    "annualReportExpenseRatio": {},
+    "totalAssets": {},
+    "bookValue": {
+      "raw": 14.467,
+      "fmt": "14.47"
+    },
+    "sharesShort": {
+      "raw": 58762671,
+      "fmt": "58.76M",
+      "longFmt": "58,762,671"
+    },
+    "sharesPercentSharesOut": {
+      "raw": 0.0077,
+      "fmt": "0.77%"
+    },
+    "fundFamily": null,
+    "lastFiscalYearEnd": {
+      "raw": 1561852800,
+      "fmt": "2019-06-30"
+    },
+    "heldPercentInstitutions": {
+      "raw": 0.74305,
+      "fmt": "74.30%"
+    },
+    "netIncomeToCommon": {
+      "raw": 44323000320,
+      "fmt": "44.32B",
+      "longFmt": "44,323,000,320"
+    },
+    "trailingEps": {
+      "raw": 5.741,
+      "fmt": "5.74"
+    },
+    "lastDividendValue": {},
+    "SandP52WeekChange": {
+      "raw": -0.03984058,
+      "fmt": "-3.98%"
+    },
+    "priceToBook": {
+      "raw": 11.414945,
+      "fmt": "11.41"
+    },
+    "heldPercentInsiders": {
+      "raw": 0.01421,
+      "fmt": "1.42%"
+    },
+    "nextFiscalYearEnd": {
+      "raw": 1625011200,
+      "fmt": "2021-06-30"
+    },
+    "yield": {},
+    "mostRecentQuarter": {
+      "raw": 1577750400,
+      "fmt": "2019-12-31"
+    },
+    "shortRatio": {
+      "raw": 0.8,
+      "fmt": "0.8"
+    },
+    "sharesShortPreviousMonthDate": {
+      "raw": 1582848000,
+      "fmt": "2020-02-28"
+    },
+    "floatShares": {
+      "raw": 7494998724,
+      "fmt": "7.49B",
+      "longFmt": "7,494,998,724"
+    },
+    "beta": {
+      "raw": 0.962017,
+      "fmt": "0.96"
+    },
+    "enterpriseValue": {
+      "raw": 1208978636800,
+      "fmt": "1.21T",
+      "longFmt": "1,208,978,636,800"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "threeYearAverageReturn": {},
+    "lastSplitDate": {
+      "raw": 1045526400,
+      "fmt": "2003-02-18"
+    },
+    "lastSplitFactor": "2:1",
+    "legalType": null,
+    "morningStarOverallRating": {},
+    "earningsQuarterlyGrowth": {
+      "raw": 0.383,
+      "fmt": "38.30%"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dateShortInterest": {
+      "raw": 1585612800,
+      "fmt": "2020-03-31"
+    },
+    "pegRatio": {
+      "raw": 2.08,
+      "fmt": "2.08"
+    },
+    "ytdReturn": {},
+    "forwardPE": {
+      "raw": 26.678513,
+      "fmt": "26.68"
+    },
+    "maxAge": 1,
+    "lastCapGain": {},
+    "shortPercentOfFloat": {
+      "raw": 0.0077,
+      "fmt": "0.77%"
+    },
+    "sharesShortPriorMonth": {
+      "raw": 37031775,
+      "fmt": "37.03M",
+      "longFmt": "37,031,775"
+    },
+    "category": null,
+    "fiveYearAverageReturn": {}
+  },
+  "financialsTemplate": {
+    "code": "N",
+    "maxAge": 1
+  },
+  "price": {
+    "quoteSourceName": "Nasdaq Real Time Price",
+    "regularMarketOpen": {
+      "raw": 166.36,
+      "fmt": "166.36"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 52923901,
+      "fmt": "52.92M",
+      "longFmt": "52,923,901"
+    },
+    "exchange": "NMS",
+    "regularMarketTime": 1586462402,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 167.37,
+      "fmt": "167.37"
+    },
+    "shortName": "Microsoft Corporation",
+    "averageDailyVolume10Day": {
+      "raw": 53417450,
+      "fmt": "53.42M",
+      "longFmt": "53,417,450"
+    },
+    "longName": "Microsoft Corporation",
+    "regularMarketChange": {
+      "raw": 0.009994507,
+      "fmt": "0.01"
+    },
+    "currencySymbol": "$",
+    "regularMarketPreviousClose": {
+      "raw": 165.13,
+      "fmt": "165.13"
+    },
+    "postMarketTime": 1586476756,
+    "preMarketPrice": {},
+    "exchangeDataDelayedBy": 0,
+    "toCurrency": null,
+    "postMarketChange": {
+      "raw": 0.330002,
+      "fmt": "0.33"
+    },
+    "postMarketPrice": {
+      "raw": 165.47,
+      "fmt": "165.47"
+    },
+    "exchangeName": "NasdaqGS",
+    "preMarketChange": {},
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 163.33,
+      "fmt": "163.33"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "regularMarketPrice": {
+      "raw": 165.14,
+      "fmt": "165.14"
+    },
+    "regularMarketVolume": {
+      "raw": 51431775,
+      "fmt": "51.43M",
+      "longFmt": "51,431,775.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "FREE_REALTIME",
+    "openInterest": {},
+    "marketState": "CLOSED",
+    "underlyingSymbol": null,
+    "marketCap": {
+      "raw": 1256063107072,
+      "fmt": "1.26T",
+      "longFmt": "1,256,063,107,072.00"
+    },
+    "quoteType": "EQUITY",
+    "volumeAllCurrencies": {},
+    "postMarketSource": "FREE_REALTIME",
+    "strikePrice": {},
+    "symbol": "MSFT",
+    "postMarketChangePercent": {
+      "raw": 0.00199832,
+      "fmt": "0.20%"
+    },
+    "preMarketSource": "FREE_REALTIME",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.00006052508,
+      "fmt": "0.01%"
+    }
+  },
+  "financialData": {
+    "ebitdaMargins": {
+      "raw": 0.45634997,
+      "fmt": "45.63%"
+    },
+    "profitMargins": {
+      "raw": 0.33016,
+      "fmt": "33.02%"
+    },
+    "grossMargins": {
+      "raw": 0.67712,
+      "fmt": "67.71%"
+    },
+    "operatingCashflow": {
+      "raw": 54125998080,
+      "fmt": "54.13B",
+      "longFmt": "54,125,998,080"
+    },
+    "revenueGrowth": {
+      "raw": 0.137,
+      "fmt": "13.70%"
+    },
+    "operatingMargins": {
+      "raw": 0.36740002,
+      "fmt": "36.74%"
+    },
+    "ebitda": {
+      "raw": 61264998400,
+      "fmt": "61.26B",
+      "longFmt": "61,264,998,400"
+    },
+    "targetLowPrice": {
+      "raw": 133,
+      "fmt": "133.00"
+    },
+    "recommendationKey": "buy",
+    "grossProfits": {
+      "raw": 82933000000,
+      "fmt": "82.93B",
+      "longFmt": "82,933,000,000"
+    },
+    "freeCashflow": {
+      "raw": 35076874240,
+      "fmt": "35.08B",
+      "longFmt": "35,076,874,240"
+    },
+    "targetMedianPrice": {
+      "raw": 192,
+      "fmt": "192.00"
+    },
+    "currentPrice": {
+      "raw": 165.14,
+      "fmt": "165.14"
+    },
+    "earningsGrowth": {
+      "raw": 0.398,
+      "fmt": "39.80%"
+    },
+    "currentRatio": {
+      "raw": 2.801,
+      "fmt": "2.80"
+    },
+    "returnOnAssets": {
+      "raw": 0.11383,
+      "fmt": "11.38%"
+    },
+    "numberOfAnalystOpinions": {
+      "raw": 31,
+      "fmt": "31",
+      "longFmt": "31"
+    },
+    "targetMeanPrice": {
+      "raw": 186.61,
+      "fmt": "186.61"
+    },
+    "debtToEquity": {
+      "raw": 79.146,
+      "fmt": "79.15"
+    },
+    "returnOnEquity": {
+      "raw": 0.43833,
+      "fmt": "43.83%"
+    },
+    "targetHighPrice": {
+      "raw": 210,
+      "fmt": "210.00"
+    },
+    "totalCash": {
+      "raw": 134230999040,
+      "fmt": "134.23B",
+      "longFmt": "134,230,999,040"
+    },
+    "totalDebt": {
+      "raw": 87147003904,
+      "fmt": "87.15B",
+      "longFmt": "87,147,003,904"
+    },
+    "totalRevenue": {
+      "raw": 134248996864,
+      "fmt": "134.25B",
+      "longFmt": "134,248,996,864"
+    },
+    "totalCashPerShare": {
+      "raw": 17.648,
+      "fmt": "17.65"
+    },
+    "financialCurrency": "USD",
+    "maxAge": 86400,
+    "revenuePerShare": {
+      "raw": 17.559,
+      "fmt": "17.56"
+    },
+    "quickRatio": {
+      "raw": 2.645,
+      "fmt": "2.64"
+    },
+    "recommendationMean": {
+      "raw": 1.7,
+      "fmt": "1.70"
+    }
+  },
+  "quoteType": {
+    "exchange": "NMS",
+    "shortName": "Microsoft Corporation",
+    "longName": "Microsoft Corporation",
+    "exchangeTimezoneName": "America/New_York",
+    "exchangeTimezoneShortName": "EDT",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "-14400000",
+    "quoteType": "EQUITY",
+    "symbol": "MSFT",
+    "messageBoardId": "finmb_21835",
+    "market": "us_market"
+  },
+  "calendarEvents": {
+    "maxAge": 1,
+    "earnings": {
+      "earningsDate": [
+        {
+          "raw": 1588118400,
+          "fmt": "2020-04-29"
+        }
+      ],
+      "earningsAverage": {
+        "raw": 1.29,
+        "fmt": "1.29"
+      },
+      "earningsLow": {
+        "raw": 1.17,
+        "fmt": "1.17"
+      },
+      "earningsHigh": {
+        "raw": 1.43,
+        "fmt": "1.43"
+      },
+      "revenueAverage": {
+        "raw": 34118500000,
+        "fmt": "34.12B",
+        "longFmt": "34,118,500,000"
+      },
+      "revenueLow": {
+        "raw": 32796000000,
+        "fmt": "32.8B",
+        "longFmt": "32,796,000,000"
+      },
+      "revenueHigh": {
+        "raw": 35111000000,
+        "fmt": "35.11B",
+        "longFmt": "35,111,000,000"
+      }
+    },
+    "exDividendDate": {
+      "raw": 1589932800,
+      "fmt": "2020-05-20"
+    },
+    "dividendDate": {
+      "raw": 1591833600,
+      "fmt": "2020-06-11"
+    }
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 165.13,
+      "fmt": "165.13"
+    },
+    "regularMarketOpen": {
+      "raw": 166.36,
+      "fmt": "166.36"
+    },
+    "twoHundredDayAverage": {
+      "raw": 155.28233,
+      "fmt": "155.28"
+    },
+    "trailingAnnualDividendYield": {
+      "raw": 0.0117483195,
+      "fmt": "1.17%"
+    },
+    "payoutRatio": {
+      "raw": 0.32930002,
+      "fmt": "32.93%"
+    },
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 167.37,
+      "fmt": "167.37"
+    },
+    "navPrice": {},
+    "averageDailyVolume10Day": {
+      "raw": 53417450,
+      "fmt": "53.42M",
+      "longFmt": "53,417,450"
+    },
+    "totalAssets": {},
+    "regularMarketPreviousClose": {
+      "raw": 165.13,
+      "fmt": "165.13"
+    },
+    "fiftyDayAverage": {
+      "raw": 156.05118,
+      "fmt": "156.05"
+    },
+    "trailingAnnualDividendRate": {
+      "raw": 1.94,
+      "fmt": "1.94"
+    },
+    "open": {
+      "raw": 166.36,
+      "fmt": "166.36"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 53417450,
+      "fmt": "53.42M",
+      "longFmt": "53,417,450"
+    },
+    "expireDate": {},
+    "yield": {},
+    "algorithm": null,
+    "dividendRate": {
+      "raw": 2.04,
+      "fmt": "2.04"
+    },
+    "exDividendDate": {
+      "raw": 1589932800,
+      "fmt": "2020-05-20"
+    },
+    "beta": {
+      "raw": 0.962017,
+      "fmt": "0.96"
+    },
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 163.33,
+      "fmt": "163.33"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "trailingPE": {
+      "raw": 28.765022,
+      "fmt": "28.77"
+    },
+    "regularMarketVolume": {
+      "raw": 51431775,
+      "fmt": "51.43M",
+      "longFmt": "51,431,775"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {
+      "raw": 1256063107072,
+      "fmt": "1.26T",
+      "longFmt": "1,256,063,107,072"
+    },
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 52923901,
+      "fmt": "52.92M",
+      "longFmt": "52,923,901"
+    },
+    "priceToSalesTrailing12Months": {
+      "raw": 9.356219,
+      "fmt": "9.36"
+    },
+    "dayLow": {
+      "raw": 163.33,
+      "fmt": "163.33"
+    },
+    "ask": {
+      "raw": 165.4,
+      "fmt": "165.40"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 1100,
+      "fmt": "1.1k",
+      "longFmt": "1,100"
+    },
+    "volume": {
+      "raw": 51431775,
+      "fmt": "51.43M",
+      "longFmt": "51,431,775"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 190.7,
+      "fmt": "190.70"
+    },
+    "forwardPE": {
+      "raw": 26.678513,
+      "fmt": "26.68"
+    },
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {
+      "raw": 1.97,
+      "fmt": "1.97"
+    },
+    "fiftyTwoWeekLow": {
+      "raw": 119.01,
+      "fmt": "119.01"
+    },
+    "bid": {
+      "raw": 165.39,
+      "fmt": "165.39"
+    },
+    "tradeable": true,
+    "dividendYield": {
+      "raw": 0.0124,
+      "fmt": "1.24%"
+    },
+    "bidSize": {
+      "raw": 800,
+      "fmt": "800",
+      "longFmt": "800"
+    },
+    "dayHigh": {
+      "raw": 167.37,
+      "fmt": "167.37"
+    }
+  },
+  "symbol": "MSFT",
+  "pageViews": {
+    "shortTermTrend": "DOWN",
+    "midTermTrend": "UP",
+    "longTermTrend": "UP",
+    "maxAge": 1
+  },
+  "quoteData": {
+    "MSFT": {
+      "sourceInterval": 15,
+      "regularMarketOpen": {
+        "raw": 166.36,
+        "fmt": "166.36"
+      },
+      "exchange": "NMS",
+      "regularMarketTime": {
+        "raw": 1586462402,
+        "fmt": "4:00PM EDT"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "119.01 - 190.7",
+        "fmt": "119.01 - 190.70"
+      },
+      "sharesOutstanding": {
+        "raw": 7606049792,
+        "fmt": "7.606B",
+        "longFmt": "7,606,049,792"
+      },
+      "regularMarketDayHigh": {
+        "raw": 167.37,
+        "fmt": "167.37"
+      },
+      "shortName": "Microsoft Corporation",
+      "longName": "Microsoft Corporation",
+      "exchangeTimezoneName": "America/New_York",
+      "regularMarketChange": {
+        "raw": 0.009994507,
+        "fmt": "0.01"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 165.13,
+        "fmt": "165.13"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -25.559998,
+        "fmt": "-25.56"
+      },
+      "exchangeTimezoneShortName": "EDT",
+      "fiftyTwoWeekLowChange": {
+        "raw": 46.129997,
+        "fmt": "46.13"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 163.33,
+        "fmt": "163.33"
+      },
+      "priceHint": 2,
+      "currency": "USD",
+      "regularMarketPrice": {
+        "raw": 165.14,
+        "fmt": "165.14"
+      },
+      "regularMarketVolume": {
+        "raw": 51431775,
+        "fmt": "51.432M",
+        "longFmt": "51,431,775"
+      },
+      "isLoading": false,
+      "triggerable": true,
+      "gmtOffSetMilliseconds": -14400000,
+      "firstTradeDateMilliseconds": 511088400000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "marketCap": {
+        "raw": 1256063107072,
+        "fmt": "1.256T",
+        "longFmt": "1,256,063,107,072"
+      },
+      "quoteType": "EQUITY",
+      "invalid": false,
+      "symbol": "MSFT",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.38761446,
+        "fmt": "38.76%"
+      },
+      "regularMarketDayRange": {
+        "raw": "163.33 - 167.37",
+        "fmt": "163.33 - 167.37"
+      },
+      "messageBoardId": "finmb_21835",
+      "fiftyTwoWeekHigh": {
+        "raw": 190.7,
+        "fmt": "190.70"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.1340325,
+        "fmt": "-13.40%"
+      },
+      "uuid": "b004b3ec-de24-385e-b2c1-923f10d3fb62",
+      "market": "us_market",
+      "fiftyTwoWeekLow": {
+        "raw": 119.01,
+        "fmt": "119.01"
+      },
+      "regularMarketChangePercent": {
+        "raw": 0.006052508,
+        "fmt": "0.01%"
+      },
+      "fullExchangeName": "NasdaqGS",
+      "tradeable": true
+    }
+  },
+  "mktmData": {}
+}

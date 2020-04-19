@@ -1,0 +1,1910 @@
+{
+  "type": "object",
+  "properties": {
+    "quoteType": {
+      "type": "object",
+      "properties": {
+        "exchange": {
+          "type": "string"
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "longName": {
+          "type": "string"
+        },
+        "exchangeTimezoneName": {
+          "type": "string"
+        },
+        "exchangeTimezoneShortName": {
+          "type": "string"
+        },
+        "isEsgPopulated": {
+          "type": "boolean"
+        },
+        "gmtOffSetMilliseconds": {
+          "type": "string",
+          "format": "utc-millisec"
+        },
+        "underlyingSymbol": {
+          "type": "null"
+        },
+        "quoteType": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "underlyingExchangeSymbol": {
+          "type": "null"
+        },
+        "headSymbol": {
+          "type": "null"
+        },
+        "messageBoardId": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        }
+      }
+    },
+    "symbol": {
+      "type": "string"
+    },
+    "price": {
+      "type": "object",
+      "properties": {
+        "quoteSourceName": {
+          "type": "string"
+        },
+        "regularMarketOpen": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "averageDailyVolume3Month": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "exchange": {
+          "type": "string"
+        },
+        "regularMarketTime": {
+          "type": "integer"
+        },
+        "volume24Hr": {
+          "type": "object"
+        },
+        "regularMarketDayHigh": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "shortName": {
+          "type": "string"
+        },
+        "averageDailyVolume10Day": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "longName": {
+          "type": "string"
+        },
+        "regularMarketChange": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "regularMarketPreviousClose": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "postMarketTime": {
+          "type": "integer"
+        },
+        "preMarketPrice": {
+          "type": "object"
+        },
+        "exchangeDataDelayedBy": {
+          "type": "integer"
+        },
+        "postMarketChange": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "postMarketPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "exchangeName": {
+          "type": "string"
+        },
+        "preMarketChange": {
+          "type": "object"
+        },
+        "circulatingSupply": {
+          "type": "object"
+        },
+        "regularMarketDayLow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "priceHint": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            },
+            "longFmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "currency": {
+          "type": "string"
+        },
+        "regularMarketPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "regularMarketVolume": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "lastMarket": {
+          "type": "null"
+        },
+        "regularMarketSource": {
+          "type": "string"
+        },
+        "openInterest": {
+          "type": "object"
+        },
+        "marketState": {
+          "type": "string"
+        },
+        "underlyingSymbol": {
+          "type": "null"
+        },
+        "marketCap": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "quoteType": {
+          "type": "string"
+        },
+        "volumeAllCurrencies": {
+          "type": "object"
+        },
+        "postMarketSource": {
+          "type": "string"
+        },
+        "strikePrice": {
+          "type": "object"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "postMarketChangePercent": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "preMarketSource": {
+          "type": "string"
+        },
+        "maxAge": {
+          "type": "integer"
+        },
+        "fromCurrency": {
+          "type": "null"
+        },
+        "regularMarketChangePercent": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "summaryDetail": {
+      "type": "object",
+      "properties": {
+        "previousClose": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "regularMarketOpen": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "twoHundredDayAverage": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "trailingAnnualDividendYield": {
+          "type": "object"
+        },
+        "payoutRatio": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "volume24Hr": {
+          "type": "object"
+        },
+        "regularMarketDayHigh": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "navPrice": {
+          "type": "object"
+        },
+        "averageDailyVolume10Day": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "totalAssets": {
+          "type": "object"
+        },
+        "regularMarketPreviousClose": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "fiftyDayAverage": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "trailingAnnualDividendRate": {
+          "type": "object"
+        },
+        "open": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "averageVolume10days": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "expireDate": {
+          "type": "object"
+        },
+        "yield": {
+          "type": "object"
+        },
+        "algorithm": {
+          "type": "null"
+        },
+        "dividendRate": {
+          "type": "object"
+        },
+        "exDividendDate": {
+          "type": "object"
+        },
+        "beta": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "circulatingSupply": {
+          "type": "object"
+        },
+        "startDate": {
+          "type": "object"
+        },
+        "regularMarketDayLow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "priceHint": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            },
+            "longFmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "currency": {
+          "type": "string"
+        },
+        "regularMarketVolume": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "lastMarket": {
+          "type": "null"
+        },
+        "maxSupply": {
+          "type": "object"
+        },
+        "openInterest": {
+          "type": "object"
+        },
+        "marketCap": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "volumeAllCurrencies": {
+          "type": "object"
+        },
+        "strikePrice": {
+          "type": "object"
+        },
+        "averageVolume": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "priceToSalesTrailing12Months": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "dayLow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "ask": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "ytdReturn": {
+          "type": "object"
+        },
+        "askSize": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "volume": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "fiftyTwoWeekHigh": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "forwardPE": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "maxAge": {
+          "type": "integer"
+        },
+        "fromCurrency": {
+          "type": "null"
+        },
+        "fiveYearAvgDividendYield": {
+          "type": "object"
+        },
+        "fiftyTwoWeekLow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "bid": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "tradeable": {
+          "type": "boolean"
+        },
+        "dividendYield": {
+          "type": "object"
+        },
+        "bidSize": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "color"
+            },
+            "longFmt": {
+              "type": "string",
+              "format": "color"
+            }
+          }
+        },
+        "dayHigh": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "pageViews": {
+      "type": "object",
+      "properties": {
+        "shortTermTrend": {
+          "type": "string"
+        },
+        "midTermTrend": {
+          "type": "string"
+        },
+        "longTermTrend": {
+          "type": "string"
+        },
+        "maxAge": {
+          "type": "integer"
+        }
+      }
+    },
+    "defaultKeyStatistics": {
+      "type": "object",
+      "properties": {
+        "annualHoldingsTurnover": {
+          "type": "object"
+        },
+        "enterpriseToRevenue": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "beta3Year": {
+          "type": "object"
+        },
+        "profitMargins": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "enterpriseToEbitda": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "52WeekChange": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "morningStarRiskRating": {
+          "type": "object"
+        },
+        "forwardEps": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "revenueQuarterlyGrowth": {
+          "type": "object"
+        },
+        "sharesOutstanding": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "fundInceptionDate": {
+          "type": "object"
+        },
+        "annualReportExpenseRatio": {
+          "type": "object"
+        },
+        "totalAssets": {
+          "type": "object"
+        },
+        "bookValue": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "sharesShort": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "sharesPercentSharesOut": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "fundFamily": {
+          "type": "null"
+        },
+        "lastFiscalYearEnd": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "heldPercentInstitutions": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "netIncomeToCommon": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "trailingEps": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "lastDividendValue": {
+          "type": "object"
+        },
+        "SandP52WeekChange": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "priceToBook": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "heldPercentInsiders": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "nextFiscalYearEnd": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "yield": {
+          "type": "object"
+        },
+        "mostRecentQuarter": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "shortRatio": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "sharesShortPreviousMonthDate": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "floatShares": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "beta": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "enterpriseValue": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "priceHint": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            },
+            "longFmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "threeYearAverageReturn": {
+          "type": "object"
+        },
+        "lastSplitDate": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "lastSplitFactor": {
+          "type": "string"
+        },
+        "legalType": {
+          "type": "null"
+        },
+        "morningStarOverallRating": {
+          "type": "object"
+        },
+        "earningsQuarterlyGrowth": {
+          "type": "object"
+        },
+        "priceToSalesTrailing12Months": {
+          "type": "object"
+        },
+        "dateShortInterest": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        },
+        "pegRatio": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "ytdReturn": {
+          "type": "object"
+        },
+        "forwardPE": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "maxAge": {
+          "type": "integer"
+        },
+        "lastCapGain": {
+          "type": "object"
+        },
+        "shortPercentOfFloat": {
+          "type": "object"
+        },
+        "sharesShortPriorMonth": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "category": {
+          "type": "null"
+        },
+        "fiveYearAverageReturn": {
+          "type": "object"
+        }
+      }
+    },
+    "financialData": {
+      "type": "object",
+      "properties": {
+        "ebitdaMargins": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "profitMargins": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "grossMargins": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "operatingCashflow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "revenueGrowth": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "operatingMargins": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "ebitda": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "targetLowPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "recommendationKey": {
+          "type": "string"
+        },
+        "grossProfits": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "freeCashflow": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "targetMedianPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "currentPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "earningsGrowth": {
+          "type": "object"
+        },
+        "currentRatio": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "returnOnAssets": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "numberOfAnalystOpinions": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            },
+            "longFmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "targetMeanPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "debtToEquity": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "returnOnEquity": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "targetHighPrice": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string",
+              "format": "utc-millisec"
+            }
+          }
+        },
+        "totalCash": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "totalDebt": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "totalRevenue": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "integer"
+            },
+            "fmt": {
+              "type": "string"
+            },
+            "longFmt": {
+              "type": "string"
+            }
+          }
+        },
+        "totalCashPerShare": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "financialCurrency": {
+          "type": "string"
+        },
+        "maxAge": {
+          "type": "integer"
+        },
+        "revenuePerShare": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "quickRatio": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        },
+        "recommendationMean": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "number"
+            },
+            "fmt": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "calendarEvents": {
+      "type": "object",
+      "properties": {
+        "maxAge": {
+          "type": "integer"
+        },
+        "earnings": {
+          "type": "object",
+          "properties": {
+            "earningsDate": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "raw": {
+                    "type": "integer"
+                  },
+                  "fmt": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            },
+            "earningsAverage": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "earningsLow": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "earningsHigh": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "revenueAverage": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "revenueLow": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "revenueHigh": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "exDividendDate": {
+          "type": "object"
+        },
+        "dividendDate": {
+          "type": "object"
+        }
+      }
+    },
+    "quoteData": {
+      "type": "object",
+      "properties": {
+        "AMRN": {
+          "type": "object",
+          "properties": {
+            "sourceInterval": {
+              "type": "integer"
+            },
+            "regularMarketOpen": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "exchange": {
+              "type": "string"
+            },
+            "regularMarketTime": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string",
+                  "format": "style"
+                }
+              }
+            },
+            "fiftyTwoWeekRange": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "string"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "sharesOutstanding": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "regularMarketDayHigh": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "shortName": {
+              "type": "string"
+            },
+            "longName": {
+              "type": "string"
+            },
+            "exchangeTimezoneName": {
+              "type": "string"
+            },
+            "regularMarketChange": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "regularMarketPreviousClose": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "fiftyTwoWeekHighChange": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "exchangeTimezoneShortName": {
+              "type": "string"
+            },
+            "fiftyTwoWeekLowChange": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "exchangeDataDelayedBy": {
+              "type": "integer"
+            },
+            "regularMarketDayLow": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "priceHint": {
+              "type": "integer"
+            },
+            "currency": {
+              "type": "string"
+            },
+            "regularMarketPrice": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "regularMarketVolume": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "isLoading": {
+              "type": "boolean"
+            },
+            "triggerable": {
+              "type": "boolean"
+            },
+            "gmtOffSetMilliseconds": {
+              "type": "integer"
+            },
+            "region": {
+              "type": "string"
+            },
+            "marketState": {
+              "type": "string"
+            },
+            "marketCap": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "integer"
+                },
+                "fmt": {
+                  "type": "string"
+                },
+                "longFmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "quoteType": {
+              "type": "string"
+            },
+            "invalid": {
+              "type": "boolean"
+            },
+            "symbol": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "fiftyTwoWeekLowChangePercent": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "regularMarketDayRange": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "string"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "messageBoardId": {
+              "type": "string"
+            },
+            "fiftyTwoWeekHigh": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "fiftyTwoWeekHighChangePercent": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "uuid": {
+              "type": "string"
+            },
+            "market": {
+              "type": "string"
+            },
+            "fiftyTwoWeekLow": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "regularMarketChangePercent": {
+              "type": "object",
+              "properties": {
+                "raw": {
+                  "type": "number"
+                },
+                "fmt": {
+                  "type": "string"
+                }
+              }
+            },
+            "fullExchangeName": {
+              "type": "string"
+            },
+            "tradeable": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "mktmData": {
+      "type": "object"
+    }
+  }
+}

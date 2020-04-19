@@ -1,4 +1,4 @@
-package com.github.dzahoransky.stocks.analyst.model
+package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Quarter {
     Current,

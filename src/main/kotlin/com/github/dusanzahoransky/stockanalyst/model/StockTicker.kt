@@ -1,4 +1,6 @@
-package com.github.dzahoransky.stocks.analyst.model
+package com.github.dusanzahoransky.stockanalyst.model
+
+import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 
 data class StockTicker(
     val symbol: String,
