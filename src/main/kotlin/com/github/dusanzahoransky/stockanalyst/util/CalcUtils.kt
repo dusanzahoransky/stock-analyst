@@ -81,6 +81,23 @@ class CalcUtils {
         }
 
         /**
+         * Null-safe percentage multiplier of nullable Numbers
+         */
+        @Suppress("UNCHECKED_CAST")
+        public fun <N : Number> percent(value1: N?): N? {
+            return if (value1 == null) {
+                null
+            } else {
+                if (value1 is Double)
+                    (value1 * 100) as N
+                else if (value1 is Long)
+                    (value1 * 100) as N
+                else
+                    throw IllegalArgumentException("Unsupported div argument types")
+            }
+        }
+
+        /**
          * Null-safe division of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")

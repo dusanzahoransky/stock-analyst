@@ -29,7 +29,12 @@ data class StockInfo(
     var enterpriseValueEBITDA: Double? = null,
 
     var quarterlyRevenueGrowth: Double? = null,
-    var quarterlyEarningsGrowth: Double? = null,
+    var yoyQuarterlyRevenueGrowthPercent: Double? = null,
+    var yoyQuarterlyEarningsGrowthPercent: Double? = null,
+    /**
+     * Details? What periods is this comparing is it quaterly, yearly?
+     */
+    var earningsGrowthPercent: Double? = null,
     var priceEarningGrowth: Double? = null,
     var trailingPriceEarningGrowth: Double? = null,
     //yearly earnings growth
@@ -40,14 +45,20 @@ data class StockInfo(
     var week52High: Double? = null,
     var week52BelowHighPercent: Double? = null,
 
+    var targetLowPrice: Double? = null,
+    var belowTargetLowPricePercent: Double? = null,
+    var targetMedianPrice: Double? = null,
+    var belowTargetMedianPricePercent: Double? = null,
+
+    var heldByInsiders: Double? = null,
+    var heldByInstitutions: Double? = null,
+    var shortToFloat: Double? = null,
+    var sharesShortPrevMonthCompare: Double? = null,
+
     var exDividendDate: String? = null,
     var fiveYearAvgDividendYield: Double? = null,
     var trailingAnnualDividendYield: Double? = null,
 
-    /*
-    % of Shares Held by All Insider
-% of Shares Held by Institutions
-     */
 
     /*
     Growth Estimates -

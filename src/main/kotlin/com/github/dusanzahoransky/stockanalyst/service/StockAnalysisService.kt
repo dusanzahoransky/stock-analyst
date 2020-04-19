@@ -55,6 +55,14 @@ class StockAnalysisService {
                 averages.change = averages.change.let { sum(it, stock.change) }
                 counter.changeCount++
             }
+            if (stock.belowTargetLowPricePercent != null) {
+                averages.belowTargetLowPricePercent = averages.belowTargetLowPricePercent.let { sum(it, stock.belowTargetLowPricePercent) }
+                counter.belowTargetLowPricePercentCount++
+            }
+            if (stock.belowTargetMedianPricePercent != null) {
+                averages.belowTargetMedianPricePercent = averages.belowTargetMedianPricePercent.let { sum(it, stock.belowTargetMedianPricePercent) }
+                counter.belowTargetMedianPricePercentCount++
+            }
             if (stock.totalCashPerShare != null) {
                 averages.totalCashPerShare = averages.totalCashPerShare.let { sum(it, stock.totalCashPerShare) }
                 counter.totalCashPerShareCount++
@@ -67,13 +75,25 @@ class StockAnalysisService {
                 averages.totalDebtEquity = averages.totalDebtEquity.let { sum(it, stock.totalDebtEquity) }
                 counter.totalDebtEquityCount++
             }
+            if (stock.yoyQuarterlyRevenueGrowthPercent != null) {
+                averages.yoyQuarterlyRevenueGrowthPercent = averages.yoyQuarterlyRevenueGrowthPercent.let { sum(it, stock.yoyQuarterlyRevenueGrowthPercent) }
+                counter.revenueGrowthCount++
+            }
+            if (stock.earningsGrowthPercent != null) {
+                averages.earningsGrowthPercent = averages.earningsGrowthPercent.let { sum(it, stock.earningsGrowthPercent) }
+                counter.earningsGrowthPercentCount++
+            }
+            if (stock.yoyQuarterlyEarningsGrowthPercent != null) {
+                averages.yoyQuarterlyEarningsGrowthPercent = averages.yoyQuarterlyEarningsGrowthPercent.let { sum(it, stock.yoyQuarterlyEarningsGrowthPercent) }
+                counter.yoyQuarterlyEarningsGrowthPercentCount++
+            }
             if (stock.quarterlyRevenueGrowth != null) {
                 averages.quarterlyRevenueGrowth = averages.quarterlyRevenueGrowth.let { sum(it, stock.quarterlyRevenueGrowth) }
-                counter.quarterlyRevenueGrowthCount++
+                counter.yoyQuarterlyRevenueGrowthPercentCount++
             }
-            if (stock.quarterlyEarningsGrowth != null) {
-                averages.quarterlyEarningsGrowth = averages.quarterlyEarningsGrowth.let { sum(it, stock.quarterlyEarningsGrowth) }
-                counter.quarterlyEarningsGrowthCount++
+            if (stock.yoyQuarterlyEarningsGrowthPercent != null) {
+                averages.yoyQuarterlyEarningsGrowthPercent = averages.yoyQuarterlyEarningsGrowthPercent.let { sum(it, stock.yoyQuarterlyEarningsGrowthPercent) }
+                counter.yoyQuarterlyEarningsGrowthPercentCount++
             }
             if (stock.week52Change != null) {
                 averages.week52Change = averages.week52Change.let { sum(it, stock.week52Change) }
@@ -111,15 +131,28 @@ class StockAnalysisService {
                 averages.trailingAnnualDividendYield = averages.trailingAnnualDividendYield.let { sum(it, stock.trailingAnnualDividendYield) }
                 counter.trailingAnnualDividendYieldCount++
             }
+            if (stock.sharesShortPrevMonthCompare != null) {
+                averages.sharesShortPrevMonthCompare = averages.sharesShortPrevMonthCompare.let { sum(it, stock.sharesShortPrevMonthCompare) }
+                counter.sharesShortPrevMonthCompareCount++
+            }
+            if (stock.shortToFloat != null) {
+                averages.shortToFloat = averages.shortToFloat.let { sum(it, stock.shortToFloat) }
+                counter.shortToFloatCount++
+            }
         }
 
         averages.price = averages.price.let { div(it, counter.priceCount) }
         averages.change = averages.change.let { div(it, counter.changeCount) }
+        averages.belowTargetMedianPricePercent = averages.belowTargetMedianPricePercent.let { div(it, counter.belowTargetMedianPricePercentCount) }
+        averages.belowTargetLowPricePercent = averages.belowTargetLowPricePercent.let { div(it, counter.belowTargetLowPricePercentCount) }
         averages.totalCashPerShare = averages.totalCashPerShare.let { div(it, counter.totalCashPerShareCount) }
         averages.totalCashPerSharePercent = averages.totalCashPerSharePercent.let { div(it, counter.totalCashPerSharePercentCount) }
         averages.totalDebtEquity = averages.totalDebtEquity.let { div(it, counter.totalDebtEquityCount) }
-        averages.quarterlyRevenueGrowth = averages.quarterlyRevenueGrowth.let { div(it, counter.quarterlyRevenueGrowthCount) }
-        averages.quarterlyEarningsGrowth = averages.quarterlyEarningsGrowth.let { div(it, counter.quarterlyEarningsGrowthCount) }
+        averages.yoyQuarterlyRevenueGrowthPercent = averages.yoyQuarterlyRevenueGrowthPercent.let { div(it, counter.revenueGrowthCount) }
+        averages.earningsGrowthPercent = averages.earningsGrowthPercent.let { div(it, counter.earningsGrowthPercentCount) }
+        averages.yoyQuarterlyEarningsGrowthPercent = averages.yoyQuarterlyEarningsGrowthPercent.let { div(it, counter.yoyQuarterlyEarningsGrowthPercentCount) }
+        averages.quarterlyRevenueGrowth = averages.quarterlyRevenueGrowth.let { div(it, counter.yoyQuarterlyRevenueGrowthPercentCount) }
+        averages.yoyQuarterlyEarningsGrowthPercent = averages.yoyQuarterlyEarningsGrowthPercent.let { div(it, counter.yoyQuarterlyEarningsGrowthPercentCount) }
         averages.week52Change = averages.week52Change.let { div(it, counter.week52ChangeCount) }
         averages.week52Low = averages.week52Low.let { div(it, counter.week52LowCount) }
         averages.week52High = averages.week52High.let { div(it, counter.week52HighCount) }
@@ -137,6 +170,8 @@ class StockAnalysisService {
         averages.priceToSalesTrailing12Months = averages.priceToSalesTrailing12Months.let { div(it, counter.priceToSalesTrailing12MonthsCount) }
         averages.fiveYearAvgDividendYield = averages.fiveYearAvgDividendYield.let { div(it, counter.fiveYearAvgDividendYieldCount) }
         averages.trailingAnnualDividendYield = averages.trailingAnnualDividendYield.let { div(it, counter.trailingAnnualDividendYieldCount) }
+        averages.sharesShortPrevMonthCompare = averages.sharesShortPrevMonthCompare.let { div(it, counter.sharesShortPrevMonthCompareCount) }
+        averages.shortToFloat = averages.shortToFloat.let { div(it, counter.shortToFloatCount) }
 
         return averages
     }

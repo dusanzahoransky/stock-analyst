@@ -11,6 +11,7 @@ class WatchlistRepo {
 
     fun getWatchlist(watchlist: Watchlist): List<StockTicker>{
         when(watchlist){
+            TEST -> return test()
             INVESTED -> return invested()
             EUR -> return eur()
             AUD -> return aud()
@@ -64,6 +65,12 @@ class WatchlistRepo {
         return listOf(
             *investedIndicesInAud().toTypedArray(),
             *watchListIndicesAud().toTypedArray()
+        )
+    }
+
+    fun test(): List<StockTicker> {
+        return listOf(
+            StockTicker.fromString("MSFT:NASDAQ")
         )
     }
 
@@ -165,7 +172,6 @@ class WatchlistRepo {
             StockTicker.fromString("ZNH:NYSE"),
             StockTicker.fromString("CLDR:NASDAQ"),
             StockTicker.fromString("NET:NASDAQ"),
-            StockTicker.fromString("DAL:NASDAQ"),
             StockTicker.fromString("DOCU:NYSE"),
             StockTicker.fromString("HUBS:NASDAQ"),
             StockTicker.fromString("MA:NASDAQ"),

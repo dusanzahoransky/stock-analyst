@@ -1,6 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Watchlist {
+    TEST,
     INVESTED,
     EUR,
     AUD,
