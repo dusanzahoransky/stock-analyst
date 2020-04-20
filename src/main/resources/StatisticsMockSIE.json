@@ -1,0 +1,615 @@
+{
+  "defaultKeyStatistics": {
+    "annualHoldingsTurnover": {},
+    "enterpriseToRevenue": {
+      "raw": 1.114,
+      "fmt": "1.11"
+    },
+    "beta3Year": {},
+    "profitMargins": {
+      "raw": 0.06021,
+      "fmt": "6.02%"
+    },
+    "enterpriseToEbitda": {
+      "raw": 9.781,
+      "fmt": "9.78"
+    },
+    "52WeekChange": {
+      "raw": -0.24403751,
+      "fmt": "-24.40%"
+    },
+    "morningStarRiskRating": {},
+    "forwardEps": {},
+    "revenueQuarterlyGrowth": {},
+    "sharesOutstanding": {
+      "raw": 812768000,
+      "fmt": "812.77M",
+      "longFmt": "812,768,000"
+    },
+    "fundInceptionDate": {},
+    "annualReportExpenseRatio": {},
+    "totalAssets": {},
+    "bookValue": {
+      "raw": 60.539,
+      "fmt": "60.54"
+    },
+    "sharesShort": {},
+    "sharesPercentSharesOut": {},
+    "fundFamily": null,
+    "lastFiscalYearEnd": {
+      "raw": 1569801600,
+      "fmt": "2019-09-30"
+    },
+    "heldPercentInstitutions": {
+      "raw": 0.31434,
+      "fmt": "31.43%"
+    },
+    "netIncomeToCommon": {
+      "raw": 5235999744,
+      "fmt": "5.24B",
+      "longFmt": "5,235,999,744"
+    },
+    "trailingEps": {
+      "raw": 6.391,
+      "fmt": "6.39"
+    },
+    "lastDividendValue": {},
+    "SandP52WeekChange": {
+      "raw": -0.011489093,
+      "fmt": "-1.15%"
+    },
+    "priceToBook": {
+      "raw": 1.3298866,
+      "fmt": "1.33"
+    },
+    "heldPercentInsiders": {
+      "raw": 0.06,
+      "fmt": "6.00%"
+    },
+    "nextFiscalYearEnd": {
+      "raw": 1632960000,
+      "fmt": "2021-09-30"
+    },
+    "yield": {},
+    "mostRecentQuarter": {
+      "raw": 1577750400,
+      "fmt": "2019-12-31"
+    },
+    "shortRatio": {},
+    "sharesShortPreviousMonthDate": {},
+    "floatShares": {
+      "raw": 813171927,
+      "fmt": "813.17M",
+      "longFmt": "813,171,927"
+    },
+    "beta": {
+      "raw": 1.14772,
+      "fmt": "1.15"
+    },
+    "enterpriseValue": {
+      "raw": 96970530816,
+      "fmt": "96.97B",
+      "longFmt": "96,970,530,816"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "threeYearAverageReturn": {},
+    "lastSplitDate": {},
+    "lastSplitFactor": null,
+    "legalType": null,
+    "morningStarOverallRating": {},
+    "earningsQuarterlyGrowth": {
+      "raw": 0.066,
+      "fmt": "6.60%"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dateShortInterest": {},
+    "pegRatio": {},
+    "ytdReturn": {},
+    "forwardPE": {},
+    "maxAge": 1,
+    "lastCapGain": {},
+    "shortPercentOfFloat": {},
+    "sharesShortPriorMonth": {},
+    "category": null,
+    "fiveYearAverageReturn": {}
+  },
+  "financialsTemplate": {
+    "code": "N",
+    "maxAge": 1
+  },
+  "price": {
+    "regularMarketOpen": {
+      "raw": 80.5,
+      "fmt": "80.50"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 4203679,
+      "fmt": "4.2M",
+      "longFmt": "4,203,679"
+    },
+    "exchange": "GER",
+    "regularMarketTime": 1587137717,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 82.55,
+      "fmt": "82.55"
+    },
+    "shortName": "SIEMENS AG  NA O.N.",
+    "averageDailyVolume10Day": {
+      "raw": 2703877,
+      "fmt": "2.7M",
+      "longFmt": "2,703,877"
+    },
+    "longName": "Siemens Aktiengesellschaft",
+    "regularMarketChange": {
+      "raw": 2.7200012,
+      "fmt": "2.72"
+    },
+    "currencySymbol": "€",
+    "regularMarketPreviousClose": {
+      "raw": 77.79,
+      "fmt": "77.79"
+    },
+    "preMarketPrice": {},
+    "exchangeDataDelayedBy": 0,
+    "toCurrency": null,
+    "postMarketChange": {},
+    "postMarketPrice": {},
+    "exchangeName": "XETRA",
+    "preMarketChange": {},
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 80.23,
+      "fmt": "80.23"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "EUR",
+    "regularMarketPrice": {
+      "raw": 80.51,
+      "fmt": "80.51"
+    },
+    "regularMarketVolume": {
+      "raw": 4552456,
+      "fmt": "4.55M",
+      "longFmt": "4,552,456.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "DELAYED",
+    "openInterest": {},
+    "marketState": "CLOSED",
+    "underlyingSymbol": null,
+    "marketCap": {
+      "raw": 65435955200,
+      "fmt": "65.44B",
+      "longFmt": "65,435,955,200.00"
+    },
+    "quoteType": "EQUITY",
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "symbol": "SIE.DE",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.03496595,
+      "fmt": "3.50%"
+    }
+  },
+  "financialData": {
+    "ebitdaMargins": {
+      "raw": 0.11389,
+      "fmt": "11.39%"
+    },
+    "profitMargins": {
+      "raw": 0.06021,
+      "fmt": "6.02%"
+    },
+    "grossMargins": {
+      "raw": 0.29617,
+      "fmt": "29.62%"
+    },
+    "operatingCashflow": {
+      "raw": 8798999552,
+      "fmt": "8.8B",
+      "longFmt": "8,798,999,552"
+    },
+    "revenueGrowth": {
+      "raw": 0.01,
+      "fmt": "1.00%"
+    },
+    "operatingMargins": {
+      "raw": 0.0739,
+      "fmt": "7.39%"
+    },
+    "ebitda": {
+      "raw": 9914000384,
+      "fmt": "9.91B",
+      "longFmt": "9,914,000,384"
+    },
+    "targetLowPrice": {},
+    "recommendationKey": "none",
+    "grossProfits": {
+      "raw": 25927000000,
+      "fmt": "25.93B",
+      "longFmt": "25,927,000,000"
+    },
+    "freeCashflow": {
+      "raw": 2661750016,
+      "fmt": "2.66B",
+      "longFmt": "2,661,750,016"
+    },
+    "targetMedianPrice": {},
+    "currentPrice": {
+      "raw": 80.51,
+      "fmt": "80.51"
+    },
+    "earningsGrowth": {
+      "raw": 0.056,
+      "fmt": "5.60%"
+    },
+    "currentRatio": {
+      "raw": 1.383,
+      "fmt": "1.38"
+    },
+    "returnOnAssets": {
+      "raw": 0.02717,
+      "fmt": "2.72%"
+    },
+    "numberOfAnalystOpinions": {},
+    "targetMeanPrice": {},
+    "debtToEquity": {
+      "raw": 77.081,
+      "fmt": "77.08"
+    },
+    "returnOnEquity": {
+      "raw": 0.11269,
+      "fmt": "11.27%"
+    },
+    "targetHighPrice": {},
+    "totalCash": {
+      "raw": 11349999616,
+      "fmt": "11.35B",
+      "longFmt": "11,349,999,616"
+    },
+    "totalDebt": {
+      "raw": 40079998976,
+      "fmt": "40.08B",
+      "longFmt": "40,079,998,976"
+    },
+    "totalRevenue": {
+      "raw": 87050002432,
+      "fmt": "87.05B",
+      "longFmt": "87,050,002,432"
+    },
+    "totalCashPerShare": {
+      "raw": 13.954,
+      "fmt": "13.95"
+    },
+    "financialCurrency": "EUR",
+    "maxAge": 86400,
+    "revenuePerShare": {
+      "raw": 107.644,
+      "fmt": "107.64"
+    },
+    "quickRatio": {
+      "raw": 0.823,
+      "fmt": "0.82"
+    },
+    "recommendationMean": {}
+  },
+  "quoteType": {
+    "exchange": "GER",
+    "shortName": "SIEMENS AG  NA O.N.",
+    "longName": "Siemens Aktiengesellschaft",
+    "exchangeTimezoneName": "Europe/Berlin",
+    "exchangeTimezoneShortName": "CEST",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "7200000",
+    "quoteType": "EQUITY",
+    "symbol": "SIE.DE",
+    "messageBoardId": "finmb_394038",
+    "market": "de_market"
+  },
+  "calendarEvents": {
+    "maxAge": 1,
+    "earnings": {
+      "earningsDate": [
+        {
+          "raw": 1588896000,
+          "fmt": "2020-05-08"
+        }
+      ],
+      "earningsAverage": {},
+      "earningsLow": {},
+      "earningsHigh": {},
+      "revenueAverage": {},
+      "revenueLow": {},
+      "revenueHigh": {}
+    },
+    "exDividendDate": {
+      "raw": 1580947200,
+      "fmt": "2020-02-06"
+    },
+    "dividendDate": {}
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 77.79,
+      "fmt": "77.79"
+    },
+    "regularMarketOpen": {
+      "raw": 80.5,
+      "fmt": "80.50"
+    },
+    "twoHundredDayAverage": {
+      "raw": 102.622795,
+      "fmt": "102.62"
+    },
+    "trailingAnnualDividendYield": {
+      "raw": 0.05013498,
+      "fmt": "5.01%"
+    },
+    "payoutRatio": {
+      "raw": 0.59470004,
+      "fmt": "59.47%"
+    },
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 82.55,
+      "fmt": "82.55"
+    },
+    "navPrice": {},
+    "averageDailyVolume10Day": {
+      "raw": 2703877,
+      "fmt": "2.7M",
+      "longFmt": "2,703,877"
+    },
+    "totalAssets": {},
+    "regularMarketPreviousClose": {
+      "raw": 77.79,
+      "fmt": "77.79"
+    },
+    "fiftyDayAverage": {
+      "raw": 77.595146,
+      "fmt": "77.60"
+    },
+    "trailingAnnualDividendRate": {
+      "raw": 3.9,
+      "fmt": "3.90"
+    },
+    "open": {
+      "raw": 80.5,
+      "fmt": "80.50"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 2703877,
+      "fmt": "2.7M",
+      "longFmt": "2,703,877"
+    },
+    "expireDate": {},
+    "yield": {},
+    "algorithm": null,
+    "dividendRate": {
+      "raw": 3.9,
+      "fmt": "3.90"
+    },
+    "exDividendDate": {
+      "raw": 1580947200,
+      "fmt": "2020-02-06"
+    },
+    "beta": {
+      "raw": 1.14772,
+      "fmt": "1.15"
+    },
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 80.23,
+      "fmt": "80.23"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "EUR",
+    "trailingPE": {
+      "raw": 12.597404,
+      "fmt": "12.60"
+    },
+    "regularMarketVolume": {
+      "raw": 4552456,
+      "fmt": "4.55M",
+      "longFmt": "4,552,456"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {
+      "raw": 65435955200,
+      "fmt": "65.44B",
+      "longFmt": "65,435,955,200"
+    },
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 4203679,
+      "fmt": "4.2M",
+      "longFmt": "4,203,679"
+    },
+    "priceToSalesTrailing12Months": {
+      "raw": 0.7517054,
+      "fmt": "0.75"
+    },
+    "dayLow": {
+      "raw": 80.23,
+      "fmt": "80.23"
+    },
+    "ask": {
+      "raw": 80.73,
+      "fmt": "80.73"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 100000,
+      "fmt": "100k",
+      "longFmt": "100,000"
+    },
+    "volume": {
+      "raw": 4552456,
+      "fmt": "4.55M",
+      "longFmt": "4,552,456"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 119.9,
+      "fmt": "119.90"
+    },
+    "forwardPE": {},
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {
+      "raw": 3.49,
+      "fmt": "3.49"
+    },
+    "fiftyTwoWeekLow": {
+      "raw": 58.77,
+      "fmt": "58.77"
+    },
+    "bid": {
+      "raw": 80.71,
+      "fmt": "80.71"
+    },
+    "tradeable": false,
+    "dividendYield": {
+      "raw": 0.050100002,
+      "fmt": "5.01%"
+    },
+    "bidSize": {
+      "raw": 44200,
+      "fmt": "44.2k",
+      "longFmt": "44,200"
+    },
+    "dayHigh": {
+      "raw": 82.55,
+      "fmt": "82.55"
+    }
+  },
+  "symbol": "SIE.DE",
+  "pageViews": {},
+  "quoteData": {
+    "SIE.DE": {
+      "sourceInterval": 15,
+      "regularMarketOpen": {
+        "raw": 80.5,
+        "fmt": "80.50"
+      },
+      "exchange": "GER",
+      "regularMarketTime": {
+        "raw": 1587137717,
+        "fmt": "5:35PM CEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "58.77 - 119.9",
+        "fmt": "58.77 - 119.90"
+      },
+      "sharesOutstanding": {
+        "raw": 812768000,
+        "fmt": "812.768M",
+        "longFmt": "812,768,000"
+      },
+      "regularMarketDayHigh": {
+        "raw": 82.55,
+        "fmt": "82.55"
+      },
+      "shortName": "SIEMENS AG  NA O.N.",
+      "longName": "Siemens Aktiengesellschaft",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "regularMarketChange": {
+        "raw": 2.7200012,
+        "fmt": "2.72"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 77.79,
+        "fmt": "77.79"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -39.39,
+        "fmt": "-39.39"
+      },
+      "exchangeTimezoneShortName": "CEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 21.740002,
+        "fmt": "21.74"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 80.23,
+        "fmt": "80.23"
+      },
+      "priceHint": 2,
+      "currency": "EUR",
+      "regularMarketPrice": {
+        "raw": 80.51,
+        "fmt": "80.51"
+      },
+      "regularMarketVolume": {
+        "raw": 4552456,
+        "fmt": "4.552M",
+        "longFmt": "4,552,456"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 7200000,
+      "firstTradeDateMilliseconds": 847440000000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "marketCap": {
+        "raw": 65435955200,
+        "fmt": "65.436B",
+        "longFmt": "65,435,955,200"
+      },
+      "quoteType": "EQUITY",
+      "invalid": false,
+      "symbol": "SIE.DE",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.36991665,
+        "fmt": "36.99%"
+      },
+      "regularMarketDayRange": {
+        "raw": "80.23 - 82.55",
+        "fmt": "80.23 - 82.55"
+      },
+      "messageBoardId": "finmb_394038",
+      "fiftyTwoWeekHigh": {
+        "raw": 119.9,
+        "fmt": "119.90"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.32852376,
+        "fmt": "-32.85%"
+      },
+      "uuid": "9089444d-f2fa-3cf7-8e78-84820fc8b713",
+      "market": "de_market",
+      "fiftyTwoWeekLow": {
+        "raw": 58.77,
+        "fmt": "58.77"
+      },
+      "regularMarketChangePercent": {
+        "raw": 3.4965951,
+        "fmt": "3.50%"
+      },
+      "fullExchangeName": "XETRA",
+      "tradeable": false
+    }
+  },
+  "mktmData": {}
+}

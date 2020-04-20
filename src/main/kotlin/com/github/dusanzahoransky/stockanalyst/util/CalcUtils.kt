@@ -11,7 +11,7 @@ class CalcUtils {
             return if (value1 == null) {
                 value2
             } else if (value2 == null) {
-                null
+                value1
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 + value2) as N
@@ -27,9 +27,7 @@ class CalcUtils {
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> div(value1: N?, value2: N?): N? {
-            return if (value1 == null) {
-                value2
-            } else if (value2 == null) {
+            return if (value1 == null || value2 == null) {
                 null
             } else {
                 if (value1 is Double && value2 is Double)
@@ -47,9 +45,19 @@ class CalcUtils {
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> minus(value1: N?, value2: N?): N? {
             return if (value1 == null) {
-                value2
+                if (value2 is Double)
+                    -value2 as N
+                else if (value2 is Long)
+                    - value2 as N
+                else
+                    throw IllegalArgumentException("Unsupported minus argument types")
             } else if (value2 == null) {
-                null
+                if (value1 is Double)
+                    -value1 as N
+                else if (value1 is Long)
+                    - value1 as N
+                else
+                    throw IllegalArgumentException("Unsupported minus argument types")
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 - value2) as N
@@ -66,10 +74,8 @@ class CalcUtils {
          */
         @Suppress("UNCHECKED_CAST")
         public fun <N : Number> multiply(value1: N?, value2: N?): N? {
-            return if (value1 == null) {
-                value2
-            } else if (value2 == null) {
-                null
+            return if (value1 == null || value2 == 0) {
+                return null
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 * value2) as N

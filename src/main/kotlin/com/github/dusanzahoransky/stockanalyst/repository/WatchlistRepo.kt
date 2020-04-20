@@ -17,9 +17,9 @@ class WatchlistRepo {
             AUD -> return aud()
             USD -> return usd()
             GBP -> return gbp()
+            CHF -> return chf()
             GBP_INDICES -> return gbpIndices()
             AUD_INDICES -> return audIndices()
-            CHF -> return chf()
             INVESTED_IN_EUR -> return investedInEur()
             INVESTED_IN_GBP -> return investedInGbp()
             INVESTED_INDICES_IN_GBP -> return investedIndicesInGbp()
@@ -70,7 +70,7 @@ class WatchlistRepo {
 
     fun test(): List<StockTicker> {
         return listOf(
-            StockTicker.fromString("MSFT:NASDAQ")
+            StockTicker.fromString("WIZZ:FTSE")
         )
     }
 
@@ -102,15 +102,17 @@ class WatchlistRepo {
         )
     }
 
-    fun investedInEur(): List<StockTicker> {
+    fun watchListEur(): List<StockTicker> {
         return listOf(
-
+            StockTicker.fromString("KU2:DAX"),
+            StockTicker.fromString("SU:PA")
         )
     }
 
-    fun investedInGbp(): List<StockTicker> {
+    fun investedInEur(): List<StockTicker> {
         return listOf(
-            StockTicker.fromString("RYA:FTSE")
+            StockTicker.fromString("SIE:DAX"),
+            StockTicker.fromString("LHA:DAX")
         )
     }
 
@@ -192,15 +194,6 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListEur(): List<StockTicker> {
-        return listOf(
-            StockTicker.fromString("SIE:DAX"),
-            StockTicker.fromString("LHA:DAX"),
-            StockTicker.fromString("KU2:DAX"),
-            StockTicker.fromString("SU:PA")
-        )
-    }
-
     fun watchListChf(): List<StockTicker> {
         return listOf(
             StockTicker.fromString("ABBN:SIX")
@@ -216,6 +209,15 @@ class WatchlistRepo {
             StockTicker.fromString("IAG:FTSE")
         )
     }
+
+
+    fun investedInGbp(): List<StockTicker> {
+        return listOf(
+            StockTicker.fromString("RYA:FTSE"),
+            StockTicker.fromString("WIZZ:FTSE")
+        )
+    }
+
 
     fun watchListAud(): List<StockTicker> {
         return listOf(

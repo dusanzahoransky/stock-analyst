@@ -12,4 +12,11 @@ data class StockTicker(
             return StockTicker(ticketParts[0], Exchange.valueOf(ticketParts[1]))
         }
     }
+
+    fun toYahooFormat(): String{
+        return when(exchange){
+            Exchange.NYSE, Exchange.NASDAQ -> symbol
+            else -> "$symbol.${exchange.toYahooFormat()}"
+        }
+    }
 }

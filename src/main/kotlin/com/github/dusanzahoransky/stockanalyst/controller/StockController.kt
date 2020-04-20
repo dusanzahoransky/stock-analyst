@@ -5,7 +5,6 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.service.StockAnalysisService
 import com.github.dusanzahoransky.stockanalyst.service.StockService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -24,11 +23,19 @@ class StockController @Autowired constructor(
         return AnalysisResult(averages, stocks)
     }
 
-    @DeleteMapping("company")
+    @DeleteMapping("symbol")
     @ResponseBody
-    fun deleteCompany(
-        @RequestParam(value = "companyName") companyName: String
+    fun deleteSymbol(
+        @RequestParam(value = "symbol") symbol: String
     ) {
-        val stocks = stockService.deleteCompany(companyName)
+        val stocks = stockService.deleteSymbol(symbol)
+    }
+
+    @DeleteMapping("watchlist")
+    @ResponseBody
+    fun watchlist(
+        @RequestParam(value = "watchlist") watchlist: Watchlist
+    ) {
+        val stocks = stockService.deleteWatchlist(watchlist)
     }
 }

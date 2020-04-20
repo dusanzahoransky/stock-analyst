@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
+import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.PeriodMeasure
 import org.springframework.data.annotation.Id
@@ -14,6 +15,8 @@ data class StockInfo(
     val exchange: Exchange? = null,
     var companyName: String? = null,
     var price: Double? = null,
+    var currency: Currency? = null,
+    var financialCurrency: Currency? = null,
     var change: Double? = null,
     var enterpriseValue: Double? = null,
 

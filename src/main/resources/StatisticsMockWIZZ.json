@@ -1,0 +1,555 @@
+{
+  "defaultKeyStatistics": {
+    "annualHoldingsTurnover": {},
+    "enterpriseToRevenue": {},
+    "beta3Year": {},
+    "profitMargins": {
+      "raw": 0.17665,
+      "fmt": "17.67%"
+    },
+    "enterpriseToEbitda": {},
+    "52WeekChange": {
+      "raw": -0.20876586,
+      "fmt": "-20.88%"
+    },
+    "morningStarRiskRating": {},
+    "forwardEps": {
+      "raw": 2.18,
+      "fmt": "2.18"
+    },
+    "revenueQuarterlyGrowth": {},
+    "sharesOutstanding": {
+      "raw": 85395104,
+      "fmt": "85.4M",
+      "longFmt": "85,395,104"
+    },
+    "fundInceptionDate": {},
+    "annualReportExpenseRatio": {},
+    "totalAssets": {},
+    "bookValue": {
+      "raw": 25.307,
+      "fmt": "25.31"
+    },
+    "sharesShort": {},
+    "sharesPercentSharesOut": {},
+    "fundFamily": null,
+    "lastFiscalYearEnd": {
+      "raw": 1553990400,
+      "fmt": "2019-03-31"
+    },
+    "heldPercentInstitutions": {},
+    "netIncomeToCommon": {},
+    "trailingEps": {
+      "raw": 257.5,
+      "fmt": "257.50"
+    },
+    "lastDividendValue": {},
+    "SandP52WeekChange": {
+      "raw": -0.011489093,
+      "fmt": "-1.15%"
+    },
+    "priceToBook": {
+      "raw": 108.428505,
+      "fmt": "108.43"
+    },
+    "heldPercentInsiders": {},
+    "nextFiscalYearEnd": {
+      "raw": 1617148800,
+      "fmt": "2021-03-31"
+    },
+    "yield": {},
+    "mostRecentQuarter": {
+      "raw": 1577750400,
+      "fmt": "2019-12-31"
+    },
+    "shortRatio": {},
+    "sharesShortPreviousMonthDate": {},
+    "floatShares": {
+      "raw": 53661853,
+      "fmt": "53.66M",
+      "longFmt": "53,661,853"
+    },
+    "beta": {
+      "raw": 0.871732,
+      "fmt": "0.87"
+    },
+    "enterpriseValue": {
+      "raw": 2001524096,
+      "fmt": "2B",
+      "longFmt": "2,001,524,096"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "threeYearAverageReturn": {},
+    "lastSplitDate": {},
+    "lastSplitFactor": null,
+    "legalType": null,
+    "morningStarOverallRating": {},
+    "earningsQuarterlyGrowth": {
+      "raw": 11.588,
+      "fmt": "1,158.80%"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dateShortInterest": {},
+    "pegRatio": {},
+    "ytdReturn": {},
+    "forwardPE": {},
+    "maxAge": 1,
+    "lastCapGain": {},
+    "shortPercentOfFloat": {},
+    "sharesShortPriorMonth": {},
+    "category": null,
+    "fiveYearAverageReturn": {}
+  },
+  "financialsTemplate": {
+    "code": "N",
+    "maxAge": 1
+  },
+  "price": {
+    "regularMarketOpen": {
+      "raw": 2574,
+      "fmt": "2,574.00"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 925827,
+      "fmt": "925.83k",
+      "longFmt": "925,827"
+    },
+    "exchange": "LSE",
+    "regularMarketTime": 1587137785,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 2850,
+      "fmt": "2,850.00"
+    },
+    "shortName": "WIZZ AIR HOLDINGS PLC ORD GBP0.",
+    "averageDailyVolume10Day": {
+      "raw": 563726,
+      "fmt": "563.73k",
+      "longFmt": "563,726"
+    },
+    "longName": "Wizz Air Holdings Plc",
+    "regularMarketChange": {
+      "raw": 274,
+      "fmt": "274.00"
+    },
+    "currencySymbol": "£",
+    "regularMarketPreviousClose": {
+      "raw": 2470,
+      "fmt": "2,470.00"
+    },
+    "preMarketPrice": {},
+    "exchangeDataDelayedBy": 20,
+    "toCurrency": null,
+    "postMarketChange": {},
+    "postMarketPrice": {},
+    "exchangeName": "LSE",
+    "preMarketChange": {},
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 2550,
+      "fmt": "2,550.00"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "GBp",
+    "regularMarketPrice": {
+      "raw": 2744,
+      "fmt": "2,744.00"
+    },
+    "regularMarketVolume": {
+      "raw": 809651,
+      "fmt": "809.65k",
+      "longFmt": "809,651.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "DELAYED",
+    "openInterest": {},
+    "marketState": "CLOSED",
+    "underlyingSymbol": null,
+    "marketCap": {
+      "raw": 2820063488,
+      "fmt": "2.82B",
+      "longFmt": "2,820,063,488.00"
+    },
+    "quoteType": "EQUITY",
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "symbol": "WIZZ.L",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.11093118,
+      "fmt": "11.09%"
+    }
+  },
+  "financialData": {
+    "ebitdaMargins": {
+      "raw": 0.17343001,
+      "fmt": "17.34%"
+    },
+    "profitMargins": {
+      "raw": 0.17665,
+      "fmt": "17.67%"
+    },
+    "grossMargins": {
+      "raw": 0.24937999,
+      "fmt": "24.94%"
+    },
+    "operatingCashflow": {},
+    "revenueGrowth": {
+      "raw": 0.243,
+      "fmt": "24.30%"
+    },
+    "operatingMargins": {
+      "raw": 0,
+      "fmt": "0.00%"
+    },
+    "ebitda": {},
+    "targetLowPrice": {
+      "raw": 26.64,
+      "fmt": "26.64"
+    },
+    "recommendationKey": "none",
+    "grossProfits": {
+      "raw": 461200000,
+      "fmt": "461.2M",
+      "longFmt": "461,200,000"
+    },
+    "freeCashflow": {},
+    "targetMedianPrice": {
+      "raw": 36.19,
+      "fmt": "36.19"
+    },
+    "currentPrice": {
+      "raw": 2744,
+      "fmt": "2,744.00"
+    },
+    "earningsGrowth": {
+      "raw": 11.557,
+      "fmt": "1,155.70%"
+    },
+    "currentRatio": {},
+    "returnOnAssets": {},
+    "numberOfAnalystOpinions": {
+      "raw": 15,
+      "fmt": "15",
+      "longFmt": "15"
+    },
+    "targetMeanPrice": {
+      "raw": 35.73,
+      "fmt": "35.73"
+    },
+    "debtToEquity": {
+      "raw": 128.51,
+      "fmt": "128.51"
+    },
+    "returnOnEquity": {},
+    "targetHighPrice": {
+      "raw": 41.97,
+      "fmt": "41.97"
+    },
+    "totalCash": {},
+    "totalDebt": {},
+    "totalRevenue": {},
+    "totalCashPerShare": {},
+    "financialCurrency": "EUR",
+    "maxAge": 86400,
+    "revenuePerShare": {},
+    "quickRatio": {},
+    "recommendationMean": {}
+  },
+  "quoteType": {
+    "exchange": "LSE",
+    "shortName": "WIZZ AIR HOLDINGS PLC ORD GBP0.",
+    "longName": "Wizz Air Holdings Plc",
+    "exchangeTimezoneName": "Europe/London",
+    "exchangeTimezoneShortName": "BST",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "3600000",
+    "quoteType": "EQUITY",
+    "symbol": "WIZZ.L",
+    "messageBoardId": "finmb_264416006",
+    "market": "gb_market"
+  },
+  "calendarEvents": {
+    "maxAge": 1,
+    "earnings": {
+      "earningsDate": [
+        {
+          "raw": 1580256000,
+          "fmt": "2020-01-29"
+        }
+      ],
+      "earningsAverage": {},
+      "earningsLow": {},
+      "earningsHigh": {},
+      "revenueAverage": {},
+      "revenueLow": {},
+      "revenueHigh": {}
+    },
+    "exDividendDate": {},
+    "dividendDate": {}
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 2470,
+      "fmt": "2,470.00"
+    },
+    "regularMarketOpen": {
+      "raw": 2574,
+      "fmt": "2,574.00"
+    },
+    "twoHundredDayAverage": {
+      "raw": 3635.6853,
+      "fmt": "3,635.69"
+    },
+    "trailingAnnualDividendYield": {},
+    "payoutRatio": {
+      "raw": 0,
+      "fmt": "0.00%"
+    },
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 2850,
+      "fmt": "2,850.00"
+    },
+    "navPrice": {},
+    "averageDailyVolume10Day": {
+      "raw": 563726,
+      "fmt": "563.73k",
+      "longFmt": "563,726"
+    },
+    "totalAssets": {},
+    "regularMarketPreviousClose": {
+      "raw": 2470,
+      "fmt": "2,470.00"
+    },
+    "fiftyDayAverage": {
+      "raw": 2618.8572,
+      "fmt": "2,618.86"
+    },
+    "trailingAnnualDividendRate": {},
+    "open": {
+      "raw": 2574,
+      "fmt": "2,574.00"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 563726,
+      "fmt": "563.73k",
+      "longFmt": "563,726"
+    },
+    "expireDate": {},
+    "yield": {},
+    "algorithm": null,
+    "dividendRate": {},
+    "exDividendDate": {},
+    "beta": {
+      "raw": 0.871732,
+      "fmt": "0.87"
+    },
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 2550,
+      "fmt": "2,550.00"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "GBp",
+    "trailingPE": {
+      "raw": 10.656311,
+      "fmt": "10.66"
+    },
+    "regularMarketVolume": {
+      "raw": 809651,
+      "fmt": "809.65k",
+      "longFmt": "809,651"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {
+      "raw": 2820063488,
+      "fmt": "2.82B",
+      "longFmt": "2,820,063,488"
+    },
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 925827,
+      "fmt": "925.83k",
+      "longFmt": "925,827"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dayLow": {
+      "raw": 2550,
+      "fmt": "2,550.00"
+    },
+    "ask": {
+      "raw": 2714,
+      "fmt": "2,714.00"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 0,
+      "fmt": null,
+      "longFmt": "0"
+    },
+    "volume": {
+      "raw": 809651,
+      "fmt": "809.65k",
+      "longFmt": "809,651"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 4526,
+      "fmt": "4,526.00"
+    },
+    "forwardPE": {
+      "raw": 12.587155,
+      "fmt": "12.59"
+    },
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {},
+    "fiftyTwoWeekLow": {
+      "raw": 1500,
+      "fmt": "1,500.00"
+    },
+    "bid": {
+      "raw": 2704,
+      "fmt": "2,704.00"
+    },
+    "tradeable": false,
+    "dividendYield": {},
+    "bidSize": {
+      "raw": 0,
+      "fmt": null,
+      "longFmt": "0"
+    },
+    "dayHigh": {
+      "raw": 2850,
+      "fmt": "2,850.00"
+    }
+  },
+  "symbol": "WIZZ.L",
+  "pageViews": {},
+  "quoteData": {
+    "WIZZ.L": {
+      "sourceInterval": 15,
+      "regularMarketOpen": {
+        "raw": 2574,
+        "fmt": "2,574.00"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1587137785,
+        "fmt": "4:36PM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "1500.0 - 4526.0",
+        "fmt": "1,500.00 - 4,526.00"
+      },
+      "sharesOutstanding": {
+        "raw": 85395104,
+        "fmt": "85.395M",
+        "longFmt": "85,395,104"
+      },
+      "regularMarketDayHigh": {
+        "raw": 2850,
+        "fmt": "2,850.00"
+      },
+      "shortName": "WIZZ AIR HOLDINGS PLC ORD GBP0.",
+      "longName": "Wizz Air Holdings Plc",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 274,
+        "fmt": "274.00"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 2470,
+        "fmt": "2,470.00"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -1782,
+        "fmt": "-1,782.00"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 1244,
+        "fmt": "1,244.00"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 2550,
+        "fmt": "2,550.00"
+      },
+      "priceHint": 2,
+      "currency": "GBp",
+      "regularMarketPrice": {
+        "raw": 2744,
+        "fmt": "2,744.00"
+      },
+      "regularMarketVolume": {
+        "raw": 809651,
+        "fmt": "809,651",
+        "longFmt": "809,651"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1424851200000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "marketCap": {
+        "raw": 2820063488,
+        "fmt": "2.82B",
+        "longFmt": "2,820,063,488"
+      },
+      "quoteType": "EQUITY",
+      "invalid": false,
+      "symbol": "WIZZ.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.8293333,
+        "fmt": "82.93%"
+      },
+      "regularMarketDayRange": {
+        "raw": "2550.0 - 2850.0",
+        "fmt": "2,550.00 - 2,850.00"
+      },
+      "messageBoardId": "finmb_264416006",
+      "fiftyTwoWeekHigh": {
+        "raw": 4526,
+        "fmt": "4,526.00"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.39372516,
+        "fmt": "-39.37%"
+      },
+      "uuid": "fa369c20-c02a-36b6-8774-0d7439faabe1",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 1500,
+        "fmt": "1,500.00"
+      },
+      "regularMarketChangePercent": {
+        "raw": 11.093118,
+        "fmt": "11.09%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    }
+  },
+  "mktmData": {}
+}

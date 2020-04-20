@@ -23,14 +23,14 @@ enum class Exchange {
     PA,
     ;
 
-    fun toRegion(): String{
+    fun toYahooFormat(): String{
         return when(this){
             NASDAQ, NYSE -> "US"
             ASX -> "AX"
             DAX -> "DE"
             SIX -> "SW"
+            PA -> "PA"
             FTSE -> "L"
-            else -> throw IllegalArgumentException("Undefined $this toRegion conversion")
         }
     }
 }

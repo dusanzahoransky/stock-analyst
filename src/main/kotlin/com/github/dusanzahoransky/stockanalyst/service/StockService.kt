@@ -1,13 +1,13 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
+import com.github.dusanzahoransky.stockanalyst.client.ExchangeRateClient
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
-import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
-import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import org.slf4j.LoggerFactory
@@ -18,7 +18,8 @@ import org.springframework.stereotype.Service
 class StockService @Autowired constructor(
     val watchlistRepo: WatchlistRepo,
     val stockRepo: StockRepo,
-    val yahooFinanceClient: YahooFinanceClient
+    val yahooFinanceClient: YahooFinanceClient,
+    val exchangeRateClient: ExchangeRateClient
 ) {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
@@ -54,41 +55,80 @@ class StockService @Autowired constructor(
 
         stock.companyName = response.quoteType?.shortName
         stock.price = price?.regularMarketPrice?.raw
+        stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
+        stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
+        val differentCurrencies = stock.currency != stock.financialCurrency
+        val financialToStockRate = if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
+            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
+        } else {
+            1.0
+        }
+
         stock.change = percent(price?.regularMarketChangePercent?.raw)
         stock.enterpriseValue = defaultKeyStatistics.enterpriseValue?.raw
-        stock.targetLowPrice = financialData.targetLowPrice?.raw
-        stock.targetMedianPrice = financialData.targetMedianPrice?.raw
-        stock.belowTargetLowPricePercent = multiply(div(minus(stock.targetLowPrice, stock.price), stock.price), 100.0)
-        stock.belowTargetMedianPricePercent = multiply(div(minus(stock.targetMedianPrice, stock.price), stock.price), 100.0)
+
+        stock.targetLowPrice = financialData.targetLowPrice?.raw.let { multiply(it, financialToStockRate) }
+        stock.targetMedianPrice = financialData.targetMedianPrice?.raw.let { multiply(it, financialToStockRate) }
+
+        if (stock.targetLowPrice != null && stock.price != null) {
+            stock.belowTargetLowPricePercent = ((stock.targetLowPrice!! - stock.price!!) / stock.price!!) * 100.0
+        }
+        if (stock.targetMedianPrice != null && stock.price != null) {
+            stock.belowTargetMedianPricePercent = ((stock.targetMedianPrice!! - stock.price!!) / stock.price!!) * 100.0
+        }
 
         stock.totalCashPerShare = financialData.totalCashPerShare?.raw
-        stock.totalCashPerSharePercent = multiply(div(stock.totalCashPerShare, stock.price), 100.0)
-        stock.totalDebtEquity = financialData.debtToEquity?.raw
+        if (stock.totalCashPerShare != null && stock.price != null) {
+            stock.totalCashPerSharePercent = (stock.totalCashPerShare!! / stock.price!!) * 100.0
+        }
+        if (!differentCurrencies) {
+            stock.totalDebtEquity = financialData.debtToEquity?.raw
+        }
 
         stock.trailingPE = summaryDetail.trailingPE?.raw
         stock.forwardPE = summaryDetail.forwardPE?.raw
         stock.priceToSalesTrailing12Months = summaryDetail.priceToSalesTrailing12Months?.raw
-        stock.priceBook = defaultKeyStatistics.priceToBook?.raw
+        if (!differentCurrencies) {
+            stock.priceBook = defaultKeyStatistics.priceToBook?.raw
+        } else {
+            // P /B = Market Price per Share / BVPS
+            //BVPS = (Total Equity − Preferred Equity) / Total Shares Outstanding
+            //​	https://www.investopedia.com/terms/b/bvps.asp
+        }
         stock.enterpriseValueRevenue = defaultKeyStatistics.enterpriseToRevenue?.raw
         stock.enterpriseValueEBITDA = defaultKeyStatistics.enterpriseToEbitda?.raw
 
         stock.quarterlyRevenueGrowth = defaultKeyStatistics.revenueQuarterlyGrowth?.raw
-        stock.yoyQuarterlyEarningsGrowthPercent = percent(defaultKeyStatistics.earningsQuarterlyGrowth?.raw)
         stock.yoyQuarterlyRevenueGrowthPercent = percent(financialData.revenueGrowth?.raw)
-        stock.earningsGrowthPercent = percent(financialData.earningsGrowth?.raw)
-        stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
-        stock.trailingPriceEarningGrowth = div(stock.trailingPE, defaultKeyStatistics.trailingEps?.raw)
+        if (!differentCurrencies) {
+            stock.yoyQuarterlyEarningsGrowthPercent = percent(defaultKeyStatistics.earningsQuarterlyGrowth?.raw)
+            stock.earningsGrowthPercent = percent(financialData.earningsGrowth?.raw)
+            stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
+            val trailingEps = defaultKeyStatistics.trailingEps?.raw
+            if (stock.trailingPE != null && trailingEps != null) {
+                stock.trailingPriceEarningGrowth = stock.trailingPE!! / trailingEps
+            }
+        }
 
         stock.week52Change = percent(defaultKeyStatistics.get52WeekChange()?.raw)
         stock.week52Low = summaryDetail.fiftyTwoWeekLow?.raw
-        stock.week52AboveLowPercent = percent(div(minus(stock.price, stock.week52Low), stock.price))    //(price - low) / price * 100
+        if (stock.price != null && stock.week52Low != null) {
+            stock.week52AboveLowPercent = ((stock.price!! - stock.week52Low!!) / stock.price!!) * 100.0
+        }
         stock.week52High = summaryDetail.fiftyTwoWeekHigh?.raw
-        stock.week52BelowHighPercent = percent(div(minus(stock.week52High, stock.price), stock.price)) //(high - price) / price * 100
+        if (stock.price != null && stock.week52High != null) {
+            stock.week52BelowHighPercent = ((stock.week52High!! - stock.price!!) / stock.price!!) * 100.0
+        }
 
         stock.heldByInsiders = percent(defaultKeyStatistics.heldPercentInsiders?.raw)
         stock.heldByInstitutions = percent(defaultKeyStatistics.heldPercentInstitutions?.raw)
         stock.shortToFloat = percent(defaultKeyStatistics.shortPercentOfFloat?.raw)
-        stock.sharesShortPrevMonthCompare = percent(div(defaultKeyStatistics.sharesShortPriorMonth?.raw, defaultKeyStatistics.sharesShort?.raw))
+
+        val sharesShortPriorMonth = defaultKeyStatistics.sharesShortPriorMonth?.raw
+        val sharesShort = defaultKeyStatistics.sharesShort?.raw
+        if (sharesShortPriorMonth != null && sharesShort != null) {
+            stock.sharesShortPrevMonthCompare = percent(sharesShortPriorMonth / sharesShort)
+        }
 
         stock.exDividendDate = calendarEvents.exDividendDate?.fmt
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
@@ -99,7 +139,22 @@ class StockService @Autowired constructor(
         return stockRepo.insert(stock)
     }
 
-    fun deleteCompany(companyName: String) {
-        stockRepo.findByCompanyName(companyName).forEach { stockRepo.delete(it) }
+    fun deleteSymbol(symbol: String) {
+        stockRepo.findBySymbol(symbol).forEach {
+            log.debug("Deleted ${it.companyName}")
+            stockRepo.delete(it)
+        }
+    }
+
+    fun deleteWatchlist(watchlist: Watchlist) {
+        val watchlistStocks = watchlistRepo.getWatchlist(watchlist)
+        watchlistStocks
+            .map { stockRepo.findBySymbolAndExchange(it.symbol, it.exchange) }
+            .forEach {
+                if(it != null) {
+                    log.debug("Deleted ${it.companyName}")
+                    stockRepo.delete(it)
+                }
+            }
     }
 }

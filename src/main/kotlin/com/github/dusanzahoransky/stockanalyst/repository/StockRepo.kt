@@ -14,5 +14,5 @@ import java.time.LocalDate
 @Repository
 interface StockRepo:MongoRepository<StockInfo, String> {
     fun findBySymbolAndExchange(symbol: String, exchange: Exchange): StockInfo?
-    fun findByCompanyName(companyName: String): List<StockInfo>
+    fun findBySymbol(symbol: String): List<StockInfo>
 }
