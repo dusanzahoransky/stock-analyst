@@ -6,6 +6,8 @@ import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
@@ -32,28 +34,47 @@ class StockService @Autowired constructor(
     private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean = false): StockInfo? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
+        //retrieve from cache
         if (!forceRefreshCache && stock != null) {
             log.debug("Retrieving stock info from cache: $ticker")
             return stock
         }
 
-        //load from yahoo
         stock = StockInfo(symbol = ticker.symbol, exchange = ticker.exchange)
-
-        val response = yahooFinanceClient.getStatistics(ticker)
-
-        if (response == null) {
-            log.error("Failed to retrieve stock from Yahoo $ticker")
+        //load from yahoo
+        val balSheet = yahooFinanceClient.getBalanceSheet(ticker)
+        if (balSheet == null) {
+            log.error("Failed to retrieve stock BalanceSheet from Yahoo $ticker")
             return null
         }
+        processBalanceSheet(balSheet, stock)
 
-        val financialData = response.financialData
-        val price = response.price
-        val defaultKeyStatistics = response.defaultKeyStatistics
-        val summaryDetail = response.summaryDetail
-        val calendarEvents = response.calendarEvents
+        val stats = yahooFinanceClient.getStatistics(ticker)
+        if (stats == null) {
+            log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
+            return null
+        }
+        processStatistics(stats, stock)
 
-        stock.companyName = response.quoteType?.shortName
+        //delete previous version
+        stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
+        //store new version
+        log.debug("Saving $ticker into DB")
+        return stockRepo.insert(stock)
+    }
+
+    private fun processBalanceSheet(stats: BalanceSheetResponse, stock: StockInfo) {
+
+    }
+
+    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo) {
+        val financialData = stats.financialData
+        val price = stats.price
+        val defaultKeyStatistics = stats.defaultKeyStatistics
+        val summaryDetail = stats.summaryDetail
+        val calendarEvents = stats.calendarEvents
+
+        stock.companyName = stats.quoteType?.shortName
         stock.price = price?.regularMarketPrice?.raw
         stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
         stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
@@ -133,10 +154,6 @@ class StockService @Autowired constructor(
         stock.exDividendDate = calendarEvents.exDividendDate?.fmt
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
         stock.trailingAnnualDividendYield = percent(summaryDetail.trailingAnnualDividendYield?.raw)
-
-        stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
-        log.debug("Saving $ticker into DB")
-        return stockRepo.insert(stock)
     }
 
     fun deleteSymbol(symbol: String) {

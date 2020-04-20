@@ -3,6 +3,7 @@ package com.github.dusanzahoransky.stockanalyst.client
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,11 +29,26 @@ class YahooFinanceClient @Autowired constructor(
             mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
         )
 
-        logger.debug("Retrieved from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         return response
 
 //        val statisticsMock = ClassPathResource("StatisticsMockWIZZ.json")
 //        return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<StatisticsResponse>())
+    }
+
+
+    fun getBalanceSheet(ticker: StockTicker): BalanceSheetResponse? {
+//        val response = restTemplate.getForObject(
+//            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-balance-sheet?symbol={ticker}",
+//            BalanceSheetResponse::class.java,
+//            mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+//        )
+//
+//        logger.debug("BalanceSheet from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+//        return response
+
+        val balanceSheetMock = ClassPathResource("BalanceSheetMockGOOGL.json")
+        return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<BalanceSheetResponse>())
     }
 
 }

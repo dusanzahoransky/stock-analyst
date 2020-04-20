@@ -70,7 +70,7 @@ class WatchlistRepo {
 
     fun test(): List<StockTicker> {
         return listOf(
-            StockTicker.fromString("WIZZ:FTSE")
+            StockTicker.fromString("GOOGL:NASDAQ")
         )
     }
 
