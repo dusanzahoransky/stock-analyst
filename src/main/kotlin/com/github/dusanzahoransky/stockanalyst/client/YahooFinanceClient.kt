@@ -3,7 +3,7 @@ package com.github.dusanzahoransky.stockanalyst.client
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.performance.BalanceSheetResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

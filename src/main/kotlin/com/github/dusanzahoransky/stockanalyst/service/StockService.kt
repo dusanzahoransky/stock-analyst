@@ -6,7 +6,7 @@ import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.performance.BalanceSheetResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
@@ -63,7 +63,7 @@ class StockService @Autowired constructor(
         return stockRepo.insert(stock)
     }
 
-    private fun processBalanceSheet(stats: BalanceSheetResponse, stock: StockInfo) {
+    private fun processBalanceSheet(sheet: BalanceSheetResponse, stock: StockInfo) {
 
     }
 
