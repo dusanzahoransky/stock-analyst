@@ -29,7 +29,7 @@ public class EarningsChart {
     @JsonProperty("currentQuarterEstimateDate")
     private String currentQuarterEstimateDate;
     @JsonProperty("currentQuarterEstimateYear")
-    private Integer currentQuarterEstimateYear;
+    private Long currentQuarterEstimateYear;
     @JsonProperty("earningsDate")
     private List<EarningsDate> earningsDate = new ArrayList<EarningsDate>();
     @JsonIgnore
@@ -66,12 +66,12 @@ public class EarningsChart {
     }
 
     @JsonProperty("currentQuarterEstimateYear")
-    public Integer getCurrentQuarterEstimateYear() {
+    public Long getCurrentQuarterEstimateYear() {
         return currentQuarterEstimateYear;
     }
 
     @JsonProperty("currentQuarterEstimateYear")
-    public void setCurrentQuarterEstimateYear(Integer currentQuarterEstimateYear) {
+    public void setCurrentQuarterEstimateYear(Long currentQuarterEstimateYear) {
         this.currentQuarterEstimateYear = currentQuarterEstimateYear;
     }
 
@@ -98,7 +98,7 @@ public class EarningsChart {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(EarningsChart.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(EarningsChart.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("quarterly");
         sb.append('=');
         sb.append(((this.quarterly == null)?"<null>":this.quarterly));

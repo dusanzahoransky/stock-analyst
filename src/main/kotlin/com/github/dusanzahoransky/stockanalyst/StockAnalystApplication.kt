@@ -4,6 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
+import java.time.Instant
+import java.time.LocalDateTime
 
 @SpringBootApplication(
 	scanBasePackages = [
@@ -18,3 +20,4 @@ class StockAnalystApplication
 fun main(args: Array<String>) {
 	runApplication<StockAnalystApplication>(*args)
 }
+

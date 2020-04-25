@@ -959,8 +959,8 @@
         }
       ],
       "currentQuarterEstimate": {
-        "raw": 10.98,
-        "fmt": "10.98"
+        "raw": 10.86,
+        "fmt": "10.86"
       },
       "currentQuarterEstimateDate": "1Q",
       "currentQuarterEstimateYear": 2020,
@@ -1086,62 +1086,62 @@
   "price": {
     "quoteSourceName": "Nasdaq Real Time Price",
     "regularMarketOpen": {
-      "raw": 1281.7,
-      "fmt": "1,281.70"
+      "raw": 1265.74,
+      "fmt": "1,265.74"
     },
     "averageDailyVolume3Month": {
-      "raw": 2680785,
-      "fmt": "2.68M",
-      "longFmt": "2,680,785"
+      "raw": 2687085,
+      "fmt": "2.69M",
+      "longFmt": "2,687,085"
     },
     "exchange": "NMS",
-    "regularMarketTime": 1587153602,
+    "regularMarketTime": 1587672002,
     "volume24Hr": {},
     "regularMarketDayHigh": {
-      "raw": 1290,
-      "fmt": "1,290.00"
+      "raw": 1288.15,
+      "fmt": "1,288.15"
     },
     "shortName": "Alphabet Inc.",
     "averageDailyVolume10Day": {
-      "raw": 2530080,
-      "fmt": "2.53M",
-      "longFmt": "2,530,080"
+      "raw": 2374362,
+      "fmt": "2.37M",
+      "longFmt": "2,374,362"
     },
     "longName": "Alphabet Inc.",
     "regularMarketChange": {
-      "raw": 21.569946,
-      "fmt": "21.57"
+      "raw": 12.76001,
+      "fmt": "12.76"
     },
     "currencySymbol": "$",
     "regularMarketPreviousClose": {
-      "raw": 1257.43,
-      "fmt": "1,257.43"
+      "raw": 1258.41,
+      "fmt": "1,258.41"
     },
-    "postMarketTime": 1587161652,
+    "postMarketTime": 1587686171,
     "preMarketPrice": {
-      "raw": 1261.79,
-      "fmt": "1,261.79"
+      "raw": 1260,
+      "fmt": "1,260.00"
     },
-    "preMarketTime": 1587386634,
+    "preMarketTime": 1587733335,
     "exchangeDataDelayedBy": 0,
     "toCurrency": null,
     "postMarketChange": {
-      "raw": -5.449951,
-      "fmt": "-5.45"
+      "raw": -28.170044,
+      "fmt": "-28.17"
     },
     "postMarketPrice": {
-      "raw": 1273.55,
-      "fmt": "1,273.55"
+      "raw": 1243,
+      "fmt": "1,243.00"
     },
     "exchangeName": "NasdaqGS",
     "preMarketChange": {
-      "raw": -17.20996,
-      "fmt": "-17.21"
+      "raw": -11.170044,
+      "fmt": "-11.17"
     },
     "circulatingSupply": {},
     "regularMarketDayLow": {
-      "raw": 1266.07,
-      "fmt": "1,266.07"
+      "raw": 1260.5302,
+      "fmt": "1,260.53"
     },
     "priceHint": {
       "raw": 2,
@@ -1150,13 +1150,13 @@
     },
     "currency": "USD",
     "regularMarketPrice": {
-      "raw": 1279,
-      "fmt": "1,279.00"
+      "raw": 1271.17,
+      "fmt": "1,271.17"
     },
     "regularMarketVolume": {
-      "raw": 2552824,
-      "fmt": "2.55M",
-      "longFmt": "2,552,824.00"
+      "raw": 1710122,
+      "fmt": "1.71M",
+      "longFmt": "1,710,122.00"
     },
     "lastMarket": null,
     "regularMarketSource": "FREE_REALTIME",
@@ -1164,29 +1164,29 @@
     "marketState": "PRE",
     "underlyingSymbol": null,
     "marketCap": {
-      "raw": 880487890944,
-      "fmt": "880.49B",
-      "longFmt": "880,487,890,944.00"
+      "raw": 875410358272,
+      "fmt": "875.41B",
+      "longFmt": "875,410,358,272.00"
     },
     "quoteType": "EQUITY",
     "preMarketChangePercent": {
-      "raw": -0.013455794,
-      "fmt": "-1.35%"
+      "raw": -0.008787215,
+      "fmt": "-0.88%"
     },
     "volumeAllCurrencies": {},
     "postMarketSource": "DELAYED",
     "strikePrice": {},
     "symbol": "GOOGL",
     "postMarketChangePercent": {
-      "raw": -0.0042611035,
-      "fmt": "-0.43%"
+      "raw": -0.02216072,
+      "fmt": "-2.22%"
     },
     "preMarketSource": "FREE_REALTIME",
     "maxAge": 1,
     "fromCurrency": null,
     "regularMarketChangePercent": {
-      "raw": 0.017153993,
-      "fmt": "1.72%"
+      "raw": 0.010139788,
+      "fmt": "1.01%"
     }
   },
   "incomeStatementHistoryQuarterly": {
@@ -2832,16 +2832,16 @@
   },
   "summaryDetail": {
     "previousClose": {
-      "raw": 1257.43,
-      "fmt": "1,257.43"
+      "raw": 1258.41,
+      "fmt": "1,258.41"
     },
     "regularMarketOpen": {
-      "raw": 1281.7,
-      "fmt": "1,281.70"
+      "raw": 1265.74,
+      "fmt": "1,265.74"
     },
     "twoHundredDayAverage": {
-      "raw": 1312.9989,
-      "fmt": "1,313.00"
+      "raw": 1312.8286,
+      "fmt": "1,312.83"
     },
     "trailingAnnualDividendYield": {},
     "payoutRatio": {
@@ -2850,34 +2850,34 @@
     },
     "volume24Hr": {},
     "regularMarketDayHigh": {
-      "raw": 1290,
-      "fmt": "1,290.00"
+      "raw": 1288.15,
+      "fmt": "1,288.15"
     },
     "navPrice": {},
     "averageDailyVolume10Day": {
-      "raw": 2530080,
-      "fmt": "2.53M",
-      "longFmt": "2,530,080"
+      "raw": 2374362,
+      "fmt": "2.37M",
+      "longFmt": "2,374,362"
     },
     "totalAssets": {},
     "regularMarketPreviousClose": {
-      "raw": 1257.43,
-      "fmt": "1,257.43"
+      "raw": 1258.41,
+      "fmt": "1,258.41"
     },
     "fiftyDayAverage": {
-      "raw": 1189.2256,
-      "fmt": "1,189.23"
+      "raw": 1180.8834,
+      "fmt": "1,180.88"
     },
     "trailingAnnualDividendRate": {},
     "open": {
-      "raw": 1281.7,
-      "fmt": "1,281.70"
+      "raw": 1265.74,
+      "fmt": "1,265.74"
     },
     "toCurrency": null,
     "averageVolume10days": {
-      "raw": 2530080,
-      "fmt": "2.53M",
-      "longFmt": "2,530,080"
+      "raw": 2374362,
+      "fmt": "2.37M",
+      "longFmt": "2,374,362"
     },
     "expireDate": {},
     "yield": {},
@@ -2891,8 +2891,8 @@
     "circulatingSupply": {},
     "startDate": {},
     "regularMarketDayLow": {
-      "raw": 1266.07,
-      "fmt": "1,266.07"
+      "raw": 1260.5302,
+      "fmt": "1,260.53"
     },
     "priceHint": {
       "raw": 2,
@@ -2901,59 +2901,59 @@
     },
     "currency": "USD",
     "trailingPE": {
-      "raw": 26.015501,
-      "fmt": "26.02"
+      "raw": 25.856236,
+      "fmt": "25.86"
     },
     "regularMarketVolume": {
-      "raw": 2552824,
-      "fmt": "2.55M",
-      "longFmt": "2,552,824"
+      "raw": 1710122,
+      "fmt": "1.71M",
+      "longFmt": "1,710,122"
     },
     "lastMarket": null,
     "maxSupply": {},
     "openInterest": {},
     "marketCap": {
-      "raw": 880487890944,
-      "fmt": "880.49B",
-      "longFmt": "880,487,890,944"
+      "raw": 875410358272,
+      "fmt": "875.41B",
+      "longFmt": "875,410,358,272"
     },
     "volumeAllCurrencies": {},
     "strikePrice": {},
     "averageVolume": {
-      "raw": 2680785,
-      "fmt": "2.68M",
-      "longFmt": "2,680,785"
+      "raw": 2687085,
+      "fmt": "2.69M",
+      "longFmt": "2,687,085"
     },
     "priceToSalesTrailing12Months": {
-      "raw": 5.4399123,
-      "fmt": "5.44"
+      "raw": 5.408542,
+      "fmt": "5.41"
     },
     "dayLow": {
-      "raw": 1266.07,
-      "fmt": "1,266.07"
+      "raw": 1260.5302,
+      "fmt": "1,260.53"
     },
     "ask": {
-      "raw": 1268.5,
-      "fmt": "1,268.50"
+      "raw": 1257,
+      "fmt": "1,257.00"
     },
     "ytdReturn": {},
     "askSize": {
-      "raw": 900,
-      "fmt": "900",
-      "longFmt": "900"
+      "raw": 1000,
+      "fmt": "1k",
+      "longFmt": "1,000"
     },
     "volume": {
-      "raw": 2552824,
-      "fmt": "2.55M",
-      "longFmt": "2,552,824"
+      "raw": 1710122,
+      "fmt": "1.71M",
+      "longFmt": "1,710,122"
     },
     "fiftyTwoWeekHigh": {
       "raw": 1530.74,
       "fmt": "1,530.74"
     },
     "forwardPE": {
-      "raw": 22.352324,
-      "fmt": "22.35"
+      "raw": 22.817629,
+      "fmt": "22.82"
     },
     "maxAge": 1,
     "fromCurrency": null,
@@ -2963,8 +2963,8 @@
       "fmt": "1,008.87"
     },
     "bid": {
-      "raw": 1260.02,
-      "fmt": "1,260.02"
+      "raw": 1248.21,
+      "fmt": "1,248.21"
     },
     "tradeable": false,
     "dividendYield": {},
@@ -2974,8 +2974,8 @@
       "longFmt": "1,200"
     },
     "dayHigh": {
-      "raw": 1290,
-      "fmt": "1,290.00"
+      "raw": 1288.15,
+      "fmt": "1,288.15"
     }
   },
   "symbol": "GOOGL",
@@ -3235,6 +3235,39 @@
         }
       }
     ],
+    "annualBasicAverageShares": [
+      {
+        "dataId": 29010,
+        "asOfDate": "2016-12-31",
+        "periodType": "12M",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 687782486,
+          "fmt": "687.78M"
+        }
+      },
+      {
+        "dataId": 29010,
+        "asOfDate": "2017-12-31",
+        "periodType": "12M",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 693048714,
+          "fmt": "693.05M"
+        }
+      },
+      {
+        "dataId": 29010,
+        "asOfDate": "2018-12-31",
+        "periodType": "12M",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 695070104,
+          "fmt": "695.07M"
+        }
+      },
+      null
+    ],
     "annualSellingGeneralAndAdministration": [
       {
         "dataId": 20159,
@@ -3276,39 +3309,6 @@
           "fmt": "28.02B"
         }
       }
-    ],
-    "annualBasicAverageShares": [
-      {
-        "dataId": 29010,
-        "asOfDate": "2016-12-31",
-        "periodType": "12M",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 687782486,
-          "fmt": "687.78M"
-        }
-      },
-      {
-        "dataId": 29010,
-        "asOfDate": "2017-12-31",
-        "periodType": "12M",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 693048714,
-          "fmt": "693.05M"
-        }
-      },
-      {
-        "dataId": 29010,
-        "asOfDate": "2018-12-31",
-        "periodType": "12M",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 695070104,
-          "fmt": "695.07M"
-        }
-      },
-      null
     ],
     "annualTaxProvision": [
       {
@@ -3364,6 +3364,18 @@
         }
       }
     ],
+    "trailingPretaxIncome": [
+      {
+        "dataId": 20136,
+        "asOfDate": "2019-12-31",
+        "periodType": "TTM",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 39625000000,
+          "fmt": "39.62B"
+        }
+      }
+    ],
     "annualNetIncomeCommonStockholders": [
       {
         "dataId": 20093,
@@ -3403,18 +3415,6 @@
         "reportedValue": {
           "raw": 34343000000,
           "fmt": "34.34B"
-        }
-      }
-    ],
-    "trailingPretaxIncome": [
-      {
-        "dataId": 20136,
-        "asOfDate": "2019-12-31",
-        "periodType": "TTM",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 39625000000,
-          "fmt": "39.62B"
         }
       }
     ],
@@ -3652,18 +3652,6 @@
         }
       }
     ],
-    "trailingOperatingIncome": [
-      {
-        "dataId": 20109,
-        "asOfDate": "2019-12-31",
-        "periodType": "TTM",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 35928000000,
-          "fmt": "35.93B"
-        }
-      }
-    ],
     "annualTotalRevenue": [
       {
         "dataId": 20100,
@@ -3703,6 +3691,18 @@
         "reportedValue": {
           "raw": 161857000000,
           "fmt": "161.86B"
+        }
+      }
+    ],
+    "trailingOperatingIncome": [
+      {
+        "dataId": 20109,
+        "asOfDate": "2019-12-31",
+        "periodType": "TTM",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 35928000000,
+          "fmt": "35.93B"
         }
       }
     ],
@@ -3751,30 +3751,6 @@
         }
       }
     ],
-    "trailingOtherIncomeExpense": [
-      {
-        "dataId": 20117,
-        "asOfDate": "2019-12-31",
-        "periodType": "TTM",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 1370000000,
-          "fmt": "1.37B"
-        }
-      }
-    ],
-    "trailingResearchAndDevelopment": [
-      {
-        "dataId": 20151,
-        "asOfDate": "2019-12-31",
-        "periodType": "TTM",
-        "currencyCode": "USD",
-        "reportedValue": {
-          "raw": 26018000000,
-          "fmt": "26.02B"
-        }
-      }
-    ],
     "annualNetIncome": [
       {
         "dataId": 20091,
@@ -3817,15 +3793,27 @@
         }
       }
     ],
-    "trailingNetIncomeContinuousOperations": [
+    "trailingResearchAndDevelopment": [
       {
-        "dataId": 20094,
+        "dataId": 20151,
         "asOfDate": "2019-12-31",
         "periodType": "TTM",
         "currencyCode": "USD",
         "reportedValue": {
-          "raw": 34343000000,
-          "fmt": "34.34B"
+          "raw": 26018000000,
+          "fmt": "26.02B"
+        }
+      }
+    ],
+    "trailingOtherIncomeExpense": [
+      {
+        "dataId": 20117,
+        "asOfDate": "2019-12-31",
+        "periodType": "TTM",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 1370000000,
+          "fmt": "1.37B"
         }
       }
     ],
@@ -3861,6 +3849,18 @@
         }
       },
       null
+    ],
+    "trailingNetIncomeContinuousOperations": [
+      {
+        "dataId": 20094,
+        "asOfDate": "2019-12-31",
+        "periodType": "TTM",
+        "currencyCode": "USD",
+        "reportedValue": {
+          "raw": 34343000000,
+          "fmt": "34.34B"
+        }
+      }
     ],
     "annualOperatingIncome": [
       {
@@ -3918,8 +3918,8 @@
     ],
     "trailingDilutedEPS": [],
     "trailingDilutedAverageShares": [],
-    "trailingBasicAverageShares": [],
     "trailingBasicEPS": [],
+    "trailingBasicAverageShares": [],
     "timestamp": [
       1483142400,
       1514678400,
@@ -3930,7 +3930,7 @@
   "meta": {
     "symbol": "GOOGL",
     "start": 493590046,
-    "end": 1587387290,
+    "end": 1587733356,
     "timeUnit": "annual"
   },
   "loading": false,

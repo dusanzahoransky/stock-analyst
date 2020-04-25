@@ -22,9 +22,9 @@ public class Meta {
     @JsonProperty("symbol")
     private String symbol;
     @JsonProperty("start")
-    private Integer start;
+    private Long start;
     @JsonProperty("end")
-    private Integer end;
+    private Long end;
     @JsonProperty("timeUnit")
     private String timeUnit;
     @JsonIgnore
@@ -41,22 +41,22 @@ public class Meta {
     }
 
     @JsonProperty("start")
-    public Integer getStart() {
+    public Long getStart() {
         return start;
     }
 
     @JsonProperty("start")
-    public void setStart(Integer start) {
+    public void setStart(Long start) {
         this.start = start;
     }
 
     @JsonProperty("end")
-    public Integer getEnd() {
+    public Long getEnd() {
         return end;
     }
 
     @JsonProperty("end")
-    public void setEnd(Integer end) {
+    public void setEnd(Long end) {
         this.end = end;
     }
 
@@ -83,7 +83,7 @@ public class Meta {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Meta.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Meta.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("symbol");
         sb.append('=');
         sb.append(((this.symbol == null)?"<null>":this.symbol));

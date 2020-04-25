@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class AnnualTotalLiabilitiesNetMinorityInterest {
 
     @JsonProperty("dataId")
-    private Integer dataId;
+    private Long dataId;
     @JsonProperty("asOfDate")
     private String asOfDate;
     @JsonProperty("periodType")
@@ -34,12 +34,12 @@ public class AnnualTotalLiabilitiesNetMinorityInterest {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("dataId")
-    public Integer getDataId() {
+    public Long getDataId() {
         return dataId;
     }
 
     @JsonProperty("dataId")
-    public void setDataId(Integer dataId) {
+    public void setDataId(Long dataId) {
         this.dataId = dataId;
     }
 
@@ -96,7 +96,7 @@ public class AnnualTotalLiabilitiesNetMinorityInterest {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(AnnualTotalLiabilitiesNetMinorityInterest.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(AnnualTotalLiabilitiesNetMinorityInterest.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("dataId");
         sb.append('=');
         sb.append(((this.dataId == null)?"<null>":this.dataId));

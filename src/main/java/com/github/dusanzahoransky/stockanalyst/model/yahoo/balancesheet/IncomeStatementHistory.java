@@ -80,7 +80,7 @@ public class IncomeStatementHistory {
     @JsonProperty("totalOtherIncomeExpenseNet")
     private TotalOtherIncomeExpenseNet totalOtherIncomeExpenseNet;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("discontinuedOperations")
     private DiscontinuedOperations discontinuedOperations;
     @JsonProperty("netIncomeFromContinuingOps")
@@ -291,12 +291,12 @@ public class IncomeStatementHistory {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -343,7 +343,7 @@ public class IncomeStatementHistory {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IncomeStatementHistory.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(IncomeStatementHistory.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("researchDevelopment");
         sb.append('=');
         sb.append(((this.researchDevelopment == null)?"<null>":this.researchDevelopment));

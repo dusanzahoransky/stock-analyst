@@ -47,7 +47,7 @@ public class BalanceSheetResponse {
     @JsonProperty("incomeStatementHistoryQuarterly")
     private IncomeStatementHistoryQuarterly incomeStatementHistoryQuarterly;
     @JsonProperty("incomeStatementHistory")
-    private IncomeStatementHistory incomeStatementHistory;
+    private IncomeStatementHistoryAnnual incomeStatementHistory;
     @JsonProperty("balanceSheetHistory")
     private BalanceSheetHistory balanceSheetHistory;
     @JsonProperty("cashflowStatementHistoryQuarterly")
@@ -132,12 +132,12 @@ public class BalanceSheetResponse {
     }
 
     @JsonProperty("incomeStatementHistory")
-    public IncomeStatementHistory getIncomeStatementHistory() {
+    public IncomeStatementHistoryAnnual getIncomeStatementHistory() {
         return incomeStatementHistory;
     }
 
     @JsonProperty("incomeStatementHistory")
-    public void setIncomeStatementHistory(IncomeStatementHistory incomeStatementHistory) {
+    public void setIncomeStatementHistory(IncomeStatementHistoryAnnual incomeStatementHistory) {
         this.incomeStatementHistory = incomeStatementHistory;
     }
 
@@ -254,7 +254,7 @@ public class BalanceSheetResponse {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(BalanceSheetResponse.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(BalanceSheetResponse.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("financialsTemplate");
         sb.append('=');
         sb.append(((this.financialsTemplate == null)?"<null>":this.financialsTemplate));

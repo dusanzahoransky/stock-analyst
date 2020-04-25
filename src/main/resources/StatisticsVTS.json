@@ -1,0 +1,1543 @@
+{
+  "defaultKeyStatistics": {
+    "annualHoldingsTurnover": {},
+    "enterpriseToRevenue": {},
+    "beta3Year": {
+      "raw": 1.03,
+      "fmt": "1.03"
+    },
+    "profitMargins": {},
+    "enterpriseToEbitda": {},
+    "52WeekChange": {},
+    "morningStarRiskRating": {},
+    "forwardEps": {},
+    "revenueQuarterlyGrowth": {},
+    "fundInceptionDate": {
+      "raw": 1241740800,
+      "fmt": "2009-05-08"
+    },
+    "annualReportExpenseRatio": {},
+    "totalAssets": {
+      "raw": 1678920192,
+      "fmt": "1.68B",
+      "longFmt": "1,678,920,192"
+    },
+    "bookValue": {},
+    "fundFamily": "Vanguard Investments Australia Ltd",
+    "lastFiscalYearEnd": {},
+    "netIncomeToCommon": {},
+    "trailingEps": {},
+    "lastDividendValue": {},
+    "SandP52WeekChange": {},
+    "priceToBook": {},
+    "nextFiscalYearEnd": {},
+    "yield": {
+      "raw": 0.0226,
+      "fmt": "2.26%"
+    },
+    "mostRecentQuarter": {},
+    "enterpriseValue": {},
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "threeYearAverageReturn": {
+      "raw": 0.1024,
+      "fmt": "10.24%"
+    },
+    "lastSplitDate": {},
+    "lastSplitFactor": null,
+    "legalType": "Exchange Traded Fund",
+    "morningStarOverallRating": {},
+    "earningsQuarterlyGrowth": {},
+    "priceToSalesTrailing12Months": {},
+    "pegRatio": {},
+    "ytdReturn": {
+      "raw": -0.13149999,
+      "fmt": "-13.15%"
+    },
+    "forwardPE": {},
+    "maxAge": 1,
+    "lastCapGain": {},
+    "category": null,
+    "fiveYearAverageReturn": {
+      "raw": 0.0956,
+      "fmt": "9.56%"
+    }
+  },
+  "fundProfile": {
+    "initInvestment": {},
+    "family": "Vanguard Investments Australia Ltd",
+    "categoryName": null,
+    "initAipInvestment": {},
+    "subseqIraInvestment": {},
+    "brokerages": [],
+    "managementInfo": {
+      "managerName": null,
+      "managerBio": null,
+      "startdate": {}
+    },
+    "subseqInvestment": {},
+    "legalType": "Exchange Traded Fund",
+    "styleBoxUrl": "http://us.i1.yimg.com/us.yimg.com/i/fi/3_0stylelargeeq2.gif",
+    "feesExpensesInvestment": {
+      "annualHoldingsTurnover": {
+        "raw": 0.04,
+        "fmt": "4.00%"
+      },
+      "frontEndSalesLoad": {},
+      "annualReportExpenseRatio": {
+        "raw": 0.0005,
+        "fmt": "0.05%"
+      },
+      "netExpRatio": {},
+      "projectionValues": {},
+      "grossExpRatio": {},
+      "deferredSalesLoad": {},
+      "totalNetAssets": {
+        "raw": 67744.4,
+        "fmt": "67,744.40"
+      },
+      "twelveBOne": {}
+    },
+    "maxAge": 1,
+    "feesExpensesInvestmentCat": {
+      "annualReportExpenseRatio": {},
+      "frontEndSalesLoad": {},
+      "deferredSalesLoad": {},
+      "twelveBOne": {},
+      "annualHoldingsTurnover": {},
+      "totalNetAssets": {
+        "raw": 67744.4,
+        "fmt": "67,744.40"
+      },
+      "projectionValuesCat": {}
+    },
+    "initIraInvestment": {},
+    "subseqAipInvestment": {}
+  },
+  "financialsTemplate": {},
+  "topHoldings": {
+    "preferredPosition": {},
+    "bondPosition": {
+      "raw": 0.0004,
+      "fmt": "0.04%"
+    },
+    "convertiblePosition": {},
+    "sectorWeightings": [
+      {
+        "realestate": {
+          "raw": 0.040599998,
+          "fmt": "4.06%"
+        }
+      },
+      {
+        "consumer_cyclical": {
+          "raw": 0.0987,
+          "fmt": "9.87%"
+        }
+      },
+      {
+        "basic_materials": {
+          "raw": 0.0225,
+          "fmt": "2.25%"
+        }
+      },
+      {
+        "consumer_defensive": {
+          "raw": 0.0753,
+          "fmt": "7.53%"
+        }
+      },
+      {
+        "technology": {
+          "raw": 0.2178,
+          "fmt": "21.78%"
+        }
+      },
+      {
+        "communication_services": {
+          "raw": 0.1,
+          "fmt": "10.00%"
+        }
+      },
+      {
+        "financial_services": {
+          "raw": 0.1382,
+          "fmt": "13.82%"
+        }
+      },
+      {
+        "utilities": {
+          "raw": 0.035,
+          "fmt": "3.50%"
+        }
+      },
+      {
+        "industrials": {
+          "raw": 0.08979999,
+          "fmt": "8.98%"
+        }
+      },
+      {
+        "energy": {
+          "raw": 0.024600001,
+          "fmt": "2.46%"
+        }
+      },
+      {
+        "healthcare": {
+          "raw": 0.1576,
+          "fmt": "15.76%"
+        }
+      }
+    ],
+    "holdings": [
+      {
+        "symbol": "MSFT",
+        "holdingName": "Microsoft Corp",
+        "holdingPercent": {
+          "raw": 0.0475,
+          "fmt": "4.75%"
+        }
+      },
+      {
+        "symbol": "AAPL",
+        "holdingName": "Apple Inc",
+        "holdingPercent": {
+          "raw": 0.0401,
+          "fmt": "4.01%"
+        }
+      },
+      {
+        "symbol": "AMZN",
+        "holdingName": "Amazon.com Inc",
+        "holdingPercent": {
+          "raw": 0.0324,
+          "fmt": "3.24%"
+        }
+      },
+      {
+        "symbol": "FB",
+        "holdingName": "Facebook Inc A",
+        "holdingPercent": {
+          "raw": 0.015800001,
+          "fmt": "1.58%"
+        }
+      },
+      {
+        "symbol": "GOOGL",
+        "holdingName": "Alphabet Inc A",
+        "holdingPercent": {
+          "raw": 0.0137,
+          "fmt": "1.37%"
+        }
+      },
+      {
+        "symbol": "BRK.B",
+        "holdingName": "Berkshire Hathaway Inc B",
+        "holdingPercent": {
+          "raw": 0.0137,
+          "fmt": "1.37%"
+        }
+      },
+      {
+        "symbol": "JNJ",
+        "holdingName": "Johnson & Johnson",
+        "holdingPercent": {
+          "raw": 0.0136,
+          "fmt": "1.36%"
+        }
+      },
+      {
+        "symbol": "GOOG",
+        "holdingName": "Alphabet Inc Class C",
+        "holdingPercent": {
+          "raw": 0.0134000005,
+          "fmt": "1.34%"
+        }
+      },
+      {
+        "symbol": "V",
+        "holdingName": "Visa Inc Class A",
+        "holdingPercent": {
+          "raw": 0.0109,
+          "fmt": "1.09%"
+        }
+      },
+      {
+        "symbol": "PG",
+        "holdingName": "Procter & Gamble Co",
+        "holdingPercent": {
+          "raw": 0.0108,
+          "fmt": "1.08%"
+        }
+      }
+    ],
+    "bondHoldings": {
+      "maturity": {},
+      "duration": {},
+      "creditQuality": {},
+      "maturityCat": {},
+      "durationCat": {},
+      "creditQualityCat": {}
+    },
+    "bondRatings": [
+      {
+        "bb": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "aa": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "aaa": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "a": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "other": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "b": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "bbb": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "below_b": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "us_government": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      }
+    ],
+    "equityHoldings": {
+      "priceToCashflow": {
+        "raw": 11.07,
+        "fmt": "11.07"
+      },
+      "priceToSales": {
+        "raw": 1.6,
+        "fmt": "1.6"
+      },
+      "priceToBookCat": {},
+      "priceToEarningsCat": {},
+      "medianMarketCapCat": {},
+      "threeYearEarningsGrowthCat": {},
+      "threeYearEarningsGrowth": {},
+      "medianMarketCap": {},
+      "priceToEarnings": {
+        "raw": 17.36,
+        "fmt": "17.36"
+      },
+      "priceToBook": {
+        "raw": 2.48,
+        "fmt": "2.48"
+      },
+      "priceToSalesCat": {},
+      "priceToCashflowCat": {}
+    },
+    "otherPosition": {},
+    "maxAge": 1,
+    "cashPosition": {},
+    "stockPosition": {
+      "raw": 0.9907,
+      "fmt": "99.07%"
+    }
+  },
+  "price": {
+    "regularMarketOpen": {
+      "raw": 217.54,
+      "fmt": "217.54"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 32602,
+      "fmt": "32.6k",
+      "longFmt": "32,602"
+    },
+    "exchange": "ASX",
+    "regularMarketTime": 1587707986,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 218.38,
+      "fmt": "218.38"
+    },
+    "shortName": "VUSTOTAL CDI 1:1",
+    "averageDailyVolume10Day": {
+      "raw": 21128,
+      "fmt": "21.13k",
+      "longFmt": "21,128"
+    },
+    "longName": "Vanguard US Total Market Shares Index ETF",
+    "regularMarketChange": {
+      "raw": -1.7200012,
+      "fmt": "-1.72"
+    },
+    "currencySymbol": "A$",
+    "regularMarketPreviousClose": {
+      "raw": 219.89,
+      "fmt": "219.89"
+    },
+    "preMarketPrice": {},
+    "exchangeDataDelayedBy": 0,
+    "toCurrency": null,
+    "postMarketChange": {},
+    "postMarketPrice": {},
+    "exchangeName": "ASX",
+    "preMarketChange": {},
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 217.1,
+      "fmt": "217.10"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "AUD",
+    "regularMarketPrice": {
+      "raw": 218.17,
+      "fmt": "218.17"
+    },
+    "regularMarketVolume": {
+      "raw": 11341,
+      "fmt": "11.34k",
+      "longFmt": "11,341.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "DELAYED",
+    "openInterest": {},
+    "marketState": "CLOSED",
+    "underlyingSymbol": null,
+    "marketCap": {},
+    "quoteType": "ETF",
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "symbol": "VTS.AX",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": -0.007822098,
+      "fmt": "-0.78%"
+    }
+  },
+  "fundPerformance": {
+    "trailingReturns": {
+      "threeMonth": {
+        "raw": -0.093100004,
+        "fmt": "-9.31%"
+      },
+      "oneYear": {
+        "raw": 0.057800002,
+        "fmt": "5.78%"
+      },
+      "ytd": {
+        "raw": -0.093100004,
+        "fmt": "-9.31%"
+      },
+      "lastBearMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBullMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "fiveYear": {
+        "raw": 0.1041,
+        "fmt": "10.41%"
+      },
+      "asOfDate": {
+        "raw": 1585612800,
+        "fmt": "2020-03-31"
+      },
+      "tenYear": {
+        "raw": 0.1468,
+        "fmt": "14.68%"
+      },
+      "oneMonth": {
+        "raw": -0.071100004,
+        "fmt": "-7.11%"
+      },
+      "threeYear": {
+        "raw": 0.1205,
+        "fmt": "12.05%"
+      }
+    },
+    "performanceOverview": {
+      "bestThreeYrTotalReturn": {},
+      "morningStarReturnRating": {},
+      "ytdReturnPct": {
+        "raw": -0.13149999,
+        "fmt": "-13.15%"
+      },
+      "fiveYrAvgReturnPct": {},
+      "numYearsUp": {},
+      "worstOneYrTotalReturn": {},
+      "oneYearTotalReturn": {
+        "raw": -0.0023,
+        "fmt": "-0.23%"
+      },
+      "numYearsDown": {},
+      "asOfDate": {
+        "raw": 1585699200,
+        "fmt": "2020-04-01"
+      },
+      "worstThreeYrTotalReturn": {},
+      "bestOneYrTotalReturn": {},
+      "threeYearTotalReturn": {
+        "raw": 0.1024,
+        "fmt": "10.24%"
+      }
+    },
+    "riskOverviewStatistics": {
+      "riskRating": {},
+      "riskStatistics": [
+        {
+          "year": "5y",
+          "alpha": {
+            "raw": -0.29,
+            "fmt": "-0.29"
+          },
+          "beta": {
+            "raw": 1.02,
+            "fmt": "1.02"
+          },
+          "meanAnnualReturn": {
+            "raw": 0.91,
+            "fmt": "0.91"
+          },
+          "rSquared": {
+            "raw": 99.44,
+            "fmt": "99.44"
+          },
+          "stdDev": {
+            "raw": 12.56,
+            "fmt": "12.56"
+          },
+          "sharpeRatio": {
+            "raw": 0.73,
+            "fmt": "0.73"
+          },
+          "treynorRatio": {
+            "raw": 8.62,
+            "fmt": "8.62"
+          }
+        },
+        {
+          "year": "3y",
+          "alpha": {
+            "raw": -0.6,
+            "fmt": "-0.6"
+          },
+          "beta": {
+            "raw": 1.03,
+            "fmt": "1.03"
+          },
+          "meanAnnualReturn": {
+            "raw": 1.02,
+            "fmt": "1.02"
+          },
+          "rSquared": {
+            "raw": 99.54,
+            "fmt": "99.54"
+          },
+          "stdDev": {
+            "raw": 12.97,
+            "fmt": "12.97"
+          },
+          "sharpeRatio": {
+            "raw": 0.82,
+            "fmt": "0.82"
+          },
+          "treynorRatio": {
+            "raw": 10.13,
+            "fmt": "10.13"
+          }
+        },
+        {
+          "year": "10y",
+          "alpha": {
+            "raw": 0.13,
+            "fmt": "0.13"
+          },
+          "beta": {
+            "raw": 1.02,
+            "fmt": "1.02"
+          },
+          "meanAnnualReturn": {
+            "raw": 1.21,
+            "fmt": "1.21"
+          },
+          "rSquared": {
+            "raw": 99.33,
+            "fmt": "99.33"
+          },
+          "stdDev": {
+            "raw": 11.74,
+            "fmt": "11.74"
+          },
+          "sharpeRatio": {
+            "raw": 1.01,
+            "fmt": "1.01"
+          },
+          "treynorRatio": {
+            "raw": 11.8,
+            "fmt": "11.8"
+          }
+        }
+      ]
+    },
+    "riskOverviewStatisticsCat": {
+      "riskStatisticsCat": []
+    },
+    "performanceOverviewCat": {
+      "bestThreeYrTotalReturn": {},
+      "morningStarReturnRating": {},
+      "ytdReturnPct": {},
+      "fiveYrAvgReturnPct": {},
+      "numYearsUp": {},
+      "worstOneYrTotalReturn": {},
+      "numYearsDown": {},
+      "asOfDate": {},
+      "worstThreeYrTotalReturn": {},
+      "bestOneYrTotalReturn": {}
+    },
+    "trailingReturnsCat": {
+      "threeMonth": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "oneYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "ytd": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBearMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBullMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "fiveYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "tenYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "oneMonth": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "threeYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      }
+    },
+    "maxAge": 1,
+    "pastQuarterlyReturns": {
+      "returns": []
+    },
+    "trailingReturnsNav": {
+      "ytd": {
+        "raw": -0.0888,
+        "fmt": "-8.88%"
+      },
+      "oneMonth": {
+        "raw": -0.08930001,
+        "fmt": "-8.93%"
+      },
+      "threeMonth": {
+        "raw": -0.0888,
+        "fmt": "-8.88%"
+      },
+      "oneYear": {
+        "raw": 0.0563,
+        "fmt": "5.63%"
+      },
+      "threeYear": {
+        "raw": 0.12020001,
+        "fmt": "12.02%"
+      },
+      "fiveYear": {
+        "raw": 0.106000006,
+        "fmt": "10.60%"
+      },
+      "tenYear": {
+        "raw": 0.14739999,
+        "fmt": "14.74%"
+      }
+    },
+    "annualTotalReturns": {
+      "returns": [
+        {
+          "year": "2020",
+          "annualValue": {}
+        },
+        {
+          "year": "2019",
+          "annualValue": {
+            "raw": 0.3100106,
+            "fmt": "31.00%"
+          }
+        },
+        {
+          "year": "2018",
+          "annualValue": {
+            "raw": 0.053995,
+            "fmt": "5.40%"
+          }
+        },
+        {
+          "year": "2017",
+          "annualValue": {
+            "raw": 0.121686295,
+            "fmt": "12.17%"
+          }
+        },
+        {
+          "year": "2016",
+          "annualValue": {
+            "raw": 0.1321152,
+            "fmt": "13.21%"
+          }
+        },
+        {
+          "year": "2015",
+          "annualValue": {
+            "raw": 0.1292849,
+            "fmt": "12.93%"
+          }
+        },
+        {
+          "year": "2014",
+          "annualValue": {
+            "raw": 0.23050399,
+            "fmt": "23.05%"
+          }
+        },
+        {
+          "year": "2013",
+          "annualValue": {
+            "raw": 0.5493494,
+            "fmt": "54.93%"
+          }
+        },
+        {
+          "year": "2012",
+          "annualValue": {
+            "raw": 0.1494916,
+            "fmt": "14.95%"
+          }
+        },
+        {
+          "year": "2011",
+          "annualValue": {
+            "raw": 0.0104575,
+            "fmt": "1.05%"
+          }
+        },
+        {
+          "year": "2010",
+          "annualValue": {
+            "raw": 0.0287658,
+            "fmt": "2.88%"
+          }
+        },
+        {
+          "year": "2009",
+          "annualValue": {}
+        }
+      ],
+      "returnsCat": []
+    }
+  },
+  "quoteType": {
+    "exchange": "ASX",
+    "shortName": "VUSTOTAL CDI 1:1",
+    "longName": "Vanguard US Total Market Shares Index ETF",
+    "exchangeTimezoneName": "Australia/Sydney",
+    "exchangeTimezoneShortName": "AEST",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "36000000",
+    "quoteType": "ETF",
+    "symbol": "VTS.AX",
+    "messageBoardId": "finmb_29518616",
+    "market": "au_market"
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 219.89,
+      "fmt": "219.89"
+    },
+    "regularMarketOpen": {
+      "raw": 217.54,
+      "fmt": "217.54"
+    },
+    "twoHundredDayAverage": {
+      "raw": 230.58104,
+      "fmt": "230.58"
+    },
+    "trailingAnnualDividendYield": {},
+    "payoutRatio": {},
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 218.38,
+      "fmt": "218.38"
+    },
+    "navPrice": {
+      "raw": 200.74,
+      "fmt": "200.74"
+    },
+    "averageDailyVolume10Day": {
+      "raw": 21128,
+      "fmt": "21.13k",
+      "longFmt": "21,128"
+    },
+    "totalAssets": {
+      "raw": 1678920192,
+      "fmt": "1.68B",
+      "longFmt": "1,678,920,192"
+    },
+    "regularMarketPreviousClose": {
+      "raw": 219.89,
+      "fmt": "219.89"
+    },
+    "fiftyDayAverage": {
+      "raw": 212.355,
+      "fmt": "212.35"
+    },
+    "trailingAnnualDividendRate": {},
+    "open": {
+      "raw": 217.54,
+      "fmt": "217.54"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 21128,
+      "fmt": "21.13k",
+      "longFmt": "21,128"
+    },
+    "expireDate": {},
+    "yield": {
+      "raw": 0.0226,
+      "fmt": "2.26%"
+    },
+    "algorithm": null,
+    "dividendRate": {},
+    "exDividendDate": {},
+    "beta": {},
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 217.1,
+      "fmt": "217.10"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "AUD",
+    "regularMarketVolume": {
+      "raw": 11341,
+      "fmt": "11.34k",
+      "longFmt": "11,341"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {},
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 32602,
+      "fmt": "32.6k",
+      "longFmt": "32,602"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dayLow": {
+      "raw": 217.1,
+      "fmt": "217.10"
+    },
+    "ask": {
+      "raw": 218.71,
+      "fmt": "218.71"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 0,
+      "fmt": null,
+      "longFmt": "0"
+    },
+    "volume": {
+      "raw": 11341,
+      "fmt": "11.34k",
+      "longFmt": "11,341"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 259.74,
+      "fmt": "259.74"
+    },
+    "forwardPE": {},
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {},
+    "fiftyTwoWeekLow": {
+      "raw": 187.8,
+      "fmt": "187.80"
+    },
+    "bid": {
+      "raw": 218.04,
+      "fmt": "218.04"
+    },
+    "tradeable": false,
+    "dividendYield": {},
+    "bidSize": {
+      "raw": 0,
+      "fmt": null,
+      "longFmt": "0"
+    },
+    "dayHigh": {
+      "raw": 218.38,
+      "fmt": "218.38"
+    }
+  },
+  "symbol": "VTS.AX",
+  "assetProfile": {
+    "longBusinessSummary": "The investment seeks to track the performance of a benchmark index that measures the investment return of the overall U.S. stock market. The CRSP US Total Market Index, represents approximately 100%of the investable U.S. stock market and includes large-, mid-, small-, and micro-cap stocks regularly traded on the New York Stock Exchange and Nasdaq.",
+    "companyOfficers": [],
+    "maxAge": 86400
+  },
+  "esgScores": {},
+  "pageViews": {},
+  "quoteData": {
+    "VTS.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 217.54,
+        "fmt": "217.54"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587707986,
+        "fmt": "3:59PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "187.8 - 259.74",
+        "fmt": "187.80 - 259.74"
+      },
+      "regularMarketDayHigh": {
+        "raw": 218.38,
+        "fmt": "218.38"
+      },
+      "shortName": "VUSTOTAL CDI 1:1",
+      "longName": "Vanguard US Total Market Shares Index ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": -1.7200012,
+        "fmt": "-1.72"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 219.89,
+        "fmt": "219.89"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -41.569992,
+        "fmt": "-41.57"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 30.369995,
+        "fmt": "30.37"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 217.1,
+        "fmt": "217.10"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 218.17,
+        "fmt": "218.17"
+      },
+      "regularMarketVolume": {
+        "raw": 11341,
+        "fmt": "11,341",
+        "longFmt": "11,341"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1242086400000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VTS.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.16171457,
+        "fmt": "16.17%"
+      },
+      "regularMarketDayRange": {
+        "raw": "217.1 - 218.38",
+        "fmt": "217.10 - 218.38"
+      },
+      "messageBoardId": "finmb_29518616",
+      "fiftyTwoWeekHigh": {
+        "raw": 259.74,
+        "fmt": "259.74"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.16004464,
+        "fmt": "-16.00%"
+      },
+      "uuid": "7995aa4f-3ee3-3528-87ab-9d7fb8711645",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 187.8,
+        "fmt": "187.80"
+      },
+      "regularMarketChangePercent": {
+        "raw": -0.7822098,
+        "fmt": "-0.78%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    },
+    "VAS.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 65.97,
+        "fmt": "65.97"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587708633,
+        "fmt": "4:10PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "56.28 - 91.3",
+        "fmt": "56.28 - 91.30"
+      },
+      "regularMarketDayHigh": {
+        "raw": 66.72,
+        "fmt": "66.72"
+      },
+      "shortName": "V300AEQ ETF UNITS",
+      "longName": "Vanguard Australian Shares Index ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": 0.30000305,
+        "fmt": "0.30"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 66.13,
+        "fmt": "66.13"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -24.870003,
+        "fmt": "-24.87"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 10.150002,
+        "fmt": "10.15"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 65.9,
+        "fmt": "65.90"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 66.43,
+        "fmt": "66.43"
+      },
+      "regularMarketVolume": {
+        "raw": 213745,
+        "fmt": "213,745",
+        "longFmt": "213,745"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1241740800000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VAS.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.18034829,
+        "fmt": "18.03%"
+      },
+      "regularMarketDayRange": {
+        "raw": "65.9 - 66.72",
+        "fmt": "65.90 - 66.72"
+      },
+      "messageBoardId": "finmb_34034886",
+      "fiftyTwoWeekHigh": {
+        "raw": 91.3,
+        "fmt": "91.30"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.2723987,
+        "fmt": "-27.24%"
+      },
+      "uuid": "1aecd338-e7ed-34d7-86a2-43a920703070",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 56.28,
+        "fmt": "56.28"
+      },
+      "regularMarketChangePercent": {
+        "raw": 0.45365655,
+        "fmt": "0.45%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    },
+    "VEU.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 66.97,
+        "fmt": "66.97"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587707826,
+        "fmt": "3:57PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "59.88 - 80.7",
+        "fmt": "59.88 - 80.70"
+      },
+      "sharesOutstanding": {
+        "raw": 717721984,
+        "fmt": "717.722M",
+        "longFmt": "717,721,984"
+      },
+      "regularMarketDayHigh": {
+        "raw": 66.97,
+        "fmt": "66.97"
+      },
+      "shortName": "VWORLDXUS CDI 1:1",
+      "longName": "Vanguard All-World ex-US Shares Index ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": -0.69000244,
+        "fmt": "-0.69"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 67.11,
+        "fmt": "67.11"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -14.279999,
+        "fmt": "-14.28"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 6.539997,
+        "fmt": "6.54"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 66.03,
+        "fmt": "66.03"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 66.42,
+        "fmt": "66.42"
+      },
+      "regularMarketVolume": {
+        "raw": 71536,
+        "fmt": "71,536",
+        "longFmt": "71,536"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1242086400000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "marketCap": {
+        "raw": 30019448832,
+        "fmt": "30.019B",
+        "longFmt": "30,019,448,832"
+      },
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VEU.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.10921839,
+        "fmt": "10.92%"
+      },
+      "regularMarketDayRange": {
+        "raw": "66.03 - 66.97",
+        "fmt": "66.03 - 66.97"
+      },
+      "messageBoardId": "finmb_33142113",
+      "fiftyTwoWeekHigh": {
+        "raw": 80.7,
+        "fmt": "80.70"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.17695166,
+        "fmt": "-17.70%"
+      },
+      "uuid": "4da1809d-db7d-3eef-ac4f-ff33234851fb",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 59.88,
+        "fmt": "59.88"
+      },
+      "regularMarketChangePercent": {
+        "raw": -1.0281663,
+        "fmt": "-1.03%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    },
+    "VGS.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 74.47,
+        "fmt": "74.47"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587707986,
+        "fmt": "3:59PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "63.5 - 88.74",
+        "fmt": "63.50 - 88.74"
+      },
+      "regularMarketDayHigh": {
+        "raw": 74.47,
+        "fmt": "74.47"
+      },
+      "shortName": "VINTL ETF UNITS",
+      "longName": "Vanguard MSCI Index International Shares ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": -0.66999817,
+        "fmt": "-0.67"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 74.97,
+        "fmt": "74.97"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -14.439995,
+        "fmt": "-14.44"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 10.800003,
+        "fmt": "10.80"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 74,
+        "fmt": "74.00"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 74.3,
+        "fmt": "74.30"
+      },
+      "regularMarketVolume": {
+        "raw": 48110,
+        "fmt": "48,110",
+        "longFmt": "48,110"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1416265200000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VGS.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.17007878,
+        "fmt": "17.01%"
+      },
+      "regularMarketDayRange": {
+        "raw": "74.0 - 74.47",
+        "fmt": "74.00 - 74.47"
+      },
+      "messageBoardId": "finmb_58663044",
+      "fiftyTwoWeekHigh": {
+        "raw": 88.74,
+        "fmt": "88.74"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.16272251,
+        "fmt": "-16.27%"
+      },
+      "uuid": "007869a7-8e13-34b3-99f9-99a31c6aab52",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 63.5,
+        "fmt": "63.50"
+      },
+      "regularMarketChangePercent": {
+        "raw": -0.8936884,
+        "fmt": "-0.89%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    },
+    "VAP.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 61.3,
+        "fmt": "61.30"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587707986,
+        "fmt": "3:59PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "50.2 - 98.55",
+        "fmt": "50.20 - 98.55"
+      },
+      "regularMarketDayHigh": {
+        "raw": 61.45,
+        "fmt": "61.45"
+      },
+      "shortName": "V300APROP ETF UNITS",
+      "longName": "Vanguard Australian Property Securities Index ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": -0.75,
+        "fmt": "-0.75"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 61.9,
+        "fmt": "61.90"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -37.4,
+        "fmt": "-37.40"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 10.950001,
+        "fmt": "10.95"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 59.8,
+        "fmt": "59.80"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 61.15,
+        "fmt": "61.15"
+      },
+      "regularMarketVolume": {
+        "raw": 115575,
+        "fmt": "115,575",
+        "longFmt": "115,575"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1287702000000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VAP.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.2181275,
+        "fmt": "21.81%"
+      },
+      "regularMarketDayRange": {
+        "raw": "59.8 - 61.45",
+        "fmt": "59.80 - 61.45"
+      },
+      "messageBoardId": "finmb_34037095",
+      "fiftyTwoWeekHigh": {
+        "raw": 98.55,
+        "fmt": "98.55"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.3795028,
+        "fmt": "-37.95%"
+      },
+      "uuid": "48e8e18b-68b4-36f8-a7d3-602ccd3f9f98",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 50.2,
+        "fmt": "50.20"
+      },
+      "regularMarketChangePercent": {
+        "raw": -1.2116317,
+        "fmt": "-1.21%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    },
+    "IVV.AX": {
+      "sourceInterval": 20,
+      "regularMarketOpen": {
+        "raw": 438.75,
+        "fmt": "438.75"
+      },
+      "exchange": "ASX",
+      "regularMarketTime": {
+        "raw": 1587707985,
+        "fmt": "3:59PM AEST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "369.4 - 512.32",
+        "fmt": "369.40 - 512.32"
+      },
+      "sharesOutstanding": {
+        "raw": 529150016,
+        "fmt": "529.15M",
+        "longFmt": "529,150,016"
+      },
+      "regularMarketDayHigh": {
+        "raw": 438.75,
+        "fmt": "438.75"
+      },
+      "shortName": "ISCS&P500 ETF UNITS",
+      "longName": "iShares S&amp;P 500 ETF",
+      "exchangeTimezoneName": "Australia/Sydney",
+      "regularMarketChange": {
+        "raw": -4.25,
+        "fmt": "-4.25"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 441.65,
+        "fmt": "441.65"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -74.92001,
+        "fmt": "-74.92"
+      },
+      "exchangeTimezoneShortName": "AEST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 68,
+        "fmt": "68.00"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 435.15,
+        "fmt": "435.15"
+      },
+      "priceHint": 2,
+      "currency": "AUD",
+      "regularMarketPrice": {
+        "raw": 437.4,
+        "fmt": "437.40"
+      },
+      "regularMarketVolume": {
+        "raw": 9491,
+        "fmt": "9,491",
+        "longFmt": "9,491"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 36000000,
+      "firstTradeDateMilliseconds": 1191974400000,
+      "region": "US",
+      "marketState": "CLOSED",
+      "marketCap": {
+        "raw": 264175599616,
+        "fmt": "264.176B",
+        "longFmt": "264,175,599,616"
+      },
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "IVV.AX",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.1840823,
+        "fmt": "18.41%"
+      },
+      "regularMarketDayRange": {
+        "raw": "435.15 - 438.75",
+        "fmt": "435.15 - 438.75"
+      },
+      "messageBoardId": "finmb_604267433",
+      "fiftyTwoWeekHigh": {
+        "raw": 512.32,
+        "fmt": "512.32"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.14623675,
+        "fmt": "-14.62%"
+      },
+      "uuid": "c3eec118-7b89-3aef-81c4-62a00c9348a0",
+      "market": "au_market",
+      "fiftyTwoWeekLow": {
+        "raw": 369.4,
+        "fmt": "369.40"
+      },
+      "regularMarketChangePercent": {
+        "raw": -0.9623005,
+        "fmt": "-0.96%"
+      },
+      "fullExchangeName": "ASX",
+      "tradeable": false
+    }
+  },
+  "mktmData": {}
+}

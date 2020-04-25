@@ -20,7 +20,7 @@ public class FinancialsTemplate {
     @JsonProperty("code")
     private String code;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,12 +35,12 @@ public class FinancialsTemplate {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -57,7 +57,7 @@ public class FinancialsTemplate {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(FinancialsTemplate.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FinancialsTemplate.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("code");
         sb.append('=');
         sb.append(((this.code == null)?"<null>":this.code));

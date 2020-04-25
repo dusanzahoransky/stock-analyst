@@ -70,7 +70,7 @@ public class Quarterly {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Quarterly.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Quarterly.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("date");
         sb.append('=');
         sb.append(((this.date == null)?"<null>":this.date));

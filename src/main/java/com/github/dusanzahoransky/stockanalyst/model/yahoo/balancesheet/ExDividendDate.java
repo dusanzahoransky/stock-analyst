@@ -31,7 +31,7 @@ public class ExDividendDate {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(ExDividendDate.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(ExDividendDate.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("additionalProperties");
         sb.append('=');
         sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));

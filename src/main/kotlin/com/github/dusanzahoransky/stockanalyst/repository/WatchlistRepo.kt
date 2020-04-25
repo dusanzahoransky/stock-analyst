@@ -70,7 +70,10 @@ class WatchlistRepo {
 
     fun test(): List<StockTicker> {
         return listOf(
-            StockTicker.fromString("GOOGL:NASDAQ")
+            StockTicker.fromString("GOOGL:NASDAQ"),
+            StockTicker.fromString("LTM:NASDAQ"),
+            StockTicker.fromString("GRPN:NASDAQ"),
+            StockTicker.fromString("UAL:NASDAQ")
         )
     }
 
@@ -162,7 +165,10 @@ class WatchlistRepo {
             StockTicker.fromString("QCOM:NASDAQ"),
             StockTicker.fromString("AMAT:NASDAQ"),
             StockTicker.fromString("CHTR:NASDAQ"),
-            StockTicker.fromString("AVGO:NASDAQ")
+            StockTicker.fromString("AVGO:NASDAQ"),
+            StockTicker.fromString("BIDU:NASDAQ"),
+            StockTicker.fromString("REGI:NASDAQ"),
+            StockTicker.fromString("CLDR:NASDAQ")
         )
     }
 
@@ -172,7 +178,6 @@ class WatchlistRepo {
             StockTicker.fromString("BABA:NASDAQ"),
             StockTicker.fromString("CAJ:NASDAQ"),
             StockTicker.fromString("ZNH:NYSE"),
-            StockTicker.fromString("CLDR:NASDAQ"),
             StockTicker.fromString("NET:NASDAQ"),
             StockTicker.fromString("DOCU:NYSE"),
             StockTicker.fromString("HUBS:NASDAQ"),
@@ -180,17 +185,16 @@ class WatchlistRepo {
             StockTicker.fromString("NFLX:NASDAQ"),
             StockTicker.fromString("OKTA:NASDAQ"),
             StockTicker.fromString("PYPL:NASDAQ"),
-            StockTicker.fromString("REGI:NASDAQ"),
             StockTicker.fromString("WORK:NASDAQ"),
             StockTicker.fromString("SNE:NASDAQ"),
             StockTicker.fromString("SQ:NASDAQ"),
             StockTicker.fromString("ZEN:NASDAQ"),
             StockTicker.fromString("ZM:NASDAQ"),
             StockTicker.fromString("PD:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ"),
             StockTicker.fromString("ROK:NASDAQ"),
             StockTicker.fromString("EMR:NYSE"),
-            StockTicker.fromString("HON:NYSE")
+            StockTicker.fromString("HON:NYSE"),
+            StockTicker.fromString("NOK:NYSE")
         )
     }
 
@@ -221,17 +225,18 @@ class WatchlistRepo {
 
     fun watchListAud(): List<StockTicker> {
         return listOf(
-            StockTicker.fromString("ANZ:ASX"),
-            StockTicker.fromString("APT:ASX"),
             StockTicker.fromString("CBA:ASX"),
             StockTicker.fromString("ING:ASX"),
+            StockTicker.fromString("WBC:ASX"),
             StockTicker.fromString("NAB:ASX"),
             StockTicker.fromString("QAN:ASX"),
-            StockTicker.fromString("SEK:ASX"),
             StockTicker.fromString("SYD:ASX"),
-            StockTicker.fromString("VAH:ASX"),
+            StockTicker.fromString("SEK:ASX"),
             StockTicker.fromString("WTC:ASX"),
-            StockTicker.fromString("XRO:ASX")
+            StockTicker.fromString("XRO:ASX"),
+            StockTicker.fromString("Z1P:ASX"),
+            StockTicker.fromString("APT:ASX"),
+            StockTicker.fromString("OPY:ASX")
         )
     }
 
@@ -239,16 +244,14 @@ class WatchlistRepo {
         return listOf(
             StockTicker.fromString("A200:ASX"),
             StockTicker.fromString("VAS:ASX"),
-            StockTicker.fromString("VHY:ASX"),
             StockTicker.fromString("ETHI:ASX"),
-            StockTicker.fromString("IOO:ASX"),
             StockTicker.fromString("QLTY:ASX"),
             StockTicker.fromString("RBTZ:ASX"),
             StockTicker.fromString("UMAX:ASX"),
             StockTicker.fromString("VESG:ASX"),
             StockTicker.fromString("VEU:ASX"),
-            StockTicker.fromString("VGE:ASX"),
-            StockTicker.fromString("VGS:ASX")
+            StockTicker.fromString("VGS:ASX"),
+                StockTicker.fromString("IOO:ASX")
         )
     }
 
@@ -257,16 +260,17 @@ class WatchlistRepo {
             StockTicker.fromString("VTS:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VAP:ASX"),
-            StockTicker.fromString("VAP:ASX"),
-            StockTicker.fromString("VGE:ASX"),
+            StockTicker.fromString("VHY:ASX"),
             StockTicker.fromString("NDQ:ASX"),
             StockTicker.fromString("IVV:ASX"),
+            StockTicker.fromString("VGE:ASX"),
             StockTicker.fromString("ASIA:ASX")
         )
     }
 
     fun investedInAud(): List<StockTicker> {
         return listOf(
+            StockTicker.fromString("ANZ:ASX")
         )
     }
 

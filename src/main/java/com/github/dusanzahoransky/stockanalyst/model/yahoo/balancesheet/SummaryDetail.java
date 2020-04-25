@@ -157,7 +157,7 @@ public class SummaryDetail {
     @JsonProperty("forwardPE")
     private ForwardPE forwardPE;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("fromCurrency")
     private Object fromCurrency;
     @JsonProperty("fiveYearAvgDividendYield")
@@ -618,12 +618,12 @@ public class SummaryDetail {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -720,7 +720,7 @@ public class SummaryDetail {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(SummaryDetail.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(SummaryDetail.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("previousClose");
         sb.append('=');
         sb.append(((this.previousClose == null)?"<null>":this.previousClose));
