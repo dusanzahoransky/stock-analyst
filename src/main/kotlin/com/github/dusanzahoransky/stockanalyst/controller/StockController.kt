@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping( "stocks")
+@RequestMapping("stocks")
 class StockController @Autowired constructor(
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService) {
@@ -17,8 +17,10 @@ class StockController @Autowired constructor(
     @ResponseBody
     fun loadWatchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
-        @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false) : AnalysisResult{
-        val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh)
+        @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
+        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
+    ): AnalysisResult {
+        val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
         val averages = stockAnalysisService.calcStocksAverages(stocks)
         return AnalysisResult(averages, stocks)
     }
