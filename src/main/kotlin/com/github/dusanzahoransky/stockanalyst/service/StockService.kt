@@ -4,9 +4,12 @@ import com.github.dusanzahoransky.stockanalyst.client.ExchangeRateClient
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
+import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
+import com.github.dusanzahoransky.stockanalyst.model.mongo.ChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
@@ -17,7 +20,11 @@ import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percentG
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.time.Instant
 import java.time.LocalDate
+import java.time.Period
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 
 @Service
 class StockService @Autowired constructor(
@@ -58,6 +65,17 @@ class StockService @Autowired constructor(
             return null
         }
         processStatistics(stats, stock)
+        val from = stock.quarters?.last()
+        val to = Instant.now().epochSecond
+        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, from, to, mockData)
+        if (chart == null) {
+            log.error("Failed to retrieve stock Chart from Yahoo $ticker")
+            return null
+        }
+        processChart(chart, stock, Period.ofDays(7))
+
+
+        //TODO earnings per share growth rate vs price growth rate
 
         //delete previous version
         stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
@@ -65,6 +83,54 @@ class StockService @Autowired constructor(
         log.debug("Saving $ticker into DB")
         return stockRepo.insert(stock)
     }
+
+    private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {
+        val result = chart.chart?.result?.get(0) ?: return
+        val closePrices = result.indicators?.quote?.get(0)?.close ?: return
+        val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
+
+        val quarterEps = mutableMapOf<LocalDate, Double?>()
+        if (stock.quarters != null) {
+            for ((index, quarter) in stock.quarters!!.withIndex()) {
+                val eps = when (index) {
+                    0 -> stock.epsLastQuarter
+                    1 -> stock.eps2QuartersAgo
+                    2 -> stock.eps3QuartersAgo
+                    3 -> stock.eps4QuartersAgo
+                    else -> null
+                }
+                quarterEps[epochSecToLocalDate(quarter)] = eps
+            }
+        }
+
+        val chartTo = timestamps.last()
+        var currentInterval = timestamps.first()
+        val samplingDays = samplingInterval.days
+        val chartData = mutableListOf<ChartData>()
+
+        while(currentInterval < chartTo){
+            val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
+            val priceAtInterval = closePrices[timestampIndexAtInterval]
+
+            val chartDataPoint = ChartData(localDateToEpochSec(currentInterval), priceAtInterval)
+
+            for ((quarter, eps) in quarterEps) {
+                val daysBetweenQuarterAndSamplingInterval = ChronoUnit.DAYS.between(currentInterval, quarter)
+                if (daysBetweenQuarterAndSamplingInterval in 1..samplingDays) {
+                    chartDataPoint.eps = eps
+                }
+            }
+            chartData.add(chartDataPoint)
+            currentInterval = currentInterval.plusDays(samplingDays.toLong())
+        }
+        stock.chartData = chartData
+    }
+
+    private fun localDateToEpochSec(currentInterval: LocalDate) =
+        currentInterval.atStartOfDay(ZoneId.of("UTC")).toEpochSecond()
+
+    private fun epochSecToLocalDate(epochSeconds: Long) =
+        Instant.ofEpochSecond(epochSeconds).atZone(ZoneId.of("UTC")).toLocalDate()
 
     private fun processBalanceSheet(sheet: BalanceSheetResponse, stock: StockInfo) {
 
@@ -181,9 +247,7 @@ class StockService @Autowired constructor(
         stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, 0.01)
         stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, 0.01)
 
-        //TODO earnings per share growth rate vs price growth rate
-
-        stock.quarters = balanceSheetStatements?.map { LocalDate.parse(it.endDate.fmt) }
+        stock.quarters = balanceSheetStatements?.map { it.endDate.raw }
     }
 
     private fun processStatistics(stats: StatisticsResponse, stock: StockInfo) {

@@ -3,7 +3,9 @@ package com.github.dusanzahoransky.stockanalyst.client
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -50,6 +52,27 @@ class YahooFinanceClient @Autowired constructor(
         )
 
         logger.debug("BalanceSheet from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        return response
+    }
+
+    fun getChart(ticker: StockTicker, interval: Interval, from: Long?, to: Long, mockData: Boolean): ChartResponse? {
+        if (mockData) {
+            val balanceSheetMock = ClassPathResource("ChartMockGOOGL-customDateRange.json")
+            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<ChartResponse>())
+        }
+        val response = restTemplate.getForObject(
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&period1={period1}&period2={period2}",
+            ChartResponse::class.java,
+            mapOf(
+                "region" to "US",
+                "ticker" to ticker.toYahooFormat(),
+                "interval" to interval.value,
+                "period1" to from,
+                "period2" to to
+            )
+        )
+
+        logger.debug("Chart from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         return response
     }
 
