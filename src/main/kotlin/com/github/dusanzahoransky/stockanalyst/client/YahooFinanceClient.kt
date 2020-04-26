@@ -63,7 +63,7 @@ class YahooFinanceClient @Autowired constructor(
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
         }
         val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials-sheet?symbol={ticker}",
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",
             FinancialsResponse::class.java,
             mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
         )
