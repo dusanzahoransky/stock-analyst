@@ -254,7 +254,7 @@ public class FinancialsResponse {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(FinancialsResponse.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FinancialsResponse.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("financialsTemplate");
         sb.append('=');
         sb.append(((this.financialsTemplate == null)?"<null>":this.financialsTemplate));

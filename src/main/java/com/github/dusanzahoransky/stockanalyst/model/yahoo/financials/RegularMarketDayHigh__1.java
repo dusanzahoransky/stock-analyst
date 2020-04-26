@@ -57,7 +57,7 @@ public class RegularMarketDayHigh__1 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(RegularMarketDayHigh__1 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(RegularMarketDayHigh__1 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("raw");
         sb.append('=');
         sb.append(((this.raw == null)?"<null>":this.raw));

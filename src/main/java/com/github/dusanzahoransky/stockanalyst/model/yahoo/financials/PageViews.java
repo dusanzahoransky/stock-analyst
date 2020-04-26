@@ -26,7 +26,7 @@ public class PageViews {
     @JsonProperty("longTermTrend")
     private String longTermTrend;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -61,12 +61,12 @@ public class PageViews {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -83,7 +83,7 @@ public class PageViews {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PageViews.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(PageViews.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("shortTermTrend");
         sb.append('=');
         sb.append(((this.shortTermTrend == null)?"<null>":this.shortTermTrend));

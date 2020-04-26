@@ -67,7 +67,7 @@ public class CashflowStatement {
     @JsonProperty("otherCashflowsFromFinancingActivities")
     private OtherCashflowsFromFinancingActivities otherCashflowsFromFinancingActivities;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("changeToNetincome")
     private ChangeToNetincome changeToNetincome;
     @JsonProperty("capitalExpenditures")
@@ -236,12 +236,12 @@ public class CashflowStatement {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -278,7 +278,7 @@ public class CashflowStatement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(CashflowStatement.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(CashflowStatement.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("investments");
         sb.append('=');
         sb.append(((this.investments == null)?"<null>":this.investments));

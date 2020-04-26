@@ -4,8 +4,10 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
+import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -55,20 +57,34 @@ class YahooFinanceClient @Autowired constructor(
         return response
     }
 
-    fun getChart(ticker: StockTicker, interval: Interval, from: Long?, to: Long, mockData: Boolean): ChartResponse? {
+    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("ChartMockGOOGL-customDateRange.json")
+            val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
+            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
+        }
+        val response = restTemplate.getForObject(
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials-sheet?symbol={ticker}",
+            FinancialsResponse::class.java,
+            mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+        )
+
+        logger.debug("Financials from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        return response
+    }
+
+    fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse? {
+        if (mockData) {
+            val balanceSheetMock = ClassPathResource("ChartMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<ChartResponse>())
         }
         val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&period1={period1}&period2={period2}",
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",
             ChartResponse::class.java,
             mapOf(
                 "region" to "US",
                 "ticker" to ticker.toYahooFormat(),
                 "interval" to interval.value,
-                "period1" to from,
-                "period2" to to
+                "range" to range
             )
         )
 

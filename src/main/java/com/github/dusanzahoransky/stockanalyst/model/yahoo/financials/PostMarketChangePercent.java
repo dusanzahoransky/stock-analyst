@@ -57,7 +57,7 @@ public class PostMarketChangePercent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(PostMarketChangePercent.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(PostMarketChangePercent.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("raw");
         sb.append('=');
         sb.append(((this.raw == null)?"<null>":this.raw));

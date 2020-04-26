@@ -57,7 +57,7 @@ public class ReportedValue__24 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(ReportedValue__24 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(ReportedValue__24 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("raw");
         sb.append('=');
         sb.append(((this.raw == null)?"<null>":this.raw));

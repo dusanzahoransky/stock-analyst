@@ -69,7 +69,7 @@ public class Price {
     @JsonProperty("exchange")
     private String exchange;
     @JsonProperty("regularMarketTime")
-    private Integer regularMarketTime;
+    private Long regularMarketTime;
     @JsonProperty("volume24Hr")
     private Volume24Hr volume24Hr;
     @JsonProperty("regularMarketDayHigh")
@@ -87,13 +87,13 @@ public class Price {
     @JsonProperty("regularMarketPreviousClose")
     private RegularMarketPreviousClose regularMarketPreviousClose;
     @JsonProperty("postMarketTime")
-    private Integer postMarketTime;
+    private Long postMarketTime;
     @JsonProperty("preMarketPrice")
     private PreMarketPrice preMarketPrice;
     @JsonProperty("preMarketTime")
-    private Integer preMarketTime;
+    private Long preMarketTime;
     @JsonProperty("exchangeDataDelayedBy")
-    private Integer exchangeDataDelayedBy;
+    private Long exchangeDataDelayedBy;
     @JsonProperty("toCurrency")
     private Object toCurrency;
     @JsonProperty("postMarketChange")
@@ -145,7 +145,7 @@ public class Price {
     @JsonProperty("preMarketSource")
     private String preMarketSource;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("fromCurrency")
     private Object fromCurrency;
     @JsonProperty("regularMarketChangePercent")
@@ -194,12 +194,12 @@ public class Price {
     }
 
     @JsonProperty("regularMarketTime")
-    public Integer getRegularMarketTime() {
+    public Long getRegularMarketTime() {
         return regularMarketTime;
     }
 
     @JsonProperty("regularMarketTime")
-    public void setRegularMarketTime(Integer regularMarketTime) {
+    public void setRegularMarketTime(Long regularMarketTime) {
         this.regularMarketTime = regularMarketTime;
     }
 
@@ -284,12 +284,12 @@ public class Price {
     }
 
     @JsonProperty("postMarketTime")
-    public Integer getPostMarketTime() {
+    public Long getPostMarketTime() {
         return postMarketTime;
     }
 
     @JsonProperty("postMarketTime")
-    public void setPostMarketTime(Integer postMarketTime) {
+    public void setPostMarketTime(Long postMarketTime) {
         this.postMarketTime = postMarketTime;
     }
 
@@ -304,22 +304,22 @@ public class Price {
     }
 
     @JsonProperty("preMarketTime")
-    public Integer getPreMarketTime() {
+    public Long getPreMarketTime() {
         return preMarketTime;
     }
 
     @JsonProperty("preMarketTime")
-    public void setPreMarketTime(Integer preMarketTime) {
+    public void setPreMarketTime(Long preMarketTime) {
         this.preMarketTime = preMarketTime;
     }
 
     @JsonProperty("exchangeDataDelayedBy")
-    public Integer getExchangeDataDelayedBy() {
+    public Long getExchangeDataDelayedBy() {
         return exchangeDataDelayedBy;
     }
 
     @JsonProperty("exchangeDataDelayedBy")
-    public void setExchangeDataDelayedBy(Integer exchangeDataDelayedBy) {
+    public void setExchangeDataDelayedBy(Long exchangeDataDelayedBy) {
         this.exchangeDataDelayedBy = exchangeDataDelayedBy;
     }
 
@@ -574,12 +574,12 @@ public class Price {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -616,7 +616,7 @@ public class Price {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Price.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Price.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("quoteSourceName");
         sb.append('=');
         sb.append(((this.quoteSourceName == null)?"<null>":this.quoteSourceName));

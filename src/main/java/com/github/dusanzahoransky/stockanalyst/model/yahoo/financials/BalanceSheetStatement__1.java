@@ -89,7 +89,7 @@ public class BalanceSheetStatement__1 {
     @JsonProperty("netReceivables")
     private NetReceivables__1 netReceivables;
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("longTermDebt")
     private LongTermDebt__1 longTermDebt;
     @JsonProperty("inventory")
@@ -330,12 +330,12 @@ public class BalanceSheetStatement__1 {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -382,7 +382,7 @@ public class BalanceSheetStatement__1 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(BalanceSheetStatement__1 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(BalanceSheetStatement__1 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("intangibleAssets");
         sb.append('=');
         sb.append(((this.intangibleAssets == null)?"<null>":this.intangibleAssets));

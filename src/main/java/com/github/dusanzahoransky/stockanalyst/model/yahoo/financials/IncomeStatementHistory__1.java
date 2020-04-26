@@ -22,7 +22,7 @@ public class IncomeStatementHistory__1 {
     @JsonProperty("incomeStatementHistory")
     private List<IncomeStatementHistory__2> incomeStatementHistory = new ArrayList<IncomeStatementHistory__2>();
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -37,12 +37,12 @@ public class IncomeStatementHistory__1 {
     }
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -59,7 +59,7 @@ public class IncomeStatementHistory__1 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IncomeStatementHistory__1 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(IncomeStatementHistory__1 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("incomeStatementHistory");
         sb.append('=');
         sb.append(((this.incomeStatementHistory == null)?"<null>":this.incomeStatementHistory));

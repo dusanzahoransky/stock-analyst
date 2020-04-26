@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Yearly {
 
     @JsonProperty("date")
-    private Integer date;
+    private Long date;
     @JsonProperty("revenue")
     private Revenue revenue;
     @JsonProperty("earnings")
@@ -28,12 +28,12 @@ public class Yearly {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("date")
-    public Integer getDate() {
+    public Long getDate() {
         return date;
     }
 
     @JsonProperty("date")
-    public void setDate(Integer date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
@@ -70,7 +70,7 @@ public class Yearly {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Yearly.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Yearly.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("date");
         sb.append('=');
         sb.append(((this.date == null)?"<null>":this.date));

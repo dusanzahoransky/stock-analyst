@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Earnings {
 
     @JsonProperty("maxAge")
-    private Integer maxAge;
+    private Long maxAge;
     @JsonProperty("earningsChart")
     private EarningsChart earningsChart;
     @JsonProperty("financialsChart")
@@ -31,12 +31,12 @@ public class Earnings {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("maxAge")
-    public Integer getMaxAge() {
+    public Long getMaxAge() {
         return maxAge;
     }
 
     @JsonProperty("maxAge")
-    public void setMaxAge(Integer maxAge) {
+    public void setMaxAge(Long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -83,7 +83,7 @@ public class Earnings {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Earnings.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Earnings.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("maxAge");
         sb.append('=');
         sb.append(((this.maxAge == null)?"<null>":this.maxAge));

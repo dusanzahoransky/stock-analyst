@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Earnings__2 {
 
     @JsonProperty("raw")
-    private Integer raw;
+    private Long raw;
     @JsonProperty("fmt")
     private String fmt;
     @JsonProperty("longFmt")
@@ -28,12 +28,12 @@ public class Earnings__2 {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("raw")
-    public Integer getRaw() {
+    public Long getRaw() {
         return raw;
     }
 
     @JsonProperty("raw")
-    public void setRaw(Integer raw) {
+    public void setRaw(Long raw) {
         this.raw = raw;
     }
 
@@ -70,7 +70,7 @@ public class Earnings__2 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Earnings__2 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Earnings__2 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("raw");
         sb.append('=');
         sb.append(((this.raw == null)?"<null>":this.raw));

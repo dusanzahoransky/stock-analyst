@@ -130,7 +130,7 @@ public class TimeSeries {
     @JsonProperty("trailingBasicAverageShares")
     private List<Object> trailingBasicAverageShares = new ArrayList<Object>();
     @JsonProperty("timestamp")
-    private List<Integer> timestamp = new ArrayList<Integer>();
+    private List<Long> timestamp = new ArrayList<Long>();
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -505,12 +505,12 @@ public class TimeSeries {
     }
 
     @JsonProperty("timestamp")
-    public List<Integer> getTimestamp() {
+    public List<Long> getTimestamp() {
         return timestamp;
     }
 
     @JsonProperty("timestamp")
-    public void setTimestamp(List<Integer> timestamp) {
+    public void setTimestamp(List<Long> timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -527,7 +527,7 @@ public class TimeSeries {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(TimeSeries.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(TimeSeries.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("trailingSellingGeneralAndAdministration");
         sb.append('=');
         sb.append(((this.trailingSellingGeneralAndAdministration == null)?"<null>":this.trailingSellingGeneralAndAdministration));

@@ -31,7 +31,7 @@ public class TotalAssets__2 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(TotalAssets__2 .class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(TotalAssets__2 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("additionalProperties");
         sb.append('=');
         sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
