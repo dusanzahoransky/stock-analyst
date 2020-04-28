@@ -58,14 +58,17 @@ class StockService @Autowired constructor(
             log.error("Failed to retrieve stock Financials from Yahoo $ticker")
             return null
         }
-        processFinancials(financials, stock)
+
+        val exchangeRate = getExchangeRate(financials, stock)
+
+        processFinancials(financials, stock, exchangeRate)
 
         val stats = yahooFinanceClient.getStatistics(ticker, mockData)
         if (stats == null) {
             log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
             return null
         }
-        processStatistics(stats, stock)
+        processStatistics(stats, stock, exchangeRate)
 
         val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.FiveYears, mockData)
         if (chart == null) {
@@ -158,7 +161,7 @@ class StockService @Autowired constructor(
     private fun epochSecToLocalDate(epochSeconds: Long) =
         Instant.ofEpochSecond(epochSeconds).atZone(ZoneId.of("UTC")).toLocalDate()
 
-    private fun processFinancials(financials: FinancialsResponse, stock: StockInfo) {
+    private fun processFinancials(financials: FinancialsResponse, stock: StockInfo, exchangeRate: Double) {
 
         val incomeStatementLastQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
         val incomeStatementPreviousQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
@@ -264,12 +267,12 @@ class StockService @Autowired constructor(
         stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, balanceSheet2YearsAgo?.commonStock?.raw)
         stock.stockGrowthLast3Years = percentGrowth(stock.stockLastYear, balanceSheet3YearsAgo?.commonStock?.raw)
 
-        stock.epsCurrentQuarterEstimate = earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble()
+        stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
-        stock.epsLastQuarter = epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble()
-        stock.eps2QuartersAgo = epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble()
-        stock.eps3QuartersAgo = epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble()
-        stock.eps4QuartersAgo = epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble()
+        stock.epsLastQuarter = multiply(epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
         stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, 0.01)
         stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, 0.01)
         stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, 0.01)
@@ -278,10 +281,10 @@ class StockService @Autowired constructor(
         if(timeSeries.annualDilutedEPS != null) {
             for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
                 when (index) {
-                    3 -> stock.epsLastYear = annualEps?.reportedValue?.raw
-                    2 -> stock.eps2YearsAgo = annualEps?.reportedValue?.raw
-                    1 -> stock.eps3YearsAgo = annualEps?.reportedValue?.raw
-                    0 -> stock.eps4YearsAgo = annualEps?.reportedValue?.raw
+                    3 -> stock.epsLastYear = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    2 -> stock.eps2YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    1 -> stock.eps3YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    0 -> stock.eps4YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
                 }
             }
         }
@@ -293,7 +296,7 @@ class StockService @Autowired constructor(
         stock.yearEnds = timeSeries?.timestamp?.reversed()
     }
 
-    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo) {
+    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo, exchangeRate: Double) {
         val financialData = stats.financialData
         val price = stats.price
         val defaultKeyStatistics = stats.defaultKeyStatistics
@@ -304,18 +307,12 @@ class StockService @Autowired constructor(
         stock.price = price?.regularMarketPrice?.raw
         stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
         stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
-        val differentCurrencies = stock.currency != stock.financialCurrency
-        val financialToStockRate = if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
-            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
-        } else {
-            1.0
-        }
 
         stock.change = percent(price?.regularMarketChangePercent?.raw)
         stock.enterpriseValue = defaultKeyStatistics.enterpriseValue?.raw
 
-        stock.targetLowPrice = financialData.targetLowPrice?.raw.let { multiply(it, financialToStockRate) }
-        stock.targetMedianPrice = financialData.targetMedianPrice?.raw.let { multiply(it, financialToStockRate) }
+        stock.targetLowPrice = financialData.targetLowPrice?.raw.let { multiply(it, exchangeRate) }
+        stock.targetMedianPrice = financialData.targetMedianPrice?.raw.let { multiply(it, exchangeRate) }
 
         if (stock.targetLowPrice != null && stock.price != null) {
             stock.belowTargetLowPricePercent = ((stock.targetLowPrice!! - stock.price!!) / stock.price!!) * 100.0
@@ -335,7 +332,7 @@ class StockService @Autowired constructor(
         stock.trailingPE = summaryDetail.trailingPE?.raw
         stock.forwardPE = summaryDetail.forwardPE?.raw
         stock.priceToSalesTrailing12Months = summaryDetail.priceToSalesTrailing12Months?.raw
-        if (!differentCurrencies) {
+        if (exchangeRate != 1.0) {
             stock.priceBook = defaultKeyStatistics.priceToBook?.raw
         } else {
             // P /B = Market Price per Share / BVPS
@@ -346,13 +343,13 @@ class StockService @Autowired constructor(
         stock.enterpriseValueEBITDA = defaultKeyStatistics.enterpriseToEbitda?.raw
 
         stock.yoyQuarterlyRevenueGrowthPercent = percent(financialData.revenueGrowth?.raw)
-        if (!differentCurrencies) {
-            stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
-            val trailingEps = defaultKeyStatistics.trailingEps?.raw
-            if (stock.trailingPE != null && trailingEps != null) {
-                stock.trailingPriceEarningGrowth = stock.trailingPE!! / trailingEps
-            }
+
+        stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
+        val trailingEps = multiply(defaultKeyStatistics.trailingEps?.raw, exchangeRate)
+        if (stock.trailingPE != null && trailingEps != null) {
+            stock.trailingPriceEarningGrowth = stock.trailingPE!! / trailingEps
         }
+
 
         stock.week52Change = percent(defaultKeyStatistics.get52WeekChange()?.raw)
         stock.week52Low = summaryDetail.fiftyTwoWeekLow?.raw
@@ -377,6 +374,20 @@ class StockService @Autowired constructor(
         stock.exDividendDate = calendarEvents.exDividendDate?.fmt
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
         stock.trailingAnnualDividendYield = percent(summaryDetail.trailingAnnualDividendYield?.raw)
+    }
+
+    private fun getExchangeRate(financials: FinancialsResponse, stock: StockInfo): Double {
+
+        stock.currency = financials.price?.currency?.let { it -> Currency.valueOf(it) }
+        stock.financialCurrency = financials.earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }
+
+        val differentCurrencies = stock.currency != stock.financialCurrency
+
+        return if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
+            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
+        } else {
+            1.0
+        }
     }
 
     fun deleteSymbol(symbol: String) {

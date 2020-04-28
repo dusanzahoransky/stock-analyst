@@ -7,6 +7,7 @@ enum class Watchlist {
     AUD,
     AUD_INDICES,
     USD,
+    USD_TECH,
     GBP,
     GBP_INDICES,
     CHF,
