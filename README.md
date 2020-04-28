@@ -1,12 +1,5 @@
 # Stock Analyst
 
-Stock Analyst is a stock data scraper and data mining service in order to calculate correlation between various financial statistics and stock price trend.
+Stock Analyst is a stock data mining service in order to calculate a correlation between various financial statistics and stock price trend.
 
-Scrapped data are stored in MongoDB indexed by the `timestamp` when they been scrapped and `StockInfo -> StockTicker -> Symbol`
-
-```
-{
-    timestamp: ZonedDateTime
-    info: StockInfo
-} 
-```
+Data are retrieved from Yahoo finance API and cached in local MongoDB for efficient calculations and retrieval. 
