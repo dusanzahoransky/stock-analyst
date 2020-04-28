@@ -74,7 +74,7 @@ class YahooFinanceClient @Autowired constructor(
 
     fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("ChartMockGOOGL.json")
+            val balanceSheetMock = ClassPathResource("ChartMockCBA.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<ChartResponse>())
         }
         val response = restTemplate.getForObject(
@@ -84,7 +84,7 @@ class YahooFinanceClient @Autowired constructor(
                 "region" to "US",
                 "ticker" to ticker.toYahooFormat(),
                 "interval" to interval.value,
-                "range" to range
+                "range" to range.value
             )
         )
 
