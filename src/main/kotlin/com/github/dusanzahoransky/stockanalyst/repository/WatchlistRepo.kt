@@ -9,13 +9,14 @@ import org.springframework.stereotype.Repository
 @Repository
 class WatchlistRepo {
 
-    fun getWatchlist(watchlist: Watchlist): List<StockTicker>{
+    fun getWatchlist(watchlist: Watchlist): Set<StockTicker>{
         when(watchlist){
             TEST -> return test()
             INVESTED -> return invested()
             EUR -> return eur()
             AUD -> return aud()
             USD -> return usd()
+            USD_TECH -> return usdTech()
             GBP -> return gbp()
             CHF -> return chf()
             GBP_INDICES -> return gbpIndices()
@@ -38,8 +39,8 @@ class WatchlistRepo {
         }
     }
 
-    fun invested(): List<StockTicker> {
-        return listOf(
+    fun invested(): Set<StockTicker> {
+        return setOf(
             *investedInAud().toTypedArray(),
             *investedInUsd().toTypedArray(),
             *investedInGbp().toTypedArray(),
@@ -47,87 +48,95 @@ class WatchlistRepo {
         )
     }
 
-    fun eur(): List<StockTicker> {
-        return listOf(
+    fun eur(): Set<StockTicker> {
+        return setOf(
             *investedInEur().toTypedArray(),
             *watchListEur().toTypedArray()
         )
     }
 
-    fun aud(): List<StockTicker> {
-        return listOf(
+    fun aud(): Set<StockTicker> {
+        return setOf(
             *investedInAud().toTypedArray(),
             *watchListAud().toTypedArray()
         )
     }
 
-    fun audIndices(): List<StockTicker> {
-        return listOf(
+    fun audIndices(): Set<StockTicker> {
+        return setOf(
             *investedIndicesInAud().toTypedArray(),
             *watchListIndicesAud().toTypedArray()
         )
     }
 
-    fun test(): List<StockTicker> {
-        return listOf(
-            StockTicker.fromString("GOOGL:NASDAQ"),
-            StockTicker.fromString("LTM:NASDAQ"),
-            StockTicker.fromString("GRPN:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ")
+    fun test(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("CBA:ASX")
+//            StockTicker.fromString("LTM:NASDAQ"),
+//            StockTicker.fromString("LTM:NASDAQ"),
+//            StockTicker.fromString("GRPN:NASDAQ"),
+//            StockTicker.fromString("UAL:NASDAQ")
         )
     }
 
-    fun usd(): List<StockTicker> {
-        return listOf(
+    fun usdTech(): Set<StockTicker> {
+        return setOf(
+            *investedInUsdTech().toTypedArray(),
+            *watchListUsdTech().toTypedArray()
+        )
+    }
+
+    fun usd(): Set<StockTicker> {
+        return setOf(
             *investedInUsd().toTypedArray(),
             *watchListUsd().toTypedArray()
         )
     }
 
-    fun gbp(): List<StockTicker> {
-        return listOf(
+    fun gbp(): Set<StockTicker> {
+        return setOf(
             *investedInGbp().toTypedArray(),
             *watchListGbp().toTypedArray()
         )
     }
 
-    fun gbpIndices(): List<StockTicker> {
-        return listOf(
+    fun gbpIndices(): Set<StockTicker> {
+        return setOf(
             *investedIndicesInGbp().toTypedArray(),
             *watchListIndicesGbp().toTypedArray()
         )
     }
 
-    fun chf(): List<StockTicker> {
-        return listOf(
+    fun chf(): Set<StockTicker> {
+        return setOf(
             *investedInChf().toTypedArray(),
             *watchListChf().toTypedArray()
         )
     }
 
-    fun watchListEur(): List<StockTicker> {
-        return listOf(
+    fun watchListEur(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("KU2:DAX"),
             StockTicker.fromString("SU:PA")
         )
     }
 
-    fun investedInEur(): List<StockTicker> {
-        return listOf(
+    fun investedInEur(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("SIE:DAX"),
             StockTicker.fromString("LHA:DAX")
         )
     }
 
-    fun investedIndicesInGbp(): List<StockTicker> {
-        return listOf(
+    fun investedIndicesInGbp(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("VUSA:FTSE"),
             StockTicker.fromString("VFEM:FTSE")
         )
     }
 
-    fun watchListIndicesGbp(): List<StockTicker> {
-        return listOf(
+    fun watchListIndicesGbp(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("VUSA:FTSE"),
             StockTicker.fromString("VFEM:FTSE"),
             StockTicker.fromString("VUKE:FTSE"),
@@ -141,90 +150,97 @@ class WatchlistRepo {
         )
     }
 
-    fun investedInUsd(): List<StockTicker> {
-        return listOf(
+    fun investedInUsd(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("AAl:NASDAQ"),
+            StockTicker.fromString("UAL:NASDAQ"),
+            StockTicker.fromString("LTM:NYSE"),
+            StockTicker.fromString("DAL:NASDAQ"),
+            StockTicker.fromString("ALXN:NASDAQ"),
+            StockTicker.fromString("TMUS:NASDAQ"),
+            StockTicker.fromString("GILD:NASDAQ"),
+            StockTicker.fromString("AMAT:NASDAQ"),
+            StockTicker.fromString("CHTR:NASDAQ"),
+            StockTicker.fromString("REGI:NASDAQ")
+        )
+    }
+    fun investedInUsdTech(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("GOOGL:NASDAQ"),
             StockTicker.fromString("GOOG:NASDAQ"),
             StockTicker.fromString("INTC:NASDAQ"),
             StockTicker.fromString("MAR:NASDAQ"),
             StockTicker.fromString("GRPN:NASDAQ"),
-            StockTicker.fromString("AAl:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ"),
-            StockTicker.fromString("LTM:NYSE"),
             StockTicker.fromString("BKNG:NASDAQ"),
-            StockTicker.fromString("DAL:NASDAQ"),
             StockTicker.fromString("MSFT:NASDAQ"),
             StockTicker.fromString("EB:NASDAQ"),
             StockTicker.fromString("CMCSA:NASDAQ"),
             StockTicker.fromString("CTSH:NASDAQ"),
-            StockTicker.fromString("ALXN:NASDAQ"),
             StockTicker.fromString("EBAY:NASDAQ"),
-            StockTicker.fromString("TMUS:NASDAQ"),
             StockTicker.fromString("FB:NASDAQ"),
-            StockTicker.fromString("GILD:NASDAQ"),
             StockTicker.fromString("QCOM:NASDAQ"),
-            StockTicker.fromString("AMAT:NASDAQ"),
-            StockTicker.fromString("CHTR:NASDAQ"),
             StockTicker.fromString("AVGO:NASDAQ"),
             StockTicker.fromString("BIDU:NASDAQ"),
-            StockTicker.fromString("REGI:NASDAQ"),
             StockTicker.fromString("CLDR:NASDAQ")
         )
     }
-
-    fun watchListUsd(): List<StockTicker> {
-        return listOf(
+    fun watchListUsdTech(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("AMD:NASDAQ"),
             StockTicker.fromString("BABA:NASDAQ"),
-            StockTicker.fromString("CAJ:NASDAQ"),
-            StockTicker.fromString("ZNH:NYSE"),
             StockTicker.fromString("NET:NASDAQ"),
             StockTicker.fromString("DOCU:NYSE"),
             StockTicker.fromString("HUBS:NASDAQ"),
-            StockTicker.fromString("MA:NASDAQ"),
             StockTicker.fromString("NFLX:NASDAQ"),
             StockTicker.fromString("OKTA:NASDAQ"),
             StockTicker.fromString("PYPL:NASDAQ"),
             StockTicker.fromString("WORK:NASDAQ"),
-            StockTicker.fromString("SNE:NASDAQ"),
             StockTicker.fromString("SQ:NASDAQ"),
             StockTicker.fromString("ZEN:NASDAQ"),
             StockTicker.fromString("ZM:NASDAQ"),
             StockTicker.fromString("PD:NASDAQ"),
-            StockTicker.fromString("ROK:NASDAQ"),
-            StockTicker.fromString("EMR:NYSE"),
-            StockTicker.fromString("HON:NYSE"),
             StockTicker.fromString("NOK:NYSE")
         )
     }
+    fun watchListUsd(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("CAJ:NASDAQ"),
+            StockTicker.fromString("ZNH:NYSE"),
+            StockTicker.fromString("MA:NASDAQ"),
+            StockTicker.fromString("SNE:NASDAQ"),
+            StockTicker.fromString("ROK:NASDAQ"),
+            StockTicker.fromString("EMR:NYSE"),
+            StockTicker.fromString("HON:NYSE")
+        )
+    }
 
-    fun watchListChf(): List<StockTicker> {
-        return listOf(
+    fun watchListChf(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("ABBN:SIX")
         )
     }
-    fun investedInChf(): List<StockTicker> {
-        return listOf(
+    fun investedInChf(): Set<StockTicker> {
+        return setOf(
         )
     }
 
-    fun watchListGbp(): List<StockTicker> {
-        return listOf(
+    fun watchListGbp(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("IAG:FTSE")
         )
     }
 
 
-    fun investedInGbp(): List<StockTicker> {
-        return listOf(
+    fun investedInGbp(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("RYA:FTSE"),
             StockTicker.fromString("WIZZ:FTSE")
         )
     }
 
 
-    fun watchListAud(): List<StockTicker> {
-        return listOf(
+    fun watchListAud(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("CBA:ASX"),
             StockTicker.fromString("ING:ASX"),
             StockTicker.fromString("WBC:ASX"),
@@ -240,8 +256,8 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListIndicesAud(): List<StockTicker> {
-        return listOf(
+    fun watchListIndicesAud(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("A200:ASX"),
             StockTicker.fromString("VAS:ASX"),
             StockTicker.fromString("ETHI:ASX"),
@@ -255,8 +271,8 @@ class WatchlistRepo {
         )
     }
 
-    fun investedIndicesInAud(): List<StockTicker> {
-        return listOf(
+    fun investedIndicesInAud(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("VTS:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VAP:ASX"),
@@ -268,14 +284,14 @@ class WatchlistRepo {
         )
     }
 
-    fun investedInAud(): List<StockTicker> {
-        return listOf(
+    fun investedInAud(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("ANZ:ASX")
         )
     }
 
-    fun nasdaq100(): List<StockTicker> {
-        return listOf(
+    fun nasdaq100(): Set<StockTicker> {
+        return setOf(
             StockTicker.fromString("MSFT:NASDAQ"),
             StockTicker.fromString("AAPL:NASDAQ"),
             StockTicker.fromString("AMZN:NASDAQ"),

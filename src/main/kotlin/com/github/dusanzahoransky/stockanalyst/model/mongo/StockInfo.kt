@@ -135,7 +135,17 @@ data class StockInfo(
     var epsGrowthLast3Quarters: Double? = null,
     var epsGrowthEstimateLastQuarter: Double? = null,
 
-    var quarters: List<LocalDate>? = null
+    var epsLastYear: Double? = null,
+    var eps2YearsAgo: Double? = null,
+    var eps3YearsAgo: Double? = null,
+    var eps4YearsAgo: Double? = null,
+    var epsGrowthLastYear: Double? = null,
+    var epsGrowthLast2Years: Double? = null,
+    var epsGrowthLast3Years: Double? = null,
+
+    var quarterEnds: List<Long>? = null,
+    var yearEnds: List<Long>? = null,
+    var chartData: MutableList<ChartData>? = mutableListOf()
     /*
     Growth Estimates -
 Current Year

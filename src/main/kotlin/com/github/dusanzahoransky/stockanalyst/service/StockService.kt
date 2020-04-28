@@ -4,9 +4,13 @@ import com.github.dusanzahoransky.stockanalyst.client.ExchangeRateClient
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
+import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
+import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
+import com.github.dusanzahoransky.stockanalyst.model.mongo.ChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
@@ -17,7 +21,11 @@ import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percentG
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.time.Instant
 import java.time.LocalDate
+import java.time.Period
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 
 @Service
 class StockService @Autowired constructor(
@@ -45,19 +53,29 @@ class StockService @Autowired constructor(
 
         stock = StockInfo(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
-        val balSheet = yahooFinanceClient.getBalanceSheet(ticker, mockData)
-        if (balSheet == null) {
-            log.error("Failed to retrieve stock BalanceSheet from Yahoo $ticker")
+        val financials = yahooFinanceClient.getFinancials(ticker, mockData)
+        if (financials == null) {
+            log.error("Failed to retrieve stock Financials from Yahoo $ticker")
             return null
         }
-        processBalanceSheet(balSheet, stock)
+
+        val exchangeRate = getExchangeRate(financials, stock)
+
+        processFinancials(financials, stock, exchangeRate)
 
         val stats = yahooFinanceClient.getStatistics(ticker, mockData)
         if (stats == null) {
             log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
             return null
         }
-        processStatistics(stats, stock)
+        processStatistics(stats, stock, exchangeRate)
+
+        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.FiveYears, mockData)
+        if (chart == null) {
+            log.error("Failed to retrieve stock Chart from Yahoo $ticker")
+            return null
+        }
+        processChart(chart, stock, Period.ofDays(7))
 
         //delete previous version
         stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
@@ -66,28 +84,107 @@ class StockService @Autowired constructor(
         return stockRepo.insert(stock)
     }
 
-    private fun processBalanceSheet(sheet: BalanceSheetResponse, stock: StockInfo) {
+    private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {
+        val result = chart.chart?.result?.get(0) ?: return
+        val closePrices = result.indicators?.quote?.get(0)?.close ?: return
+        val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
 
-        val incomeStatementLastQuarter = sheet.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
-        val incomeStatementPreviousQuarter = sheet.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
-        val incomeStatementLastYear = sheet.incomeStatementHistory?.incomeStatementHistory?.getOrNull(0)
-        val incomeStatement2YearsAgo = sheet.incomeStatementHistory?.incomeStatementHistory?.getOrNull(1)
-        val incomeStatement3YearsAgo = sheet.incomeStatementHistory?.incomeStatementHistory?.getOrNull(2)
+        val epsSeries = mutableMapOf<LocalDate, Double?>()
+        if (stock.quarterEnds != null) {
+            for ((index, quarter) in stock.quarterEnds!!.withIndex()) {
+                val eps = when (index) {
+                    0 -> stock.epsLastQuarter
+                    1 -> stock.eps2QuartersAgo
+                    2 -> stock.eps3QuartersAgo
+                    3 -> stock.eps4QuartersAgo
+                    else -> null
+                }
+                if(eps != null) {
+                    epsSeries[epochSecToLocalDate(quarter)] = eps
+                }
+            }
+        }
+        if (stock.yearEnds != null) {
+            for ((index, year) in stock.yearEnds!!.withIndex()) {
+                val eps = when (index) {
+                    0 -> div(stock.epsLastYear, 4.0)    // /4 to convert year to quarter EPS
+                    1 -> div(stock.eps2YearsAgo, 4.0)
+                    2 -> div(stock.eps3YearsAgo, 4.0)
+                    3 -> div(stock.eps4YearsAgo, 4.0)
+                    else -> null
+                }
+                if(eps != null) {
+                    epsSeries[epochSecToLocalDate(year)] = eps
+                }
+            }
+        }
 
-        val balanceSheetStatements = sheet.balanceSheetHistoryQuarterly?.balanceSheetStatements
+        val chartTo = timestamps.last()
+        var currentInterval = timestamps.first()
+        val samplingDays = samplingInterval.days
+        val chartData = mutableListOf<ChartData>()
+
+        while (currentInterval < chartTo) {
+            val chartDataPoint = dataAtInterval(currentInterval, timestamps, closePrices)
+
+            for ((date, eps) in epsSeries) {
+                val daysBetweenQuarterAndSamplingInterval = ChronoUnit.DAYS.between(currentInterval, date)
+                if (daysBetweenQuarterAndSamplingInterval in 1..samplingDays) {
+                    chartDataPoint.eps = eps
+                }
+            }
+            chartData.add(chartDataPoint)
+            currentInterval = currentInterval.plusDays(samplingDays.toLong())
+        }
+
+        //add the latest price as the sampling loop might have finished within the records before
+        val chartLastDataPoint = dataAtInterval(chartTo, timestamps, closePrices)
+        chartData.add(chartLastDataPoint)
+
+        stock.chartData = chartData
+    }
+
+    private fun dataAtInterval(
+        currentInterval: LocalDate,
+        timestamps: List<LocalDate>,
+        closePrices: MutableList<Double>): ChartData {
+
+        val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
+        val priceAtInterval = closePrices[timestampIndexAtInterval]
+
+        return ChartData(localDateToEpochSec(currentInterval), priceAtInterval)
+    }
+
+    private fun localDateToEpochSec(currentInterval: LocalDate) =
+        currentInterval.atStartOfDay(ZoneId.of("UTC")).toEpochSecond()
+
+    private fun epochSecToLocalDate(epochSeconds: Long) =
+        Instant.ofEpochSecond(epochSeconds).atZone(ZoneId.of("UTC")).toLocalDate()
+
+    private fun processFinancials(financials: FinancialsResponse, stock: StockInfo, exchangeRate: Double) {
+
+        val incomeStatementLastQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
+        val incomeStatementPreviousQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
+        val incomeStatementLastYear = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(0)
+        val incomeStatement2YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(1)
+        val incomeStatement3YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(2)
+
+        val balanceSheetStatements = financials.balanceSheetHistoryQuarterly?.balanceSheetStatements
         val balanceSheetLastQuarter = balanceSheetStatements?.getOrNull(0)
         val balanceSheetPreviousQuarter = balanceSheetStatements?.getOrNull(1)
-        val balanceSheetLastYear = sheet.balanceSheetHistory?.balanceSheetStatements?.getOrNull(0)
-        val balanceSheet2YearsAgo = sheet.balanceSheetHistory?.balanceSheetStatements?.getOrNull(1)
-        val balanceSheet3YearsAgo = sheet.balanceSheetHistory?.balanceSheetStatements?.getOrNull(2)
+        val balanceSheetLastYear = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(0)
+        val balanceSheet2YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(1)
+        val balanceSheet3YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(2)
 
-        val earnings = sheet.earnings
+        val timeSeries = financials.timeSeries
 
-        val cashFlowLastQuarter = sheet.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(0)
-        val cashFlowPreviousQuarter = sheet.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(1)
-        val cashFlowLastYear = sheet.cashflowStatementHistory?.cashflowStatements?.getOrNull(0)
-        val cashFlow2YearsAgo = sheet.cashflowStatementHistory?.cashflowStatements?.getOrNull(1)
-        val cashFlow3YearsAgo = sheet.cashflowStatementHistory?.cashflowStatements?.getOrNull(2)
+        val earnings = financials.earnings
+
+        val cashFlowLastQuarter = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(0)
+        val cashFlowPreviousQuarter = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(1)
+        val cashFlowLastYear = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(0)
+        val cashFlow2YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(1)
+        val cashFlow3YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(2)
 
         stock.netIncomeLastQuarter = incomeStatementLastQuarter?.netIncome?.raw?.toLong()
         stock.netIncome2QuartersAgo = incomeStatementPreviousQuarter?.netIncome?.raw?.toLong()
@@ -170,23 +267,36 @@ class StockService @Autowired constructor(
         stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, balanceSheet2YearsAgo?.commonStock?.raw)
         stock.stockGrowthLast3Years = percentGrowth(stock.stockLastYear, balanceSheet3YearsAgo?.commonStock?.raw)
 
-        stock.epsCurrentQuarterEstimate = earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble()
+        stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
-        stock.epsLastQuarter = epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble()
-        stock.eps2QuartersAgo = epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble()
-        stock.eps3QuartersAgo = epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble()
-        stock.eps4QuartersAgo = epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble()
+        stock.epsLastQuarter = multiply(epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
+        stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
         stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, 0.01)
         stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, 0.01)
         stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, 0.01)
         stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, 0.01)
 
-        //TODO earnings per share growth rate vs price growth rate
+        if(timeSeries.annualDilutedEPS != null) {
+            for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
+                when (index) {
+                    3 -> stock.epsLastYear = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    2 -> stock.eps2YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    1 -> stock.eps3YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                    0 -> stock.eps4YearsAgo = multiply(annualEps?.reportedValue?.raw, exchangeRate)
+                }
+            }
+        }
+        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, 0.01)
+        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, 0.01)
+        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, 0.01)
 
-        stock.quarters = balanceSheetStatements?.map { LocalDate.parse(it.endDate.fmt) }
+        stock.quarterEnds = balanceSheetStatements?.map { it.endDate.raw }
+        stock.yearEnds = timeSeries?.timestamp?.reversed()
     }
 
-    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo) {
+    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo, exchangeRate: Double) {
         val financialData = stats.financialData
         val price = stats.price
         val defaultKeyStatistics = stats.defaultKeyStatistics
@@ -197,18 +307,12 @@ class StockService @Autowired constructor(
         stock.price = price?.regularMarketPrice?.raw
         stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
         stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
-        val differentCurrencies = stock.currency != stock.financialCurrency
-        val financialToStockRate = if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
-            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
-        } else {
-            1.0
-        }
 
         stock.change = percent(price?.regularMarketChangePercent?.raw)
         stock.enterpriseValue = defaultKeyStatistics.enterpriseValue?.raw
 
-        stock.targetLowPrice = financialData.targetLowPrice?.raw.let { multiply(it, financialToStockRate) }
-        stock.targetMedianPrice = financialData.targetMedianPrice?.raw.let { multiply(it, financialToStockRate) }
+        stock.targetLowPrice = financialData.targetLowPrice?.raw.let { multiply(it, exchangeRate) }
+        stock.targetMedianPrice = financialData.targetMedianPrice?.raw.let { multiply(it, exchangeRate) }
 
         if (stock.targetLowPrice != null && stock.price != null) {
             stock.belowTargetLowPricePercent = ((stock.targetLowPrice!! - stock.price!!) / stock.price!!) * 100.0
@@ -228,7 +332,7 @@ class StockService @Autowired constructor(
         stock.trailingPE = summaryDetail.trailingPE?.raw
         stock.forwardPE = summaryDetail.forwardPE?.raw
         stock.priceToSalesTrailing12Months = summaryDetail.priceToSalesTrailing12Months?.raw
-        if (!differentCurrencies) {
+        if (exchangeRate != 1.0) {
             stock.priceBook = defaultKeyStatistics.priceToBook?.raw
         } else {
             // P /B = Market Price per Share / BVPS
@@ -239,13 +343,13 @@ class StockService @Autowired constructor(
         stock.enterpriseValueEBITDA = defaultKeyStatistics.enterpriseToEbitda?.raw
 
         stock.yoyQuarterlyRevenueGrowthPercent = percent(financialData.revenueGrowth?.raw)
-        if (!differentCurrencies) {
-            stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
-            val trailingEps = defaultKeyStatistics.trailingEps?.raw
-            if (stock.trailingPE != null && trailingEps != null) {
-                stock.trailingPriceEarningGrowth = stock.trailingPE!! / trailingEps
-            }
+
+        stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
+        val trailingEps = multiply(defaultKeyStatistics.trailingEps?.raw, exchangeRate)
+        if (stock.trailingPE != null && trailingEps != null) {
+            stock.trailingPriceEarningGrowth = stock.trailingPE!! / trailingEps
         }
+
 
         stock.week52Change = percent(defaultKeyStatistics.get52WeekChange()?.raw)
         stock.week52Low = summaryDetail.fiftyTwoWeekLow?.raw
@@ -270,6 +374,20 @@ class StockService @Autowired constructor(
         stock.exDividendDate = calendarEvents.exDividendDate?.fmt
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
         stock.trailingAnnualDividendYield = percent(summaryDetail.trailingAnnualDividendYield?.raw)
+    }
+
+    private fun getExchangeRate(financials: FinancialsResponse, stock: StockInfo): Double {
+
+        stock.currency = financials.price?.currency?.let { it -> Currency.valueOf(it) }
+        stock.financialCurrency = financials.earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }
+
+        val differentCurrencies = stock.currency != stock.financialCurrency
+
+        return if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
+            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
+        } else {
+            1.0
+        }
     }
 
     fun deleteSymbol(symbol: String) {
