@@ -42,6 +42,11 @@ class StockService @Autowired constructor(
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
     }
 
+    fun getStocks(symbols: Array<String>, forceRefresh: Boolean, mockData: Boolean): List<StockInfo> {
+        val watchlistTickers = symbols.map { symbol -> StockTicker.fromString(symbol) }
+        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
+    }
+
     private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): StockInfo? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
