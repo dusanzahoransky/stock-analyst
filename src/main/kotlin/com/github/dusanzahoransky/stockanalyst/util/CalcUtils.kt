@@ -9,14 +9,14 @@ class CalcUtils {
 
         private val log: Logger = LoggerFactory.getLogger(CalcUtils::class.java)
 
-        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, signThreshold: Double = 100.0): Double? {
+        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String, signThreshold: Double = 100.0): Double? {
             if (currentValue == null || previousValue == null) {
                 return null
             }
             val currValueD = currentValue.toDouble()
             val prevValueD = previousValue.toDouble()
             if (prevValueD < signThreshold) {   //the previous value is too small to get any meaningful result
-                log.debug("Skipping percentGrowth calculation, value $prevValueD is too insignificant")
+                log.debug("Skipping $statName percentGrowth calculation, value $prevValueD is too insignificant")
                 return null
             }
             if ((prevValueD > 0.0 && currValueD < 0.0) || (prevValueD < 0.0 && currValueD > 0.0)) {

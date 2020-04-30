@@ -71,8 +71,8 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("CBA:ASX")
-//            StockTicker.fromString("LTM:NASDAQ"),
+//            StockTicker.fromString("CBA:ASX")
+            StockTicker.fromString("GOOGL:NASDAQ")
 //            StockTicker.fromString("LTM:NASDAQ"),
 //            StockTicker.fromString("GRPN:NASDAQ"),
 //            StockTicker.fromString("UAL:NASDAQ")

@@ -141,6 +141,48 @@ class StockService @Autowired constructor(
         val chartLastDataPoint = dataAtInterval(chartTo, timestamps, closePrices)
         chartData.add(chartLastDataPoint)
 
+        //in addition to chart, calculate EP and price for the quarters
+        for ((index, quarter) in stock.quarterEnds!!.withIndex()) {
+            when (index) {
+                0 -> {
+                    if(stock.epsLastQuarter != null){
+                        val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
+                        stock.priceLastQuarter = chartDataPoint.price
+                        stock.peLastQuarter = div(stock.priceLastQuarter, multiply(stock.epsLastQuarter, 4.0))
+                    }
+                }
+                1 -> {
+                    if(stock.eps2QuartersAgo != null){
+                        val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
+                        stock.price2QuartersAgo = chartDataPoint.price
+                        stock.pe2QuartersAgo = div(stock.price2QuartersAgo, multiply(stock.eps2QuartersAgo, 4.0))
+                    }
+                }
+                2 -> {
+                    if(stock.eps3QuartersAgo != null){
+                        val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
+                        stock.price3QuartersAgo = chartDataPoint.price
+                        stock.pe3QuartersAgo = div(stock.price3QuartersAgo, multiply(stock.eps3QuartersAgo, 4.0))
+                    }
+                }
+                3 -> {
+                    if(stock.eps4QuartersAgo != null){
+                        val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
+                        stock.price4QuartersAgo = chartDataPoint.price
+                        stock.pe4QuartersAgo = div(stock.price4QuartersAgo, multiply(stock.eps4QuartersAgo, 4.0))
+                    }
+                }
+            }
+        }
+
+        stock.priceGrowthLastQuarter = percentGrowth(stock.priceLastQuarter, stock.price2QuartersAgo, "priceGrowthLastQuarter")
+        stock.priceGrowthLast2Quarters = percentGrowth(stock.priceLastQuarter, stock.price3QuartersAgo, "priceGrowthLast2Quarters")
+        stock.priceGrowthLast3Quarters = percentGrowth(stock.priceLastQuarter, stock.price4QuartersAgo, "priceGrowthLast3Quarters")
+
+        stock.peGrowthLastQuarter = percentGrowth(stock.peLastQuarter, stock.pe2QuartersAgo, "peGrowthLastQuarter", 0.01)
+        stock.peGrowthLast2Quarters = percentGrowth(stock.peLastQuarter, stock.pe3QuartersAgo, "peGrowthLast2Quarters", 0.01)
+        stock.peGrowthLast3Quarters = percentGrowth(stock.peLastQuarter, stock.pe4QuartersAgo, "peGrowthLast3Quarters", 0.01)
+
         stock.chartData = chartData
     }
 
@@ -164,14 +206,15 @@ class StockService @Autowired constructor(
     private fun processFinancials(financials: FinancialsResponse, stock: StockInfo, exchangeRate: Double) {
 
         val incomeStatementLastQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
-        val incomeStatementPreviousQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
+        val incomeStatement2QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
+        val incomeStatement3QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(2)
         val incomeStatementLastYear = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(0)
         val incomeStatement2YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(1)
         val incomeStatement3YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(2)
 
         val balanceSheetStatements = financials.balanceSheetHistoryQuarterly?.balanceSheetStatements
         val balanceSheetLastQuarter = balanceSheetStatements?.getOrNull(0)
-        val balanceSheetPreviousQuarter = balanceSheetStatements?.getOrNull(1)
+        val balanceSheet2QuartersAgo = balanceSheetStatements?.getOrNull(1)
         val balanceSheetLastYear = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(0)
         val balanceSheet2YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(1)
         val balanceSheet3YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(2)
@@ -187,85 +230,88 @@ class StockService @Autowired constructor(
         val cashFlow3YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(2)
 
         stock.netIncomeLastQuarter = incomeStatementLastQuarter?.netIncome?.raw?.toLong()
-        stock.netIncome2QuartersAgo = incomeStatementPreviousQuarter?.netIncome?.raw?.toLong()
+        stock.netIncome2QuartersAgo = incomeStatement2QuartersAgo?.netIncome?.raw?.toLong()
+        stock.netIncome3QuartersAgo = incomeStatement3QuartersAgo?.netIncome?.raw?.toLong()
         stock.netIncomeLastYear = incomeStatementLastYear?.netIncome?.raw?.toLong()
-        stock.netIncome2YearAgo = incomeStatement2YearsAgo?.netIncome?.raw?.toLong()
-        stock.netIncome3YearAgo = incomeStatement3YearsAgo?.netIncome?.raw?.toLong()
-        stock.netIncomeGrowthLastQuarter = percentGrowth(stock.netIncomeLastQuarter, incomeStatementPreviousQuarter?.netIncome?.raw)
-        stock.netIncomeGrowthLastYear = percentGrowth(stock.netIncomeLastYear, incomeStatement2YearsAgo?.netIncome?.raw)
-        stock.netIncomeGrowthLast3Years = percentGrowth(stock.netIncomeLastYear, incomeStatement3YearsAgo?.netIncome?.raw)
+        stock.netIncome3YearsAgo = incomeStatement3YearsAgo?.netIncome?.raw?.toLong()
+        stock.netIncomeGrowthLastQuarter = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome2QuartersAgo, "netIncomeGrowthLastQuarter")
+        stock.netIncomeGrowthLast2Quarters = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome3QuartersAgo, "netIncomeGrowthLast2Quarters")
+        stock.netIncomeGrowthLast3Years = percentGrowth(stock.netIncomeLastYear, stock.netIncome3YearsAgo, "netIncomeGrowthLast3Years")
 
         stock.revenueLastQuarter = incomeStatementLastQuarter?.totalRevenue?.raw?.toLong()
+        stock.revenue2QuartersAgo = incomeStatement2QuartersAgo?.totalRevenue?.raw?.toLong()
+        stock.revenue3QuartersAgo = incomeStatement3QuartersAgo?.totalRevenue?.raw?.toLong()
         stock.revenueLastYear = incomeStatementLastYear?.totalRevenue?.raw?.toLong()
-        stock.revenueGrowthLastQuarter = percentGrowth(stock.revenueLastQuarter, incomeStatementPreviousQuarter?.totalRevenue?.raw)
-        stock.revenueGrowthLastYear = percentGrowth(stock.revenueLastYear, incomeStatement2YearsAgo?.totalRevenue?.raw)
-        stock.revenueGrowthLast3Years = percentGrowth(stock.revenueLastYear, incomeStatement3YearsAgo?.totalRevenue?.raw)
+        stock.revenueGrowthLastQuarter = percentGrowth(stock.revenueLastQuarter, incomeStatement2QuartersAgo?.totalRevenue?.raw, "revenueGrowthLastQuarter")
+        stock.revenueGrowthLast2Quarters = percentGrowth(stock.revenueLastQuarter, stock.revenue3QuartersAgo, "revenueGrowthLast2Quarters")
+        stock.revenueGrowthLastYear = percentGrowth(stock.revenueLastYear, incomeStatement2YearsAgo?.totalRevenue?.raw, "revenueGrowthLastYear")
+        stock.revenueGrowthLast3Years = percentGrowth(stock.revenueLastYear, incomeStatement3YearsAgo?.totalRevenue?.raw, "revenueGrowthLast3Years")
 
         stock.cashLastQuarter = balanceSheetLastQuarter?.cash?.raw?.toLong()
         stock.cashLastYear = balanceSheetLastYear?.cash?.raw?.toLong()
-        stock.cashGrowthLastQuarter = percentGrowth(stock.cashLastQuarter, balanceSheetPreviousQuarter?.cash?.raw)
-        stock.cashGrowthLastYear = percentGrowth(stock.cashLastYear, balanceSheet2YearsAgo?.cash?.raw)
-        stock.cashGrowthLast3Years = percentGrowth(stock.cashLastYear, balanceSheet3YearsAgo?.cash?.raw)
+        stock.cashGrowthLastQuarter = percentGrowth(stock.cashLastQuarter, balanceSheet2QuartersAgo?.cash?.raw, "cashGrowthLastQuarter")
+        stock.cashGrowthLastYear = percentGrowth(stock.cashLastYear, balanceSheet2YearsAgo?.cash?.raw, "cashGrowthLastYear")
+        stock.cashGrowthLast3Years = percentGrowth(stock.cashLastYear, balanceSheet3YearsAgo?.cash?.raw, "cashGrowthLast3Years")
 
         stock.inventoryLastQuarter = balanceSheetLastQuarter?.inventory?.raw?.toLong()
         stock.inventoryLastYear = balanceSheetLastYear?.inventory?.raw?.toLong()
-        stock.inventoryGrowthLastQuarter = percentGrowth(stock.inventoryLastQuarter, balanceSheetPreviousQuarter?.inventory?.raw)
-        stock.inventoryGrowthLastYear = percentGrowth(stock.inventoryLastYear, balanceSheet2YearsAgo?.inventory?.raw)
-        stock.inventoryGrowthLast3Years = percentGrowth(stock.inventoryLastYear, balanceSheet3YearsAgo?.inventory?.raw)
+        stock.inventoryGrowthLastQuarter = percentGrowth(stock.inventoryLastQuarter, balanceSheet2QuartersAgo?.inventory?.raw, "inventoryGrowthLastQuarter")
+        stock.inventoryGrowthLastYear = percentGrowth(stock.inventoryLastYear, balanceSheet2YearsAgo?.inventory?.raw, "inventoryGrowthLastYear")
+        stock.inventoryGrowthLast3Years = percentGrowth(stock.inventoryLastYear, balanceSheet3YearsAgo?.inventory?.raw, "inventoryGrowthLast3Years")
 
         stock.currentLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalCurrentLiabilities?.raw?.toLong()
         stock.currentLiabilitiesLastYear = balanceSheetLastYear?.totalCurrentLiabilities?.raw?.toLong()
-        stock.currentLiabilitiesGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesLastQuarter, balanceSheetPreviousQuarter?.totalCurrentLiabilities?.raw)
-        stock.currentLiabilitiesGrowthLastYear = percentGrowth(stock.currentLiabilitiesLastYear, balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw)
-        stock.currentLiabilitiesGrowthLast3Years = percentGrowth(stock.currentLiabilitiesLastYear, balanceSheet3YearsAgo?.totalCurrentLiabilities?.raw)
+        stock.currentLiabilitiesGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesLastQuarter, balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw, "currentLiabilitiesGrowthLastQuarter")
+        stock.currentLiabilitiesGrowthLastYear = percentGrowth(stock.currentLiabilitiesLastYear, balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw, "currentLiabilitiesGrowthLastYear")
+        stock.currentLiabilitiesGrowthLast3Years = percentGrowth(stock.currentLiabilitiesLastYear, balanceSheet3YearsAgo?.totalCurrentLiabilities?.raw, "currentLiabilitiesGrowthLast3Years")
 
         stock.totalLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalLiab?.raw?.toLong()
         stock.totalLiabilitiesLastYear = balanceSheetLastYear?.totalLiab?.raw?.toLong()
-        stock.totalLiabilitiesGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesLastQuarter, balanceSheetPreviousQuarter?.totalLiab?.raw)
-        stock.totalLiabilitiesGrowthLastYear = percentGrowth(stock.totalLiabilitiesLastYear, balanceSheet2YearsAgo?.totalLiab?.raw)
-        stock.totalLiabilitiesGrowthLast3Years = percentGrowth(stock.totalLiabilitiesLastYear, balanceSheet3YearsAgo?.totalLiab?.raw)
+        stock.totalLiabilitiesGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesLastQuarter, balanceSheet2QuartersAgo?.totalLiab?.raw, "totalLiabilitiesGrowthLastQuarter")
+        stock.totalLiabilitiesGrowthLastYear = percentGrowth(stock.totalLiabilitiesLastYear, balanceSheet2YearsAgo?.totalLiab?.raw, "totalLiabilitiesGrowthLastYear")
+        stock.totalLiabilitiesGrowthLast3Years = percentGrowth(stock.totalLiabilitiesLastYear, balanceSheet3YearsAgo?.totalLiab?.raw, "totalLiabilitiesGrowthLast3Years")
 
         stock.totalShareholdersEquityLastQuarter = balanceSheetLastQuarter?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquityLastYear = balanceSheetLastYear?.totalStockholderEquity?.raw?.toLong()
-        stock.totalShareholdersEquityGrowthLastQuarter = percentGrowth(stock.totalShareholdersEquityLastQuarter, balanceSheetPreviousQuarter?.totalStockholderEquity?.raw)
-        stock.totalShareholdersEquityGrowthLastYear = percentGrowth(stock.totalShareholdersEquityLastYear, balanceSheet2YearsAgo?.totalStockholderEquity?.raw)
-        stock.totalShareholdersEquityGrowthLast3Years = percentGrowth(stock.totalShareholdersEquityLastYear, balanceSheet3YearsAgo?.totalStockholderEquity?.raw)
+        stock.totalShareholdersEquityGrowthLastQuarter = percentGrowth(stock.totalShareholdersEquityLastQuarter, balanceSheet2QuartersAgo?.totalStockholderEquity?.raw, "totalShareholdersEquityGrowthLastQuarter")
+        stock.totalShareholdersEquityGrowthLastYear = percentGrowth(stock.totalShareholdersEquityLastYear, balanceSheet2YearsAgo?.totalStockholderEquity?.raw, "totalShareholdersEquityGrowthLastYear")
+        stock.totalShareholdersEquityGrowthLast3Years = percentGrowth(stock.totalShareholdersEquityLastYear, balanceSheet3YearsAgo?.totalStockholderEquity?.raw, "totalShareholdersEquityGrowthLast3Years")
 
         stock.currentLiabilitiesToEquityLastQuarter = div(stock.currentLiabilitiesLastQuarter?.toDouble(), stock.totalShareholdersEquityLastQuarter?.toDouble())
-        val currentLiabilitiesToEquityPreviousQuarter = div(balanceSheetPreviousQuarter?.totalCurrentLiabilities?.raw?.toDouble(),
-            balanceSheetPreviousQuarter?.totalStockholderEquity?.raw?.toDouble())
-        stock.currentLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesToEquityLastQuarter, currentLiabilitiesToEquityPreviousQuarter)
-        val currentLiabilitiesToEquity2YearsAgo = div(balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
+        val currentLiabilitiesToEquityPreviousQuarter = div(balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw?.toDouble(),
+            balanceSheet2QuartersAgo?.totalStockholderEquity?.raw?.toDouble())
+        stock.currentLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesToEquityLastQuarter, currentLiabilitiesToEquityPreviousQuarter, "currentLiabilitiesToEquityGrowthLastQuarter", 0.01)
+         val currentLiabilitiesToEquity2YearsAgo = div(balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet2YearsAgo?.totalStockholderEquity?.raw?.toDouble())
         stock.currentLiabilitiesToEquityLastYear = div(stock.currentLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
-        stock.currentLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity2YearsAgo)
+        stock.currentLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity2YearsAgo, "currentLiabilitiesToEquityGrowthLastYear", 0.01)
         val currentLiabilitiesToEquity3YearsAgo = div(balanceSheet3YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet3YearsAgo?.totalStockholderEquity?.raw?.toDouble())
-        stock.currentLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity3YearsAgo)
+        stock.currentLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity3YearsAgo, "currentLiabilitiesToEquityGrowthLast3Years", 0.01)
 
         stock.totalLiabilitiesToEquityLastQuarter = div(stock.totalLiabilitiesLastQuarter?.toDouble(), stock.totalShareholdersEquityLastQuarter?.toDouble())
-        val totalLiabilitiesToEquityPreviousQuarter = div(balanceSheetPreviousQuarter?.totalCurrentLiabilities?.raw?.toDouble(),
-            balanceSheetPreviousQuarter?.totalStockholderEquity?.raw?.toDouble())
-        stock.totalLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesToEquityLastQuarter, totalLiabilitiesToEquityPreviousQuarter)
+        val totalLiabilitiesToEquityPreviousQuarter = div(balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw?.toDouble(),
+            balanceSheet2QuartersAgo?.totalStockholderEquity?.raw?.toDouble())
+        stock.totalLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesToEquityLastQuarter, totalLiabilitiesToEquityPreviousQuarter, "totalLiabilitiesToEquityGrowthLastQuarter", 0.01)
         val totalLiabilitiesToEquity2YearsAgo = div(balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet2YearsAgo?.totalStockholderEquity?.raw?.toDouble())
         stock.totalLiabilitiesToEquityLastYear = div(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
-        stock.totalLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity2YearsAgo)
+        stock.totalLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity2YearsAgo, "totalLiabilitiesToEquityGrowthLastYear", 0.01)
         val totalLiabilitiesToEquity3YearsAgo = div(balanceSheet3YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet3YearsAgo?.totalStockholderEquity?.raw?.toDouble())
-        stock.totalLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity3YearsAgo)
+        stock.totalLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity3YearsAgo, "totalLiabilitiesToEquityGrowthLast3Years", 0.01)
 
         stock.stockRepurchasedLastQuarter = cashFlowLastQuarter?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchasedLastYear = cashFlowLastYear?.repurchaseOfStock?.raw?.toLong()
-        stock.stockRepurchasedGrowthLastQuarter = percentGrowth(stock.stockRepurchasedLastQuarter, cashFlowPreviousQuarter?.repurchaseOfStock?.raw)
-        stock.stockRepurchasedGrowthLastYear = percentGrowth(stock.stockRepurchasedLastYear, cashFlow2YearsAgo?.repurchaseOfStock?.raw)
-        stock.stockRepurchasedGrowthLast3Years = percentGrowth(stock.stockRepurchasedLastYear, cashFlow3YearsAgo?.repurchaseOfStock?.raw)
+        stock.stockRepurchasedGrowthLastQuarter = percentGrowth(stock.stockRepurchasedLastQuarter, cashFlowPreviousQuarter?.repurchaseOfStock?.raw, "stockRepurchasedGrowthLastQuarter")
+        stock.stockRepurchasedGrowthLastYear = percentGrowth(stock.stockRepurchasedLastYear, cashFlow2YearsAgo?.repurchaseOfStock?.raw, "stockRepurchasedGrowthLastYear")
+        stock.stockRepurchasedGrowthLast3Years = percentGrowth(stock.stockRepurchasedLastYear, cashFlow3YearsAgo?.repurchaseOfStock?.raw, "stockRepurchasedGrowthLast3Years")
 
         stock.stockLastQuarter = balanceSheetLastQuarter?.commonStock?.raw?.toLong()
         stock.stockLastYear = balanceSheetLastYear?.commonStock?.raw?.toLong()
-        stock.stockGrowthLastQuarter = percentGrowth(stock.stockLastQuarter, balanceSheetPreviousQuarter?.commonStock?.raw)
-        stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, balanceSheet2YearsAgo?.commonStock?.raw)
-        stock.stockGrowthLast3Years = percentGrowth(stock.stockLastYear, balanceSheet3YearsAgo?.commonStock?.raw)
+        stock.stockGrowthLastQuarter = percentGrowth(stock.stockLastQuarter, balanceSheet2QuartersAgo?.commonStock?.raw, "stockGrowthLastQuarter")
+        stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, balanceSheet2YearsAgo?.commonStock?.raw, "stockGrowthLastYear")
+        stock.stockGrowthLast3Years = percentGrowth(stock.stockLastYear, balanceSheet3YearsAgo?.commonStock?.raw, "stockGrowthLast3Years")
 
         stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
@@ -273,10 +319,10 @@ class StockService @Autowired constructor(
         stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
-        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, 0.01)
-        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, 0.01)
-        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, 0.01)
-        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, 0.01)
+        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo,  "epsGrowthLastQuarter", 0.01)
+        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo,  "epsGrowthLast2Quarters", 0.01)
+        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo,  "epsGrowthLast3Quarters", 0.01)
+        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter,  "epsGrowthEstimateLastQuarter", 0.01)
 
         if(timeSeries.annualDilutedEPS != null) {
             for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
@@ -288,11 +334,12 @@ class StockService @Autowired constructor(
                 }
             }
         }
-        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, 0.01)
-        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, 0.01)
-        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, 0.01)
+        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo,  "epsGrowthLastYear", 0.01)
+        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo,  "epsGrowthLast2Years", 0.01)
+        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo,  "epsGrowthLast3Years", 0.01)
 
         stock.quarterEnds = balanceSheetStatements?.map { it.endDate.raw }
+        stock.lastReportedQuarter = stock.quarterEnds?.get(0)?.let { epochSecToLocalDate(it) }
         stock.yearEnds = timeSeries?.timestamp?.reversed()
     }
 
