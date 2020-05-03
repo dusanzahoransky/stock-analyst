@@ -132,7 +132,7 @@ class WatchlistRepo {
 
     fun watchListEur(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("KU2:DAX"),
+/*            StockTicker.fromString("KU2:DAX"),*/
             StockTicker.fromString("SU:PA")
         )
     }
@@ -220,10 +220,10 @@ class WatchlistRepo {
     }
     fun watchListUsd(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("CAJ:NASDAQ"),
+            //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
             StockTicker.fromString("ZNH:NYSE"),
             StockTicker.fromString("MA:NASDAQ"),
-            StockTicker.fromString("SNE:NASDAQ"),
+            //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
             StockTicker.fromString("ROK:NASDAQ"),
             StockTicker.fromString("EMR:NYSE"),
             StockTicker.fromString("HON:NYSE")
