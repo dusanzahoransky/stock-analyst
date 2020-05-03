@@ -6,6 +6,17 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist.*
 import org.springframework.stereotype.Repository
 
+fun main() {
+    val trading212 = WatchlistRepo().getWatchlist(TRADING_212)
+    println(trading212.size)
+    println(WatchlistRepo().getWatchlist(TRADING_212_US).size)
+    println(WatchlistRepo().getWatchlist(TRADING_212_EUR).size)
+    println(WatchlistRepo().getWatchlist(TRADING_212_GBP).size)
+    val nasdaq100 = WatchlistRepo().getWatchlist(NASDAQ_100)
+    nasdaq100.toMutableSet().retainAll(trading212)
+    println(nasdaq100.size)
+}
+
 @Suppress("SpellCheckingInspection")
 @Repository
 class WatchlistRepo {

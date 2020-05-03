@@ -20,7 +20,7 @@ data class StockTicker(
          */
         fun fromFullExchangeNameString(ticker: String): StockTicker {
             val ticketParts = ticker.split(":")
-            return StockTicker(ticketParts[0], Exchange.valueOf(ticketParts[1]))
+            return StockTicker(ticketParts[0], Exchange.values().first { e -> e.fullName == ticketParts[1] })
         }
     }
 
