@@ -1,36 +1,16 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
-enum class Exchange {
-    ASX,
-    NASDAQ,
-    NYSE,
-    /**
-     * British exchange
-     */
-    FTSE,
-    /**
-     * German exchange
-     */
-    DAX,
+enum class Exchange(
+    val fullName: String,
+    val yahooFormat: String) {
 
-    /**
-     * Swiss exchange
-     */
-    SIX,
-    /**
-     * French exchange
-     */
-    PA,
-    ;
-
-    fun toYahooFormat(): String{
-        return when(this){
-            NASDAQ, NYSE -> "US"
-            ASX -> "AX"
-            DAX -> "DE"
-            SIX -> "SW"
-            PA -> "PA"
-            FTSE -> "L"
-        }
-    }
+    ASX("ASX", "AX"),
+    NASDAQ("NASDAQ", "US"),
+    NYSE("NYSE", "US"),
+    FTSE("London Stock Exchange", "L"),
+    DAX("Deutsche Börse Xetra", "DE"),
+    ENX("Euronext Netherlands", "AS"),
+    SIX("SIX Swiss", "SW"),
+    PA("Euronext Paris", "PA"),
+    MCE("Bolsa de Madrid", "MC")
 }

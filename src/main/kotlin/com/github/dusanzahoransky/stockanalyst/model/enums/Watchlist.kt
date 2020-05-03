@@ -26,4 +26,8 @@ enum class Watchlist {
     INVESTED_INDICES_IN_AUD,
     INVESTED_IN_AUD,
     NASDAQ_100,
+    TRADING_212,
+    TRADING_212_US,
+    TRADING_212_EUR,
+    TRADING_212_GBP,
 }
