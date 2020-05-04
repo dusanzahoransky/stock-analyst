@@ -2,7 +2,6 @@ package com.github.dusanzahoransky.stockanalyst.model.mongo
 
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.PeriodMeasure
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate

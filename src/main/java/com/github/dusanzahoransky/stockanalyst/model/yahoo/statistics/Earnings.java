@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "earningsDate",
     "earningsAverage",
     "earningsLow",
@@ -127,38 +126,38 @@ public class Earnings {
         sb.append(Earnings.class.getName()).append('@').append(Double.toHexString(System.identityHashCode(this))).append('[');
         sb.append("earningsDate");
         sb.append('=');
-        sb.append(((this.earningsDate == null)?"<null>":this.earningsDate));
+        sb.append(((this.earningsDate == null) ? "<null>" : this.earningsDate));
         sb.append(',');
         sb.append("earningsAverage");
         sb.append('=');
-        sb.append(((this.earningsAverage == null)?"<null>":this.earningsAverage));
+        sb.append(((this.earningsAverage == null) ? "<null>" : this.earningsAverage));
         sb.append(',');
         sb.append("earningsLow");
         sb.append('=');
-        sb.append(((this.earningsLow == null)?"<null>":this.earningsLow));
+        sb.append(((this.earningsLow == null) ? "<null>" : this.earningsLow));
         sb.append(',');
         sb.append("earningsHigh");
         sb.append('=');
-        sb.append(((this.earningsHigh == null)?"<null>":this.earningsHigh));
+        sb.append(((this.earningsHigh == null) ? "<null>" : this.earningsHigh));
         sb.append(',');
         sb.append("revenueAverage");
         sb.append('=');
-        sb.append(((this.revenueAverage == null)?"<null>":this.revenueAverage));
+        sb.append(((this.revenueAverage == null) ? "<null>" : this.revenueAverage));
         sb.append(',');
         sb.append("revenueLow");
         sb.append('=');
-        sb.append(((this.revenueLow == null)?"<null>":this.revenueLow));
+        sb.append(((this.revenueLow == null) ? "<null>" : this.revenueLow));
         sb.append(',');
         sb.append("revenueHigh");
         sb.append('=');
-        sb.append(((this.revenueHigh == null)?"<null>":this.revenueHigh));
+        sb.append(((this.revenueHigh == null) ? "<null>" : this.revenueHigh));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -168,14 +167,14 @@ public class Earnings {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.revenueLow == null)? 0 :this.revenueLow.hashCode()));
-        result = ((result* 31)+((this.revenueAverage == null)? 0 :this.revenueAverage.hashCode()));
-        result = ((result* 31)+((this.earningsLow == null)? 0 :this.earningsLow.hashCode()));
-        result = ((result* 31)+((this.earningsHigh == null)? 0 :this.earningsHigh.hashCode()));
-        result = ((result* 31)+((this.revenueHigh == null)? 0 :this.revenueHigh.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.earningsDate == null)? 0 :this.earningsDate.hashCode()));
-        result = ((result* 31)+((this.earningsAverage == null)? 0 :this.earningsAverage.hashCode()));
+        result = ((result * 31) + ((this.revenueLow == null) ? 0 : this.revenueLow.hashCode()));
+        result = ((result * 31) + ((this.revenueAverage == null) ? 0 : this.revenueAverage.hashCode()));
+        result = ((result * 31) + ((this.earningsLow == null) ? 0 : this.earningsLow.hashCode()));
+        result = ((result * 31) + ((this.earningsHigh == null) ? 0 : this.earningsHigh.hashCode()));
+        result = ((result * 31) + ((this.revenueHigh == null) ? 0 : this.revenueHigh.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.earningsDate == null) ? 0 : this.earningsDate.hashCode()));
+        result = ((result * 31) + ((this.earningsAverage == null) ? 0 : this.earningsAverage.hashCode()));
         return result;
     }
 
@@ -188,7 +187,7 @@ public class Earnings {
             return false;
         }
         Earnings rhs = ((Earnings) other);
-        return (((((((((this.revenueLow == rhs.revenueLow)||((this.revenueLow!= null)&&this.revenueLow.equals(rhs.revenueLow)))&&((this.revenueAverage == rhs.revenueAverage)||((this.revenueAverage!= null)&&this.revenueAverage.equals(rhs.revenueAverage))))&&((this.earningsLow == rhs.earningsLow)||((this.earningsLow!= null)&&this.earningsLow.equals(rhs.earningsLow))))&&((this.earningsHigh == rhs.earningsHigh)||((this.earningsHigh!= null)&&this.earningsHigh.equals(rhs.earningsHigh))))&&((this.revenueHigh == rhs.revenueHigh)||((this.revenueHigh!= null)&&this.revenueHigh.equals(rhs.revenueHigh))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.earningsDate == rhs.earningsDate)||((this.earningsDate!= null)&&this.earningsDate.equals(rhs.earningsDate))))&&((this.earningsAverage == rhs.earningsAverage)||((this.earningsAverage!= null)&&this.earningsAverage.equals(rhs.earningsAverage))));
+        return (((((((((this.revenueLow == rhs.revenueLow) || ((this.revenueLow != null) && this.revenueLow.equals(rhs.revenueLow))) && ((this.revenueAverage == rhs.revenueAverage) || ((this.revenueAverage != null) && this.revenueAverage.equals(rhs.revenueAverage)))) && ((this.earningsLow == rhs.earningsLow) || ((this.earningsLow != null) && this.earningsLow.equals(rhs.earningsLow)))) && ((this.earningsHigh == rhs.earningsHigh) || ((this.earningsHigh != null) && this.earningsHigh.equals(rhs.earningsHigh)))) && ((this.revenueHigh == rhs.revenueHigh) || ((this.revenueHigh != null) && this.revenueHigh.equals(rhs.revenueHigh)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.earningsDate == rhs.earningsDate) || ((this.earningsDate != null) && this.earningsDate.equals(rhs.earningsDate)))) && ((this.earningsAverage == rhs.earningsAverage) || ((this.earningsAverage != null) && this.earningsAverage.equals(rhs.earningsAverage))));
     }
 
 }

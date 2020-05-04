@@ -21,8 +21,8 @@ fun main() {
 @Repository
 class WatchlistRepo {
 
-    fun getWatchlist(watchlist: Watchlist): Set<StockTicker>{
-        when(watchlist){
+    fun getWatchlist(watchlist: Watchlist): Set<StockTicker> {
+        when (watchlist) {
             TEST -> return test()
             INVESTED -> return invested()
             EUR -> return eur()
@@ -180,6 +180,7 @@ class WatchlistRepo {
             StockTicker.fromString("REGI:NASDAQ")
         )
     }
+
     fun investedInUsdTech(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("GOOGL:NASDAQ"),
@@ -200,6 +201,7 @@ class WatchlistRepo {
             StockTicker.fromString("CLDR:NASDAQ")
         )
     }
+
     fun watchListUsdTech(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("AMD:NASDAQ"),
@@ -218,6 +220,7 @@ class WatchlistRepo {
             StockTicker.fromString("NOK:NYSE")
         )
     }
+
     fun watchListUsd(): Set<StockTicker> {
         return setOf(
             //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
@@ -235,6 +238,7 @@ class WatchlistRepo {
             StockTicker.fromString("ABBN:SIX")
         )
     }
+
     fun investedInChf(): Set<StockTicker> {
         return setOf(
         )
@@ -283,7 +287,7 @@ class WatchlistRepo {
             StockTicker.fromString("VESG:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VGS:ASX"),
-                StockTicker.fromString("IOO:ASX")
+            StockTicker.fromString("IOO:ASX")
         )
     }
 

@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.chart;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "chart"
 })
 public class ChartResponse {
@@ -47,14 +46,14 @@ public class ChartResponse {
         sb.append(ChartResponse.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("chart");
         sb.append('=');
-        sb.append(((this.chart == null)?"<null>":this.chart));
+        sb.append(((this.chart == null) ? "<null>" : this.chart));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -64,8 +63,8 @@ public class ChartResponse {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.chart == null)? 0 :this.chart.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.chart == null) ? 0 : this.chart.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
         return result;
     }
 
@@ -78,7 +77,7 @@ public class ChartResponse {
             return false;
         }
         ChartResponse rhs = ((ChartResponse) other);
-        return (((this.chart == rhs.chart)||((this.chart!= null)&&this.chart.equals(rhs.chart)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        return (((this.chart == rhs.chart) || ((this.chart != null) && this.chart.equals(rhs.chart))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
 }

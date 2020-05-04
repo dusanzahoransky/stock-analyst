@@ -37,8 +37,8 @@ class StockAnalysisService {
             /**
             Iterate though all stats using reflection to sum all values in order to calculate averages, such as:
             if (stock.enterpriseValue != null) {
-                averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
-                counter.enterpriseValueCount++
+            averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
+            counter.enterpriseValueCount++
             }
              */
 

@@ -6,7 +6,7 @@ import org.springframework.http.client.ClientHttpRequestExecution
 import org.springframework.http.client.ClientHttpRequestInterceptor
 import org.springframework.http.client.ClientHttpResponse
 
-class ClientLoggingInterceptor: ClientHttpRequestInterceptor {
+class ClientLoggingInterceptor : ClientHttpRequestInterceptor {
 
     private val logger = LoggerFactory.getLogger(this::class.java)
 

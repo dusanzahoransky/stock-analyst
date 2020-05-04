@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "yearly",
     "quarterly"
 })
@@ -62,18 +61,18 @@ public class FinancialsChart {
         sb.append(FinancialsChart.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("yearly");
         sb.append('=');
-        sb.append(((this.yearly == null)?"<null>":this.yearly));
+        sb.append(((this.yearly == null) ? "<null>" : this.yearly));
         sb.append(',');
         sb.append("quarterly");
         sb.append('=');
-        sb.append(((this.quarterly == null)?"<null>":this.quarterly));
+        sb.append(((this.quarterly == null) ? "<null>" : this.quarterly));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -83,9 +82,9 @@ public class FinancialsChart {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.quarterly == null)? 0 :this.quarterly.hashCode()));
-        result = ((result* 31)+((this.yearly == null)? 0 :this.yearly.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.quarterly == null) ? 0 : this.quarterly.hashCode()));
+        result = ((result * 31) + ((this.yearly == null) ? 0 : this.yearly.hashCode()));
         return result;
     }
 
@@ -98,7 +97,7 @@ public class FinancialsChart {
             return false;
         }
         FinancialsChart rhs = ((FinancialsChart) other);
-        return ((((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)))&&((this.quarterly == rhs.quarterly)||((this.quarterly!= null)&&this.quarterly.equals(rhs.quarterly))))&&((this.yearly == rhs.yearly)||((this.yearly!= null)&&this.yearly.equals(rhs.yearly))));
+        return ((((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))) && ((this.quarterly == rhs.quarterly) || ((this.quarterly != null) && this.quarterly.equals(rhs.quarterly)))) && ((this.yearly == rhs.yearly) || ((this.yearly != null) && this.yearly.equals(rhs.yearly))));
     }
 
 }

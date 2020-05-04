@@ -2,7 +2,6 @@ package com.github.dusanzahoransky.stockanalyst.controller
 
 import com.github.dusanzahoransky.stockanalyst.model.dto.AnalysisResult
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.service.StockAnalysisService
 import com.github.dusanzahoransky.stockanalyst.service.StockService
 import org.springframework.beans.factory.annotation.Autowired
@@ -33,7 +32,7 @@ class StockController @Autowired constructor(
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): AnalysisResult {
-        val stocks =  stockService.getStocks(symbols, forceRefresh, mockData)
+        val stocks = stockService.getStocks(symbols, forceRefresh, mockData)
         val averages = stockAnalysisService.calcStocksAverages(stocks)
         return AnalysisResult(averages, stocks)
     }

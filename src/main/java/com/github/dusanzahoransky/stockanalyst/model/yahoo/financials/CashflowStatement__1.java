@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "investments",
     "changeToLiabilities",
     "totalCashflowsFromInvestingActivities",
@@ -278,89 +277,89 @@ public class CashflowStatement__1 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(CashflowStatement__1 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(CashflowStatement__1.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("investments");
         sb.append('=');
-        sb.append(((this.investments == null)?"<null>":this.investments));
+        sb.append(((this.investments == null) ? "<null>" : this.investments));
         sb.append(',');
         sb.append("changeToLiabilities");
         sb.append('=');
-        sb.append(((this.changeToLiabilities == null)?"<null>":this.changeToLiabilities));
+        sb.append(((this.changeToLiabilities == null) ? "<null>" : this.changeToLiabilities));
         sb.append(',');
         sb.append("totalCashflowsFromInvestingActivities");
         sb.append('=');
-        sb.append(((this.totalCashflowsFromInvestingActivities == null)?"<null>":this.totalCashflowsFromInvestingActivities));
+        sb.append(((this.totalCashflowsFromInvestingActivities == null) ? "<null>" : this.totalCashflowsFromInvestingActivities));
         sb.append(',');
         sb.append("netBorrowings");
         sb.append('=');
-        sb.append(((this.netBorrowings == null)?"<null>":this.netBorrowings));
+        sb.append(((this.netBorrowings == null) ? "<null>" : this.netBorrowings));
         sb.append(',');
         sb.append("totalCashFromFinancingActivities");
         sb.append('=');
-        sb.append(((this.totalCashFromFinancingActivities == null)?"<null>":this.totalCashFromFinancingActivities));
+        sb.append(((this.totalCashFromFinancingActivities == null) ? "<null>" : this.totalCashFromFinancingActivities));
         sb.append(',');
         sb.append("changeToOperatingActivities");
         sb.append('=');
-        sb.append(((this.changeToOperatingActivities == null)?"<null>":this.changeToOperatingActivities));
+        sb.append(((this.changeToOperatingActivities == null) ? "<null>" : this.changeToOperatingActivities));
         sb.append(',');
         sb.append("netIncome");
         sb.append('=');
-        sb.append(((this.netIncome == null)?"<null>":this.netIncome));
+        sb.append(((this.netIncome == null) ? "<null>" : this.netIncome));
         sb.append(',');
         sb.append("changeInCash");
         sb.append('=');
-        sb.append(((this.changeInCash == null)?"<null>":this.changeInCash));
+        sb.append(((this.changeInCash == null) ? "<null>" : this.changeInCash));
         sb.append(',');
         sb.append("endDate");
         sb.append('=');
-        sb.append(((this.endDate == null)?"<null>":this.endDate));
+        sb.append(((this.endDate == null) ? "<null>" : this.endDate));
         sb.append(',');
         sb.append("repurchaseOfStock");
         sb.append('=');
-        sb.append(((this.repurchaseOfStock == null)?"<null>":this.repurchaseOfStock));
+        sb.append(((this.repurchaseOfStock == null) ? "<null>" : this.repurchaseOfStock));
         sb.append(',');
         sb.append("effectOfExchangeRate");
         sb.append('=');
-        sb.append(((this.effectOfExchangeRate == null)?"<null>":this.effectOfExchangeRate));
+        sb.append(((this.effectOfExchangeRate == null) ? "<null>" : this.effectOfExchangeRate));
         sb.append(',');
         sb.append("totalCashFromOperatingActivities");
         sb.append('=');
-        sb.append(((this.totalCashFromOperatingActivities == null)?"<null>":this.totalCashFromOperatingActivities));
+        sb.append(((this.totalCashFromOperatingActivities == null) ? "<null>" : this.totalCashFromOperatingActivities));
         sb.append(',');
         sb.append("depreciation");
         sb.append('=');
-        sb.append(((this.depreciation == null)?"<null>":this.depreciation));
+        sb.append(((this.depreciation == null) ? "<null>" : this.depreciation));
         sb.append(',');
         sb.append("otherCashflowsFromInvestingActivities");
         sb.append('=');
-        sb.append(((this.otherCashflowsFromInvestingActivities == null)?"<null>":this.otherCashflowsFromInvestingActivities));
+        sb.append(((this.otherCashflowsFromInvestingActivities == null) ? "<null>" : this.otherCashflowsFromInvestingActivities));
         sb.append(',');
         sb.append("changeToAccountReceivables");
         sb.append('=');
-        sb.append(((this.changeToAccountReceivables == null)?"<null>":this.changeToAccountReceivables));
+        sb.append(((this.changeToAccountReceivables == null) ? "<null>" : this.changeToAccountReceivables));
         sb.append(',');
         sb.append("otherCashflowsFromFinancingActivities");
         sb.append('=');
-        sb.append(((this.otherCashflowsFromFinancingActivities == null)?"<null>":this.otherCashflowsFromFinancingActivities));
+        sb.append(((this.otherCashflowsFromFinancingActivities == null) ? "<null>" : this.otherCashflowsFromFinancingActivities));
         sb.append(',');
         sb.append("maxAge");
         sb.append('=');
-        sb.append(((this.maxAge == null)?"<null>":this.maxAge));
+        sb.append(((this.maxAge == null) ? "<null>" : this.maxAge));
         sb.append(',');
         sb.append("changeToNetincome");
         sb.append('=');
-        sb.append(((this.changeToNetincome == null)?"<null>":this.changeToNetincome));
+        sb.append(((this.changeToNetincome == null) ? "<null>" : this.changeToNetincome));
         sb.append(',');
         sb.append("capitalExpenditures");
         sb.append('=');
-        sb.append(((this.capitalExpenditures == null)?"<null>":this.capitalExpenditures));
+        sb.append(((this.capitalExpenditures == null) ? "<null>" : this.capitalExpenditures));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -370,26 +369,26 @@ public class CashflowStatement__1 {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.endDate == null)? 0 :this.endDate.hashCode()));
-        result = ((result* 31)+((this.capitalExpenditures == null)? 0 :this.capitalExpenditures.hashCode()));
-        result = ((result* 31)+((this.repurchaseOfStock == null)? 0 :this.repurchaseOfStock.hashCode()));
-        result = ((result* 31)+((this.investments == null)? 0 :this.investments.hashCode()));
-        result = ((result* 31)+((this.totalCashFromOperatingActivities == null)? 0 :this.totalCashFromOperatingActivities.hashCode()));
-        result = ((result* 31)+((this.changeInCash == null)? 0 :this.changeInCash.hashCode()));
-        result = ((result* 31)+((this.changeToAccountReceivables == null)? 0 :this.changeToAccountReceivables.hashCode()));
-        result = ((result* 31)+((this.netBorrowings == null)? 0 :this.netBorrowings.hashCode()));
-        result = ((result* 31)+((this.changeToOperatingActivities == null)? 0 :this.changeToOperatingActivities.hashCode()));
-        result = ((result* 31)+((this.maxAge == null)? 0 :this.maxAge.hashCode()));
-        result = ((result* 31)+((this.effectOfExchangeRate == null)? 0 :this.effectOfExchangeRate.hashCode()));
-        result = ((result* 31)+((this.totalCashflowsFromInvestingActivities == null)? 0 :this.totalCashflowsFromInvestingActivities.hashCode()));
-        result = ((result* 31)+((this.netIncome == null)? 0 :this.netIncome.hashCode()));
-        result = ((result* 31)+((this.otherCashflowsFromFinancingActivities == null)? 0 :this.otherCashflowsFromFinancingActivities.hashCode()));
-        result = ((result* 31)+((this.totalCashFromFinancingActivities == null)? 0 :this.totalCashFromFinancingActivities.hashCode()));
-        result = ((result* 31)+((this.otherCashflowsFromInvestingActivities == null)? 0 :this.otherCashflowsFromInvestingActivities.hashCode()));
-        result = ((result* 31)+((this.changeToNetincome == null)? 0 :this.changeToNetincome.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.changeToLiabilities == null)? 0 :this.changeToLiabilities.hashCode()));
-        result = ((result* 31)+((this.depreciation == null)? 0 :this.depreciation.hashCode()));
+        result = ((result * 31) + ((this.endDate == null) ? 0 : this.endDate.hashCode()));
+        result = ((result * 31) + ((this.capitalExpenditures == null) ? 0 : this.capitalExpenditures.hashCode()));
+        result = ((result * 31) + ((this.repurchaseOfStock == null) ? 0 : this.repurchaseOfStock.hashCode()));
+        result = ((result * 31) + ((this.investments == null) ? 0 : this.investments.hashCode()));
+        result = ((result * 31) + ((this.totalCashFromOperatingActivities == null) ? 0 : this.totalCashFromOperatingActivities.hashCode()));
+        result = ((result * 31) + ((this.changeInCash == null) ? 0 : this.changeInCash.hashCode()));
+        result = ((result * 31) + ((this.changeToAccountReceivables == null) ? 0 : this.changeToAccountReceivables.hashCode()));
+        result = ((result * 31) + ((this.netBorrowings == null) ? 0 : this.netBorrowings.hashCode()));
+        result = ((result * 31) + ((this.changeToOperatingActivities == null) ? 0 : this.changeToOperatingActivities.hashCode()));
+        result = ((result * 31) + ((this.maxAge == null) ? 0 : this.maxAge.hashCode()));
+        result = ((result * 31) + ((this.effectOfExchangeRate == null) ? 0 : this.effectOfExchangeRate.hashCode()));
+        result = ((result * 31) + ((this.totalCashflowsFromInvestingActivities == null) ? 0 : this.totalCashflowsFromInvestingActivities.hashCode()));
+        result = ((result * 31) + ((this.netIncome == null) ? 0 : this.netIncome.hashCode()));
+        result = ((result * 31) + ((this.otherCashflowsFromFinancingActivities == null) ? 0 : this.otherCashflowsFromFinancingActivities.hashCode()));
+        result = ((result * 31) + ((this.totalCashFromFinancingActivities == null) ? 0 : this.totalCashFromFinancingActivities.hashCode()));
+        result = ((result * 31) + ((this.otherCashflowsFromInvestingActivities == null) ? 0 : this.otherCashflowsFromInvestingActivities.hashCode()));
+        result = ((result * 31) + ((this.changeToNetincome == null) ? 0 : this.changeToNetincome.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.changeToLiabilities == null) ? 0 : this.changeToLiabilities.hashCode()));
+        result = ((result * 31) + ((this.depreciation == null) ? 0 : this.depreciation.hashCode()));
         return result;
     }
 
@@ -402,7 +401,7 @@ public class CashflowStatement__1 {
             return false;
         }
         CashflowStatement__1 rhs = ((CashflowStatement__1) other);
-        return (((((((((((((((((((((this.endDate == rhs.endDate)||((this.endDate!= null)&&this.endDate.equals(rhs.endDate)))&&((this.capitalExpenditures == rhs.capitalExpenditures)||((this.capitalExpenditures!= null)&&this.capitalExpenditures.equals(rhs.capitalExpenditures))))&&((this.repurchaseOfStock == rhs.repurchaseOfStock)||((this.repurchaseOfStock!= null)&&this.repurchaseOfStock.equals(rhs.repurchaseOfStock))))&&((this.investments == rhs.investments)||((this.investments!= null)&&this.investments.equals(rhs.investments))))&&((this.totalCashFromOperatingActivities == rhs.totalCashFromOperatingActivities)||((this.totalCashFromOperatingActivities!= null)&&this.totalCashFromOperatingActivities.equals(rhs.totalCashFromOperatingActivities))))&&((this.changeInCash == rhs.changeInCash)||((this.changeInCash!= null)&&this.changeInCash.equals(rhs.changeInCash))))&&((this.changeToAccountReceivables == rhs.changeToAccountReceivables)||((this.changeToAccountReceivables!= null)&&this.changeToAccountReceivables.equals(rhs.changeToAccountReceivables))))&&((this.netBorrowings == rhs.netBorrowings)||((this.netBorrowings!= null)&&this.netBorrowings.equals(rhs.netBorrowings))))&&((this.changeToOperatingActivities == rhs.changeToOperatingActivities)||((this.changeToOperatingActivities!= null)&&this.changeToOperatingActivities.equals(rhs.changeToOperatingActivities))))&&((this.maxAge == rhs.maxAge)||((this.maxAge!= null)&&this.maxAge.equals(rhs.maxAge))))&&((this.effectOfExchangeRate == rhs.effectOfExchangeRate)||((this.effectOfExchangeRate!= null)&&this.effectOfExchangeRate.equals(rhs.effectOfExchangeRate))))&&((this.totalCashflowsFromInvestingActivities == rhs.totalCashflowsFromInvestingActivities)||((this.totalCashflowsFromInvestingActivities!= null)&&this.totalCashflowsFromInvestingActivities.equals(rhs.totalCashflowsFromInvestingActivities))))&&((this.netIncome == rhs.netIncome)||((this.netIncome!= null)&&this.netIncome.equals(rhs.netIncome))))&&((this.otherCashflowsFromFinancingActivities == rhs.otherCashflowsFromFinancingActivities)||((this.otherCashflowsFromFinancingActivities!= null)&&this.otherCashflowsFromFinancingActivities.equals(rhs.otherCashflowsFromFinancingActivities))))&&((this.totalCashFromFinancingActivities == rhs.totalCashFromFinancingActivities)||((this.totalCashFromFinancingActivities!= null)&&this.totalCashFromFinancingActivities.equals(rhs.totalCashFromFinancingActivities))))&&((this.otherCashflowsFromInvestingActivities == rhs.otherCashflowsFromInvestingActivities)||((this.otherCashflowsFromInvestingActivities!= null)&&this.otherCashflowsFromInvestingActivities.equals(rhs.otherCashflowsFromInvestingActivities))))&&((this.changeToNetincome == rhs.changeToNetincome)||((this.changeToNetincome!= null)&&this.changeToNetincome.equals(rhs.changeToNetincome))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.changeToLiabilities == rhs.changeToLiabilities)||((this.changeToLiabilities!= null)&&this.changeToLiabilities.equals(rhs.changeToLiabilities))))&&((this.depreciation == rhs.depreciation)||((this.depreciation!= null)&&this.depreciation.equals(rhs.depreciation))));
+        return (((((((((((((((((((((this.endDate == rhs.endDate) || ((this.endDate != null) && this.endDate.equals(rhs.endDate))) && ((this.capitalExpenditures == rhs.capitalExpenditures) || ((this.capitalExpenditures != null) && this.capitalExpenditures.equals(rhs.capitalExpenditures)))) && ((this.repurchaseOfStock == rhs.repurchaseOfStock) || ((this.repurchaseOfStock != null) && this.repurchaseOfStock.equals(rhs.repurchaseOfStock)))) && ((this.investments == rhs.investments) || ((this.investments != null) && this.investments.equals(rhs.investments)))) && ((this.totalCashFromOperatingActivities == rhs.totalCashFromOperatingActivities) || ((this.totalCashFromOperatingActivities != null) && this.totalCashFromOperatingActivities.equals(rhs.totalCashFromOperatingActivities)))) && ((this.changeInCash == rhs.changeInCash) || ((this.changeInCash != null) && this.changeInCash.equals(rhs.changeInCash)))) && ((this.changeToAccountReceivables == rhs.changeToAccountReceivables) || ((this.changeToAccountReceivables != null) && this.changeToAccountReceivables.equals(rhs.changeToAccountReceivables)))) && ((this.netBorrowings == rhs.netBorrowings) || ((this.netBorrowings != null) && this.netBorrowings.equals(rhs.netBorrowings)))) && ((this.changeToOperatingActivities == rhs.changeToOperatingActivities) || ((this.changeToOperatingActivities != null) && this.changeToOperatingActivities.equals(rhs.changeToOperatingActivities)))) && ((this.maxAge == rhs.maxAge) || ((this.maxAge != null) && this.maxAge.equals(rhs.maxAge)))) && ((this.effectOfExchangeRate == rhs.effectOfExchangeRate) || ((this.effectOfExchangeRate != null) && this.effectOfExchangeRate.equals(rhs.effectOfExchangeRate)))) && ((this.totalCashflowsFromInvestingActivities == rhs.totalCashflowsFromInvestingActivities) || ((this.totalCashflowsFromInvestingActivities != null) && this.totalCashflowsFromInvestingActivities.equals(rhs.totalCashflowsFromInvestingActivities)))) && ((this.netIncome == rhs.netIncome) || ((this.netIncome != null) && this.netIncome.equals(rhs.netIncome)))) && ((this.otherCashflowsFromFinancingActivities == rhs.otherCashflowsFromFinancingActivities) || ((this.otherCashflowsFromFinancingActivities != null) && this.otherCashflowsFromFinancingActivities.equals(rhs.otherCashflowsFromFinancingActivities)))) && ((this.totalCashFromFinancingActivities == rhs.totalCashFromFinancingActivities) || ((this.totalCashFromFinancingActivities != null) && this.totalCashFromFinancingActivities.equals(rhs.totalCashFromFinancingActivities)))) && ((this.otherCashflowsFromInvestingActivities == rhs.otherCashflowsFromInvestingActivities) || ((this.otherCashflowsFromInvestingActivities != null) && this.otherCashflowsFromInvestingActivities.equals(rhs.otherCashflowsFromInvestingActivities)))) && ((this.changeToNetincome == rhs.changeToNetincome) || ((this.changeToNetincome != null) && this.changeToNetincome.equals(rhs.changeToNetincome)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.changeToLiabilities == rhs.changeToLiabilities) || ((this.changeToLiabilities != null) && this.changeToLiabilities.equals(rhs.changeToLiabilities)))) && ((this.depreciation == rhs.depreciation) || ((this.depreciation != null) && this.depreciation.equals(rhs.depreciation))));
     }
 
 }

@@ -95,7 +95,7 @@ class CalcUtils {
          * Null-safe multiply of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        public fun <N : Number> multiply(value1: N?, value2: N?): N? {
+        fun <N : Number> multiply(value1: N?, value2: N?): N? {
             return if (value1 == null || value2 == 0) {
                 return null
             } else {
@@ -112,7 +112,7 @@ class CalcUtils {
          * Null-safe percentage multiplier of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        public fun <N : Number> percent(value1: N?): N? {
+        fun <N : Number> percent(value1: N?): N? {
             return if (value1 == null) {
                 null
             } else {
@@ -129,7 +129,7 @@ class CalcUtils {
          * Null-safe division of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        public fun <N : Number> div(value1: N?, size: Int): N? {
+        fun <N : Number> div(value1: N?, size: Int): N? {
             return if (value1 == null) value1 else {
                 if (value1 is Double)
                     (value1 / size) as N

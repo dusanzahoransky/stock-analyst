@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "date",
     "actual",
     "estimate"
@@ -73,22 +72,22 @@ public class Quarterly {
         sb.append(Quarterly.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("date");
         sb.append('=');
-        sb.append(((this.date == null)?"<null>":this.date));
+        sb.append(((this.date == null) ? "<null>" : this.date));
         sb.append(',');
         sb.append("actual");
         sb.append('=');
-        sb.append(((this.actual == null)?"<null>":this.actual));
+        sb.append(((this.actual == null) ? "<null>" : this.actual));
         sb.append(',');
         sb.append("estimate");
         sb.append('=');
-        sb.append(((this.estimate == null)?"<null>":this.estimate));
+        sb.append(((this.estimate == null) ? "<null>" : this.estimate));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -98,10 +97,10 @@ public class Quarterly {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.date == null)? 0 :this.date.hashCode()));
-        result = ((result* 31)+((this.estimate == null)? 0 :this.estimate.hashCode()));
-        result = ((result* 31)+((this.actual == null)? 0 :this.actual.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.date == null) ? 0 : this.date.hashCode()));
+        result = ((result * 31) + ((this.estimate == null) ? 0 : this.estimate.hashCode()));
+        result = ((result * 31) + ((this.actual == null) ? 0 : this.actual.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
         return result;
     }
 
@@ -114,7 +113,7 @@ public class Quarterly {
             return false;
         }
         Quarterly rhs = ((Quarterly) other);
-        return (((((this.date == rhs.date)||((this.date!= null)&&this.date.equals(rhs.date)))&&((this.estimate == rhs.estimate)||((this.estimate!= null)&&this.estimate.equals(rhs.estimate))))&&((this.actual == rhs.actual)||((this.actual!= null)&&this.actual.equals(rhs.actual))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        return (((((this.date == rhs.date) || ((this.date != null) && this.date.equals(rhs.date))) && ((this.estimate == rhs.estimate) || ((this.estimate != null) && this.estimate.equals(rhs.estimate)))) && ((this.actual == rhs.actual) || ((this.actual != null) && this.actual.equals(rhs.actual)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
 }

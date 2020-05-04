@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "quarterly",
     "currentQuarterEstimate",
     "currentQuarterEstimateDate",
@@ -101,30 +100,30 @@ public class EarningsChart {
         sb.append(EarningsChart.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("quarterly");
         sb.append('=');
-        sb.append(((this.quarterly == null)?"<null>":this.quarterly));
+        sb.append(((this.quarterly == null) ? "<null>" : this.quarterly));
         sb.append(',');
         sb.append("currentQuarterEstimate");
         sb.append('=');
-        sb.append(((this.currentQuarterEstimate == null)?"<null>":this.currentQuarterEstimate));
+        sb.append(((this.currentQuarterEstimate == null) ? "<null>" : this.currentQuarterEstimate));
         sb.append(',');
         sb.append("currentQuarterEstimateDate");
         sb.append('=');
-        sb.append(((this.currentQuarterEstimateDate == null)?"<null>":this.currentQuarterEstimateDate));
+        sb.append(((this.currentQuarterEstimateDate == null) ? "<null>" : this.currentQuarterEstimateDate));
         sb.append(',');
         sb.append("currentQuarterEstimateYear");
         sb.append('=');
-        sb.append(((this.currentQuarterEstimateYear == null)?"<null>":this.currentQuarterEstimateYear));
+        sb.append(((this.currentQuarterEstimateYear == null) ? "<null>" : this.currentQuarterEstimateYear));
         sb.append(',');
         sb.append("earningsDate");
         sb.append('=');
-        sb.append(((this.earningsDate == null)?"<null>":this.earningsDate));
+        sb.append(((this.earningsDate == null) ? "<null>" : this.earningsDate));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -134,12 +133,12 @@ public class EarningsChart {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.currentQuarterEstimateDate == null)? 0 :this.currentQuarterEstimateDate.hashCode()));
-        result = ((result* 31)+((this.currentQuarterEstimate == null)? 0 :this.currentQuarterEstimate.hashCode()));
-        result = ((result* 31)+((this.currentQuarterEstimateYear == null)? 0 :this.currentQuarterEstimateYear.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.quarterly == null)? 0 :this.quarterly.hashCode()));
-        result = ((result* 31)+((this.earningsDate == null)? 0 :this.earningsDate.hashCode()));
+        result = ((result * 31) + ((this.currentQuarterEstimateDate == null) ? 0 : this.currentQuarterEstimateDate.hashCode()));
+        result = ((result * 31) + ((this.currentQuarterEstimate == null) ? 0 : this.currentQuarterEstimate.hashCode()));
+        result = ((result * 31) + ((this.currentQuarterEstimateYear == null) ? 0 : this.currentQuarterEstimateYear.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.quarterly == null) ? 0 : this.quarterly.hashCode()));
+        result = ((result * 31) + ((this.earningsDate == null) ? 0 : this.earningsDate.hashCode()));
         return result;
     }
 
@@ -152,7 +151,7 @@ public class EarningsChart {
             return false;
         }
         EarningsChart rhs = ((EarningsChart) other);
-        return (((((((this.currentQuarterEstimateDate == rhs.currentQuarterEstimateDate)||((this.currentQuarterEstimateDate!= null)&&this.currentQuarterEstimateDate.equals(rhs.currentQuarterEstimateDate)))&&((this.currentQuarterEstimate == rhs.currentQuarterEstimate)||((this.currentQuarterEstimate!= null)&&this.currentQuarterEstimate.equals(rhs.currentQuarterEstimate))))&&((this.currentQuarterEstimateYear == rhs.currentQuarterEstimateYear)||((this.currentQuarterEstimateYear!= null)&&this.currentQuarterEstimateYear.equals(rhs.currentQuarterEstimateYear))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.quarterly == rhs.quarterly)||((this.quarterly!= null)&&this.quarterly.equals(rhs.quarterly))))&&((this.earningsDate == rhs.earningsDate)||((this.earningsDate!= null)&&this.earningsDate.equals(rhs.earningsDate))));
+        return (((((((this.currentQuarterEstimateDate == rhs.currentQuarterEstimateDate) || ((this.currentQuarterEstimateDate != null) && this.currentQuarterEstimateDate.equals(rhs.currentQuarterEstimateDate))) && ((this.currentQuarterEstimate == rhs.currentQuarterEstimate) || ((this.currentQuarterEstimate != null) && this.currentQuarterEstimate.equals(rhs.currentQuarterEstimate)))) && ((this.currentQuarterEstimateYear == rhs.currentQuarterEstimateYear) || ((this.currentQuarterEstimateYear != null) && this.currentQuarterEstimateYear.equals(rhs.currentQuarterEstimateYear)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.quarterly == rhs.quarterly) || ((this.quarterly != null) && this.quarterly.equals(rhs.quarterly)))) && ((this.earningsDate == rhs.earningsDate) || ((this.earningsDate != null) && this.earningsDate.equals(rhs.earningsDate))));
     }
 
 }

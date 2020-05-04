@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "maxAge",
     "earningsChart",
     "financialsChart",
@@ -86,26 +85,26 @@ public class Earnings {
         sb.append(Earnings.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("maxAge");
         sb.append('=');
-        sb.append(((this.maxAge == null)?"<null>":this.maxAge));
+        sb.append(((this.maxAge == null) ? "<null>" : this.maxAge));
         sb.append(',');
         sb.append("earningsChart");
         sb.append('=');
-        sb.append(((this.earningsChart == null)?"<null>":this.earningsChart));
+        sb.append(((this.earningsChart == null) ? "<null>" : this.earningsChart));
         sb.append(',');
         sb.append("financialsChart");
         sb.append('=');
-        sb.append(((this.financialsChart == null)?"<null>":this.financialsChart));
+        sb.append(((this.financialsChart == null) ? "<null>" : this.financialsChart));
         sb.append(',');
         sb.append("financialCurrency");
         sb.append('=');
-        sb.append(((this.financialCurrency == null)?"<null>":this.financialCurrency));
+        sb.append(((this.financialCurrency == null) ? "<null>" : this.financialCurrency));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -115,11 +114,11 @@ public class Earnings {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.financialsChart == null)? 0 :this.financialsChart.hashCode()));
-        result = ((result* 31)+((this.financialCurrency == null)? 0 :this.financialCurrency.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.maxAge == null)? 0 :this.maxAge.hashCode()));
-        result = ((result* 31)+((this.earningsChart == null)? 0 :this.earningsChart.hashCode()));
+        result = ((result * 31) + ((this.financialsChart == null) ? 0 : this.financialsChart.hashCode()));
+        result = ((result * 31) + ((this.financialCurrency == null) ? 0 : this.financialCurrency.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.maxAge == null) ? 0 : this.maxAge.hashCode()));
+        result = ((result * 31) + ((this.earningsChart == null) ? 0 : this.earningsChart.hashCode()));
         return result;
     }
 
@@ -132,7 +131,7 @@ public class Earnings {
             return false;
         }
         Earnings rhs = ((Earnings) other);
-        return ((((((this.financialsChart == rhs.financialsChart)||((this.financialsChart!= null)&&this.financialsChart.equals(rhs.financialsChart)))&&((this.financialCurrency == rhs.financialCurrency)||((this.financialCurrency!= null)&&this.financialCurrency.equals(rhs.financialCurrency))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.maxAge == rhs.maxAge)||((this.maxAge!= null)&&this.maxAge.equals(rhs.maxAge))))&&((this.earningsChart == rhs.earningsChart)||((this.earningsChart!= null)&&this.earningsChart.equals(rhs.earningsChart))));
+        return ((((((this.financialsChart == rhs.financialsChart) || ((this.financialsChart != null) && this.financialsChart.equals(rhs.financialsChart))) && ((this.financialCurrency == rhs.financialCurrency) || ((this.financialCurrency != null) && this.financialCurrency.equals(rhs.financialCurrency)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.maxAge == rhs.maxAge) || ((this.maxAge != null) && this.maxAge.equals(rhs.maxAge)))) && ((this.earningsChart == rhs.earningsChart) || ((this.earningsChart != null) && this.earningsChart.equals(rhs.earningsChart))));
     }
 
 }

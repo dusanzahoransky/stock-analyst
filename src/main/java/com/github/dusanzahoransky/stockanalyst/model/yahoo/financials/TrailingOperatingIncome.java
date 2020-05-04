@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "dataId",
     "asOfDate",
     "periodType",
@@ -99,30 +98,30 @@ public class TrailingOperatingIncome {
         sb.append(TrailingOperatingIncome.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("dataId");
         sb.append('=');
-        sb.append(((this.dataId == null)?"<null>":this.dataId));
+        sb.append(((this.dataId == null) ? "<null>" : this.dataId));
         sb.append(',');
         sb.append("asOfDate");
         sb.append('=');
-        sb.append(((this.asOfDate == null)?"<null>":this.asOfDate));
+        sb.append(((this.asOfDate == null) ? "<null>" : this.asOfDate));
         sb.append(',');
         sb.append("periodType");
         sb.append('=');
-        sb.append(((this.periodType == null)?"<null>":this.periodType));
+        sb.append(((this.periodType == null) ? "<null>" : this.periodType));
         sb.append(',');
         sb.append("currencyCode");
         sb.append('=');
-        sb.append(((this.currencyCode == null)?"<null>":this.currencyCode));
+        sb.append(((this.currencyCode == null) ? "<null>" : this.currencyCode));
         sb.append(',');
         sb.append("reportedValue");
         sb.append('=');
-        sb.append(((this.reportedValue == null)?"<null>":this.reportedValue));
+        sb.append(((this.reportedValue == null) ? "<null>" : this.reportedValue));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -132,12 +131,12 @@ public class TrailingOperatingIncome {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.periodType == null)? 0 :this.periodType.hashCode()));
-        result = ((result* 31)+((this.dataId == null)? 0 :this.dataId.hashCode()));
-        result = ((result* 31)+((this.reportedValue == null)? 0 :this.reportedValue.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.asOfDate == null)? 0 :this.asOfDate.hashCode()));
-        result = ((result* 31)+((this.currencyCode == null)? 0 :this.currencyCode.hashCode()));
+        result = ((result * 31) + ((this.periodType == null) ? 0 : this.periodType.hashCode()));
+        result = ((result * 31) + ((this.dataId == null) ? 0 : this.dataId.hashCode()));
+        result = ((result * 31) + ((this.reportedValue == null) ? 0 : this.reportedValue.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.asOfDate == null) ? 0 : this.asOfDate.hashCode()));
+        result = ((result * 31) + ((this.currencyCode == null) ? 0 : this.currencyCode.hashCode()));
         return result;
     }
 
@@ -150,7 +149,7 @@ public class TrailingOperatingIncome {
             return false;
         }
         TrailingOperatingIncome rhs = ((TrailingOperatingIncome) other);
-        return (((((((this.periodType == rhs.periodType)||((this.periodType!= null)&&this.periodType.equals(rhs.periodType)))&&((this.dataId == rhs.dataId)||((this.dataId!= null)&&this.dataId.equals(rhs.dataId))))&&((this.reportedValue == rhs.reportedValue)||((this.reportedValue!= null)&&this.reportedValue.equals(rhs.reportedValue))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.asOfDate == rhs.asOfDate)||((this.asOfDate!= null)&&this.asOfDate.equals(rhs.asOfDate))))&&((this.currencyCode == rhs.currencyCode)||((this.currencyCode!= null)&&this.currencyCode.equals(rhs.currencyCode))));
+        return (((((((this.periodType == rhs.periodType) || ((this.periodType != null) && this.periodType.equals(rhs.periodType))) && ((this.dataId == rhs.dataId) || ((this.dataId != null) && this.dataId.equals(rhs.dataId)))) && ((this.reportedValue == rhs.reportedValue) || ((this.reportedValue != null) && this.reportedValue.equals(rhs.reportedValue)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.asOfDate == rhs.asOfDate) || ((this.asOfDate != null) && this.asOfDate.equals(rhs.asOfDate)))) && ((this.currencyCode == rhs.currencyCode) || ((this.currencyCode != null) && this.currencyCode.equals(rhs.currencyCode))));
     }
 
 }

@@ -1,23 +1,19 @@
 package com.github.dusanzahoransky.stockanalyst
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan
-import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
-import java.time.Instant
-import java.time.LocalDateTime
 
 @SpringBootApplication(
-	scanBasePackages = [
-		"com.github.dusanzahoransky.stockanalyst.repository",
-		"com.github.dusanzahoransky.stockanalyst.controller",
-		"com.github.dusanzahoransky.stockanalyst.service",
-		"com.github.dusanzahoransky.stockanalyst.client"
-	]
+    scanBasePackages = [
+        "com.github.dusanzahoransky.stockanalyst.repository",
+        "com.github.dusanzahoransky.stockanalyst.controller",
+        "com.github.dusanzahoransky.stockanalyst.service",
+        "com.github.dusanzahoransky.stockanalyst.client"
+    ]
 )
 class StockAnalystApplication
 
 fun main(args: Array<String>) {
-	runApplication<StockAnalystApplication>(*args)
+    runApplication<StockAnalystApplication>(*args)
 }
 

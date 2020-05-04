@@ -13,6 +13,7 @@ class YahooFinanceRestTemplateConfig {
 
     @Value("\${yahoo.client.xRapidapiKey}")
     lateinit var xRapidapiKey: String
+
     @Value("\${yahoo.client.xRapidapiHost}")
     lateinit var xRapidapiHost: String
 

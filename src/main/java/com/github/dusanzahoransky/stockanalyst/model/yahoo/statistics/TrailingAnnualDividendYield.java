@@ -1,4 +1,3 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;

@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "incomeStatementHistory",
     "maxAge"
 })
@@ -59,21 +58,21 @@ public class IncomeStatementHistory__1 {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IncomeStatementHistory__1 .class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(IncomeStatementHistory__1.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("incomeStatementHistory");
         sb.append('=');
-        sb.append(((this.incomeStatementHistory == null)?"<null>":this.incomeStatementHistory));
+        sb.append(((this.incomeStatementHistory == null) ? "<null>" : this.incomeStatementHistory));
         sb.append(',');
         sb.append("maxAge");
         sb.append('=');
-        sb.append(((this.maxAge == null)?"<null>":this.maxAge));
+        sb.append(((this.maxAge == null) ? "<null>" : this.maxAge));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -83,9 +82,9 @@ public class IncomeStatementHistory__1 {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.incomeStatementHistory == null)? 0 :this.incomeStatementHistory.hashCode()));
-        result = ((result* 31)+((this.maxAge == null)? 0 :this.maxAge.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.incomeStatementHistory == null) ? 0 : this.incomeStatementHistory.hashCode()));
+        result = ((result * 31) + ((this.maxAge == null) ? 0 : this.maxAge.hashCode()));
         return result;
     }
 
@@ -98,7 +97,7 @@ public class IncomeStatementHistory__1 {
             return false;
         }
         IncomeStatementHistory__1 rhs = ((IncomeStatementHistory__1) other);
-        return ((((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)))&&((this.incomeStatementHistory == rhs.incomeStatementHistory)||((this.incomeStatementHistory!= null)&&this.incomeStatementHistory.equals(rhs.incomeStatementHistory))))&&((this.maxAge == rhs.maxAge)||((this.maxAge!= null)&&this.maxAge.equals(rhs.maxAge))));
+        return ((((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))) && ((this.incomeStatementHistory == rhs.incomeStatementHistory) || ((this.incomeStatementHistory != null) && this.incomeStatementHistory.equals(rhs.incomeStatementHistory)))) && ((this.maxAge == rhs.maxAge) || ((this.maxAge != null) && this.maxAge.equals(rhs.maxAge))));
     }
 
 }

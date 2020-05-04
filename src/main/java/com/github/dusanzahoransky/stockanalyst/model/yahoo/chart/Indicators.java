@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.chart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "quote",
     "adjclose"
 })
@@ -62,18 +61,18 @@ public class Indicators {
         sb.append(Indicators.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("quote");
         sb.append('=');
-        sb.append(((this.quote == null)?"<null>":this.quote));
+        sb.append(((this.quote == null) ? "<null>" : this.quote));
         sb.append(',');
         sb.append("adjclose");
         sb.append('=');
-        sb.append(((this.adjclose == null)?"<null>":this.adjclose));
+        sb.append(((this.adjclose == null) ? "<null>" : this.adjclose));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -83,9 +82,9 @@ public class Indicators {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.adjclose == null)? 0 :this.adjclose.hashCode()));
-        result = ((result* 31)+((this.quote == null)? 0 :this.quote.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.adjclose == null) ? 0 : this.adjclose.hashCode()));
+        result = ((result * 31) + ((this.quote == null) ? 0 : this.quote.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
         return result;
     }
 
@@ -98,7 +97,7 @@ public class Indicators {
             return false;
         }
         Indicators rhs = ((Indicators) other);
-        return ((((this.adjclose == rhs.adjclose)||((this.adjclose!= null)&&this.adjclose.equals(rhs.adjclose)))&&((this.quote == rhs.quote)||((this.quote!= null)&&this.quote.equals(rhs.quote))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        return ((((this.adjclose == rhs.adjclose) || ((this.adjclose != null) && this.adjclose.equals(rhs.adjclose))) && ((this.quote == rhs.quote) || ((this.quote != null) && this.quote.equals(rhs.quote)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
 }

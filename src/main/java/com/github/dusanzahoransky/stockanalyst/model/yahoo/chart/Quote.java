@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.chart;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "close",
     "open",
     "high",
@@ -101,30 +100,30 @@ public class Quote {
         sb.append(Quote.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("close");
         sb.append('=');
-        sb.append(((this.close == null)?"<null>":this.close));
+        sb.append(((this.close == null) ? "<null>" : this.close));
         sb.append(',');
         sb.append("open");
         sb.append('=');
-        sb.append(((this.open == null)?"<null>":this.open));
+        sb.append(((this.open == null) ? "<null>" : this.open));
         sb.append(',');
         sb.append("high");
         sb.append('=');
-        sb.append(((this.high == null)?"<null>":this.high));
+        sb.append(((this.high == null) ? "<null>" : this.high));
         sb.append(',');
         sb.append("volume");
         sb.append('=');
-        sb.append(((this.volume == null)?"<null>":this.volume));
+        sb.append(((this.volume == null) ? "<null>" : this.volume));
         sb.append(',');
         sb.append("low");
         sb.append('=');
-        sb.append(((this.low == null)?"<null>":this.low));
+        sb.append(((this.low == null) ? "<null>" : this.low));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -134,12 +133,12 @@ public class Quote {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.volume == null)? 0 :this.volume.hashCode()));
-        result = ((result* 31)+((this.high == null)? 0 :this.high.hashCode()));
-        result = ((result* 31)+((this.low == null)? 0 :this.low.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.close == null)? 0 :this.close.hashCode()));
-        result = ((result* 31)+((this.open == null)? 0 :this.open.hashCode()));
+        result = ((result * 31) + ((this.volume == null) ? 0 : this.volume.hashCode()));
+        result = ((result * 31) + ((this.high == null) ? 0 : this.high.hashCode()));
+        result = ((result * 31) + ((this.low == null) ? 0 : this.low.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.close == null) ? 0 : this.close.hashCode()));
+        result = ((result * 31) + ((this.open == null) ? 0 : this.open.hashCode()));
         return result;
     }
 
@@ -152,7 +151,7 @@ public class Quote {
             return false;
         }
         Quote rhs = ((Quote) other);
-        return (((((((this.volume == rhs.volume)||((this.volume!= null)&&this.volume.equals(rhs.volume)))&&((this.high == rhs.high)||((this.high!= null)&&this.high.equals(rhs.high))))&&((this.low == rhs.low)||((this.low!= null)&&this.low.equals(rhs.low))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.close == rhs.close)||((this.close!= null)&&this.close.equals(rhs.close))))&&((this.open == rhs.open)||((this.open!= null)&&this.open.equals(rhs.open))));
+        return (((((((this.volume == rhs.volume) || ((this.volume != null) && this.volume.equals(rhs.volume))) && ((this.high == rhs.high) || ((this.high != null) && this.high.equals(rhs.high)))) && ((this.low == rhs.low) || ((this.low != null) && this.low.equals(rhs.low)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.close == rhs.close) || ((this.close != null) && this.close.equals(rhs.close)))) && ((this.open == rhs.open) || ((this.open != null) && this.open.equals(rhs.open))));
     }
 
 }

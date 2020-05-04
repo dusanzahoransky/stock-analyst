@@ -1,19 +1,18 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "balanceSheetStatements",
     "maxAge"
 })
@@ -62,18 +61,18 @@ public class BalanceSheetHistoryQuarterly {
         sb.append(BalanceSheetHistoryQuarterly.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("balanceSheetStatements");
         sb.append('=');
-        sb.append(((this.balanceSheetStatements == null)?"<null>":this.balanceSheetStatements));
+        sb.append(((this.balanceSheetStatements == null) ? "<null>" : this.balanceSheetStatements));
         sb.append(',');
         sb.append("maxAge");
         sb.append('=');
-        sb.append(((this.maxAge == null)?"<null>":this.maxAge));
+        sb.append(((this.maxAge == null) ? "<null>" : this.maxAge));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -83,9 +82,9 @@ public class BalanceSheetHistoryQuarterly {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.balanceSheetStatements == null)? 0 :this.balanceSheetStatements.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.maxAge == null)? 0 :this.maxAge.hashCode()));
+        result = ((result * 31) + ((this.balanceSheetStatements == null) ? 0 : this.balanceSheetStatements.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.maxAge == null) ? 0 : this.maxAge.hashCode()));
         return result;
     }
 
@@ -98,7 +97,7 @@ public class BalanceSheetHistoryQuarterly {
             return false;
         }
         BalanceSheetHistoryQuarterly rhs = ((BalanceSheetHistoryQuarterly) other);
-        return ((((this.balanceSheetStatements == rhs.balanceSheetStatements)||((this.balanceSheetStatements!= null)&&this.balanceSheetStatements.equals(rhs.balanceSheetStatements)))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.maxAge == rhs.maxAge)||((this.maxAge!= null)&&this.maxAge.equals(rhs.maxAge))));
+        return ((((this.balanceSheetStatements == rhs.balanceSheetStatements) || ((this.balanceSheetStatements != null) && this.balanceSheetStatements.equals(rhs.balanceSheetStatements))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.maxAge == rhs.maxAge) || ((this.maxAge != null) && this.maxAge.equals(rhs.maxAge))));
     }
 
 }

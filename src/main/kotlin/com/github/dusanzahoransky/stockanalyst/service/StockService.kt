@@ -94,7 +94,7 @@ class StockService @Autowired constructor(
         val closePrices = result.indicators?.quote?.get(0)?.close ?: return
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
 
-        val epsSeries = mutableMapOf<LocalDate, Double?>()
+        val epsSeriesQuarterly = mutableMapOf<LocalDate, Double?>()
         if (stock.quarterEnds != null) {
             for ((index, quarter) in stock.quarterEnds!!.withIndex()) {
                 val eps = when (index) {
@@ -104,22 +104,24 @@ class StockService @Autowired constructor(
                     3 -> stock.eps4QuartersAgo
                     else -> null
                 }
-                if(eps != null) {
-                    epsSeries[epochSecToLocalDate(quarter)] = eps
+                if (eps != null) {
+                    epsSeriesQuarterly[epochSecToLocalDate(quarter)] = eps
                 }
             }
         }
+
+        val epsSeriesAnnually = mutableMapOf<LocalDate, Double?>()
         if (stock.yearEnds != null) {
             for ((index, year) in stock.yearEnds!!.withIndex()) {
                 val eps = when (index) {
-                    0 -> div(stock.epsLastYear, 4.0)    // /4 to convert year to quarter EPS
-                    1 -> div(stock.eps2YearsAgo, 4.0)
-                    2 -> div(stock.eps3YearsAgo, 4.0)
-                    3 -> div(stock.eps4YearsAgo, 4.0)
+                    0 -> stock.epsLastYear
+                    1 -> stock.eps2YearsAgo
+                    2 -> stock.eps3YearsAgo
+                    3 -> stock.eps4YearsAgo
                     else -> null
                 }
-                if(eps != null) {
-                    epsSeries[epochSecToLocalDate(year)] = eps
+                if (eps != null) {
+                    epsSeriesAnnually[epochSecToLocalDate(year)] = eps
                 }
             }
         }
@@ -132,10 +134,18 @@ class StockService @Autowired constructor(
         while (currentInterval < chartTo) {
             val chartDataPoint = dataAtInterval(currentInterval, timestamps, closePrices)
 
-            for ((date, eps) in epsSeries) {
+            for ((date, eps) in epsSeriesQuarterly) {
                 val daysBetweenQuarterAndSamplingInterval = ChronoUnit.DAYS.between(currentInterval, date)
                 if (daysBetweenQuarterAndSamplingInterval in 1..samplingDays) {
-                    chartDataPoint.eps = eps
+                    chartDataPoint.epsQuarterly = eps
+                    chartDataPoint.peQuarterly = div(chartDataPoint.price, multiply(eps, 4.0))
+                }
+            }
+            for ((date, eps) in epsSeriesAnnually) {
+                val daysBetweenQuarterAndSamplingInterval = ChronoUnit.DAYS.between(currentInterval, date)
+                if (daysBetweenQuarterAndSamplingInterval in 1..samplingDays) {
+                    chartDataPoint.epsAnnually = eps
+                    chartDataPoint.peAnnually = div(chartDataPoint.price, eps)
                 }
             }
             chartData.add(chartDataPoint)
@@ -150,28 +160,28 @@ class StockService @Autowired constructor(
         for ((index, quarter) in stock.quarterEnds!!.withIndex()) {
             when (index) {
                 0 -> {
-                    if(stock.epsLastQuarter != null){
+                    if (stock.epsLastQuarter != null) {
                         val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
                         stock.priceLastQuarter = chartDataPoint.price
                         stock.peLastQuarter = div(stock.priceLastQuarter, multiply(stock.epsLastQuarter, 4.0))
                     }
                 }
                 1 -> {
-                    if(stock.eps2QuartersAgo != null){
+                    if (stock.eps2QuartersAgo != null) {
                         val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
                         stock.price2QuartersAgo = chartDataPoint.price
                         stock.pe2QuartersAgo = div(stock.price2QuartersAgo, multiply(stock.eps2QuartersAgo, 4.0))
                     }
                 }
                 2 -> {
-                    if(stock.eps3QuartersAgo != null){
+                    if (stock.eps3QuartersAgo != null) {
                         val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
                         stock.price3QuartersAgo = chartDataPoint.price
                         stock.pe3QuartersAgo = div(stock.price3QuartersAgo, multiply(stock.eps3QuartersAgo, 4.0))
                     }
                 }
                 3 -> {
-                    if(stock.eps4QuartersAgo != null){
+                    if (stock.eps4QuartersAgo != null) {
                         val chartDataPoint = dataAtInterval(epochSecToLocalDate(quarter), timestamps, closePrices)
                         stock.price4QuartersAgo = chartDataPoint.price
                         stock.pe4QuartersAgo = div(stock.price4QuartersAgo, multiply(stock.eps4QuartersAgo, 4.0))
@@ -286,7 +296,7 @@ class StockService @Autowired constructor(
         val currentLiabilitiesToEquityPreviousQuarter = div(balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet2QuartersAgo?.totalStockholderEquity?.raw?.toDouble())
         stock.currentLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesToEquityLastQuarter, currentLiabilitiesToEquityPreviousQuarter, "currentLiabilitiesToEquityGrowthLastQuarter", 0.01)
-         val currentLiabilitiesToEquity2YearsAgo = div(balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
+        val currentLiabilitiesToEquity2YearsAgo = div(balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toDouble(),
             balanceSheet2YearsAgo?.totalStockholderEquity?.raw?.toDouble())
         stock.currentLiabilitiesToEquityLastYear = div(stock.currentLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
         stock.currentLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity2YearsAgo, "currentLiabilitiesToEquityGrowthLastYear", 0.01)
@@ -324,12 +334,12 @@ class StockService @Autowired constructor(
         stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
-        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo,  "epsGrowthLastQuarter", 0.01)
-        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo,  "epsGrowthLast2Quarters", 0.01)
-        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo,  "epsGrowthLast3Quarters", 0.01)
-        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter,  "epsGrowthEstimateLastQuarter", 0.01)
+        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, "epsGrowthLastQuarter", 0.1)
+        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, "epsGrowthLast2Quarters", 0.1)
+        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, "epsGrowthLast3Quarters", 0.1)
+        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, "epsGrowthEstimateLastQuarter", 0.01)
 
-        if(timeSeries.annualDilutedEPS != null) {
+        if (timeSeries.annualDilutedEPS != null) {
             for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
                 when (index) {
                     3 -> stock.epsLastYear = multiply(annualEps?.reportedValue?.raw, exchangeRate)
@@ -339,9 +349,9 @@ class StockService @Autowired constructor(
                 }
             }
         }
-        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo,  "epsGrowthLastYear", 0.01)
-        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo,  "epsGrowthLast2Years", 0.01)
-        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo,  "epsGrowthLast3Years", 0.01)
+        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, "epsGrowthLastYear", 0.1)
+        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, "epsGrowthLast2Years", 0.1)
+        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast3Years", 0.1)
 
         stock.quarterEnds = balanceSheetStatements?.map { it.endDate.raw }
         stock.lastReportedQuarter = stock.quarterEnds?.get(0)?.let { epochSecToLocalDate(it) }

@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "date",
     "revenue",
     "earnings"
@@ -73,22 +72,22 @@ public class Yearly {
         sb.append(Yearly.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("date");
         sb.append('=');
-        sb.append(((this.date == null)?"<null>":this.date));
+        sb.append(((this.date == null) ? "<null>" : this.date));
         sb.append(',');
         sb.append("revenue");
         sb.append('=');
-        sb.append(((this.revenue == null)?"<null>":this.revenue));
+        sb.append(((this.revenue == null) ? "<null>" : this.revenue));
         sb.append(',');
         sb.append("earnings");
         sb.append('=');
-        sb.append(((this.earnings == null)?"<null>":this.earnings));
+        sb.append(((this.earnings == null) ? "<null>" : this.earnings));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -98,10 +97,10 @@ public class Yearly {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.date == null)? 0 :this.date.hashCode()));
-        result = ((result* 31)+((this.revenue == null)? 0 :this.revenue.hashCode()));
-        result = ((result* 31)+((this.earnings == null)? 0 :this.earnings.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.date == null) ? 0 : this.date.hashCode()));
+        result = ((result * 31) + ((this.revenue == null) ? 0 : this.revenue.hashCode()));
+        result = ((result * 31) + ((this.earnings == null) ? 0 : this.earnings.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
         return result;
     }
 
@@ -114,7 +113,7 @@ public class Yearly {
             return false;
         }
         Yearly rhs = ((Yearly) other);
-        return (((((this.date == rhs.date)||((this.date!= null)&&this.date.equals(rhs.date)))&&((this.revenue == rhs.revenue)||((this.revenue!= null)&&this.revenue.equals(rhs.revenue))))&&((this.earnings == rhs.earnings)||((this.earnings!= null)&&this.earnings.equals(rhs.earnings))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
+        return (((((this.date == rhs.date) || ((this.date != null) && this.date.equals(rhs.date))) && ((this.revenue == rhs.revenue) || ((this.revenue != null) && this.revenue.equals(rhs.revenue)))) && ((this.earnings == rhs.earnings) || ((this.earnings != null) && this.earnings.equals(rhs.earnings)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
 }

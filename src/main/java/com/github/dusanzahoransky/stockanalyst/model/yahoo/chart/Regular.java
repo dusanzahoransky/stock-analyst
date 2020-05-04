@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.chart;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "timezone",
     "end",
     "start",
@@ -86,26 +85,26 @@ public class Regular {
         sb.append(Regular.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("timezone");
         sb.append('=');
-        sb.append(((this.timezone == null)?"<null>":this.timezone));
+        sb.append(((this.timezone == null) ? "<null>" : this.timezone));
         sb.append(',');
         sb.append("end");
         sb.append('=');
-        sb.append(((this.end == null)?"<null>":this.end));
+        sb.append(((this.end == null) ? "<null>" : this.end));
         sb.append(',');
         sb.append("start");
         sb.append('=');
-        sb.append(((this.start == null)?"<null>":this.start));
+        sb.append(((this.start == null) ? "<null>" : this.start));
         sb.append(',');
         sb.append("gmtoffset");
         sb.append('=');
-        sb.append(((this.gmtoffset == null)?"<null>":this.gmtoffset));
+        sb.append(((this.gmtoffset == null) ? "<null>" : this.gmtoffset));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -115,11 +114,11 @@ public class Regular {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.start == null)? 0 :this.start.hashCode()));
-        result = ((result* 31)+((this.end == null)? 0 :this.end.hashCode()));
-        result = ((result* 31)+((this.gmtoffset == null)? 0 :this.gmtoffset.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.timezone == null)? 0 :this.timezone.hashCode()));
+        result = ((result * 31) + ((this.start == null) ? 0 : this.start.hashCode()));
+        result = ((result * 31) + ((this.end == null) ? 0 : this.end.hashCode()));
+        result = ((result * 31) + ((this.gmtoffset == null) ? 0 : this.gmtoffset.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.timezone == null) ? 0 : this.timezone.hashCode()));
         return result;
     }
 
@@ -132,7 +131,7 @@ public class Regular {
             return false;
         }
         Regular rhs = ((Regular) other);
-        return ((((((this.start == rhs.start)||((this.start!= null)&&this.start.equals(rhs.start)))&&((this.end == rhs.end)||((this.end!= null)&&this.end.equals(rhs.end))))&&((this.gmtoffset == rhs.gmtoffset)||((this.gmtoffset!= null)&&this.gmtoffset.equals(rhs.gmtoffset))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.timezone == rhs.timezone)||((this.timezone!= null)&&this.timezone.equals(rhs.timezone))));
+        return ((((((this.start == rhs.start) || ((this.start != null) && this.start.equals(rhs.start))) && ((this.end == rhs.end) || ((this.end != null) && this.end.equals(rhs.end)))) && ((this.gmtoffset == rhs.gmtoffset) || ((this.gmtoffset != null) && this.gmtoffset.equals(rhs.gmtoffset)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.timezone == rhs.timezone) || ((this.timezone != null) && this.timezone.equals(rhs.timezone))));
     }
 
 }

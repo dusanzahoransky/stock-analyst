@@ -24,8 +24,8 @@ data class StockTicker(
         }
     }
 
-    fun toYahooFormat(): String{
-        return when(exchange){
+    fun toYahooFormat(): String {
+        return when (exchange) {
             Exchange.NYSE, Exchange.NASDAQ -> symbol
             else -> "$symbol.${exchange.yahooFormat}"
         }

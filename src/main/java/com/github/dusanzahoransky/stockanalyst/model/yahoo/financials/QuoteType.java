@@ -1,17 +1,16 @@
-
 package com.github.dusanzahoransky.stockanalyst.model.yahoo.financials;
 
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
+@JsonPropertyOrder( {
     "exchange",
     "shortName",
     "longName",
@@ -177,54 +176,54 @@ public class QuoteType {
         sb.append(QuoteType.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("exchange");
         sb.append('=');
-        sb.append(((this.exchange == null)?"<null>":this.exchange));
+        sb.append(((this.exchange == null) ? "<null>" : this.exchange));
         sb.append(',');
         sb.append("shortName");
         sb.append('=');
-        sb.append(((this.shortName == null)?"<null>":this.shortName));
+        sb.append(((this.shortName == null) ? "<null>" : this.shortName));
         sb.append(',');
         sb.append("longName");
         sb.append('=');
-        sb.append(((this.longName == null)?"<null>":this.longName));
+        sb.append(((this.longName == null) ? "<null>" : this.longName));
         sb.append(',');
         sb.append("exchangeTimezoneName");
         sb.append('=');
-        sb.append(((this.exchangeTimezoneName == null)?"<null>":this.exchangeTimezoneName));
+        sb.append(((this.exchangeTimezoneName == null) ? "<null>" : this.exchangeTimezoneName));
         sb.append(',');
         sb.append("exchangeTimezoneShortName");
         sb.append('=');
-        sb.append(((this.exchangeTimezoneShortName == null)?"<null>":this.exchangeTimezoneShortName));
+        sb.append(((this.exchangeTimezoneShortName == null) ? "<null>" : this.exchangeTimezoneShortName));
         sb.append(',');
         sb.append("isEsgPopulated");
         sb.append('=');
-        sb.append(((this.isEsgPopulated == null)?"<null>":this.isEsgPopulated));
+        sb.append(((this.isEsgPopulated == null) ? "<null>" : this.isEsgPopulated));
         sb.append(',');
         sb.append("gmtOffSetMilliseconds");
         sb.append('=');
-        sb.append(((this.gmtOffSetMilliseconds == null)?"<null>":this.gmtOffSetMilliseconds));
+        sb.append(((this.gmtOffSetMilliseconds == null) ? "<null>" : this.gmtOffSetMilliseconds));
         sb.append(',');
         sb.append("quoteType");
         sb.append('=');
-        sb.append(((this.quoteType == null)?"<null>":this.quoteType));
+        sb.append(((this.quoteType == null) ? "<null>" : this.quoteType));
         sb.append(',');
         sb.append("symbol");
         sb.append('=');
-        sb.append(((this.symbol == null)?"<null>":this.symbol));
+        sb.append(((this.symbol == null) ? "<null>" : this.symbol));
         sb.append(',');
         sb.append("messageBoardId");
         sb.append('=');
-        sb.append(((this.messageBoardId == null)?"<null>":this.messageBoardId));
+        sb.append(((this.messageBoardId == null) ? "<null>" : this.messageBoardId));
         sb.append(',');
         sb.append("market");
         sb.append('=');
-        sb.append(((this.market == null)?"<null>":this.market));
+        sb.append(((this.market == null) ? "<null>" : this.market));
         sb.append(',');
         sb.append("additionalProperties");
         sb.append('=');
-        sb.append(((this.additionalProperties == null)?"<null>":this.additionalProperties));
+        sb.append(((this.additionalProperties == null) ? "<null>" : this.additionalProperties));
         sb.append(',');
-        if (sb.charAt((sb.length()- 1)) == ',') {
-            sb.setCharAt((sb.length()- 1), ']');
+        if (sb.charAt((sb.length() - 1)) == ',') {
+            sb.setCharAt((sb.length() - 1), ']');
         } else {
             sb.append(']');
         }
@@ -234,18 +233,18 @@ public class QuoteType {
     @Override
     public int hashCode() {
         int result = 1;
-        result = ((result* 31)+((this.exchangeTimezoneName == null)? 0 :this.exchangeTimezoneName.hashCode()));
-        result = ((result* 31)+((this.symbol == null)? 0 :this.symbol.hashCode()));
-        result = ((result* 31)+((this.isEsgPopulated == null)? 0 :this.isEsgPopulated.hashCode()));
-        result = ((result* 31)+((this.gmtOffSetMilliseconds == null)? 0 :this.gmtOffSetMilliseconds.hashCode()));
-        result = ((result* 31)+((this.exchangeTimezoneShortName == null)? 0 :this.exchangeTimezoneShortName.hashCode()));
-        result = ((result* 31)+((this.quoteType == null)? 0 :this.quoteType.hashCode()));
-        result = ((result* 31)+((this.market == null)? 0 :this.market.hashCode()));
-        result = ((result* 31)+((this.messageBoardId == null)? 0 :this.messageBoardId.hashCode()));
-        result = ((result* 31)+((this.exchange == null)? 0 :this.exchange.hashCode()));
-        result = ((result* 31)+((this.additionalProperties == null)? 0 :this.additionalProperties.hashCode()));
-        result = ((result* 31)+((this.shortName == null)? 0 :this.shortName.hashCode()));
-        result = ((result* 31)+((this.longName == null)? 0 :this.longName.hashCode()));
+        result = ((result * 31) + ((this.exchangeTimezoneName == null) ? 0 : this.exchangeTimezoneName.hashCode()));
+        result = ((result * 31) + ((this.symbol == null) ? 0 : this.symbol.hashCode()));
+        result = ((result * 31) + ((this.isEsgPopulated == null) ? 0 : this.isEsgPopulated.hashCode()));
+        result = ((result * 31) + ((this.gmtOffSetMilliseconds == null) ? 0 : this.gmtOffSetMilliseconds.hashCode()));
+        result = ((result * 31) + ((this.exchangeTimezoneShortName == null) ? 0 : this.exchangeTimezoneShortName.hashCode()));
+        result = ((result * 31) + ((this.quoteType == null) ? 0 : this.quoteType.hashCode()));
+        result = ((result * 31) + ((this.market == null) ? 0 : this.market.hashCode()));
+        result = ((result * 31) + ((this.messageBoardId == null) ? 0 : this.messageBoardId.hashCode()));
+        result = ((result * 31) + ((this.exchange == null) ? 0 : this.exchange.hashCode()));
+        result = ((result * 31) + ((this.additionalProperties == null) ? 0 : this.additionalProperties.hashCode()));
+        result = ((result * 31) + ((this.shortName == null) ? 0 : this.shortName.hashCode()));
+        result = ((result * 31) + ((this.longName == null) ? 0 : this.longName.hashCode()));
         return result;
     }
 
@@ -258,7 +257,7 @@ public class QuoteType {
             return false;
         }
         QuoteType rhs = ((QuoteType) other);
-        return (((((((((((((this.exchangeTimezoneName == rhs.exchangeTimezoneName)||((this.exchangeTimezoneName!= null)&&this.exchangeTimezoneName.equals(rhs.exchangeTimezoneName)))&&((this.symbol == rhs.symbol)||((this.symbol!= null)&&this.symbol.equals(rhs.symbol))))&&((this.isEsgPopulated == rhs.isEsgPopulated)||((this.isEsgPopulated!= null)&&this.isEsgPopulated.equals(rhs.isEsgPopulated))))&&((this.gmtOffSetMilliseconds == rhs.gmtOffSetMilliseconds)||((this.gmtOffSetMilliseconds!= null)&&this.gmtOffSetMilliseconds.equals(rhs.gmtOffSetMilliseconds))))&&((this.exchangeTimezoneShortName == rhs.exchangeTimezoneShortName)||((this.exchangeTimezoneShortName!= null)&&this.exchangeTimezoneShortName.equals(rhs.exchangeTimezoneShortName))))&&((this.quoteType == rhs.quoteType)||((this.quoteType!= null)&&this.quoteType.equals(rhs.quoteType))))&&((this.market == rhs.market)||((this.market!= null)&&this.market.equals(rhs.market))))&&((this.messageBoardId == rhs.messageBoardId)||((this.messageBoardId!= null)&&this.messageBoardId.equals(rhs.messageBoardId))))&&((this.exchange == rhs.exchange)||((this.exchange!= null)&&this.exchange.equals(rhs.exchange))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))))&&((this.shortName == rhs.shortName)||((this.shortName!= null)&&this.shortName.equals(rhs.shortName))))&&((this.longName == rhs.longName)||((this.longName!= null)&&this.longName.equals(rhs.longName))));
+        return (((((((((((((this.exchangeTimezoneName == rhs.exchangeTimezoneName) || ((this.exchangeTimezoneName != null) && this.exchangeTimezoneName.equals(rhs.exchangeTimezoneName))) && ((this.symbol == rhs.symbol) || ((this.symbol != null) && this.symbol.equals(rhs.symbol)))) && ((this.isEsgPopulated == rhs.isEsgPopulated) || ((this.isEsgPopulated != null) && this.isEsgPopulated.equals(rhs.isEsgPopulated)))) && ((this.gmtOffSetMilliseconds == rhs.gmtOffSetMilliseconds) || ((this.gmtOffSetMilliseconds != null) && this.gmtOffSetMilliseconds.equals(rhs.gmtOffSetMilliseconds)))) && ((this.exchangeTimezoneShortName == rhs.exchangeTimezoneShortName) || ((this.exchangeTimezoneShortName != null) && this.exchangeTimezoneShortName.equals(rhs.exchangeTimezoneShortName)))) && ((this.quoteType == rhs.quoteType) || ((this.quoteType != null) && this.quoteType.equals(rhs.quoteType)))) && ((this.market == rhs.market) || ((this.market != null) && this.market.equals(rhs.market)))) && ((this.messageBoardId == rhs.messageBoardId) || ((this.messageBoardId != null) && this.messageBoardId.equals(rhs.messageBoardId)))) && ((this.exchange == rhs.exchange) || ((this.exchange != null) && this.exchange.equals(rhs.exchange)))) && ((this.additionalProperties == rhs.additionalProperties) || ((this.additionalProperties != null) && this.additionalProperties.equals(rhs.additionalProperties)))) && ((this.shortName == rhs.shortName) || ((this.shortName != null) && this.shortName.equals(rhs.shortName)))) && ((this.longName == rhs.longName) || ((this.longName != null) && this.longName.equals(rhs.longName))));
     }
 
 }
