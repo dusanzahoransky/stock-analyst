@@ -290,7 +290,11 @@ class WatchlistRepo {
             StockTicker.fromString("VESG:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VGS:ASX"),
-            StockTicker.fromString("IOO:ASX")
+            StockTicker.fromString("IOO:ASX"),
+            StockTicker.fromString("MNRS:ASX"),
+            StockTicker.fromString("BBOZ:ASX"),
+            StockTicker.fromString("RBTZ:ASX"),
+            StockTicker.fromString("NDQ:ASX")
         )
     }
 

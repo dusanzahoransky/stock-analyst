@@ -39,6 +39,7 @@ class StockService @Autowired constructor(
 
     fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<StockInfo> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
+
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
     }
 

@@ -163,7 +163,7 @@ data class StockInfo(
 
     var quarterEnds: List<Long>? = null,
     var yearEnds: List<Long>? = null,
-    var chartData: MutableList<ChartData>? = mutableListOf()
+    var chartData: MutableList<ChartData>? = mutableListOf(),
     /*
     Growth Estimates -
 Current Year
@@ -172,4 +172,5 @@ Past 5 Years (per annum)
 Next 5 Years (per annum)
      */
 
+    val isIndex: Boolean = false
 )
