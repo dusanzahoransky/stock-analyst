@@ -217,7 +217,8 @@ class WatchlistRepo {
             StockTicker.fromString("ZEN:NASDAQ"),
             StockTicker.fromString("ZM:NASDAQ"),
             StockTicker.fromString("PD:NASDAQ"),
-            StockTicker.fromString("NOK:NYSE")
+            StockTicker.fromString("NOK:NYSE"),
+            StockTicker.fromString("UBER:NYSE")
         )
     }
 
@@ -225,11 +226,13 @@ class WatchlistRepo {
         return setOf(
             //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
             StockTicker.fromString("ZNH:NYSE"),
+            StockTicker.fromString("INO:NYSE"),
             StockTicker.fromString("MA:NASDAQ"),
             //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
             StockTicker.fromString("ROK:NASDAQ"),
             StockTicker.fromString("EMR:NYSE"),
-            StockTicker.fromString("HON:NYSE")
+            StockTicker.fromString("HON:NYSE"),
+            StockTicker.fromString("KO:NASDAQ")
         )
     }
 
@@ -270,9 +273,9 @@ class WatchlistRepo {
             StockTicker.fromString("SEK:ASX"),
             StockTicker.fromString("WTC:ASX"),
             StockTicker.fromString("XRO:ASX"),
-            StockTicker.fromString("Z1P:ASX"),
-            StockTicker.fromString("APT:ASX"),
-            StockTicker.fromString("OPY:ASX")
+//            StockTicker.fromString("Z1P:ASX"),
+            StockTicker.fromString("APT:ASX")
+//            StockTicker.fromString("OPY:ASX")
         )
     }
 
