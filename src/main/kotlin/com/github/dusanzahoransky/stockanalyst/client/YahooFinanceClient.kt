@@ -5,9 +5,9 @@ import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.balancesheet.BalanceSheetResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.istatistics.IndexStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -41,19 +41,20 @@ class YahooFinanceClient @Autowired constructor(
         return response
     }
 
-
-    fun getBalanceSheet(ticker: StockTicker, mockData: Boolean): BalanceSheetResponse? {
+    fun getIndexStatistics(ticker: StockTicker, mockData: Boolean): IndexStatisticsResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("BalanceSheetMockGOOGL.json")
-            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<BalanceSheetResponse>())
+            val statisticsMock =
+                if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
+                else ClassPathResource("StatisticsVTS.json")
+            return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<IndexStatisticsResponse>())
         }
         val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-balance-sheet?symbol={ticker}",
-            BalanceSheetResponse::class.java,
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
+            IndexStatisticsResponse::class.java,
             mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
         )
 
-        logger.debug("BalanceSheet from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         return response
     }
 
@@ -74,8 +75,10 @@ class YahooFinanceClient @Autowired constructor(
 
     fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("ChartMockGOOGL.json")
-            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<ChartResponse>())
+            val data =
+                if (ticker.symbol.contains("VUSA")) ClassPathResource("ChartMockVUSA.json")
+                else ClassPathResource("ChartMockVTS.json")
+            return jacksonObjectMapper().readValue(data.inputStream, jacksonTypeRef<ChartResponse>())
         }
         val response = restTemplate.getForObject(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",

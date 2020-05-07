@@ -7,7 +7,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.ChartData
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
@@ -18,13 +18,13 @@ import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percentGrowth
+import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
+import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.localDateToEpochSec
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.time.Instant
 import java.time.LocalDate
 import java.time.Period
-import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 
 @Service
@@ -130,7 +130,7 @@ class StockService @Autowired constructor(
         val chartTo = timestamps.last()
         var currentInterval = timestamps.first()
         val samplingDays = samplingInterval.days
-        val chartData = mutableListOf<ChartData>()
+        val chartData = mutableListOf<StockChartData>()
 
         while (currentInterval < chartTo) {
             val chartDataPoint = dataAtInterval(currentInterval, timestamps, closePrices)
@@ -205,19 +205,13 @@ class StockService @Autowired constructor(
     private fun dataAtInterval(
         currentInterval: LocalDate,
         timestamps: List<LocalDate>,
-        closePrices: MutableList<Double>): ChartData {
+        closePrices: MutableList<Double>): StockChartData {
 
         val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
         val priceAtInterval = closePrices[timestampIndexAtInterval]
 
-        return ChartData(localDateToEpochSec(currentInterval), priceAtInterval)
+        return StockChartData(localDateToEpochSec(currentInterval), priceAtInterval)
     }
-
-    private fun localDateToEpochSec(currentInterval: LocalDate) =
-        currentInterval.atStartOfDay(ZoneId.of("UTC")).toEpochSecond()
-
-    private fun epochSecToLocalDate(epochSeconds: Long) =
-        Instant.ofEpochSecond(epochSeconds).atZone(ZoneId.of("UTC")).toLocalDate()
 
     private fun processFinancials(financials: FinancialsResponse, stock: StockInfo, exchangeRate: Double) {
 

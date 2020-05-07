@@ -6,17 +6,6 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist.*
 import org.springframework.stereotype.Repository
 
-fun main() {
-    val trading212 = WatchlistRepo().getWatchlist(TRADING_212)
-    println(trading212.size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_US).size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_EUR).size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_GBP).size)
-    val nasdaq100 = WatchlistRepo().getWatchlist(NASDAQ_100)
-    nasdaq100.toMutableSet().retainAll(trading212)
-    println(nasdaq100.size)
-}
-
 @Suppress("SpellCheckingInspection")
 @Repository
 class WatchlistRepo {
@@ -24,6 +13,7 @@ class WatchlistRepo {
     fun getWatchlist(watchlist: Watchlist): Set<StockTicker> {
         when (watchlist) {
             TEST -> return test()
+            TEST_INDICES -> return testIndices()
             INVESTED -> return invested()
             EUR -> return eur()
             AUD -> return aud()
@@ -82,6 +72,13 @@ class WatchlistRepo {
         return setOf(
             *investedIndicesInAud().toTypedArray(),
             *watchListIndicesAud().toTypedArray()
+        )
+    }
+
+    fun testIndices(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("VTS:ASX"),
+            StockTicker.fromString("VUSA:FTSE")
         )
     }
 
@@ -218,7 +215,8 @@ class WatchlistRepo {
             StockTicker.fromString("ZM:NASDAQ"),
             StockTicker.fromString("PD:NASDAQ"),
             StockTicker.fromString("NOK:NYSE"),
-            StockTicker.fromString("UBER:NYSE")
+            StockTicker.fromString("UBER:NYSE"),
+            StockTicker.fromString("BYND:NYSE")
         )
     }
 

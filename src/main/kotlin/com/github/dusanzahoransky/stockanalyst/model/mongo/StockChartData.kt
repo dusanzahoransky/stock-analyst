@@ -1,6 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
-data class ChartData(
+data class StockChartData(
     /**
      * Epoch sec
      */
