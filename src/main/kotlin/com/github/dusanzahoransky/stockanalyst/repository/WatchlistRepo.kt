@@ -144,21 +144,31 @@ class WatchlistRepo {
     fun investedIndicesInGbp(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VUSA:FTSE"),
-            StockTicker.fromString("VFEM:FTSE")
+            StockTicker.fromString("VFEM:FTSE"),
+            StockTicker.fromString("VMID:FTSE")
         )
     }
 
     fun watchListIndicesGbp(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("UKDV:FTSE"),
+            StockTicker.fromString("INRG:FTSE"),
+            StockTicker.fromString("PHGP:FTSE"),
+            StockTicker.fromString("IUKP:FTSE"),
+            StockTicker.fromString("EXS1:DAX"),
+            StockTicker.fromString("NASD:FTSE"),
+            StockTicker.fromString("LYMS:DAX"),
+/*            StockTicker.fromString("CNX1:FTSE"),*/
+            StockTicker.fromString("CNDX:FTSE"),
             StockTicker.fromString("VUSA:FTSE"),
             StockTicker.fromString("VFEM:FTSE"),
             StockTicker.fromString("VUKE:FTSE"),
-            StockTicker.fromString("VMID:FTSE"),
-            StockTicker.fromString("VHYL:FTSE"),
-            StockTicker.fromString("VWRL:FTSE"),
+
+            /*StockTicker.fromString("VHYL:FTSE"),*/
+            /*StockTicker.fromString("VWRL:FTSE"),*/
             StockTicker.fromString("VEVE:FTSE"),
             StockTicker.fromString("VDEV:FTSE"),
-            StockTicker.fromString("VAPX:FTSE"),
+            /*StockTicker.fromString("VAPX:FTSE"),*/
             StockTicker.fromString("VJPN:FTSE")
         )
     }

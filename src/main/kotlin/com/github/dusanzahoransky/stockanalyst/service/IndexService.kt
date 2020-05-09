@@ -18,6 +18,7 @@ import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.lo
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.Period
 
@@ -74,7 +75,7 @@ class IndexService @Autowired constructor(
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
 
         val chartTo = timestamps.last()
-        var currentInterval = timestamps.first()
+        var currentInterval = timestamps.first { t -> t.dayOfWeek == DayOfWeek.MONDAY }
         val samplingDays = samplingInterval.days
         val chartData = mutableListOf<IndexChartData>()
 
