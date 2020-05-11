@@ -10,7 +10,7 @@ import java.nio.file.Files
 fun main() {
     val codeModel = JCodeModel()
 
-    val source: URL = CalcUtils::class.java.getResource("/FinancialsMockGOOGL.json")
+    val source: URL = CalcUtils::class.java.getResource("/StatisticsVUSA.L.json")
 
     val config: GenerationConfig = object : DefaultGenerationConfig() {
         override fun getSourceType(): SourceType {
@@ -20,8 +20,8 @@ fun main() {
 
     val mapper = SchemaMapper(RuleFactory(config, Jackson2Annotator(config), SchemaStore()), SchemaGenerator())
     mapper.generate(codeModel,
-        "FinancialsResponse",
-        "com.github.dusanzahoransky.stockanalyst.model.yahoo.financials",
+        "IndexStatisticsResponse",
+        "com.github.dusanzahoransky.stockanalyst.model.yahoo.istatistics",
         source)
 
     val outDir = Files.createTempDirectory("financials")

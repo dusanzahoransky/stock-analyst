@@ -1,21 +1,9 @@
 package com.github.dusanzahoransky.stockanalyst.repository
 
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
-import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist.*
 import org.springframework.stereotype.Repository
-
-fun main() {
-    val trading212 = WatchlistRepo().getWatchlist(TRADING_212)
-    println(trading212.size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_US).size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_EUR).size)
-    println(WatchlistRepo().getWatchlist(TRADING_212_GBP).size)
-    val nasdaq100 = WatchlistRepo().getWatchlist(NASDAQ_100)
-    nasdaq100.toMutableSet().retainAll(trading212)
-    println(nasdaq100.size)
-}
 
 @Suppress("SpellCheckingInspection")
 @Repository
@@ -24,6 +12,7 @@ class WatchlistRepo {
     fun getWatchlist(watchlist: Watchlist): Set<StockTicker> {
         when (watchlist) {
             TEST -> return test()
+            TEST_INDICES -> return testIndices()
             INVESTED -> return invested()
             EUR -> return eur()
             AUD -> return aud()
@@ -48,10 +37,12 @@ class WatchlistRepo {
             INVESTED_INDICES_IN_AUD -> return investedIndicesInAud()
             INVESTED_IN_AUD -> return investedInAud()
             NASDAQ_100 -> return nasdaq100()
-            TRADING_212 -> return allTrading212()
+            USD_DIVIDENDS -> return dividendsUsd()
+/*            TRADING_212 -> return allTrading212()
             TRADING_212_US -> return allTrading212(Exchange.NYSE, Exchange.NASDAQ)
             TRADING_212_EUR -> return allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
-            TRADING_212_GBP -> return allTrading212(Exchange.FTSE)
+            TRADING_212_GBP -> return allTrading212(Exchange.FTSE)*/
+            else -> throw IllegalArgumentException("Watchlist $this is not supported yet")
         }
     }
 
@@ -85,6 +76,13 @@ class WatchlistRepo {
         )
     }
 
+    fun testIndices(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("VTS:ASX"),
+            StockTicker.fromString("VUSA:FTSE")
+        )
+    }
+
     fun test(): Set<StockTicker> {
         return setOf(
 //            StockTicker.fromString("CBA:ASX")
@@ -105,7 +103,9 @@ class WatchlistRepo {
     fun usd(): Set<StockTicker> {
         return setOf(
             *investedInUsd().toTypedArray(),
-            *watchListUsd().toTypedArray()
+            *watchListUsd().toTypedArray(),
+            *dividendsUsd().toTypedArray()
+            /**nasdaq100().toTypedArray()*/
         )
     }
 
@@ -147,22 +147,36 @@ class WatchlistRepo {
     fun investedIndicesInGbp(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VUSA:FTSE"),
-            StockTicker.fromString("VFEM:FTSE")
+            StockTicker.fromString("VFEM:FTSE"),
+            StockTicker.fromString("VMID:FTSE")
         )
     }
 
     fun watchListIndicesGbp(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("UKDV:FTSE"),
+            StockTicker.fromString("INRG:FTSE"),
+            StockTicker.fromString("PHGP:FTSE"),
+            StockTicker.fromString("IUKP:FTSE"),
+            StockTicker.fromString("EXS1:DAX"),
+            StockTicker.fromString("NASD:FTSE"),
+            StockTicker.fromString("LYMS:DAX"),
+/*            StockTicker.fromString("CNX1:FTSE"),*/
+            StockTicker.fromString("CNDX:FTSE"),
             StockTicker.fromString("VUSA:FTSE"),
             StockTicker.fromString("VFEM:FTSE"),
             StockTicker.fromString("VUKE:FTSE"),
-            StockTicker.fromString("VMID:FTSE"),
-            StockTicker.fromString("VHYL:FTSE"),
-            StockTicker.fromString("VWRL:FTSE"),
+
+            /*StockTicker.fromString("VHYL:FTSE"),*/
+            /*StockTicker.fromString("VWRL:FTSE"),*/
             StockTicker.fromString("VEVE:FTSE"),
             StockTicker.fromString("VDEV:FTSE"),
-            StockTicker.fromString("VAPX:FTSE"),
-            StockTicker.fromString("VJPN:FTSE")
+            /*StockTicker.fromString("VAPX:FTSE"),*/
+            StockTicker.fromString("VJPN:FTSE"),
+            StockTicker.fromString("UKDV:FTSE"),
+            StockTicker.fromString("USDV:FTSE"),
+            StockTicker.fromString("ZPRA:DAX"),
+            StockTicker.fromString("SPYW:DAX")
         )
     }
 
@@ -218,7 +232,27 @@ class WatchlistRepo {
             StockTicker.fromString("ZM:NASDAQ"),
             StockTicker.fromString("PD:NASDAQ"),
             StockTicker.fromString("NOK:NYSE"),
-            StockTicker.fromString("UBER:NYSE")
+            StockTicker.fromString("UBER:NYSE"),
+            StockTicker.fromString("BYND:NYSE")
+        )
+    }
+
+    fun dividendsUsd(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("LMT:NYSE"),
+            StockTicker.fromString("WM:NYSE"),
+            StockTicker.fromString("UNP:NYSE"),
+            StockTicker.fromString("T:NYSE"),
+            StockTicker.fromString("NEE:NYSE"),
+            StockTicker.fromString("DUK:NYSE"),
+            StockTicker.fromString("SO:NYSE"),
+            StockTicker.fromString("D:NYSE"),
+            StockTicker.fromString("CMCSA:NYSE"),
+            StockTicker.fromString("TGT:NYSE"),
+            StockTicker.fromString("COST:NYSE"),
+            StockTicker.fromString("HD:NYSE"),
+            StockTicker.fromString("DIS:NYSE"),
+            StockTicker.fromString("PEP:NYSE")
         )
     }
 
@@ -232,7 +266,8 @@ class WatchlistRepo {
             StockTicker.fromString("ROK:NASDAQ"),
             StockTicker.fromString("EMR:NYSE"),
             StockTicker.fromString("HON:NYSE"),
-            StockTicker.fromString("KO:NASDAQ")
+            StockTicker.fromString("KO:NASDAQ"),
+            StockTicker.fromString("TSM:NYSE")
         )
     }
 
@@ -290,7 +325,11 @@ class WatchlistRepo {
             StockTicker.fromString("VESG:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VGS:ASX"),
-            StockTicker.fromString("IOO:ASX")
+            StockTicker.fromString("IOO:ASX"),
+            StockTicker.fromString("MNRS:ASX"),
+            StockTicker.fromString("BBOZ:ASX"),
+            StockTicker.fromString("RBTZ:ASX"),
+            StockTicker.fromString("NDQ:ASX")
         )
     }
 
@@ -420,7 +459,7 @@ class WatchlistRepo {
             StockTicker.fromString("LBTYA:NASDAQ")
         )
     }
-
+/*
     fun allTrading212(vararg filterExchange: Exchange): Set<StockTicker> {
         return allTrading212().filter { s -> s.exchange in filterExchange }.toSet()
     }
@@ -3027,5 +3066,5 @@ class WatchlistRepo {
             StockTicker.fromFullExchangeNameString("ZURN:SIX Swiss")
         )
     }
-
+*/
 }

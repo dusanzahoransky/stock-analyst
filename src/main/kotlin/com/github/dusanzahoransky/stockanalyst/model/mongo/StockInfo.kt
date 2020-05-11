@@ -163,7 +163,7 @@ data class StockInfo(
 
     var quarterEnds: List<Long>? = null,
     var yearEnds: List<Long>? = null,
-    var chartData: MutableList<ChartData>? = mutableListOf()
+    var chartData: MutableList<StockChartData>? = mutableListOf()
     /*
     Growth Estimates -
 Current Year

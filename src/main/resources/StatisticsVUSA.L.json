@@ -1,0 +1,1478 @@
+{
+  "defaultKeyStatistics": {
+    "annualHoldingsTurnover": {},
+    "enterpriseToRevenue": {},
+    "beta3Year": {
+      "raw": 0.98,
+      "fmt": "0.98"
+    },
+    "profitMargins": {},
+    "enterpriseToEbitda": {},
+    "52WeekChange": {},
+    "morningStarRiskRating": {},
+    "forwardEps": {},
+    "revenueQuarterlyGrowth": {},
+    "fundInceptionDate": {
+      "raw": 1337644800,
+      "fmt": "2012-05-22"
+    },
+    "annualReportExpenseRatio": {},
+    "totalAssets": {
+      "raw": 21194162176,
+      "fmt": "21.19B",
+      "longFmt": "21,194,162,176"
+    },
+    "bookValue": {},
+    "fundFamily": "Vanguard Group (Ireland) Limited",
+    "lastFiscalYearEnd": {},
+    "netIncomeToCommon": {},
+    "trailingEps": {},
+    "lastDividendValue": {},
+    "SandP52WeekChange": {},
+    "priceToBook": {},
+    "nextFiscalYearEnd": {},
+    "yield": {
+      "raw": 0.019299999,
+      "fmt": "1.93%"
+    },
+    "mostRecentQuarter": {},
+    "enterpriseValue": {},
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "threeYearAverageReturn": {
+      "raw": 0.089700006,
+      "fmt": "8.97%"
+    },
+    "lastSplitDate": {},
+    "lastSplitFactor": null,
+    "legalType": "Exchange Traded Fund",
+    "morningStarOverallRating": {},
+    "earningsQuarterlyGrowth": {},
+    "priceToSalesTrailing12Months": {},
+    "pegRatio": {},
+    "ytdReturn": {
+      "raw": -0.0854,
+      "fmt": "-8.54%"
+    },
+    "forwardPE": {},
+    "maxAge": 1,
+    "lastCapGain": {},
+    "category": null,
+    "fiveYearAverageReturn": {
+      "raw": 0.086899996,
+      "fmt": "8.69%"
+    }
+  },
+  "fundProfile": {
+    "initInvestment": {},
+    "family": "Vanguard Group (Ireland) Limited",
+    "categoryName": null,
+    "initAipInvestment": {},
+    "subseqIraInvestment": {},
+    "brokerages": [],
+    "managementInfo": {
+      "managerName": null,
+      "managerBio": null,
+      "startdate": {}
+    },
+    "subseqInvestment": {},
+    "legalType": "Exchange Traded Fund",
+    "styleBoxUrl": "http://us.i1.yimg.com/us.yimg.com/i/fi/3_0stylelargeeq2.gif",
+    "feesExpensesInvestment": {
+      "annualHoldingsTurnover": {
+        "raw": 0.06,
+        "fmt": "6.00%"
+      },
+      "frontEndSalesLoad": {},
+      "annualReportExpenseRatio": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "netExpRatio": {},
+      "projectionValues": {},
+      "grossExpRatio": {},
+      "deferredSalesLoad": {},
+      "totalNetAssets": {
+        "raw": 111734.31,
+        "fmt": "111,734.31"
+      },
+      "twelveBOne": {}
+    },
+    "maxAge": 1,
+    "feesExpensesInvestmentCat": {
+      "annualReportExpenseRatio": {},
+      "frontEndSalesLoad": {},
+      "deferredSalesLoad": {},
+      "twelveBOne": {},
+      "annualHoldingsTurnover": {},
+      "totalNetAssets": {
+        "raw": 111734.31,
+        "fmt": "111,734.31"
+      },
+      "projectionValuesCat": {}
+    },
+    "initIraInvestment": {},
+    "subseqAipInvestment": {}
+  },
+  "financialsTemplate": {},
+  "topHoldings": {
+    "preferredPosition": {},
+    "bondPosition": {
+      "raw": 0,
+      "fmt": "0.00%"
+    },
+    "convertiblePosition": {},
+    "sectorWeightings": [
+      {
+        "realestate": {
+          "raw": 0.030199999,
+          "fmt": "3.02%"
+        }
+      },
+      {
+        "consumer_cyclical": {
+          "raw": 0.0964,
+          "fmt": "9.64%"
+        }
+      },
+      {
+        "basic_materials": {
+          "raw": 0.021,
+          "fmt": "2.10%"
+        }
+      },
+      {
+        "consumer_defensive": {
+          "raw": 0.0817,
+          "fmt": "8.17%"
+        }
+      },
+      {
+        "technology": {
+          "raw": 0.2226,
+          "fmt": "22.26%"
+        }
+      },
+      {
+        "communication_services": {
+          "raw": 0.1079,
+          "fmt": "10.79%"
+        }
+      },
+      {
+        "financial_services": {
+          "raw": 0.1384,
+          "fmt": "13.84%"
+        }
+      },
+      {
+        "utilities": {
+          "raw": 0.0358,
+          "fmt": "3.58%"
+        }
+      },
+      {
+        "industrials": {
+          "raw": 0.083500005,
+          "fmt": "8.35%"
+        }
+      },
+      {
+        "energy": {
+          "raw": 0.026600001,
+          "fmt": "2.66%"
+        }
+      },
+      {
+        "healthcare": {
+          "raw": 0.156,
+          "fmt": "15.60%"
+        }
+      }
+    ],
+    "holdings": [
+      {
+        "symbol": "MSFT",
+        "holdingName": "Microsoft Corp",
+        "holdingPercent": {
+          "raw": 0.0561,
+          "fmt": "5.61%"
+        }
+      },
+      {
+        "symbol": "AAPL",
+        "holdingName": "Apple Inc",
+        "holdingPercent": {
+          "raw": 0.0496,
+          "fmt": "4.96%"
+        }
+      },
+      {
+        "symbol": "AMZN",
+        "holdingName": "Amazon.com Inc",
+        "holdingPercent": {
+          "raw": 0.0379,
+          "fmt": "3.79%"
+        }
+      },
+      {
+        "symbol": "FB",
+        "holdingName": "Facebook Inc A",
+        "holdingPercent": {
+          "raw": 0.0187,
+          "fmt": "1.87%"
+        }
+      },
+      {
+        "symbol": "BRK.B",
+        "holdingName": "Berkshire Hathaway Inc B",
+        "holdingPercent": {
+          "raw": 0.0167,
+          "fmt": "1.67%"
+        }
+      },
+      {
+        "symbol": "GOOG",
+        "holdingName": "Alphabet Inc Class C",
+        "holdingPercent": {
+          "raw": 0.0163,
+          "fmt": "1.63%"
+        }
+      },
+      {
+        "symbol": "GOOGL",
+        "holdingName": "Alphabet Inc A",
+        "holdingPercent": {
+          "raw": 0.0162,
+          "fmt": "1.62%"
+        }
+      },
+      {
+        "symbol": "JNJ",
+        "holdingName": "Johnson & Johnson",
+        "holdingPercent": {
+          "raw": 0.0161,
+          "fmt": "1.61%"
+        }
+      },
+      {
+        "symbol": "JPM",
+        "holdingName": "JPMorgan Chase & Co",
+        "holdingPercent": {
+          "raw": 0.013200001,
+          "fmt": "1.32%"
+        }
+      },
+      {
+        "symbol": "V",
+        "holdingName": "Visa Inc Class A",
+        "holdingPercent": {
+          "raw": 0.0128999995,
+          "fmt": "1.29%"
+        }
+      }
+    ],
+    "bondHoldings": {
+      "maturity": {},
+      "duration": {},
+      "creditQuality": {},
+      "maturityCat": {},
+      "durationCat": {},
+      "creditQualityCat": {}
+    },
+    "bondRatings": [
+      {
+        "bb": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "aa": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "aaa": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "a": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "other": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "b": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "bbb": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "below_b": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      },
+      {
+        "us_government": {
+          "raw": 0,
+          "fmt": "0.00%"
+        }
+      }
+    ],
+    "equityHoldings": {
+      "priceToCashflow": {
+        "raw": 11.59,
+        "fmt": "11.59"
+      },
+      "priceToSales": {
+        "raw": 1.77,
+        "fmt": "1.77"
+      },
+      "priceToBookCat": {},
+      "priceToEarningsCat": {},
+      "medianMarketCapCat": {},
+      "threeYearEarningsGrowthCat": {},
+      "threeYearEarningsGrowth": {},
+      "medianMarketCap": {},
+      "priceToEarnings": {
+        "raw": 17.91,
+        "fmt": "17.91"
+      },
+      "priceToBook": {
+        "raw": 2.68,
+        "fmt": "2.68"
+      },
+      "priceToSalesCat": {},
+      "priceToCashflowCat": {}
+    },
+    "otherPosition": {},
+    "maxAge": 1,
+    "cashPosition": {},
+    "stockPosition": {
+      "raw": 0.9995,
+      "fmt": "99.95%"
+    }
+  },
+  "price": {
+    "quoteSourceName": "Delayed Quote",
+    "regularMarketOpen": {
+      "raw": 43.515,
+      "fmt": "43.51"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 584025,
+      "fmt": "584.02k",
+      "longFmt": "584,025"
+    },
+    "exchange": "LSE",
+    "regularMarketTime": 1588667083,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 43.7555,
+      "fmt": "43.76"
+    },
+    "shortName": "VANGUARD FUNDS PLC VANGUARD S&P",
+    "averageDailyVolume10Day": {
+      "raw": 275781,
+      "fmt": "275.78k",
+      "longFmt": "275,781"
+    },
+    "longName": "Vanguard S&amp;P 500 UCITS ETF",
+    "regularMarketChange": {
+      "raw": 0.62750244,
+      "fmt": "0.63"
+    },
+    "currencySymbol": "£",
+    "regularMarketPreviousClose": {
+      "raw": 43.05,
+      "fmt": "43.05"
+    },
+    "preMarketPrice": {},
+    "exchangeDataDelayedBy": 20,
+    "toCurrency": null,
+    "postMarketChange": {},
+    "postMarketPrice": {},
+    "exchangeName": "LSE",
+    "preMarketChange": {},
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 43.485,
+      "fmt": "43.49"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "GBP",
+    "regularMarketPrice": {
+      "raw": 43.6775,
+      "fmt": "43.68"
+    },
+    "regularMarketVolume": {
+      "raw": 37268,
+      "fmt": "37.27k",
+      "longFmt": "37,268.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "DELAYED",
+    "openInterest": {},
+    "marketState": "REGULAR",
+    "underlyingSymbol": null,
+    "marketCap": {},
+    "quoteType": "ETF",
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "symbol": "VUSA.L",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.0145761315,
+      "fmt": "1.46%"
+    }
+  },
+  "fundPerformance": {
+    "trailingReturns": {
+      "threeMonth": {
+        "raw": -0.1768,
+        "fmt": "-17.68%"
+      },
+      "oneYear": {
+        "raw": -0.051,
+        "fmt": "-5.10%"
+      },
+      "ytd": {
+        "raw": -0.1768,
+        "fmt": "-17.68%"
+      },
+      "lastBearMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBullMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "fiveYear": {
+        "raw": 0.066700004,
+        "fmt": "6.67%"
+      },
+      "asOfDate": {
+        "raw": 1585612800,
+        "fmt": "2020-03-31"
+      },
+      "tenYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "oneMonth": {
+        "raw": -0.0939,
+        "fmt": "-9.39%"
+      },
+      "threeYear": {
+        "raw": 0.0537,
+        "fmt": "5.37%"
+      }
+    },
+    "performanceOverview": {
+      "bestThreeYrTotalReturn": {},
+      "morningStarReturnRating": {},
+      "ytdReturnPct": {
+        "raw": -0.0854,
+        "fmt": "-8.54%"
+      },
+      "fiveYrAvgReturnPct": {},
+      "numYearsUp": {},
+      "worstOneYrTotalReturn": {},
+      "oneYearTotalReturn": {
+        "raw": 0.0155,
+        "fmt": "1.55%"
+      },
+      "numYearsDown": {},
+      "asOfDate": {
+        "raw": 1588118400,
+        "fmt": "2020-04-29"
+      },
+      "worstThreeYrTotalReturn": {},
+      "bestOneYrTotalReturn": {},
+      "threeYearTotalReturn": {
+        "raw": 0.089700006,
+        "fmt": "8.97%"
+      }
+    },
+    "riskOverviewStatistics": {
+      "riskRating": {},
+      "riskStatistics": [
+        {
+          "year": "5y",
+          "alpha": {
+            "raw": 0.18,
+            "fmt": "0.18"
+          },
+          "beta": {
+            "raw": 0.98,
+            "fmt": "0.98"
+          },
+          "meanAnnualReturn": {
+            "raw": 0.59,
+            "fmt": "0.59"
+          },
+          "rSquared": {
+            "raw": 99.8,
+            "fmt": "99.8"
+          },
+          "stdDev": {
+            "raw": 13.64,
+            "fmt": "13.64"
+          },
+          "sharpeRatio": {
+            "raw": 0.44,
+            "fmt": "0.44"
+          },
+          "treynorRatio": {
+            "raw": 5.27,
+            "fmt": "5.27"
+          }
+        },
+        {
+          "year": "3y",
+          "alpha": {
+            "raw": 0.1,
+            "fmt": "0.1"
+          },
+          "beta": {
+            "raw": 0.98,
+            "fmt": "0.98"
+          },
+          "meanAnnualReturn": {
+            "raw": 0.48,
+            "fmt": "0.48"
+          },
+          "rSquared": {
+            "raw": 99.82,
+            "fmt": "99.82"
+          },
+          "stdDev": {
+            "raw": 15.2,
+            "fmt": "15.2"
+          },
+          "sharpeRatio": {
+            "raw": 0.26,
+            "fmt": "0.26"
+          },
+          "treynorRatio": {
+            "raw": 3.02,
+            "fmt": "3.02"
+          }
+        }
+      ]
+    },
+    "riskOverviewStatisticsCat": {
+      "riskStatisticsCat": []
+    },
+    "performanceOverviewCat": {
+      "bestThreeYrTotalReturn": {},
+      "morningStarReturnRating": {},
+      "ytdReturnPct": {},
+      "fiveYrAvgReturnPct": {},
+      "numYearsUp": {},
+      "worstOneYrTotalReturn": {},
+      "numYearsDown": {},
+      "asOfDate": {},
+      "worstThreeYrTotalReturn": {},
+      "bestOneYrTotalReturn": {}
+    },
+    "trailingReturnsCat": {
+      "threeMonth": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "oneYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "ytd": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBearMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "lastBullMkt": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "fiveYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "tenYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "oneMonth": {
+        "raw": 0,
+        "fmt": "0.00%"
+      },
+      "threeYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      }
+    },
+    "maxAge": 1,
+    "pastQuarterlyReturns": {
+      "returns": []
+    },
+    "trailingReturnsNav": {
+      "ytd": {
+        "raw": -0.1966,
+        "fmt": "-19.66%"
+      },
+      "oneMonth": {
+        "raw": -0.1236,
+        "fmt": "-12.36%"
+      },
+      "threeMonth": {
+        "raw": -0.1966,
+        "fmt": "-19.66%"
+      },
+      "oneYear": {
+        "raw": -0.073,
+        "fmt": "-7.30%"
+      },
+      "threeYear": {
+        "raw": 0.0471,
+        "fmt": "4.71%"
+      },
+      "fiveYear": {
+        "raw": 0.063200004,
+        "fmt": "6.32%"
+      },
+      "tenYear": {
+        "raw": 0,
+        "fmt": "0.00%"
+      }
+    },
+    "annualTotalReturns": {
+      "returns": [
+        {
+          "year": "2020",
+          "annualValue": {}
+        },
+        {
+          "year": "2019",
+          "annualValue": {
+            "raw": 0.31007192,
+            "fmt": "31.01%"
+          }
+        },
+        {
+          "year": "2018",
+          "annualValue": {
+            "raw": -0.0475909,
+            "fmt": "-4.76%"
+          }
+        },
+        {
+          "year": "2017",
+          "annualValue": {
+            "raw": 0.2136877,
+            "fmt": "21.37%"
+          }
+        },
+        {
+          "year": "2016",
+          "annualValue": {
+            "raw": 0.1151495,
+            "fmt": "11.51%"
+          }
+        },
+        {
+          "year": "2015",
+          "annualValue": {
+            "raw": 0.0099802,
+            "fmt": "1.00%"
+          }
+        },
+        {
+          "year": "2014",
+          "annualValue": {
+            "raw": 0.1325373,
+            "fmt": "13.25%"
+          }
+        },
+        {
+          "year": "2013",
+          "annualValue": {
+            "raw": 0.3187145,
+            "fmt": "31.87%"
+          }
+        },
+        {
+          "year": "2012",
+          "annualValue": {}
+        }
+      ],
+      "returnsCat": []
+    }
+  },
+  "quoteType": {
+    "exchange": "LSE",
+    "shortName": "VANGUARD FUNDS PLC VANGUARD S&P",
+    "longName": "Vanguard S&amp;P 500 UCITS ETF",
+    "exchangeTimezoneName": "Europe/London",
+    "exchangeTimezoneShortName": "BST",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "3600000",
+    "quoteType": "ETF",
+    "symbol": "VUSA.L",
+    "messageBoardId": "finmb_231667430",
+    "market": "gb_market"
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 43.05,
+      "fmt": "43.05"
+    },
+    "regularMarketOpen": {
+      "raw": 43.515,
+      "fmt": "43.51"
+    },
+    "twoHundredDayAverage": {
+      "raw": 45.579704,
+      "fmt": "45.58"
+    },
+    "trailingAnnualDividendYield": {},
+    "payoutRatio": {},
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 43.7555,
+      "fmt": "43.76"
+    },
+    "navPrice": {
+      "raw": 55.76,
+      "fmt": "55.76"
+    },
+    "averageDailyVolume10Day": {
+      "raw": 275781,
+      "fmt": "275.78k",
+      "longFmt": "275,781"
+    },
+    "totalAssets": {
+      "raw": 21194162176,
+      "fmt": "21.19B",
+      "longFmt": "21,194,162,176"
+    },
+    "regularMarketPreviousClose": {
+      "raw": 43.05,
+      "fmt": "43.05"
+    },
+    "fiftyDayAverage": {
+      "raw": 39.21156,
+      "fmt": "39.21"
+    },
+    "trailingAnnualDividendRate": {},
+    "open": {
+      "raw": 43.515,
+      "fmt": "43.51"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 275781,
+      "fmt": "275.78k",
+      "longFmt": "275,781"
+    },
+    "expireDate": {},
+    "yield": {
+      "raw": 0.019299999,
+      "fmt": "1.93%"
+    },
+    "algorithm": null,
+    "dividendRate": {},
+    "exDividendDate": {},
+    "beta": {},
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 43.485,
+      "fmt": "43.49"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "GBP",
+    "regularMarketVolume": {
+      "raw": 37268,
+      "fmt": "37.27k",
+      "longFmt": "37,268"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {},
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 584025,
+      "fmt": "584.02k",
+      "longFmt": "584,025"
+    },
+    "priceToSalesTrailing12Months": {},
+    "dayLow": {
+      "raw": 43.485,
+      "fmt": "43.49"
+    },
+    "ask": {
+      "raw": 43.6675,
+      "fmt": "43.67"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 5148000,
+      "fmt": "5.15M",
+      "longFmt": "5,148,000"
+    },
+    "volume": {
+      "raw": 37268,
+      "fmt": "37.27k",
+      "longFmt": "37,268"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 56.7425,
+      "fmt": "56.74"
+    },
+    "forwardPE": {},
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {},
+    "fiftyTwoWeekLow": {
+      "raw": 37.3,
+      "fmt": "37.30"
+    },
+    "bid": {
+      "raw": 43.6275,
+      "fmt": "43.63"
+    },
+    "tradeable": false,
+    "dividendYield": {},
+    "bidSize": {
+      "raw": 1500000,
+      "fmt": "1.5M",
+      "longFmt": "1,500,000"
+    },
+    "dayHigh": {
+      "raw": 43.7555,
+      "fmt": "43.76"
+    }
+  },
+  "symbol": "VUSA.L",
+  "assetProfile": {
+    "longBusinessSummary": "This Fund seeks to track the performance of the Standard & Poor’s 500 (“S&P 500”) Index, a widely recognised benchmark of U.S. stock market performance that is comprised of the stocks of large U.S. companies. \nThe Fund employs a “passive management” – or indexing – investment approach, through physical acquisition of securities, designed to track the performance of the Index, a free float adjusted market capitalisation weighted index. In tracking the performance of the Index, the Fund attempts to replicate the Index by investing all, or substantially all, of its assets in the stocks that make up the Index, holding each stock in approximately the same proportion as its weighting in the Index. The Index is a capitalisation weighted index of 500 U.S. stocks.",
+    "companyOfficers": [],
+    "maxAge": 86400
+  },
+  "esgScores": {},
+  "pageViews": {},
+  "quoteData": {
+    "VUSA.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 43.515,
+        "fmt": "43.51"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588667083,
+        "fmt": "9:24AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "37.3 - 56.7425",
+        "fmt": "37.30 - 56.74"
+      },
+      "regularMarketDayHigh": {
+        "raw": 43.7555,
+        "fmt": "43.76"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD S&P",
+      "longName": "Vanguard S&amp;P 500 UCITS ETF",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.62750244,
+        "fmt": "0.63"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 43.05,
+        "fmt": "43.05"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -13.064999,
+        "fmt": "-13.06"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 6.3775024,
+        "fmt": "6.38"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 43.485,
+        "fmt": "43.49"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 43.6775,
+        "fmt": "43.68"
+      },
+      "regularMarketVolume": {
+        "raw": 37268,
+        "fmt": "37,268",
+        "longFmt": "37,268"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1337670000000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VUSA.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.17097862,
+        "fmt": "17.10%"
+      },
+      "regularMarketDayRange": {
+        "raw": "43.485 - 43.7555",
+        "fmt": "43.49 - 43.76"
+      },
+      "messageBoardId": "finmb_231667430",
+      "fiftyTwoWeekHigh": {
+        "raw": 56.7425,
+        "fmt": "56.74"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.23025067,
+        "fmt": "-23.03%"
+      },
+      "uuid": "badb9a93-51ed-3f99-9eee-446352caa434",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 37.3,
+        "fmt": "37.30"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.4576131,
+        "fmt": "1.46%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    },
+    "VUKE.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 25.68,
+        "fmt": "25.68"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588667078,
+        "fmt": "9:24AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "21.65 - 34.07",
+        "fmt": "21.65 - 34.07"
+      },
+      "regularMarketDayHigh": {
+        "raw": 25.845,
+        "fmt": "25.84"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "longName": "Vanguard FTSE 100 UCITS ETF",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.44199944,
+        "fmt": "0.44"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 25.36,
+        "fmt": "25.36"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -8.268,
+        "fmt": "-8.27"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 4.1520004,
+        "fmt": "4.15"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 25.325,
+        "fmt": "25.33"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 25.802,
+        "fmt": "25.80"
+      },
+      "regularMarketVolume": {
+        "raw": 97654,
+        "fmt": "97,654",
+        "longFmt": "97,654"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1337670000000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VUKE.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.19177832,
+        "fmt": "19.18%"
+      },
+      "regularMarketDayRange": {
+        "raw": "25.325 - 25.845",
+        "fmt": "25.33 - 25.84"
+      },
+      "messageBoardId": "finmb_190767378",
+      "fiftyTwoWeekHigh": {
+        "raw": 34.07,
+        "fmt": "34.07"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.24267684,
+        "fmt": "-24.27%"
+      },
+      "uuid": "871109bc-719f-3728-96da-9479c6af5de2",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 21.65,
+        "fmt": "21.65"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.7428999,
+        "fmt": "1.74%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    },
+    "VMID.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 25.325,
+        "fmt": "25.33"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588667083,
+        "fmt": "9:24AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "19.442 - 35.525",
+        "fmt": "19.44 - 35.53"
+      },
+      "regularMarketDayHigh": {
+        "raw": 25.325,
+        "fmt": "25.33"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "longName": "Vanguard FTSE 250 UCITS ETF",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.32499886,
+        "fmt": "0.32"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 24.915,
+        "fmt": "24.92"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -10.285002,
+        "fmt": "-10.29"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 5.7980003,
+        "fmt": "5.80"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 24.905,
+        "fmt": "24.91"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 25.24,
+        "fmt": "25.24"
+      },
+      "regularMarketVolume": {
+        "raw": 102032,
+        "fmt": "102,032",
+        "longFmt": "102,032"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1412060400000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VMID.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.29822037,
+        "fmt": "29.82%"
+      },
+      "regularMarketDayRange": {
+        "raw": "24.905 - 25.325",
+        "fmt": "24.91 - 25.33"
+      },
+      "messageBoardId": "finmb_260699530",
+      "fiftyTwoWeekHigh": {
+        "raw": 35.525,
+        "fmt": "35.53"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.28951445,
+        "fmt": "-28.95%"
+      },
+      "uuid": "141ccacb-2412-38b8-bd2f-e44bf752ed3a",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 19.442,
+        "fmt": "19.44"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.3044305,
+        "fmt": "1.30%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    },
+    "VFEM.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 39.495,
+        "fmt": "39.49"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588666753,
+        "fmt": "9:19AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "38.15 - 3847.0",
+        "fmt": "38.15 - 3,847.00"
+      },
+      "regularMarketDayHigh": {
+        "raw": 39.495,
+        "fmt": "39.49"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "longName": "Vanguard FTSE Emerging Markets UCITS ETF USD Distributing",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.48250198,
+        "fmt": "0.48"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 38.5975,
+        "fmt": "38.60"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -3807.92,
+        "fmt": "-3,807.92"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 0.9300003,
+        "fmt": "0.93"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 38.56,
+        "fmt": "38.56"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 39.08,
+        "fmt": "39.08"
+      },
+      "regularMarketVolume": {
+        "raw": 1114,
+        "fmt": "1,114",
+        "longFmt": "1,114"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1337670000000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VFEM.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.024377465,
+        "fmt": "2.44%"
+      },
+      "regularMarketDayRange": {
+        "raw": "38.56 - 39.495",
+        "fmt": "38.56 - 39.49"
+      },
+      "messageBoardId": "finmb_212569339",
+      "fiftyTwoWeekHigh": {
+        "raw": 3847,
+        "fmt": "3,847.00"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.9898414,
+        "fmt": "-98.98%"
+      },
+      "uuid": "71d85d1f-7ce3-3815-b146-a6f92365199c",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 38.15,
+        "fmt": "38.15"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.2500861,
+        "fmt": "1.25%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    },
+    "VWRL.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 63.3,
+        "fmt": "63.30"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588667054,
+        "fmt": "9:24AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "54.5972 - 74.357",
+        "fmt": "54.60 - 74.36"
+      },
+      "regularMarketDayHigh": {
+        "raw": 63.64,
+        "fmt": "63.64"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "longName": "Vanguard FTSE All-World UCITS ETF",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.8860016,
+        "fmt": "0.89"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 62.605,
+        "fmt": "62.60"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -10.866001,
+        "fmt": "-10.87"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 8.893803,
+        "fmt": "8.89"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 62.54,
+        "fmt": "62.54"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 63.491,
+        "fmt": "63.49"
+      },
+      "regularMarketVolume": {
+        "raw": 8271,
+        "fmt": "8,271",
+        "longFmt": "8,271"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1337670000000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VWRL.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.16289851,
+        "fmt": "16.29%"
+      },
+      "regularMarketDayRange": {
+        "raw": "62.54 - 63.64",
+        "fmt": "62.54 - 63.64"
+      },
+      "messageBoardId": "finmb_215299893",
+      "fiftyTwoWeekHigh": {
+        "raw": 74.357,
+        "fmt": "74.36"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.14613286,
+        "fmt": "-14.61%"
+      },
+      "uuid": "6b63ec89-aed8-34f4-86c0-aac41d6f376b",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 54.5972,
+        "fmt": "54.60"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.415225,
+        "fmt": "1.42%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    },
+    "VERX.L": {
+      "sourceInterval": 15,
+      "quoteSourceName": "Delayed Quote",
+      "regularMarketOpen": {
+        "raw": 22.6975,
+        "fmt": "22.70"
+      },
+      "exchange": "LSE",
+      "regularMarketTime": {
+        "raw": 1588666764,
+        "fmt": "9:19AM BST"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "19.6692 - 27.9624",
+        "fmt": "19.67 - 27.96"
+      },
+      "regularMarketDayHigh": {
+        "raw": 22.8605,
+        "fmt": "22.86"
+      },
+      "shortName": "VANGUARD FUNDS PLC VANGUARD FTS",
+      "longName": "Vanguard FTSE Developed Europe ex UK UCITS ETF",
+      "exchangeTimezoneName": "Europe/London",
+      "regularMarketChange": {
+        "raw": 0.2262497,
+        "fmt": "0.23"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 22.52375,
+        "fmt": "22.52"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -5.2124004,
+        "fmt": "-5.21"
+      },
+      "exchangeTimezoneShortName": "BST",
+      "fiftyTwoWeekLowChange": {
+        "raw": 3.080799,
+        "fmt": "3.08"
+      },
+      "exchangeDataDelayedBy": 20,
+      "regularMarketDayLow": {
+        "raw": 22.6975,
+        "fmt": "22.70"
+      },
+      "priceHint": 2,
+      "currency": "GBP",
+      "regularMarketPrice": {
+        "raw": 22.75,
+        "fmt": "22.75"
+      },
+      "regularMarketVolume": {
+        "raw": 5643,
+        "fmt": "5,643",
+        "longFmt": "5,643"
+      },
+      "isLoading": false,
+      "triggerable": false,
+      "gmtOffSetMilliseconds": 3600000,
+      "firstTradeDateMilliseconds": 1412060400000,
+      "region": "US",
+      "marketState": "REGULAR",
+      "quoteType": "ETF",
+      "invalid": false,
+      "symbol": "VERX.L",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.15663062,
+        "fmt": "15.66%"
+      },
+      "regularMarketDayRange": {
+        "raw": "22.6975 - 22.8605",
+        "fmt": "22.70 - 22.86"
+      },
+      "messageBoardId": "finmb_260699664",
+      "fiftyTwoWeekHigh": {
+        "raw": 27.9624,
+        "fmt": "27.96"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.18640748,
+        "fmt": "-18.64%"
+      },
+      "uuid": "cc1da30d-3e0f-33a4-a9e0-f1c1f8491bb1",
+      "market": "gb_market",
+      "fiftyTwoWeekLow": {
+        "raw": 19.6692,
+        "fmt": "19.67"
+      },
+      "regularMarketChangePercent": {
+        "raw": 1.0044938,
+        "fmt": "1.00%"
+      },
+      "fullExchangeName": "LSE",
+      "tradeable": false
+    }
+  },
+  "mktmData": {}
+}

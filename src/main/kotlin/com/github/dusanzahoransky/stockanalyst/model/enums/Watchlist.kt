@@ -1,7 +1,9 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Watchlist {
+    USD_DIVIDENDS,
     TEST,
+    TEST_INDICES,
     INVESTED,
     EUR,
     AUD,
@@ -29,5 +31,17 @@ enum class Watchlist {
     TRADING_212,
     TRADING_212_US,
     TRADING_212_EUR,
-    TRADING_212_GBP,
+    TRADING_212_GBP;
+
+    fun isIndex(): Boolean {
+        return when (this) {
+            AUD_INDICES,
+            GBP_INDICES,
+            INVESTED_INDICES_IN_GBP,
+            WATCH_LIST_INDICES_GBP,
+            INVESTED_INDICES_IN_AUD,
+            WATCH_LIST_INDICES_AUD -> true
+            else -> false
+        }
+    }
 }

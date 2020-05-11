@@ -1,6 +1,8 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
+import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.IndicesAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.sum
@@ -29,6 +31,32 @@ class StockAnalysisService {
                     else -> true
                 }
             }
+        calcAverages(counter, stocks, stockNumericFields, averages)
+
+        return averages
+    }
+
+
+    fun calcIndicesAverages(indices: List<IndexInfo>): IndexInfo {
+        val counter = IndicesAveragesCounter(IndexInfo(symbol = "Avg."))
+        val averages = counter.averages
+
+        val indexNumericFields = IndexInfo::class.memberProperties
+            .filterIsInstance<KMutableProperty<*>>()
+            .filter { f ->
+                when (f.name) {
+                    "id", "price", "date", "lastReportedQuarter", "symbol", "exchange", "companyName", "currency", "asOfDate", "chartData", "fundInceptionDate"
+                    -> false
+                    else -> true
+                }
+            }
+        calcAverages(counter, indices, indexNumericFields, averages)
+
+        return averages
+    }
+
+
+    private fun calcAverages(counter: Any, stocks: List<Any>, stockNumericFields: List<KMutableProperty<*>>, averages: Any) {
         val counterFields = counter::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
 
@@ -72,9 +100,5 @@ class StockAnalysisService {
                 stockField.setter.call(averages, div(sumValue, counterValue))
             }
         }
-
-        return averages
     }
-
-
 }
