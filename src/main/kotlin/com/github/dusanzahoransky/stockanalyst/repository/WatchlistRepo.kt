@@ -104,8 +104,8 @@ class WatchlistRepo {
         return setOf(
             *investedInUsd().toTypedArray(),
             *watchListUsd().toTypedArray(),
-            *dividendsUsd().toTypedArray(),
-            *nasdaq100().toTypedArray()
+            *dividendsUsd().toTypedArray()
+            /**nasdaq100().toTypedArray()*/
         )
     }
 
@@ -266,7 +266,8 @@ class WatchlistRepo {
             StockTicker.fromString("ROK:NASDAQ"),
             StockTicker.fromString("EMR:NYSE"),
             StockTicker.fromString("HON:NYSE"),
-            StockTicker.fromString("KO:NASDAQ")
+            StockTicker.fromString("KO:NASDAQ"),
+            StockTicker.fromString("TSM:NYSE")
         )
     }
 

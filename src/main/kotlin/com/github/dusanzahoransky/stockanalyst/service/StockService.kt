@@ -91,8 +91,8 @@ class StockService @Autowired constructor(
     }
 
     private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {
-        val result = chart.chart?.result?.get(0) ?: return
-        val closePrices = result.indicators?.quote?.get(0)?.close ?: return
+        val result = chart.chart?.result?.getOrNull(0) ?: return
+        val closePrices = result.indicators?.quote?.getOrNull(0)?.close ?: return
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
 
         val epsSeriesQuarterly = mutableMapOf<LocalDate, Double?>()
@@ -329,10 +329,10 @@ class StockService @Autowired constructor(
         stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
-        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, "epsGrowthLastQuarter", 0.1)
-        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, "epsGrowthLast2Quarters", 0.1)
-        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, "epsGrowthLast3Quarters", 0.1)
-        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, "epsGrowthEstimateLastQuarter", 0.01)
+        stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, "epsGrowthLastQuarter", 0.2)
+        stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, "epsGrowthLast2Quarters", 0.2)
+        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, "epsGrowthLast3Quarters", 0.2)
+        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, "epsGrowthEstimateLastQuarter", 0.02)
 
         if (timeSeries.annualDilutedEPS != null) {
             for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
@@ -344,12 +344,12 @@ class StockService @Autowired constructor(
                 }
             }
         }
-        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, "epsGrowthLastYear", 0.1)
-        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, "epsGrowthLast2Years", 0.1)
-        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast3Years", 0.1)
+        stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, "epsGrowthLastYear", 0.2)
+        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, "epsGrowthLast2Years", 0.2)
+        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast3Years", 0.2)
 
         stock.quarterEnds = balanceSheetStatements?.map { it.endDate.raw }
-        stock.lastReportedQuarter = stock.quarterEnds?.get(0)?.let { epochSecToLocalDate(it) }
+        stock.lastReportedQuarter = stock.quarterEnds?.getOrNull(0)?.let { epochSecToLocalDate(it) }
         stock.yearEnds = timeSeries?.timestamp?.reversed()
     }
 
