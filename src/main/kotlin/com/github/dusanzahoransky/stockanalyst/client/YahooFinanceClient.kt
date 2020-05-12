@@ -31,46 +31,20 @@ class YahooFinanceClient @Autowired constructor(
             val statisticsMock = ClassPathResource("StatisticsMockGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<StatisticsResponse>())
         }
-        val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
-            StatisticsResponse::class.java,
-            mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
-        )
+        return try {
+            val response = restTemplate.getForObject(
 
-        logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
-        return response
-    }
+                "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
+                StatisticsResponse::class.java,
+                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+            )
 
-    fun getIndexStatistics(ticker: StockTicker, mockData: Boolean): IndexStatisticsResponse? {
-        if (mockData) {
-            val statisticsMock =
-                if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
-                else ClassPathResource("StatisticsVTS.json")
-            return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<IndexStatisticsResponse>())
+            logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+            return response
+        } catch (e: Exception) {
+            logger.error(e.message, e)
+            null
         }
-        val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
-            IndexStatisticsResponse::class.java,
-            mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
-        )
-
-        logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
-        return response
-    }
-
-    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
-        if (mockData) {
-            val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
-            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
-        }
-        val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",
-            FinancialsResponse::class.java,
-            mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
-        )
-
-        logger.debug("Financials from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
-        return response
     }
 
     fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse? {
@@ -80,19 +54,67 @@ class YahooFinanceClient @Autowired constructor(
                 else ClassPathResource("ChartMockVTS.json")
             return jacksonObjectMapper().readValue(data.inputStream, jacksonTypeRef<ChartResponse>())
         }
-        val response = restTemplate.getForObject(
-            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",
-            ChartResponse::class.java,
-            mapOf(
-                "region" to "US",
-                "ticker" to ticker.toYahooFormat(),
-                "interval" to interval.value,
-                "range" to range.value
-            )
-        )
+        return try {
+            val response = restTemplate.getForObject(
 
-        logger.debug("Chart from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
-        return response
+                "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",
+                ChartResponse::class.java,
+                mapOf(
+                    "region" to "US",
+                    "ticker" to ticker.toYahooFormat(),
+                    "interval" to interval.value,
+                    "range" to range.value
+                )
+            )
+
+            logger.debug("Chart from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+            return response
+        } catch (e: Exception) {
+            logger.error(e.message, e)
+            null
+        }
     }
 
+    fun getIndexStatistics(ticker: StockTicker, mockData: Boolean): IndexStatisticsResponse? {
+        if (mockData) {
+            val statisticsMock =
+                if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
+                else ClassPathResource("StatisticsVTS.json")
+            return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<IndexStatisticsResponse>())
+        }
+        return try {
+            val response = restTemplate.getForObject(
+
+                "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
+                IndexStatisticsResponse::class.java,
+                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+            )
+
+            logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+            return response
+        } catch (e: Exception) {
+            logger.error(e.message, e)
+            null
+        }
+    }
+
+
+    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
+        if (mockData) {
+            val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
+            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
+        }
+        return try {
+            val response = restTemplate.getForObject(
+                "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",
+                FinancialsResponse::class.java,
+                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+            )
+            logger.debug("Financials from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+            response
+        } catch (e: Exception) {
+            logger.error(e.message, e)
+            null
+        }
+    }
 }

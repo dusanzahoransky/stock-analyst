@@ -13,6 +13,7 @@ class WatchlistRepo {
         when (watchlist) {
             TEST -> return test()
             TEST_INDICES -> return testIndices()
+            TO_INVEST -> return toInvest()
             INVESTED -> return invested()
             EUR -> return eur()
             AUD -> return aud()
@@ -45,6 +46,18 @@ class WatchlistRepo {
             TRADING_212_GBP -> return allTrading212(Exchange.FTSE)*/
             else -> throw IllegalArgumentException("Watchlist $this is not supported yet")
         }
+    }
+
+    fun toInvest(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("GOOGL:NASDAQ"),
+            StockTicker.fromString("MSFT:NASDAQ"),
+            StockTicker.fromString("INTL:NASDAQ"),
+            StockTicker.fromString("BIDU:NASDAQ"),
+            StockTicker.fromString("BABA:NASDAQ"),
+            StockTicker.fromString("UAL:NASDAQ"),
+            StockTicker.fromString("DAL:NASDAQ")
+        )
     }
 
     fun invested(): Set<StockTicker> {
@@ -87,8 +100,13 @@ class WatchlistRepo {
     fun test(): Set<StockTicker> {
         return setOf(
 //            StockTicker.fromString("CBA:ASX")
-            StockTicker.fromString("GOOGL:NASDAQ")
-//            StockTicker.fromString("LTM:NASDAQ"),
+            StockTicker.fromString("GOOGL:NASDAQ"),
+            StockTicker.fromString("MSFT:NASDAQ"),
+            StockTicker.fromString("INTC:NASDAQ"),
+            StockTicker.fromString("BIDU:NASDAQ"),
+            StockTicker.fromString("BABA:NASDAQ"),
+            StockTicker.fromString("UAL:NASDAQ"),
+            StockTicker.fromString("DAL:NASDAQ")
 //            StockTicker.fromString("GRPN:NASDAQ"),
 //            StockTicker.fromString("UAL:NASDAQ")
         )

@@ -5,6 +5,7 @@ enum class Watchlist {
     USD_DIVIDENDS,
     TEST,
     TEST_INDICES,
+    TO_INVEST,
     INVESTED,
     EUR,
     AUD,
