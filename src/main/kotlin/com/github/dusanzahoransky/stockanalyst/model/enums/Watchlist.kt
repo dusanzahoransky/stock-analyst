@@ -1,6 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Watchlist {
+    AIRLINES,
     USD_DIVIDENDS,
     TEST,
     TEST_INDICES,

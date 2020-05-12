@@ -38,6 +38,7 @@ class WatchlistRepo {
             INVESTED_IN_AUD -> return investedInAud()
             NASDAQ_100 -> return nasdaq100()
             USD_DIVIDENDS -> return dividendsUsd()
+            AIRLINES -> return airlines()
 /*            TRADING_212 -> return allTrading212()
             TRADING_212_US -> return allTrading212(Exchange.NYSE, Exchange.NASDAQ)
             TRADING_212_EUR -> return allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
@@ -256,10 +257,23 @@ class WatchlistRepo {
         )
     }
 
+    fun airlines(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("DAL:NASDAQ"),
+            StockTicker.fromString("UAL:NASDAQ"),
+            StockTicker.fromString("AAL:NASDAQ"),
+            StockTicker.fromString("LTM:NASDAQ"),
+            StockTicker.fromString("IAG:FTSE"),
+            StockTicker.fromString("RYA:FTSE"),
+            StockTicker.fromString("WIZZ:FTSE")
+
+        )
+    }
+
     fun watchListUsd(): Set<StockTicker> {
         return setOf(
             //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
-            StockTicker.fromString("ZNH:NYSE"),
+            /*StockTicker.fromString("ZNH:NYSE"),*/
             StockTicker.fromString("INO:NYSE"),
             StockTicker.fromString("MA:NASDAQ"),
             //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
@@ -284,13 +298,13 @@ class WatchlistRepo {
 
     fun watchListGbp(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("IAG:FTSE")
         )
     }
 
 
     fun investedInGbp(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("IAG:FTSE"),
             StockTicker.fromString("RYA:FTSE"),
             StockTicker.fromString("WIZZ:FTSE")
         )
