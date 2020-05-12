@@ -55,6 +55,7 @@ data class StockInfo(
     var exDividendDate: String? = null,
     var fiveYearAvgDividendYield: Double? = null,
     var trailingAnnualDividendYield: Double? = null,
+    var payoutRatio: Double? = null,
 
     var netIncomeLastQuarter: Long? = null,
     var netIncome2QuartersAgo: Long? = null,
@@ -64,6 +65,15 @@ data class StockInfo(
     var netIncomeGrowthLastQuarter: Double? = null,
     var netIncomeGrowthLast2Quarters: Double? = null,
     var netIncomeGrowthLast3Years: Double? = null,
+
+    var grossIncomeLastQuarter: Long? = null,
+    var grossIncome2QuartersAgo: Long? = null,
+    var grossIncome3QuartersAgo: Long? = null,
+    var grossIncomeLastYear: Long? = null,
+    var grossIncome3YearsAgo: Long? = null,
+    var grossIncomeGrowthLastQuarter: Double? = null,
+    var grossIncomeGrowthLast2Quarters: Double? = null,
+    var grossIncomeGrowthLast3Years: Double? = null,
 
     var revenueLastQuarter: Long? = null,
     var revenue2QuartersAgo: Long? = null,
@@ -85,6 +95,12 @@ data class StockInfo(
     var inventoryGrowthLastQuarter: Double? = null,
     var inventoryGrowthLastYear: Double? = null,
     var inventoryGrowthLast3Years: Double? = null,
+
+    var currentAssetsLastQuarter: Long? = null,
+    var currentAssetsLastYear: Long? = null,
+    var currentAssetsGrowthLastQuarter: Double? = null,
+    var currentAssetsGrowthLastYear: Double? = null,
+    var currentAssetsGrowthLast3Years: Double? = null,
 
     var currentLiabilitiesLastQuarter: Long? = null,
     var currentLiabilitiesLastYear: Long? = null,

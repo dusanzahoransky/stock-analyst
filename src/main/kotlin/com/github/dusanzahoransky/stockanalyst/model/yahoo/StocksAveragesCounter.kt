@@ -176,5 +176,20 @@ data class StocksAveragesCounter(
     var peGrowthLastQuarterCount: Int = 0,
     var peGrowthLast2QuartersCount: Int = 0,
     var peGrowthLast3QuartersCount: Int = 0,
-    var peGrowthYOYCount: Int = 0
+    var peGrowthYOYCount: Int = 0,
+
+    var currentAssetsGrowthLast3YearsCount: Int = 0,
+    var currentAssetsGrowthLastQuarterCount: Int = 0,
+    var currentAssetsGrowthLastYearCount: Int = 0,
+    var currentAssetsLastQuarterCount: Int = 0,
+    var currentAssetsLastYearCount: Int = 0,
+    var grossIncome2QuartersAgoCount: Int = 0,
+    var grossIncome3QuartersAgoCount: Int = 0,
+    var grossIncome3YearsAgoCount: Int = 0,
+    var grossIncomeGrowthLast2QuartersCount: Int = 0,
+    var grossIncomeGrowthLast3YearsCount: Int = 0,
+    var grossIncomeGrowthLastQuarterCount: Int = 0,
+    var grossIncomeLastQuarterCount: Int = 0,
+    var grossIncomeLastYearCount: Int = 0,
+    var payoutRatioCount: Int = 0
 )

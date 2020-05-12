@@ -248,6 +248,15 @@ class StockService @Autowired constructor(
         stock.netIncomeGrowthLast2Quarters = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome3QuartersAgo, "netIncomeGrowthLast2Quarters")
         stock.netIncomeGrowthLast3Years = percentGrowth(stock.netIncomeLastYear, stock.netIncome3YearsAgo, "netIncomeGrowthLast3Years")
 
+        stock.grossIncomeLastQuarter = incomeStatementLastQuarter?.grossProfit?.raw?.toLong()
+        stock.grossIncome2QuartersAgo = incomeStatement2QuartersAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncome3QuartersAgo = incomeStatement3QuartersAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncomeLastYear = incomeStatementLastYear?.grossProfit?.raw?.toLong()
+        stock.grossIncome3YearsAgo = incomeStatement3YearsAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
+        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
+        stock.grossIncomeGrowthLast3Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome3YearsAgo, "grossIncomeGrowthLast3Years")
+
         stock.revenueLastQuarter = incomeStatementLastQuarter?.totalRevenue?.raw?.toLong()
         stock.revenue2QuartersAgo = incomeStatement2QuartersAgo?.totalRevenue?.raw?.toLong()
         stock.revenue3QuartersAgo = incomeStatement3QuartersAgo?.totalRevenue?.raw?.toLong()
@@ -268,6 +277,12 @@ class StockService @Autowired constructor(
         stock.inventoryGrowthLastQuarter = percentGrowth(stock.inventoryLastQuarter, balanceSheet2QuartersAgo?.inventory?.raw, "inventoryGrowthLastQuarter")
         stock.inventoryGrowthLastYear = percentGrowth(stock.inventoryLastYear, balanceSheet2YearsAgo?.inventory?.raw, "inventoryGrowthLastYear")
         stock.inventoryGrowthLast3Years = percentGrowth(stock.inventoryLastYear, balanceSheet3YearsAgo?.inventory?.raw, "inventoryGrowthLast3Years")
+
+        stock.currentAssetsLastQuarter = balanceSheetLastQuarter?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssetsLastYear = balanceSheetLastYear?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssetsGrowthLastQuarter = percentGrowth(stock.currentAssetsLastQuarter, balanceSheet2QuartersAgo?.totalCurrentAssets?.raw, "currentAssetsGrowthLastQuarter")
+        stock.currentAssetsGrowthLastYear = percentGrowth(stock.currentAssetsLastYear, balanceSheet2YearsAgo?.totalCurrentAssets?.raw, "currentAssetsGrowthLastYear")
+        stock.currentAssetsGrowthLast3Years = percentGrowth(stock.currentAssetsLastYear, balanceSheet3YearsAgo?.totalCurrentAssets?.raw, "currentAssetsGrowthLast3Years")
 
         stock.currentLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalCurrentLiabilities?.raw?.toLong()
         stock.currentLiabilitiesLastYear = balanceSheetLastYear?.totalCurrentLiabilities?.raw?.toLong()
@@ -431,6 +446,7 @@ class StockService @Autowired constructor(
         stock.exDividendDate = calendarEvents.exDividendDate?.fmt
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
         stock.trailingAnnualDividendYield = percent(summaryDetail.trailingAnnualDividendYield?.raw)
+        stock.payoutRatio = percent(summaryDetail.payoutRatio?.raw)
     }
 
     private fun getExchangeRate(financials: FinancialsResponse, stock: StockInfo): Double {
