@@ -25,6 +25,9 @@ class WatchlistRepo {
             GBP_INDICES -> return gbpIndices()
             GBP_INDICES_INVESTED -> return investedIndicesInGbp()
             AUD_INDICES -> return audIndices()
+            AUD_INDICES_AU -> return auIndicesAud()
+            AUD_INDICES_US -> return usIndicesAud()
+            AUD_INDICES_ASIA -> return asiaIndicesAud()
             AUD_INDICES_INVESTED -> return investedIndicesInAud()
             INVESTED_IN_EUR -> return investedInEur()
             INVESTED_IN_GBP -> return investedInGbp()
@@ -341,6 +344,31 @@ class WatchlistRepo {
 //            StockTicker.fromString("Z1P:ASX"),
             StockTicker.fromString("APT:ASX")
 //            StockTicker.fromString("OPY:ASX")
+        )
+    }
+
+    fun asiaIndicesAud(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("ASIA:ASX"),
+            StockTicker.fromString("VGE:ASX"),
+            StockTicker.fromString("VAE:ASX")
+        )
+    }
+
+    fun usIndicesAud(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("VTS:ASX"),
+            StockTicker.fromString("IVV:ASX"),
+            StockTicker.fromString("NDQ:ASX")
+        )
+    }
+    fun auIndicesAud(): Set<StockTicker> {
+        return setOf(
+            StockTicker.fromString("VLC:ASX"),
+            StockTicker.fromString("A200:ASX"),
+            StockTicker.fromString("VAS:ASX"),
+            StockTicker.fromString("VAP:ASX"),
+            StockTicker.fromString("VHY:ASX")
         )
     }
 
