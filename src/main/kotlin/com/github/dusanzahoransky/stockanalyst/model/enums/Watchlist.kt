@@ -1,6 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Watchlist {
+    INDICES,
     AIRLINES,
     USD_DIVIDENDS,
     TEST,
@@ -10,10 +11,12 @@ enum class Watchlist {
     EUR,
     AUD,
     AUD_INDICES,
+    AUD_INDICES_INVESTED,
     USD,
     USD_TECH,
     GBP,
     GBP_INDICES,
+    GBP_INDICES_INVESTED,
     CHF,
     INVESTED_IN_EUR,
     INVESTED_IN_GBP,

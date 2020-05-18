@@ -101,7 +101,7 @@ class YahooFinanceClient @Autowired constructor(
 
     fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
+            val balanceSheetMock = ClassPathResource("FinancialsMockSPG.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
         }
         return try {

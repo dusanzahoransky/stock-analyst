@@ -13,6 +13,7 @@ class WatchlistRepo {
         when (watchlist) {
             TEST -> return test()
             TEST_INDICES -> return testIndices()
+            INDICES -> return indices()
             TO_INVEST -> return toInvest()
             INVESTED -> return invested()
             EUR -> return eur()
@@ -22,7 +23,9 @@ class WatchlistRepo {
             GBP -> return gbp()
             CHF -> return chf()
             GBP_INDICES -> return gbpIndices()
+            GBP_INDICES_INVESTED -> return investedIndicesInGbp()
             AUD_INDICES -> return audIndices()
+            AUD_INDICES_INVESTED -> return investedIndicesInAud()
             INVESTED_IN_EUR -> return investedInEur()
             INVESTED_IN_GBP -> return investedInGbp()
             INVESTED_INDICES_IN_GBP -> return investedIndicesInGbp()
@@ -50,13 +53,7 @@ class WatchlistRepo {
 
     fun toInvest(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("GOOGL:NASDAQ"),
-            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("INTL:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ"),
-            StockTicker.fromString("BABA:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ"),
-            StockTicker.fromString("DAL:NASDAQ")
+            StockTicker.fromString("TEAM:NASDAQ")
         )
     }
 
@@ -90,6 +87,13 @@ class WatchlistRepo {
         )
     }
 
+    fun indices(): Set<StockTicker> {
+        return setOf(
+            *audIndices().toTypedArray(),
+            *gbpIndices().toTypedArray()
+        )
+    }
+
     fun testIndices(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VTS:ASX"),
@@ -99,16 +103,7 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-//            StockTicker.fromString("CBA:ASX")
-            StockTicker.fromString("GOOGL:NASDAQ"),
-            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("INTC:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ"),
-            StockTicker.fromString("BABA:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ"),
-            StockTicker.fromString("DAL:NASDAQ")
-//            StockTicker.fromString("GRPN:NASDAQ"),
-//            StockTicker.fromString("UAL:NASDAQ")
+            StockTicker.fromString("TEAM:NASDAQ")
         )
     }
 
@@ -166,8 +161,10 @@ class WatchlistRepo {
     fun investedIndicesInGbp(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VUSA:FTSE"),
-            StockTicker.fromString("VFEM:FTSE"),
-            StockTicker.fromString("VMID:FTSE")
+            StockTicker.fromString("VMID:FTSE"),
+            StockTicker.fromString("CNDX:FTSE"),
+            StockTicker.fromString("VDEV:FTSE"),
+            StockTicker.fromString("VUKE:FTSE")
         )
     }
 
@@ -181,15 +178,13 @@ class WatchlistRepo {
             StockTicker.fromString("NASD:FTSE"),
             StockTicker.fromString("LYMS:DAX"),
 /*            StockTicker.fromString("CNX1:FTSE"),*/
-            StockTicker.fromString("CNDX:FTSE"),
-            StockTicker.fromString("VUSA:FTSE"),
+
             StockTicker.fromString("VFEM:FTSE"),
-            StockTicker.fromString("VUKE:FTSE"),
 
             /*StockTicker.fromString("VHYL:FTSE"),*/
             /*StockTicker.fromString("VWRL:FTSE"),*/
             StockTicker.fromString("VEVE:FTSE"),
-            StockTicker.fromString("VDEV:FTSE"),
+
             /*StockTicker.fromString("VAPX:FTSE"),*/
             StockTicker.fromString("VJPN:FTSE"),
             StockTicker.fromString("UKDV:FTSE"),
@@ -237,6 +232,8 @@ class WatchlistRepo {
 
     fun watchListUsdTech(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("JD:NASDAQ"),
+            StockTicker.fromString("TEAM:NASDAQ"),
             StockTicker.fromString("AMD:NASDAQ"),
             StockTicker.fromString("BABA:NASDAQ"),
             StockTicker.fromString("NET:NASDAQ"),
@@ -258,6 +255,7 @@ class WatchlistRepo {
 
     fun dividendsUsd(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("SPG:NYSE"),
             StockTicker.fromString("LMT:NYSE"),
             StockTicker.fromString("WM:NYSE"),
             StockTicker.fromString("UNP:NYSE"),
@@ -348,6 +346,7 @@ class WatchlistRepo {
 
     fun watchListIndicesAud(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("VLC:ASX"),
             StockTicker.fromString("A200:ASX"),
             StockTicker.fromString("VAS:ASX"),
             StockTicker.fromString("ETHI:ASX"),
@@ -361,7 +360,9 @@ class WatchlistRepo {
             StockTicker.fromString("MNRS:ASX"),
             StockTicker.fromString("BBOZ:ASX"),
             StockTicker.fromString("RBTZ:ASX"),
-            StockTicker.fromString("NDQ:ASX")
+            StockTicker.fromString("NDQ:ASX"),
+            StockTicker.fromString("VBLD:ASX"),
+            StockTicker.fromString("VAE:ASX")
         )
     }
 
