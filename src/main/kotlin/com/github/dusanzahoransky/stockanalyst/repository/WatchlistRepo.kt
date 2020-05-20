@@ -374,6 +374,7 @@ class WatchlistRepo {
 
     fun watchListIndicesAud(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("VDHG:ASX"),
             StockTicker.fromString("VLC:ASX"),
             StockTicker.fromString("A200:ASX"),
             StockTicker.fromString("VAS:ASX"),
