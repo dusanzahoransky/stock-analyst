@@ -10,7 +10,7 @@ import java.nio.file.Files
 fun main() {
     val codeModel = JCodeModel()
 
-    val source: URL = CalcUtils::class.java.getResource("/StatisticsVUSA.L.json")
+    val source: URL = CalcUtils::class.java.getResource("/convienientKeyratiosMSFT.json")
 
     val config: GenerationConfig = object : DefaultGenerationConfig() {
         override fun getSourceType(): SourceType {
@@ -20,11 +20,11 @@ fun main() {
 
     val mapper = SchemaMapper(RuleFactory(config, Jackson2Annotator(config), SchemaStore()), SchemaGenerator())
     mapper.generate(codeModel,
-        "IndexStatisticsResponse",
-        "com.github.dusanzahoransky.stockanalyst.model.yahoo.istatistics",
+        "KetRatiosResponse",
+        "com.github.dusanzahoransky.stockanalyst.model.ms.ckeyratios",
         source)
 
-    val outDir = Files.createTempDirectory("financials")
+    val outDir = Files.createTempDirectory("convienientKeyratios")
     println(outDir.toAbsolutePath())
     codeModel.build(outDir.toFile())
 }
