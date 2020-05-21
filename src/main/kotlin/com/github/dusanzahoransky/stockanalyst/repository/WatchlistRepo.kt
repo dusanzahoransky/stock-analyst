@@ -235,6 +235,7 @@ class WatchlistRepo {
 
     fun watchListUsdTech(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("DELL:NASDAQ"),
             StockTicker.fromString("JD:NASDAQ"),
             StockTicker.fromString("TEAM:NASDAQ"),
             StockTicker.fromString("AMD:NASDAQ"),
