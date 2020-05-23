@@ -23,17 +23,18 @@ class WatchlistRepo {
             GBP -> return gbp()
             CHF -> return chf()
             GBP_INDICES -> return gbpIndices()
-            GBP_INDICES_INVESTED -> return investedIndicesInGbp()
+            INVESTED_IN_GBP_INDICES -> return investedIndicesInGbp()
             AUD_INDICES -> return audIndices()
             AUD_INDICES_AU -> return auIndicesAud()
             AUD_INDICES_US -> return usIndicesAud()
             AUD_INDICES_ASIA -> return asiaIndicesAud()
-            AUD_INDICES_INVESTED -> return investedIndicesInAud()
+            INVESTED_IN_AUD_INDICES -> return investedIndicesInAud()
             INVESTED_IN_EUR -> return investedInEur()
             INVESTED_IN_GBP -> return investedInGbp()
             INVESTED_INDICES_IN_GBP -> return investedIndicesInGbp()
             WATCH_LIST_INDICES_GBP -> return watchListIndicesGbp()
             INVESTED_IN_USD -> return investedInUsd()
+            INVESTED_IN_USD_TECH -> return investedInUsdTech()
             WATCH_LIST_USD -> return watchListUsd()
             WATCH_LIST_EUR -> return watchListEur()
             WATCH_LIST_CHF -> return watchListChf()
@@ -164,25 +165,28 @@ class WatchlistRepo {
     fun investedIndicesInGbp(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VUSA:FTSE"),
-            StockTicker.fromString("VMID:FTSE"),
             StockTicker.fromString("CNDX:FTSE"),
             StockTicker.fromString("VDEV:FTSE"),
-            StockTicker.fromString("VUKE:FTSE")
+            StockTicker.fromString("VUKE:FTSE"),
+            StockTicker.fromString("VFEM:FTSE")
         )
     }
 
     fun watchListIndicesGbp(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("WSML:FTSE"),
+            StockTicker.fromString("IUS3:DAX"),
+            StockTicker.fromString("VMID:FTSE"),
             StockTicker.fromString("UKDV:FTSE"),
             StockTicker.fromString("INRG:FTSE"),
             StockTicker.fromString("PHGP:FTSE"),
             StockTicker.fromString("IUKP:FTSE"),
             StockTicker.fromString("EXS1:DAX"),
-            StockTicker.fromString("NASD:FTSE"),
-            StockTicker.fromString("LYMS:DAX"),
+       /*     StockTicker.fromString("NASD:FTSE"),
+            StockTicker.fromString("LYMS:DAX"),*/
 /*            StockTicker.fromString("CNX1:FTSE"),*/
 
-            StockTicker.fromString("VFEM:FTSE"),
+
 
             /*StockTicker.fromString("VHYL:FTSE"),*/
             /*StockTicker.fromString("VWRL:FTSE"),*/
@@ -405,7 +409,8 @@ class WatchlistRepo {
             StockTicker.fromString("NDQ:ASX"),
             StockTicker.fromString("IVV:ASX"),
             StockTicker.fromString("VGE:ASX"),
-            StockTicker.fromString("ASIA:ASX")
+            StockTicker.fromString("ASIA:ASX"),
+            StockTicker.fromString("VAS:ASX")
         )
     }
 
