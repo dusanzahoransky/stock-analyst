@@ -83,7 +83,7 @@ public class EarningsPerShareGrowthSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(EarningsPerShareGrowthSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(EarningsPerShareGrowthSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("tenYearAverage");
         sb.append('=');
         sb.append(((this.tenYearAverage == null)?"<null>":this.tenYearAverage));

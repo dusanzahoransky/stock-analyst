@@ -33,33 +33,33 @@ public class KeyRatioFinancialsSection {
     @JsonProperty("bookValuePerShare")
     private Double bookValuePerShare;
     @JsonProperty("capSpending")
-    private Integer capSpending;
+    private Long capSpending;
     @JsonProperty("dividends")
     private Double dividends;
     @JsonProperty("earningsPerShare")
     private Double earningsPerShare;
     @JsonProperty("freeCashFlow")
-    private Integer freeCashFlow;
+    private Long freeCashFlow;
     @JsonProperty("freeCashFlowPerShare")
     private Double freeCashFlowPerShare;
     @JsonProperty("grossMarginPercent")
     private Double grossMarginPercent;
     @JsonProperty("netIncome")
-    private Integer netIncome;
+    private Long netIncome;
     @JsonProperty("operatingCashFlow")
-    private Integer operatingCashFlow;
+    private Long operatingCashFlow;
     @JsonProperty("operatingIncome")
-    private Integer operatingIncome;
+    private Long operatingIncome;
     @JsonProperty("operatingMarginPercent")
     private Double operatingMarginPercent;
     @JsonProperty("payoutRatioPercent")
     private Double payoutRatioPercent;
     @JsonProperty("revenue")
-    private Integer revenue;
+    private Long revenue;
     @JsonProperty("shares")
-    private Integer shares;
+    private Long shares;
     @JsonProperty("workingCapital")
-    private Integer workingCapital;
+    private Long workingCapital;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -74,12 +74,12 @@ public class KeyRatioFinancialsSection {
     }
 
     @JsonProperty("capSpending")
-    public Integer getCapSpending() {
+    public Long getCapSpending() {
         return capSpending;
     }
 
     @JsonProperty("capSpending")
-    public void setCapSpending(Integer capSpending) {
+    public void setCapSpending(Long capSpending) {
         this.capSpending = capSpending;
     }
 
@@ -104,12 +104,12 @@ public class KeyRatioFinancialsSection {
     }
 
     @JsonProperty("freeCashFlow")
-    public Integer getFreeCashFlow() {
+    public Long getFreeCashFlow() {
         return freeCashFlow;
     }
 
     @JsonProperty("freeCashFlow")
-    public void setFreeCashFlow(Integer freeCashFlow) {
+    public void setFreeCashFlow(Long freeCashFlow) {
         this.freeCashFlow = freeCashFlow;
     }
 
@@ -134,32 +134,32 @@ public class KeyRatioFinancialsSection {
     }
 
     @JsonProperty("netIncome")
-    public Integer getNetIncome() {
+    public Long getNetIncome() {
         return netIncome;
     }
 
     @JsonProperty("netIncome")
-    public void setNetIncome(Integer netIncome) {
+    public void setNetIncome(Long netIncome) {
         this.netIncome = netIncome;
     }
 
     @JsonProperty("operatingCashFlow")
-    public Integer getOperatingCashFlow() {
+    public Long getOperatingCashFlow() {
         return operatingCashFlow;
     }
 
     @JsonProperty("operatingCashFlow")
-    public void setOperatingCashFlow(Integer operatingCashFlow) {
+    public void setOperatingCashFlow(Long operatingCashFlow) {
         this.operatingCashFlow = operatingCashFlow;
     }
 
     @JsonProperty("operatingIncome")
-    public Integer getOperatingIncome() {
+    public Long getOperatingIncome() {
         return operatingIncome;
     }
 
     @JsonProperty("operatingIncome")
-    public void setOperatingIncome(Integer operatingIncome) {
+    public void setOperatingIncome(Long operatingIncome) {
         this.operatingIncome = operatingIncome;
     }
 
@@ -184,32 +184,32 @@ public class KeyRatioFinancialsSection {
     }
 
     @JsonProperty("revenue")
-    public Integer getRevenue() {
+    public Long getRevenue() {
         return revenue;
     }
 
     @JsonProperty("revenue")
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(Long revenue) {
         this.revenue = revenue;
     }
 
     @JsonProperty("shares")
-    public Integer getShares() {
+    public Long getShares() {
         return shares;
     }
 
     @JsonProperty("shares")
-    public void setShares(Integer shares) {
+    public void setShares(Long shares) {
         this.shares = shares;
     }
 
     @JsonProperty("workingCapital")
-    public Integer getWorkingCapital() {
+    public Long getWorkingCapital() {
         return workingCapital;
     }
 
     @JsonProperty("workingCapital")
-    public void setWorkingCapital(Integer workingCapital) {
+    public void setWorkingCapital(Long workingCapital) {
         this.workingCapital = workingCapital;
     }
 
@@ -226,7 +226,7 @@ public class KeyRatioFinancialsSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(KeyRatioFinancialsSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(KeyRatioFinancialsSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("bookValuePerShare");
         sb.append('=');
         sb.append(((this.bookValuePerShare == null)?"<null>":this.bookValuePerShare));

@@ -40,7 +40,7 @@ public class FinancialHealthBalanceSheetSection {
     @JsonProperty("accountsReceivable")
     private Double accountsReceivable;
     @JsonProperty("accruedLiabilities")
-    private Integer accruedLiabilities;
+    private Long accruedLiabilities;
     @JsonProperty("cashAndShortTermInvestments")
     private Double cashAndShortTermInvestments;
     @JsonProperty("intangibles")
@@ -99,12 +99,12 @@ public class FinancialHealthBalanceSheetSection {
     }
 
     @JsonProperty("accruedLiabilities")
-    public Integer getAccruedLiabilities() {
+    public Long getAccruedLiabilities() {
         return accruedLiabilities;
     }
 
     @JsonProperty("accruedLiabilities")
-    public void setAccruedLiabilities(Integer accruedLiabilities) {
+    public void setAccruedLiabilities(Long accruedLiabilities) {
         this.accruedLiabilities = accruedLiabilities;
     }
 
@@ -291,7 +291,7 @@ public class FinancialHealthBalanceSheetSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(FinancialHealthBalanceSheetSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FinancialHealthBalanceSheetSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("accountsPayable");
         sb.append('=');
         sb.append(((this.accountsPayable == null)?"<null>":this.accountsPayable));

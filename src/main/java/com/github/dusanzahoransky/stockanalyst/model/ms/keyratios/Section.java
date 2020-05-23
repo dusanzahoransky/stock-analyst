@@ -85,7 +85,7 @@ public class Section {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Section.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Section.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("sectionHeader");
         sb.append('=');
         sb.append(((this.sectionHeader == null)?"<null>":this.sectionHeader));

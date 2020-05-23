@@ -135,7 +135,7 @@ public class EfficiencyRatiosSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(EfficiencyRatiosSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(EfficiencyRatiosSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("assetTurnover");
         sb.append('=');
         sb.append(((this.assetTurnover == null)?"<null>":this.assetTurnover));

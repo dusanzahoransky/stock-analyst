@@ -122,7 +122,7 @@ public class KeyRatioStatisticsSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(KeyRatioStatisticsSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(KeyRatioStatisticsSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("marginsPercentageOfSalesSection");
         sb.append('=');
         sb.append(((this.marginsPercentageOfSalesSection == null)?"<null>":this.marginsPercentageOfSalesSection));

@@ -83,7 +83,7 @@ public class Result {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Result.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(Result.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("keyRatioFinancialsSection");
         sb.append('=');
         sb.append(((this.keyRatioFinancialsSection == null)?"<null>":this.keyRatioFinancialsSection));

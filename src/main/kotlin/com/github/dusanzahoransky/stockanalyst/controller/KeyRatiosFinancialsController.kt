@@ -23,7 +23,7 @@ class KeyRatiosFinancialsController @Autowired constructor(
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): Rule1Result {
-        val krf = keyRatiosFinancialsService.getWatchlistKRF(watchlist, forceRefresh, mockData)
+        val krf = keyRatiosFinancialsService.getWatchlistRatios(watchlist, forceRefresh, mockData)
         return keyRatiosAnalysisService.calcRule1(krf)
     }
 

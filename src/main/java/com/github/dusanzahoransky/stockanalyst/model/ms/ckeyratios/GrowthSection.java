@@ -83,7 +83,7 @@ public class GrowthSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(GrowthSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(GrowthSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("revenueGrowthSection");
         sb.append('=');
         sb.append(((this.revenueGrowthSection == null)?"<null>":this.revenueGrowthSection));

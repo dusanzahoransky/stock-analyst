@@ -135,7 +135,7 @@ public class ProfitabilitySection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(ProfitabilitySection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(ProfitabilitySection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("assetTurnoverOnAverage");
         sb.append('=');
         sb.append(((this.assetTurnoverOnAverage == null)?"<null>":this.assetTurnoverOnAverage));

@@ -35,7 +35,7 @@ public class MarginsPercentageOfSalesSection {
     @JsonProperty("operatingMargin")
     private Double operatingMargin;
     @JsonProperty("other")
-    private Integer other;
+    private Long other;
     @JsonProperty("rAndD")
     private Double rAndD;
     @JsonProperty("revenue")
@@ -96,12 +96,12 @@ public class MarginsPercentageOfSalesSection {
     }
 
     @JsonProperty("other")
-    public Integer getOther() {
+    public Long getOther() {
         return other;
     }
 
     @JsonProperty("other")
-    public void setOther(Integer other) {
+    public void setOther(Long other) {
         this.other = other;
     }
 
@@ -148,7 +148,7 @@ public class MarginsPercentageOfSalesSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(MarginsPercentageOfSalesSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(MarginsPercentageOfSalesSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("cogs");
         sb.append('=');
         sb.append(((this.cogs == null)?"<null>":this.cogs));

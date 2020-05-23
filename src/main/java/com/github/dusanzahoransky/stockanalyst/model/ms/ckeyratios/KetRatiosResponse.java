@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class KetRatiosResponse {
 
     @JsonProperty("total")
-    private Integer total;
+    private Long total;
     @JsonProperty("offset")
-    private Integer offset;
+    private Long offset;
     @JsonProperty("results")
     private List<Result> results = new ArrayList<Result>();
     @JsonProperty("responseStatus")
@@ -33,22 +33,22 @@ public class KetRatiosResponse {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("total")
-    public Integer getTotal() {
+    public Long getTotal() {
         return total;
     }
 
     @JsonProperty("total")
-    public void setTotal(Integer total) {
+    public void setTotal(Long total) {
         this.total = total;
     }
 
     @JsonProperty("offset")
-    public Integer getOffset() {
+    public Long getOffset() {
         return offset;
     }
 
     @JsonProperty("offset")
-    public void setOffset(Integer offset) {
+    public void setOffset(Long offset) {
         this.offset = offset;
     }
 
@@ -85,7 +85,7 @@ public class KetRatiosResponse {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(KetRatiosResponse.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(KetRatiosResponse.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("total");
         sb.append('=');
         sb.append(((this.total == null)?"<null>":this.total));

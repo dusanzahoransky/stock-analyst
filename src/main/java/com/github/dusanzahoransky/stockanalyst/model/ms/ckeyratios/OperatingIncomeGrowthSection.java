@@ -83,7 +83,7 @@ public class OperatingIncomeGrowthSection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(OperatingIncomeGrowthSection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(OperatingIncomeGrowthSection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("tenYearAverage");
         sb.append('=');
         sb.append(((this.tenYearAverage == null)?"<null>":this.tenYearAverage));

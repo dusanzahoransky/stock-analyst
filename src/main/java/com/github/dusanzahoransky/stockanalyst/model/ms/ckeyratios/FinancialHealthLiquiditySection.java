@@ -83,7 +83,7 @@ public class FinancialHealthLiquiditySection {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(FinancialHealthLiquiditySection.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(FinancialHealthLiquiditySection.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("currentRatio");
         sb.append('=');
         sb.append(((this.currentRatio == null)?"<null>":this.currentRatio));
