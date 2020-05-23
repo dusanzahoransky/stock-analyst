@@ -25,6 +25,7 @@ class StockController @Autowired constructor(
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): AnalysisResult {
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
+        stockAnalysisService.calcStockStats(stocks)
         val averages = stockAnalysisService.calcStocksAverages(stocks)
         return AnalysisResult(averages, stocks)
     }
