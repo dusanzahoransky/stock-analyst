@@ -17,7 +17,7 @@ class MorningStarRestTemplateConfig {
     @Value("\${morningstar.client.xRapidapiHost}")
     lateinit var xRapidapiHost: String
 
-    private val callThresholdTimeout = 200L
+    private val callThresholdTimeout = 500L
 
     @Bean
     fun morningStarRestTemplate(builder: RestTemplateBuilder): RestTemplate {

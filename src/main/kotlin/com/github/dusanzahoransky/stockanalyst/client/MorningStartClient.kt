@@ -22,7 +22,7 @@ class MorningStartClient @Autowired constructor(
     }
 
     fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse? {
-        if (mockData || true) {
+        if (mockData) {
             val statisticsMock = ClassPathResource("keyratiosMSFT.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<KetRatiosResponse>())
         }
@@ -31,7 +31,7 @@ class MorningStartClient @Autowired constructor(
 
                 "https://morningstar1.p.rapidapi.com/keyratios/financials?Ticker={symbol}&Mic={mic}",
                 KetRatiosResponse::class.java,
-                mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic())
+                mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic().value)
             )
 
             logger.debug("Financial KeyRatios from Morningstar API: ${jacksonObjectMapper().writeValueAsString(response)}")

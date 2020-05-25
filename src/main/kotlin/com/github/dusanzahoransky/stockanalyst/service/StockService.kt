@@ -76,7 +76,7 @@ class StockService @Autowired constructor(
         }
         processStatistics(stats, stock, exchangeRate)
 
-        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.FiveYears, mockData)
+        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
         if (chart == null) {
             log.error("Failed to retrieve stock Chart from Yahoo $ticker")
             return null

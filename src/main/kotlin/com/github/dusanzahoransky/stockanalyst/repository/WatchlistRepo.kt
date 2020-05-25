@@ -57,7 +57,7 @@ class WatchlistRepo {
 
     fun toInvest(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("TEAM:NASDAQ")
+            StockTicker.fromString("MSFT:NASDAQ")
         )
     }
 
@@ -107,7 +107,7 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("TEAM:NASDAQ")
+            StockTicker.fromString("MSFT:NASDAQ")
         )
     }
 
