@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
+import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Mic
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
 import org.springframework.data.annotation.Id
@@ -12,11 +13,12 @@ import kotlin.collections.HashMap
  * Simplified data processed from keyRatiosFinancials
  */
 @Document
-data class StockRatios(
+class StockRatiosTimeline(
     @Id var id: String? = null,
     val symbol: String,
     val mic: Mic,
-    val date: LocalDate = LocalDate.now(),
+    val exchange: Exchange,
+    var date: LocalDate = LocalDate.now(),
     var periods: MutableMap<LocalDate, Ratios> = HashMap()
 )
 
@@ -35,5 +37,9 @@ data class Ratios(
     var payoutRatio: Double? = null,
     var revenue: Double? = null,
     var shares: Double? = null,
-    var workingCapital: Double? = null
+    var workingCapital: Double? = null,
+    /**
+     * merged from yahoo finance chart API
+     */
+    var price: Double? = null
 )

@@ -1,8 +1,12 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
+import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.dto.StockInfoWithRatios
+import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.IndicesAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
@@ -13,6 +17,8 @@ import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.ep
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.LocalDate
+import java.time.Period
+import java.time.temporal.ChronoUnit
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
 
@@ -138,33 +144,33 @@ class StockAnalysisService {
                 when (index) {
                     0 -> {
                         if (stock.epsLastQuarter != null) {
-                            val chartDataAt = chartDataAt(epochSecToLocalDate(quarter), chartData)
-                            chartDataAt.epsQuarterly = stock.epsLastQuarter
-                            stock.priceLastQuarter = chartDataAt.price
+                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
+                            chartDataAt?.epsQuarterly = stock.epsLastQuarter
+                            stock.priceLastQuarter = chartDataAt?.price
                             stock.peLastQuarter = div(stock.priceLastQuarter, CalcUtils.multiply(stock.epsLastQuarter, 4.0))
                         }
                     }
                     1 -> {
                         if (stock.eps2QuartersAgo != null) {
-                            val chartDataAt = chartDataAt(epochSecToLocalDate(quarter), chartData)
-                            chartDataAt.epsQuarterly = stock.eps2QuartersAgo
-                            stock.price2QuartersAgo = chartDataAt.price
+                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
+                            chartDataAt?.epsQuarterly = stock.eps2QuartersAgo
+                            stock.price2QuartersAgo = chartDataAt?.price
                             stock.pe2QuartersAgo = div(stock.price2QuartersAgo, CalcUtils.multiply(stock.eps2QuartersAgo, 4.0))
                         }
                     }
                     2 -> {
                         if (stock.eps3QuartersAgo != null) {
-                            val chartDataAt = chartDataAt(epochSecToLocalDate(quarter), chartData)
-                            chartDataAt.epsQuarterly = stock.eps3QuartersAgo
-                            stock.price3QuartersAgo = chartDataAt.price
+                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
+                            chartDataAt?.epsQuarterly = stock.eps3QuartersAgo
+                            stock.price3QuartersAgo = chartDataAt?.price
                             stock.pe3QuartersAgo = div(stock.price3QuartersAgo, CalcUtils.multiply(stock.eps3QuartersAgo, 4.0))
                         }
                     }
                     3 -> {
                         if (stock.eps4QuartersAgo != null) {
-                            val chartDataAt = chartDataAt(epochSecToLocalDate(quarter), chartData)
-                            chartDataAt.epsQuarterly = stock.eps4QuartersAgo
-                            stock.price4QuartersAgo = chartDataAt.price
+                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
+                            chartDataAt?.epsQuarterly = stock.eps4QuartersAgo
+                            stock.price4QuartersAgo = chartDataAt?.price
                             stock.pe4QuartersAgo = div(stock.price4QuartersAgo, CalcUtils.multiply(stock.eps4QuartersAgo, 4.0))
                         }
                     }
@@ -182,8 +188,8 @@ class StockAnalysisService {
                     else -> null
                 }
                 if (eps != null) {
-                    val chartDataAt = chartDataAt(epochSecToLocalDate(year), chartData)
-                    chartDataAt.epsAnnually = eps
+                    val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(year), chartData)
+                    chartDataAt?.epsAnnually = eps
                 }
             }
         }
@@ -199,13 +205,16 @@ class StockAnalysisService {
         stock.chartData = chartData
     }
 
-    private fun chartDataAt(date: LocalDate, chartData: List<StockChartData>): StockChartData {
-        return chartData.first { !epochSecToLocalDate(it.date).isBefore(date) }
+    fun chartDataFirstBefore(date: LocalDate, chartData: List<StockChartData>): StockChartData? {
+        return chartData.firstOrNull {
+            val chartDate = epochSecToLocalDate(it.date)
+            chartDate.isBefore(date) && ChronoUnit.DAYS.between(chartDate, date) <= StockService.CHART_SAMPLING_INTERVAL.days
+        }
     }
 
     fun calcStocksAverages(stocks: List<StockInfo>): StockInfo {
 
-        val counter = StocksAveragesCounter(StockInfo(symbol = "Avg."))
+        val counter = StocksAveragesCounter(StockInfo(symbol = "Avg.", exchange = Exchange.NASDAQ))
         val averages = counter.averages
 
         val stockNumericFields = StockInfo::class.memberProperties
@@ -287,5 +296,15 @@ class StockAnalysisService {
                 stockField.setter.call(averages, div(sumValue, counterValue))
             }
         }
+    }
+
+    fun combineWithRatios(stocks: List<StockInfo>, ratios: List<StockRatiosTimeline>): List<StockInfoWithRatios> {
+        val stockInfoWithRatios = mutableListOf<StockInfoWithRatios>()
+        for (stock in stocks){
+            val ratio =  ratios
+                .first { StockTicker.fromSymbolAndMic(it.symbol, it.mic) == StockTicker(stock.symbol, stock.exchange) }
+            stockInfoWithRatios.add(StockInfoWithRatios(stock, ratio))
+        }
+        return stockInfoWithRatios
     }
 }

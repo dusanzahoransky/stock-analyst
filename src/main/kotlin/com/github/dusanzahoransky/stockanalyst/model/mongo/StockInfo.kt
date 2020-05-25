@@ -12,7 +12,7 @@ data class StockInfo(
     val date: LocalDate = LocalDate.now(),
     var lastReportedQuarter: LocalDate? = null,
     val symbol: String,
-    val exchange: Exchange? = null,
+    val exchange: Exchange,
     var companyName: String? = null,
     var price: Double? = null,
     var currency: Currency? = null,

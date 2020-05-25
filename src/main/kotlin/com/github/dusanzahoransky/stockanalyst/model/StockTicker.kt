@@ -23,6 +23,10 @@ data class StockTicker(
             val ticketParts = ticker.split(":")
             return StockTicker(ticketParts[0], Exchange.values().first { e -> e.fullName == ticketParts[1] })
         }
+
+        fun fromSymbolAndMic(symbol: String, mic: Mic): StockTicker{
+            return StockTicker(symbol, Exchange.valueOf(mic.name))
+        }
     }
 
     fun toYahooFormat(): String {

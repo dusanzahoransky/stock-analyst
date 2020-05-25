@@ -1,8 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.model.dto.Rule1Result
-import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatios
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
@@ -11,10 +9,10 @@ class KeyRatiosAnalysisService {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun calcRule1(krsList: List<StockRatios>): Rule1Result {
-        for(krl in krsList){
-
+    fun calcRule1(krsList: List<StockRatiosTimeline>): List<StockRatiosTimeline> {
+        for (krl in krsList) {
+            //TODO
         }
-        return Rule1Result(krsList)
+        return krsList
     }
 }

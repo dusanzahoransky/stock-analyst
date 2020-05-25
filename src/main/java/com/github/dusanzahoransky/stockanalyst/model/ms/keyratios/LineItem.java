@@ -20,7 +20,7 @@ public class LineItem {
     @JsonProperty("label")
     private String label;
     @JsonProperty("value")
-    private Long value;
+    private Double value;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -35,12 +35,12 @@ public class LineItem {
     }
 
     @JsonProperty("value")
-    public Long getValue() {
+    public Double getValue() {
         return value;
     }
 
     @JsonProperty("value")
-    public void setValue(Long value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
@@ -57,7 +57,7 @@ public class LineItem {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(LineItem.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(LineItem.class.getName()).append('@').append(Double.toHexString(System.identityHashCode(this))).append('[');
         sb.append("label");
         sb.append('=');
         sb.append(((this.label == null)?"<null>":this.label));

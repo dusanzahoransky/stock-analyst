@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
+import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Mic
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
 import org.springframework.data.annotation.Id
