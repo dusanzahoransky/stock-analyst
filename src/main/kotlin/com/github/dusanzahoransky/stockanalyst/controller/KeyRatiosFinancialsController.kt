@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("keyratios/financials")
 class KeyRatiosFinancialsController @Autowired constructor(
-    val keyRatiosTimelineService: KeyRatiosTimelineService,
-    val keyRatiosAnalysisService: KeyRatiosAnalysisService
+    val keyRatiosTimelineService: KeyRatiosTimelineService
 ) {
 
     @GetMapping("watchlist")
@@ -20,8 +19,7 @@ class KeyRatiosFinancialsController @Autowired constructor(
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): List<StockRatiosTimeline> {
-        val krf = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData)
-        return keyRatiosAnalysisService.calcRule1(krf)
+        return keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData)
     }
 
 }

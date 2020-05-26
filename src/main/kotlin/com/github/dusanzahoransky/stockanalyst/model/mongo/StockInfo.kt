@@ -96,7 +96,7 @@ data class StockInfo(
     var cashGrowthLast3Years: Double? = null,
 
     var inventoryLastQuarter: Long? = null,
-var inventory2QuartersAgo: Long? = null,
+    var inventory2QuartersAgo: Long? = null,
 
     var inventoryLastYear: Long? = null,
     var inventory2YearsAgo: Long? = null,
@@ -106,7 +106,7 @@ var inventory2QuartersAgo: Long? = null,
     var inventoryGrowthLast3Years: Double? = null,
 
     var currentAssetsLastQuarter: Long? = null,
-var currentAssets2QuartersAgo: Long? = null,
+    var currentAssets2QuartersAgo: Long? = null,
 
     var currentAssetsLastYear: Long? = null,
     var currentAssets2YearsAgo: Long? = null,
@@ -116,7 +116,7 @@ var currentAssets2QuartersAgo: Long? = null,
     var currentAssetsGrowthLast3Years: Double? = null,
 
     var currentLiabilitiesLastQuarter: Long? = null,
-var currentLiabilities2QuartersAgo: Long? = null,
+    var currentLiabilities2QuartersAgo: Long? = null,
 
     var currentLiabilitiesLastYear: Long? = null,
     var currentLiabilities2YearsAgo: Long? = null,
@@ -126,7 +126,7 @@ var currentLiabilities2QuartersAgo: Long? = null,
     var currentLiabilitiesGrowthLast3Years: Double? = null,
 
     var totalLiabilitiesLastQuarter: Long? = null,
-var totalLiabilities2QuartersAgo: Long? = null,
+    var totalLiabilities2QuartersAgo: Long? = null,
 
     var totalLiabilitiesLastYear: Long? = null,
     var totalLiabilities2YearsAgo: Long? = null,
@@ -136,7 +136,7 @@ var totalLiabilities2QuartersAgo: Long? = null,
     var totalLiabilitiesGrowthLast3Years: Double? = null,
 
     var totalShareholdersEquityLastQuarter: Long? = null,
-var totalShareholdersEquity2QuartersAgo: Long? = null,
+    var totalShareholdersEquity2QuartersAgo: Long? = null,
 
     var totalShareholdersEquityLastYear: Long? = null,
     var totalShareholdersEquity2YearsAgo: Long? = null,
@@ -146,7 +146,7 @@ var totalShareholdersEquity2QuartersAgo: Long? = null,
     var totalShareholdersEquityGrowthLast3Years: Double? = null,
 
     var currentLiabilitiesToEquityLastQuarter: Double? = null,
-var currentLiabilitiesToEquity2QuartersAgo: Double? = null,
+    var currentLiabilitiesToEquity2QuartersAgo: Double? = null,
     var currentLiabilitiesToEquityLastYear: Double? = null,
     var currentLiabilitiesToEquity2YearsAgo: Double? = null,
     var currentLiabilitiesToEquity3YearsAgo: Double? = null,
@@ -155,7 +155,7 @@ var currentLiabilitiesToEquity2QuartersAgo: Double? = null,
     var currentLiabilitiesToEquityGrowthLast3Years: Double? = null,
 
     var totalLiabilitiesToEquityLastQuarter: Double? = null,
-var totalLiabilitiesToEquity2QuartersAgo: Double? = null,
+    var totalLiabilitiesToEquity2QuartersAgo: Double? = null,
     var totalLiabilitiesToEquityLastYear: Double? = null,
     var totalLiabilitiesToEquity2YearsAgo: Double? = null,
     var totalLiabilitiesToEquity3YearsAgo: Double? = null,
@@ -164,7 +164,7 @@ var totalLiabilitiesToEquity2QuartersAgo: Double? = null,
     var totalLiabilitiesToEquityGrowthLast3Years: Double? = null,
 
     var stockRepurchasedLastQuarter: Long? = null,
-var stockRepurchased2QuartersAgo: Long? = null,
+    var stockRepurchased2QuartersAgo: Long? = null,
     var stockRepurchasedLastYear: Long? = null,
     var stockRepurchased2YearsAgo: Long? = null,
     var stockRepurchased3YearsAgo: Long? = null,
@@ -173,7 +173,7 @@ var stockRepurchased2QuartersAgo: Long? = null,
     var stockRepurchasedGrowthLast3Years: Double? = null,
 
     var stockLastQuarter: Long? = null,
-var stock2QuartersAgo: Long? = null,
+    var stock2QuartersAgo: Long? = null,
     var stockLastYear: Long? = null,
     var stock2YearsAgo: Long? = null,
     var stock3YearsAgo: Long? = null,
@@ -214,15 +214,32 @@ var stock2QuartersAgo: Long? = null,
     var peGrowthLast2Quarters: Double? = null,
     var peGrowthLast3Quarters: Double? = null,
 
+
+    var roic1Y: Double? = null,
+    var roic2Y: Double? = null,
+
+    var revenue1Y: Double? = null,
+    var revenue3Y: Double? = null,
+    var revenue5Y: Double? = null,
+    var revenue9Y: Double? = null,
+
+    var eps1Y: Double? = null,
+    var eps3Y: Double? = null,
+    var eps5Y: Double? = null,
+    var eps9Y: Double? = null,
+
+    var bps1Y: Double? = null,
+    var bps3Y: Double? = null,
+    var bps5Y: Double? = null,
+    var bps9Y: Double? = null,
+
+    var cash1Y: Double? = null,
+    var cash3Y: Double? = null,
+    var cash5Y: Double? = null,
+    var cash9Y: Double? = null,
+
     var quarterEnds: List<Long>? = null,
     var yearEnds: List<Long>? = null,
     var chartData: MutableList<StockChartData>? = mutableListOf()
-    /*
-    Growth Estimates -
-Current Year
-Next Year
-Past 5 Years (per annum)
-Next 5 Years (per annum)
-     */
 
 )

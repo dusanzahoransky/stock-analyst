@@ -3,6 +3,7 @@ package com.github.dusanzahoransky.stockanalyst.model.mongo
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Mic
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
+import com.google.gson.internal.LinkedTreeMap
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
@@ -19,7 +20,10 @@ class StockRatiosTimeline(
     val mic: Mic,
     val exchange: Exchange,
     var date: LocalDate = LocalDate.now(),
-    var periods: MutableMap<LocalDate, Ratios> = HashMap()
+
+    //cumulative growth rates
+
+    var periods: LinkedTreeMap<LocalDate, Ratios> = LinkedTreeMap()
 )
 
 data class Ratios(

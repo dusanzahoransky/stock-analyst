@@ -214,5 +214,24 @@ data class StocksAveragesCounter(
     var totalLiabilitiesToEquity2QuartersAgoCount: Int = 0,
     var totalLiabilitiesToEquity3YearsAgoCount: Int = 0,
     var totalShareholdersEquity2QuartersAgoCount: Int = 0,
-    var totalShareholdersEquity3YearsAgoCount: Int = 0
+    var totalShareholdersEquity3YearsAgoCount: Int = 0,
+
+    var bps1YCount: Int = 0,
+    var bps3YCount: Int = 0,
+    var bps5YCount: Int = 0,
+    var bps9YCount: Int = 0,
+    var cash1YCount: Int = 0,
+    var cash3YCount: Int = 0,
+    var cash5YCount: Int = 0,
+    var cash9YCount: Int = 0,
+    var eps1YCount: Int = 0,
+    var eps3YCount: Int = 0,
+    var eps5YCount: Int = 0,
+    var eps9YCount: Int = 0,
+    var revenue1YCount: Int = 0,
+    var revenue3YCount: Int = 0,
+    var revenue5YCount: Int = 0,
+    var revenue9YCount: Int = 0,
+    var roic1YCount: Int = 0,
+    var roic2YCount: Int = 0
 )

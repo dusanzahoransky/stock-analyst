@@ -26,10 +26,11 @@ class StockController @Autowired constructor(
     ): AnalysisResult {
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
         stockAnalysisService.calcStockStats(stocks)
-        val averages = stockAnalysisService.calcStocksAverages(stocks)
 
         val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData)
-        keyRatiosAnalysisService.calcRule1(ratios)
+        keyRatiosAnalysisService.calcRule1(stocks, ratios)
+
+        val averages = stockAnalysisService.calcStocksAverages(stocks)
 
         return AnalysisResult(averages, stockAnalysisService.combineWithRatios(stocks, ratios))
     }
