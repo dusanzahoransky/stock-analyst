@@ -93,6 +93,7 @@ class KeyRatiosTimelineService @Autowired constructor(
                 }
                 stockRatio.periods[periodDate] = ratios
             }
+            stockRatio.periods = stockRatio.periods.toSortedMap(compareByDescending { it })
             stockRatios.add(stockRatio)
         }
         return stockRatios

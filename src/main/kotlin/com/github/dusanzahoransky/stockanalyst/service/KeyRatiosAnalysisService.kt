@@ -1,6 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
@@ -10,6 +11,8 @@ import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.plus
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 @Service
@@ -29,15 +32,14 @@ class KeyRatiosAnalysisService(
     }
 
     fun calcRule1(ratios: StockRatiosTimeline, stockInfoList: List<StockInfo>) {
-        val periodsFromPresent = ratios.periods.toSortedMap(compareByDescending { it })
+        ratios.periods = ratios.periods.toSortedMap(compareByDescending { it })
+        val periods = removeNonWholeYear(ratios.periods)
 
-        val periodValues = LinkedList(periodsFromPresent.values)
-
-        val current = periodValues.firstOrNull()
-        val oneYBefore = periodValues[1]
-        val threeYBefore = periodValues[3]
-        val fiveYBefore = periodValues[5]
-        val nineYBefore = periodValues[9]
+        val current = periodYearsBefore(periods, 0)
+        val oneYBefore = periodYearsBefore(periods, 1)
+        val threeYBefore = periodYearsBefore(periods, 3)
+        val fiveYBefore = periodYearsBefore(periods, 5)
+        val nineYBefore = periodYearsBefore(periods, 9)
 
         val stockInfo = stockInfoList.firstOrNull { StockTicker(it.symbol, it.exchange) == StockTicker.fromSymbolAndMic(ratios.symbol, ratios.mic) }
 
@@ -78,10 +80,25 @@ class KeyRatiosAnalysisService(
         )
         val roic3YBefore = div(
             minus(oneYBefore?.netIncome, oneYBefore?.dividends),
-            plus(stockInfo.totalLiabilities3YearsAgo?.toDouble(), stockInfo.totalShareholdersEquity3YearsAgo?.toDouble())
+            plus(stockInfo.totalLiabilities4YearsAgo?.toDouble(), stockInfo.totalShareholdersEquity4YearsAgo?.toDouble())
         )
         stockInfo.roic1Y = cumulativeGrowthRate(roicCurrent, roic1YBefore, 1, "roic1Y", 0.01)
-        stockInfo.roic2Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic2Y", 0.01)
+        stockInfo.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
+    }
+
+    private fun removeNonWholeYear(periods: SortedMap<LocalDate, Ratios>): SortedMap<LocalDate, Ratios> {
+        val present = periods.firstKey()
+        return periods.filterKeys { ChronoUnit.MONTHS.between(it, present) % 12 == 0L }.toSortedMap( compareByDescending { it })
+    }
+
+    private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {
+        val present = periods.firstKey()
+        if(yearsBeforePresent == 0){
+            return periods[present]
+        }
+        val yearsBeforeKey = periods.keys.firstOrNull { ChronoUnit.YEARS.between(it, present) == yearsBeforePresent.toLong() }
+
+        return yearsBeforeKey.let { periods[yearsBeforeKey] }
     }
 
 }

@@ -131,6 +131,7 @@ data class StockInfo(
     var totalLiabilitiesLastYear: Long? = null,
     var totalLiabilities2YearsAgo: Long? = null,
     var totalLiabilities3YearsAgo: Long? = null,
+    var totalLiabilities4YearsAgo: Long? = null,
     var totalLiabilitiesGrowthLastQuarter: Double? = null,
     var totalLiabilitiesGrowthLastYear: Double? = null,
     var totalLiabilitiesGrowthLast3Years: Double? = null,
@@ -141,6 +142,7 @@ data class StockInfo(
     var totalShareholdersEquityLastYear: Long? = null,
     var totalShareholdersEquity2YearsAgo: Long? = null,
     var totalShareholdersEquity3YearsAgo: Long? = null,
+    var totalShareholdersEquity4YearsAgo: Long? = null,
     var totalShareholdersEquityGrowthLastQuarter: Double? = null,
     var totalShareholdersEquityGrowthLastYear: Double? = null,
     var totalShareholdersEquityGrowthLast3Years: Double? = null,
@@ -216,7 +218,7 @@ data class StockInfo(
 
 
     var roic1Y: Double? = null,
-    var roic2Y: Double? = null,
+    var roic3Y: Double? = null,
 
     var revenue1Y: Double? = null,
     var revenue3Y: Double? = null,

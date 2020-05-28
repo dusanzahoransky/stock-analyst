@@ -233,5 +233,9 @@ data class StocksAveragesCounter(
     var revenue5YCount: Int = 0,
     var revenue9YCount: Int = 0,
     var roic1YCount: Int = 0,
-    var roic2YCount: Int = 0
+    var roic3YCount: Int = 0,
+
+    var totalLiabilities4YearsAgoCount: Int = 0,
+    var totalShareholdersEquity4YearsAgoCount: Int = 0
+
 )

@@ -57,7 +57,14 @@ class WatchlistRepo {
 
     fun toInvest(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("MSFT:NASDAQ")
+//            StockTicker.fromString("MSFT:NASDAQ"),
+            StockTicker.fromString("GILD:NASDAQ"),
+            StockTicker.fromString("ALXN:NASDAQ"),
+            StockTicker.fromString("TSM:NYSE"),
+            StockTicker.fromString("LMT:NYSE"),
+            StockTicker.fromString("SO:NYSE")
+/*            StockTicker.fromString("DAL:NYSE"),
+            StockTicker.fromString("UAL:NASDAQ")*/
         )
     }
 
@@ -107,7 +114,7 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("MSFT:NASDAQ")
+            StockTicker.fromString("IAG:FTSE")
         )
     }
 
@@ -168,36 +175,35 @@ class WatchlistRepo {
             StockTicker.fromString("CNDX:FTSE"),
             StockTicker.fromString("VDEV:FTSE"),
             StockTicker.fromString("VUKE:FTSE"),
-            StockTicker.fromString("VFEM:FTSE")
+            StockTicker.fromString("VFEM:FTSE"),
+            StockTicker.fromString("VWCE:DAX"),
+            StockTicker.fromString("IUS3:DAX")
         )
     }
 
     fun watchListIndicesGbp(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("WSML:FTSE"),
-            StockTicker.fromString("IUS3:DAX"),
-            StockTicker.fromString("VMID:FTSE"),
-            StockTicker.fromString("UKDV:FTSE"),
-            StockTicker.fromString("INRG:FTSE"),
-            StockTicker.fromString("PHGP:FTSE"),
-            StockTicker.fromString("IUKP:FTSE"),
-            StockTicker.fromString("EXS1:DAX"),
+            StockTicker.fromString("WSML:FTSE"), //iShares MSCI World Small Cap UCITS ETF USD (Acc)
+            StockTicker.fromString("VMID:FTSE"), //Vanguard FTSE 250 UCITS ETF
+            StockTicker.fromString("UKDV:FTSE"), //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
+            /*StockTicker.fromString("INRG:FTSE"),*/
+            StockTicker.fromString("PHGP:FTSE"),    //WisdomTree Physical Gold
+            StockTicker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GBP (Dist)
+            StockTicker.fromString("EXS1:DAX"),     //iShares Core DAX UCITS ETF (DE)
        /*     StockTicker.fromString("NASD:FTSE"),
             StockTicker.fromString("LYMS:DAX"),*/
 /*            StockTicker.fromString("CNX1:FTSE"),*/
 
-
-
             /*StockTicker.fromString("VHYL:FTSE"),*/
             /*StockTicker.fromString("VWRL:FTSE"),*/
-            StockTicker.fromString("VEVE:FTSE"),
+            StockTicker.fromString("VEVE:FTSE"),    //Vanguard FTSE Developed World UCITS ETF USD Distributing
 
             /*StockTicker.fromString("VAPX:FTSE"),*/
-            StockTicker.fromString("VJPN:FTSE"),
-            StockTicker.fromString("UKDV:FTSE"),
-            StockTicker.fromString("USDV:FTSE"),
-            StockTicker.fromString("ZPRA:DAX"),
-            StockTicker.fromString("SPYW:DAX")
+            StockTicker.fromString("VJPN:FTSE"),    //Vanguard FTSE Japan UCITS ETF USD Distributing
+            /*StockTicker.fromString("UKDV:FTSE"),*/    //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
+            StockTicker.fromString("USDV:FTSE"),    //SPDR S&amp;P US Dividend Aristocrats UCITS ETF Dis
+            StockTicker.fromString("ZPRA:DAX"), //SPDR S&amp;P Pan Asia Dividend Aristocrats UCITS ETF
+            StockTicker.fromString("SPYW:DAX")  //SPDR S&amp;P Euro Dividend Aristocrats UCITS ETF
         )
     }
 
@@ -206,7 +212,7 @@ class WatchlistRepo {
             StockTicker.fromString("AAl:NASDAQ"),
             StockTicker.fromString("UAL:NASDAQ"),
             StockTicker.fromString("LTM:NYSE"),
-            StockTicker.fromString("DAL:NASDAQ"),
+            StockTicker.fromString("DAL:NYSE"),
             StockTicker.fromString("ALXN:NASDAQ"),
             StockTicker.fromString("TMUS:NASDAQ"),
             StockTicker.fromString("GILD:NASDAQ"),
@@ -232,7 +238,6 @@ class WatchlistRepo {
             StockTicker.fromString("FB:NASDAQ"),
             StockTicker.fromString("QCOM:NASDAQ"),
             StockTicker.fromString("AVGO:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ"),
             StockTicker.fromString("CLDR:NASDAQ")
         )
     }
@@ -257,7 +262,8 @@ class WatchlistRepo {
             StockTicker.fromString("PD:NASDAQ"),
             StockTicker.fromString("NOK:NYSE"),
             StockTicker.fromString("UBER:NYSE"),
-            StockTicker.fromString("BYND:NYSE")
+            StockTicker.fromString("BYND:NYSE"),
+            StockTicker.fromString("BIDU:NASDAQ")
         )
     }
 
@@ -283,10 +289,10 @@ class WatchlistRepo {
 
     fun airlines(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("DAL:NASDAQ"),
+            StockTicker.fromString("DAL:NYSE"),
             StockTicker.fromString("UAL:NASDAQ"),
             StockTicker.fromString("AAL:NASDAQ"),
-            StockTicker.fromString("LTM:NASDAQ"),
+            StockTicker.fromString("LTM:NYSE"),
             StockTicker.fromString("IAG:FTSE"),
             StockTicker.fromString("RYA:FTSE"),
             StockTicker.fromString("WIZZ:FTSE")

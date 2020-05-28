@@ -86,22 +86,24 @@ class CalcUtils {
                     -value2 as N
                 else if (value2 is Long)
                     -value2 as N
-                else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                else if(value2 == null){
+                    return null
+                }else
+                    throw IllegalArgumentException("Unsupported minus argument types " + value2.javaClass)
             } else if (value2 == null) {
                 if (value1 is Double)
                     -value1 as N
                 else if (value1 is Long)
                     -value1 as N
                 else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                    throw IllegalArgumentException("Unsupported minus argument types " + value1.javaClass)
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 - value2) as N
                 else if (value1 is Long && value2 is Long)
                     (value1 - value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                    throw IllegalArgumentException("Unsupported minus argument types " + value1.javaClass + "," +value2.javaClass)
             }
         }
         /**
@@ -114,22 +116,24 @@ class CalcUtils {
                     value2 as N
                 else if (value2 is Long)
                     value2 as N
-                else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                else if(value2 == null){
+                    return null
+                }else
+                    throw IllegalArgumentException("Unsupported plus argument types " + value2.javaClass)
             } else if (value2 == null) {
                 if (value1 is Double)
                     value1 as N
                 else if (value1 is Long)
                     value1 as N
                 else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                    throw IllegalArgumentException("Unsupported plus argument types " + value1.javaClass)
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 + value2) as N
                 else if (value1 is Long && value2 is Long)
                     (value1 + value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported minus argument types")
+                    throw IllegalArgumentException("Unsupported plus argument types " + value1.javaClass + "," +value2.javaClass)
             }
         }
 

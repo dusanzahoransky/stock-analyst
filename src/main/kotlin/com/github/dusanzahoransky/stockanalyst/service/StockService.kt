@@ -116,7 +116,7 @@ class StockService @Autowired constructor(
     private fun dataAtInterval(
         currentInterval: LocalDate,
         timestamps: List<LocalDate>,
-        closePrices: MutableList<Double>): StockChartData {
+        closePrices: MutableList<Double?>): StockChartData {
 
         val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
         val priceAtInterval = closePrices[timestampIndexAtInterval]
@@ -139,6 +139,7 @@ class StockService @Autowired constructor(
         val balanceSheetLastYear = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(0)
         val balanceSheet2YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(1)
         val balanceSheet3YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(2)
+        val balanceSheet4YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(3)
 
         val timeSeries = financials.timeSeries
 
@@ -198,13 +199,14 @@ class StockService @Autowired constructor(
         stock.totalLiabilitiesLastYear = balanceSheetLastYear?.totalLiab?.raw?.toLong()
         stock.totalLiabilities2YearsAgo = balanceSheet2YearsAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilities3YearsAgo = balanceSheet3YearsAgo?.totalLiab?.raw?.toLong()
+        stock.totalLiabilities4YearsAgo = balanceSheet4YearsAgo?.totalLiab?.raw?.toLong()
 
         stock.totalShareholdersEquityLastQuarter = balanceSheetLastQuarter?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity2QuartersAgo = balanceSheet2QuartersAgo?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquityLastYear = balanceSheetLastYear?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity2YearsAgo = balanceSheet2YearsAgo?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity3YearsAgo = balanceSheet3YearsAgo?.totalStockholderEquity?.raw?.toLong()
-
+        stock.totalShareholdersEquity4YearsAgo = balanceSheet4YearsAgo?.totalStockholderEquity?.raw?.toLong()
 
         stock.stockRepurchasedLastQuarter = cashFlowLastQuarter?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchased2QuartersAgo = cashFlow2QuartersAgo?.repurchaseOfStock?.raw?.toLong()
@@ -264,7 +266,7 @@ class StockService @Autowired constructor(
         stock.trailingPE = summaryDetail.trailingPE?.raw
         stock.forwardPE = summaryDetail.forwardPE?.raw
         stock.priceToSalesTrailing12Months = summaryDetail.priceToSalesTrailing12Months?.raw
-        if (exchangeRate != 1.0) {
+        if (exchangeRate == 1.0) {
             stock.priceBook = defaultKeyStatistics.priceToBook?.raw
         } else {
             // P /B = Market Price per Share / BVPS

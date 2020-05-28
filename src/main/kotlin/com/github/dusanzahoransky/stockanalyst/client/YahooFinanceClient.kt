@@ -51,7 +51,7 @@ class YahooFinanceClient @Autowired constructor(
         if (mockData) {
             val data =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("ChartMockVUSA.json")
-                else ClassPathResource("ChartMockVTS.json")
+                else ClassPathResource("ChartMockIAG.json")
             return jacksonObjectMapper().readValue(data.inputStream, jacksonTypeRef<ChartResponse>())
         }
         return try {

@@ -8,7 +8,7 @@ enum class Mic(
     NASDAQ("NASDAQ", "XNAS"),
     NYSE("NYSE", "XNYS"),
     FTSE("London Stock Exchange", "XLON"),
-    DAX("Deutsche Börse Xetra", "DAPA"),
+    DAX("Deutsche Börse Xetra", "XETR"),
     ENX("Euronext Netherlands", "XBRU"),
     SIX("SIX Swiss", "ROSR"),
     PA("Euronext Paris", "XPAR"),

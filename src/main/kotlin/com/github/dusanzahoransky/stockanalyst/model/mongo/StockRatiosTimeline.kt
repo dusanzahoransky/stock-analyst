@@ -23,7 +23,7 @@ class StockRatiosTimeline(
 
     //cumulative growth rates
 
-    var periods: LinkedTreeMap<LocalDate, Ratios> = LinkedTreeMap()
+    var periods: SortedMap<LocalDate, Ratios> = TreeMap()
 )
 
 data class Ratios(
