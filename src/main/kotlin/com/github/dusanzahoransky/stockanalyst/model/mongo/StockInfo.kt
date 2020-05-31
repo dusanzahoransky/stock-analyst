@@ -240,6 +240,22 @@ data class StockInfo(
     var cash5Y: Double? = null,
     var cash9Y: Double? = null,
 
+    var pe1Y: Double? = null,
+    var pe3Y: Double? = null,
+    var pe5Y: Double? = null,
+    var pe9Y: Double? = null,
+
+    var defaultPE: Double? = null,
+    var historicalPE: Double? = null,
+    var rule1PE: Double? = null,
+    var currentEps: Double? = null,
+    var futureEPS10Years: Double? = null,
+    var futurePrice10Years: Double? = null,
+
+    var stickerPrice15pcGrowth: Double? = null,
+    var stickerPrice10pcGrowth: Double? = null,
+    var stickerPrice5pcGrowth: Double? = null,
+
     var quarterEnds: List<Long>? = null,
     var yearEnds: List<Long>? = null,
     var chartData: MutableList<StockChartData>? = mutableListOf()

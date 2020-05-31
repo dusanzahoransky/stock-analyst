@@ -1,0 +1,737 @@
+{
+  "total": 10,
+  "offset": 0,
+  "results": [
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2010-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 72.03
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -4018000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 13.17
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 7063000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 10.94
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 64.5
+            },
+            {
+              "label": "NET INCOME",
+              "value": 8505000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 11081000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 10381000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 35.4
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 29321000000
+            },
+            {
+              "label": "SHARES",
+              "value": 646000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 31566000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2011-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 84.46
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -3438000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 14.89
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 11127000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 14.01
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 65.2
+            },
+            {
+              "label": "NET INCOME",
+              "value": 9737000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 14565000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 11742000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 31.0
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 37905000000
+            },
+            {
+              "label": "SHARES",
+              "value": 654000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 43845000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2012-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 108.77
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -3273000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 16.16
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 13346000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 20.10
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 58.9
+            },
+            {
+              "label": "NET INCOME",
+              "value": 10737000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 16619000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 12760000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 25.4
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 50175000000
+            },
+            {
+              "label": "SHARES",
+              "value": 665000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 46117000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2013-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 123.68
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -7358000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 18.79
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 11301000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 17.76
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 56.8
+            },
+            {
+              "label": "NET INCOME",
+              "value": 12920000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 18659000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 13966000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 23.3
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 59825000000
+            },
+            {
+              "label": "SHARES",
+              "value": 678000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 56978000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2014-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 145.08
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -10959000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 20.57
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 11417000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 16.92
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 61.1
+            },
+            {
+              "label": "NET INCOME",
+              "value": 14444000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 22376000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 16496000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 25.0
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 66001000000
+            },
+            {
+              "label": "SHARES",
+              "value": 687000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 63880000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2015-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 169.12
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -9915000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 22.84
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 16109000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 21.15
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 62.4
+            },
+            {
+              "label": "NET INCOME",
+              "value": 16348000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 26024000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 19360000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 25.8
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 74989000000
+            },
+            {
+              "label": "SHARES",
+              "value": 693000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 70804000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2016-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 193.99
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -10212000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 27.85
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 25824000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 33.65
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 61.1
+            },
+            {
+              "label": "NET INCOME",
+              "value": 19478000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 36036000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 23716000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 26.3
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 90272000000
+            },
+            {
+              "label": "SHARES",
+              "value": 699000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 88652000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2017-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 226.11
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -13184000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 18.00
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 23907000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 34.57
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 58.9
+            },
+            {
+              "label": "NET INCOME",
+              "value": 12662000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 37091000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 28882000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 26.1
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 110855000000
+            },
+            {
+              "label": "SHARES",
+              "value": 704000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 100125000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2018-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 244.18
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -25139000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 43.70
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 22832000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 32.50
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 56.5
+            },
+            {
+              "label": "NET INCOME",
+              "value": 30736000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 47971000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 31392000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 22.9
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 136819000000
+            },
+            {
+              "label": "SHARES",
+              "value": 703000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 101056000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    },
+    {
+      "isTrailing12Months": false,
+      "periodEndDate": "2019-12-31",
+      "sections": [
+        {
+          "sectionHeader": "",
+          "lineItems": [
+            {
+              "label": "BOOK VALUE PER SHARE *",
+              "value": 283.25
+            },
+            {
+              "label": "CAP SPENDING",
+              "value": -23548000000
+            },
+            {
+              "label": "DIVIDENDS",
+              "value": null
+            },
+            {
+              "label": "EARNINGS PER SHARE",
+              "value": 49.16
+            },
+            {
+              "label": "FREE CASH FLOW",
+              "value": 30972000000
+            },
+            {
+              "label": "FREE CASH FLOW PER SHARE *",
+              "value": 40.74
+            },
+            {
+              "label": "GROSS MARGIN %",
+              "value": 55.6
+            },
+            {
+              "label": "NET INCOME",
+              "value": 34343000000
+            },
+            {
+              "label": "OPERATING CASH FLOW",
+              "value": 54520000000
+            },
+            {
+              "label": "OPERATING INCOME",
+              "value": 35928000000
+            },
+            {
+              "label": "OPERATING MARGIN %",
+              "value": 22.2
+            },
+            {
+              "label": "PAYOUT RATIO % *",
+              "value": null
+            },
+            {
+              "label": "REVENUE",
+              "value": 161857000000
+            },
+            {
+              "label": "SHARES",
+              "value": 699000000
+            },
+            {
+              "label": "WORKING CAPITAL",
+              "value": 107357000000
+            }
+          ],
+          "subsections": [],
+          "summaryLineItem": null
+        }
+      ]
+    }
+  ],
+  "responseStatus": null
+}

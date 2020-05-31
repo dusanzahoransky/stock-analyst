@@ -11,6 +11,8 @@ import com.github.dusanzahoransky.stockanalyst.repository.KeyRatiosFinancialsRep
 import com.github.dusanzahoransky.stockanalyst.repository.StockRatiosTimelineRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -90,6 +92,7 @@ class KeyRatiosTimelineService @Autowired constructor(
                 }
                 if(stockInfo?.chartData != null){
                     ratios.price = stockAnalysisService.chartDataFirstBefore(periodDate, stockInfo.chartData!!)?.price
+                    ratios.pe = div(ratios.price, ratios.earningsPerShare)
                 }
                 stockRatio.periods[periodDate] = ratios
             }

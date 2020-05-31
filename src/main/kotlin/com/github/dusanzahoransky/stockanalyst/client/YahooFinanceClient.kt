@@ -51,7 +51,7 @@ class YahooFinanceClient @Autowired constructor(
         if (mockData) {
             val data =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("ChartMockVUSA.json")
-                else ClassPathResource("ChartMockIAG.json")
+                else ClassPathResource("ChartMockGOOGL.json")
             return jacksonObjectMapper().readValue(data.inputStream, jacksonTypeRef<ChartResponse>())
         }
         return try {
@@ -101,7 +101,7 @@ class YahooFinanceClient @Autowired constructor(
 
     fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
         if (mockData) {
-            val balanceSheetMock = ClassPathResource("FinancialsMockSPG.json")
+            val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
         }
         return try {

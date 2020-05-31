@@ -234,8 +234,20 @@ data class StocksAveragesCounter(
     var revenue9YCount: Int = 0,
     var roic1YCount: Int = 0,
     var roic3YCount: Int = 0,
-
+    var pe1YCount: Int = 0,
+    var pe3YCount: Int = 0,
+    var pe5YCount: Int = 0,
+    var pe9YCount: Int = 0,
     var totalLiabilities4YearsAgoCount: Int = 0,
-    var totalShareholdersEquity4YearsAgoCount: Int = 0
+    var totalShareholdersEquity4YearsAgoCount: Int = 0,
 
+    var defaultPECount: Int = 0,
+    var currentEpsCount: Int = 0,
+    var futureEPS10YearsCount: Int = 0,
+    var futurePrice10YearsCount: Int = 0,
+    var historicalPECount: Int = 0,
+    var rule1PECount: Int = 0,
+    var stickerPrice10pcGrowthCount: Int = 0,
+    var stickerPrice15pcGrowthCount: Int = 0,
+    var stickerPrice5pcGrowthCount: Int = 0
 )

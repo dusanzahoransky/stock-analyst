@@ -2,6 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.math.min
 import kotlin.math.pow
 
 class CalcUtils {
@@ -86,9 +87,9 @@ class CalcUtils {
                     -value2 as N
                 else if (value2 is Long)
                     -value2 as N
-                else if(value2 == null){
+                else if (value2 == null) {
                     return null
-                }else
+                } else
                     throw IllegalArgumentException("Unsupported minus argument types " + value2.javaClass)
             } else if (value2 == null) {
                 if (value1 is Double)
@@ -103,9 +104,10 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 - value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported minus argument types " + value1.javaClass + "," +value2.javaClass)
+                    throw IllegalArgumentException("Unsupported minus argument types " + value1.javaClass + "," + value2.javaClass)
             }
         }
+
         /**
          * Null-safe division of nullable Numbers
          */
@@ -116,9 +118,9 @@ class CalcUtils {
                     value2 as N
                 else if (value2 is Long)
                     value2 as N
-                else if(value2 == null){
+                else if (value2 == null) {
                     return null
-                }else
+                } else
                     throw IllegalArgumentException("Unsupported plus argument types " + value2.javaClass)
             } else if (value2 == null) {
                 if (value1 is Double)
@@ -133,7 +135,7 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 + value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported plus argument types " + value1.javaClass + "," +value2.javaClass)
+                    throw IllegalArgumentException("Unsupported plus argument types " + value1.javaClass + "," + value2.javaClass)
             }
         }
 
@@ -187,7 +189,16 @@ class CalcUtils {
             }
         }
 
-
+        /**
+         * Null-safe Math.min
+         */
+        fun min(value1: Double?, value2: Double?): Double? {
+            return when {
+                value1 == null -> value2
+                value2 == null -> null
+                else -> Math.min(value1, value2)
+            }
+        }
     }
 
 }

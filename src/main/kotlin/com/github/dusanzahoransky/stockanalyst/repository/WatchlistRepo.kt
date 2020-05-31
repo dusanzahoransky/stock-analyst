@@ -58,11 +58,12 @@ class WatchlistRepo {
     fun toInvest(): Set<StockTicker> {
         return setOf(
 //            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("GILD:NASDAQ"),
-            StockTicker.fromString("ALXN:NASDAQ"),
-            StockTicker.fromString("TSM:NYSE"),
-            StockTicker.fromString("LMT:NYSE"),
-            StockTicker.fromString("SO:NYSE")
+            StockTicker.fromString("BKNG:NASDAQ"),
+            StockTicker.fromString("DAL:NYSE"),
+            StockTicker.fromString("EB:NYSE"),
+            StockTicker.fromString("MAR:NASDAQ")
+           /* StockTicker.fromString("LMT:NYSE"),
+            StockTicker.fromString("SO:NYSE")*/
 /*            StockTicker.fromString("DAL:NYSE"),
             StockTicker.fromString("UAL:NASDAQ")*/
         )
@@ -114,7 +115,7 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("IAG:FTSE")
+            StockTicker.fromString("GOOGL:NASDAQ")
         )
     }
 

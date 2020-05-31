@@ -227,7 +227,7 @@ class StockService @Autowired constructor(
         stock.eps3QuartersAgo = multiply(epsQuarterly?.getOrNull(2)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps4QuartersAgo = multiply(epsQuarterly?.getOrNull(3)?.actual?.raw?.toDouble(), exchangeRate)
 
-        if (timeSeries.annualDilutedEPS != null) {
+        if (timeSeries?.annualDilutedEPS != null) {
             for ((index, annualEps) in timeSeries.annualDilutedEPS.withIndex()) {
                 when (index) {
                     3 -> stock.epsLastYear = multiply(annualEps?.reportedValue?.raw, exchangeRate)

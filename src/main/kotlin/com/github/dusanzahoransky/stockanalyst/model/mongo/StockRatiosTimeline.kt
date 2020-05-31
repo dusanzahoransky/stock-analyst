@@ -45,5 +45,6 @@ data class Ratios(
     /**
      * merged from yahoo finance chart API
      */
-    var price: Double? = null
+    var price: Double? = null,
+    var pe: Double? = null
 )

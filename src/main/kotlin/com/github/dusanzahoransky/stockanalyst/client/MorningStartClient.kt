@@ -23,7 +23,7 @@ class MorningStartClient @Autowired constructor(
 
     fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse? {
         if (mockData) {
-            val statisticsMock = ClassPathResource("keyratiosMSFT.json")
+            val statisticsMock = ClassPathResource("keyratiosGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<KetRatiosResponse>())
         }
         return try {
