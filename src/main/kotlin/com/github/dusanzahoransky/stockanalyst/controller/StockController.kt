@@ -3,15 +3,15 @@ package com.github.dusanzahoransky.stockanalyst.controller
 import com.github.dusanzahoransky.stockanalyst.model.dto.AnalysisResult
 import com.github.dusanzahoransky.stockanalyst.model.dto.IndicesAnalysisResult
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.service.IndexService
-import com.github.dusanzahoransky.stockanalyst.service.StockAnalysisService
-import com.github.dusanzahoransky.stockanalyst.service.StockService
+import com.github.dusanzahoransky.stockanalyst.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("stocks")
 class StockController @Autowired constructor(
+    val keyRatiosAnalysisService: KeyRatiosAnalysisService,
+    val keyRatiosTimelineService: KeyRatiosTimelineService,
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService,
     val indexService: IndexService
@@ -25,8 +25,14 @@ class StockController @Autowired constructor(
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): AnalysisResult {
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
+        stockAnalysisService.calcStockStats(stocks)
+
+        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData)
+        keyRatiosAnalysisService.calcRule1(stocks, ratios)
+
         val averages = stockAnalysisService.calcStocksAverages(stocks)
-        return AnalysisResult(averages, stocks)
+
+        return AnalysisResult(averages, stockAnalysisService.combineWithRatios(stocks, ratios))
     }
 
     @GetMapping("indicesWatchlist")
@@ -41,24 +47,25 @@ class StockController @Autowired constructor(
         return IndicesAnalysisResult(averages, indices)
     }
 
-    @GetMapping("symbols")
-    @ResponseBody
-    fun loadSymbol(
-        @RequestParam(value = "symbol") symbols: Array<String>,
-        @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
-        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
-    ): AnalysisResult {
-        val stocks = stockService.getStocks(symbols, forceRefresh, mockData)
-        val averages = stockAnalysisService.calcStocksAverages(stocks)
-        return AnalysisResult(averages, stocks)
-    }
+    //TODO
+//    @GetMapping("symbols")
+//    @ResponseBody
+//    fun loadSymbol(
+//        @RequestParam(value = "symbol") symbols: Array<String>,
+//        @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
+//        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
+//    ): AnalysisResult {
+//        val stocks = stockService.getStocks(symbols, forceRefresh, mockData)
+//        val averages = stockAnalysisService.calcStocksAverages(stocks)
+//        return AnalysisResult(averages, stocks)
+//    }
 
     @DeleteMapping("symbol")
     @ResponseBody
     fun deleteSymbol(
         @RequestParam(value = "symbol") symbol: String
     ) {
-        val stocks = stockService.deleteSymbol(symbol)
+        stockService.deleteSymbol(symbol)
     }
 
     @DeleteMapping("watchlist")
@@ -66,6 +73,6 @@ class StockController @Autowired constructor(
     fun watchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist
     ) {
-        val stocks = stockService.deleteWatchlist(watchlist)
+        stockService.deleteWatchlist(watchlist)
     }
 }

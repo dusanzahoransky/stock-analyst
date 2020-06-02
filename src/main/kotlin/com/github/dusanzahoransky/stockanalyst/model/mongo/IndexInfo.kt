@@ -37,9 +37,9 @@ data class IndexInfo(
 
     var oneMonth: Double? = null,
     var threeMonth: Double? = null,
+    var ytd: Double? = null,
     var oneYear: Double? = null,
     var threeYear: Double? = null,
-    var ytd: Double? = null,
     var fiveYear: Double? = null,
     var tenYear: Double? = null,
 

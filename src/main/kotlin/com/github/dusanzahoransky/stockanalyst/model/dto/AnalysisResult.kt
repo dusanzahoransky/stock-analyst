@@ -4,5 +4,5 @@ import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 
 data class AnalysisResult(
     var averages: StockInfo,
-    var stocks: List<StockInfo>
+    var stocks: List<StockInfoWithRatios>
 )
