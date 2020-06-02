@@ -5,6 +5,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.istatistics.IndexStatisticsResponse
@@ -36,7 +37,7 @@ class YahooFinanceClient @Autowired constructor(
 
                 "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
                 StatisticsResponse::class.java,
-                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+                mapOf("ticker" to ticker.toYahooFormat())
             )
 
             logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
@@ -60,7 +61,6 @@ class YahooFinanceClient @Autowired constructor(
                 "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",
                 ChartResponse::class.java,
                 mapOf(
-                    "region" to "US",
                     "ticker" to ticker.toYahooFormat(),
                     "interval" to interval.value,
                     "range" to range.value
@@ -87,7 +87,7 @@ class YahooFinanceClient @Autowired constructor(
 
                 "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
                 IndexStatisticsResponse::class.java,
-                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+                mapOf("ticker" to ticker.toYahooFormat())
             )
 
             logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
@@ -108,9 +108,28 @@ class YahooFinanceClient @Autowired constructor(
             val response = restTemplate.getForObject(
                 "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",
                 FinancialsResponse::class.java,
-                mapOf("region" to "US", "ticker" to ticker.toYahooFormat())
+                mapOf("ticker" to ticker.toYahooFormat())
             )
             logger.debug("Financials from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+            response
+        } catch (e: Exception) {
+            logger.error(e.message, e)
+            null
+        }
+    }
+
+    fun getAnalysis(ticker: StockTicker, mockData: Boolean): AnalysisResponse? {
+        if (mockData) {
+            val balanceSheetMock = ClassPathResource("AnalysisMockGOOGL.json")
+            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<AnalysisResponse>())
+        }
+        return try {
+            val response = restTemplate.getForObject(
+                "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-analysis?symbol={ticker}",
+                AnalysisResponse::class.java,
+                mapOf("ticker" to ticker.toYahooFormat())
+            )
+            logger.debug("Analysis from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
             response
         } catch (e: Exception) {
             logger.error(e.message, e)

@@ -2,7 +2,6 @@ package com.github.dusanzahoransky.stockanalyst.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import kotlin.math.min
 import kotlin.math.pow
 
 class CalcUtils {
@@ -56,7 +55,7 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 + value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported sum argument types")
+                    throw IllegalArgumentException("Unsupported sum argument types ${value1.javaClass}, ${value2.javaClass}")
             }
         }
 
@@ -73,7 +72,7 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 / value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported div argument types")
+                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }
         }
 
@@ -144,6 +143,18 @@ class CalcUtils {
          * Null-safe multiply of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
+        fun average(vararg pe: Double?): Double? {
+            val historicalPEs = pe.filterNotNull()
+            if (historicalPEs.isEmpty()) {
+                return null
+            }
+            return historicalPEs.sum() / historicalPEs.size
+        }
+
+        /**
+         * Null-safe multiply of nullable Numbers
+         */
+        @Suppress("UNCHECKED_CAST")
         fun <N : Number> multiply(value1: N?, value2: N?): N? {
             return if (value1 == null || value2 == 0) {
                 return null
@@ -153,7 +164,7 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 * value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported div argument types")
+                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2?.javaClass}")
             }
         }
 
@@ -170,7 +181,7 @@ class CalcUtils {
                 else if (value1 is Long)
                     (value1 * 100) as N
                 else
-                    throw IllegalArgumentException("Unsupported div argument types")
+                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}}")
             }
         }
 
@@ -185,7 +196,7 @@ class CalcUtils {
                 else if (value1 is Long)
                     (value1 / size) as N
                 else
-                    throw IllegalArgumentException("Unsupported div argument types")
+                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}")
             }
         }
 
@@ -196,7 +207,7 @@ class CalcUtils {
             return when {
                 value1 == null -> value2
                 value2 == null -> null
-                else -> Math.min(value1, value2)
+                else -> kotlin.math.min(value1, value2)
             }
         }
     }

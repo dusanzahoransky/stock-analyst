@@ -9,6 +9,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
@@ -76,12 +77,24 @@ class StockService @Autowired constructor(
         }
         processStatistics(stats, stock, exchangeRate)
 
+        val analysis = yahooFinanceClient.getAnalysis(ticker, mockData)
+        if (analysis == null) {
+            log.error("Failed to retrieve stock Analysis from Yahoo $ticker")
+            return null
+        }
+        processAnalysis(analysis, stock)
+
         val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
         if (chart == null) {
             log.error("Failed to retrieve stock Chart from Yahoo $ticker")
             return null
         }
         processChart(chart, stock, CHART_SAMPLING_INTERVAL)
+
+        //do not cache mock data
+        if(mockData) {
+            return stock
+        }
 
         //delete previous version
         stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
@@ -241,6 +254,10 @@ class StockService @Autowired constructor(
         stock.quarterEnds = balanceSheetStatements?.map { it.endDate.raw }
         stock.lastReportedQuarter = stock.quarterEnds?.getOrNull(0)?.let { epochSecToLocalDate(it) }
         stock.yearEnds = timeSeries?.timestamp?.reversed()
+    }
+
+    private fun processAnalysis(analysis: AnalysisResponse, stock: StockInfo) {
+        stock.growthEstimate5y = percent(analysis.earningsTrend?.trend?.firstOrNull { it.period == "+5y" }?.growth?.raw)
     }
 
     private fun processStatistics(stats: StatisticsResponse, stock: StockInfo, exchangeRate: Double) {

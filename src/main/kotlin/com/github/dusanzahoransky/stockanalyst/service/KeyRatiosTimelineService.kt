@@ -118,6 +118,11 @@ class KeyRatiosTimelineService @Autowired constructor(
         }
         krp = KeyRatiosFinancials(null, ticker.symbol, ticker.getMic(), LocalDate.now(), krpResponse.results)
 
+        //do not cache mock data
+        if(mockData) {
+            return krp
+        }
+
         //delete previous version
         krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())?.let { krpRepo.delete(it) }
         //store new version

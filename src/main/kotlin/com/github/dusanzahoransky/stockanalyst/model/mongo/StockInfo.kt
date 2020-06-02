@@ -216,6 +216,7 @@ data class StockInfo(
     var peGrowthLast2Quarters: Double? = null,
     var peGrowthLast3Quarters: Double? = null,
 
+    var growthEstimate5y: Double? = null,
 
     var roic1Y: Double? = null,
     var roic3Y: Double? = null,
@@ -245,6 +246,7 @@ data class StockInfo(
     var pe5Y: Double? = null,
     var pe9Y: Double? = null,
 
+    var rule1GrowthRate: Double? = null,
     var defaultPE: Double? = null,
     var historicalPE: Double? = null,
     var rule1PE: Double? = null,
@@ -255,6 +257,10 @@ data class StockInfo(
     var stickerPrice15pcGrowth: Double? = null,
     var stickerPrice10pcGrowth: Double? = null,
     var stickerPrice5pcGrowth: Double? = null,
+
+    var belowStickerPrice15pc: Double? = null,
+    var belowStickerPrice10pc: Double? = null,
+    var belowStickerPrice5pc: Double? = null,
 
     var quarterEnds: List<Long>? = null,
     var yearEnds: List<Long>? = null,

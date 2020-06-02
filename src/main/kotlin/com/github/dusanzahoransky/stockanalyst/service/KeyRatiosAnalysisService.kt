@@ -4,11 +4,13 @@ import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.min
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.plus
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -89,8 +91,9 @@ class KeyRatiosAnalysisService {
         stock.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
 
         val estimatedEpsGrowthRate = stock.bps9Y
+        stock.rule1GrowthRate = min(stock.bps9Y, stock.growthEstimate5y)
         stock.defaultPE = multiply(estimatedEpsGrowthRate, 2.0)
-        stock.historicalPE = stock.pe9Y ?: stock.pe5Y ?: stock.pe3Y ?: stock.pe1Y
+        stock.historicalPE = average(current?.pe, oneYBefore?.pe, threeYBefore?.pe, fiveYBefore?.pe, nineYBefore?.pe)
         stock.rule1PE = if (stock.historicalPE != null && stock.historicalPE!! > 0) {
             min(stock.historicalPE, stock.defaultPE)
         } else {
@@ -105,6 +108,10 @@ class KeyRatiosAnalysisService {
         stock.stickerPrice15pcGrowth = div(stock.futurePrice10Years, (1 + 0.15).pow(10))
         stock.stickerPrice10pcGrowth = div(stock.futurePrice10Years, (1 + 0.10).pow(10))
         stock.stickerPrice5pcGrowth = div(stock.futurePrice10Years, (1 + 0.05).pow(10))
+
+        stock.belowStickerPrice15pc = percent(div(minus(stock.stickerPrice15pcGrowth, stock.price), stock.price))
+        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
+        stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
     }
 
     private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {

@@ -11,6 +11,7 @@ import com.github.dusanzahoransky.stockanalyst.model.yahoo.IndicesAveragesCounte
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percentGrowth
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.sum
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
@@ -40,20 +41,20 @@ class StockAnalysisService {
 
     private fun calcFinancialStats(stock: StockInfo) {
         if (stock.price != null && stock.week52Low != null) {
-            stock.week52AboveLowPercent = ((stock.price!! - stock.week52Low!!) / stock.price!!) * 100.0
+            stock.week52AboveLowPercent = percent((stock.price!! - stock.week52Low!!) / stock.price!!)
         }
         if (stock.price != null && stock.week52High != null) {
-            stock.week52BelowHighPercent = ((stock.week52High!! - stock.price!!) / stock.price!!) * 100.0
+            stock.week52BelowHighPercent = percent((stock.week52High!! - stock.price!!) / stock.price!!)
         }
         if (stock.targetLowPrice != null && stock.price != null) {
-            stock.belowTargetLowPricePercent = ((stock.targetLowPrice!! - stock.price!!) / stock.price!!) * 100.0
+            stock.belowTargetLowPricePercent = percent((stock.targetLowPrice!! - stock.price!!) / stock.price!!)
         }
         if (stock.targetMedianPrice != null && stock.price != null) {
-            stock.belowTargetMedianPricePercent = ((stock.targetMedianPrice!! - stock.price!!) / stock.price!!) * 100.0
+            stock.belowTargetMedianPricePercent = percent((stock.targetMedianPrice!! - stock.price!!) / stock.price!!)
         }
 
         if (stock.totalCashPerShare != null && stock.price != null) {
-            stock.totalCashPerSharePercent = (stock.totalCashPerShare!! / stock.price!!) * 100.0
+            stock.totalCashPerSharePercent = percent(stock.totalCashPerShare!! / stock.price!!)
         }
         if (stock.totalLiabilitiesLastQuarter != null && stock.totalShareholdersEquityLastQuarter != null) {
             stock.totalDebtEquity = div(stock.totalLiabilitiesLastQuarter!!.toDouble(), stock.totalShareholdersEquityLastQuarter!!.toDouble())
