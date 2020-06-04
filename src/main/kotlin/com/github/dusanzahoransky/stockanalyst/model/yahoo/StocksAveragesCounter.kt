@@ -252,7 +252,7 @@ data class StocksAveragesCounter(
     var stickerPrice10pcGrowthCount: Int = 0,
     var stickerPrice15pcGrowthCount: Int = 0,
     var stickerPrice5pcGrowthCount: Int = 0,
-    var belowStickerPrice15pc: Int = 0,
-    var belowStickerPrice10pc: Int = 0,
-    var belowStickerPrice5pc: Int = 0
+    var belowStickerPrice15pcCount: Int = 0,
+    var belowStickerPrice10pcCount: Int = 0,
+    var belowStickerPrice5pcCount: Int = 0
 )

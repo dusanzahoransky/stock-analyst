@@ -303,7 +303,11 @@ class StockAnalysisService {
         val stockInfoWithRatios = mutableListOf<StockInfoWithRatios>()
         for (stock in stocks){
             val ratio =  ratios
-                .first { StockTicker.fromSymbolAndMic(it.symbol, it.mic) == StockTicker(stock.symbol, stock.exchange) }
+                .firstOrNull { StockTicker.fromSymbolAndMic(it.symbol, it.mic) == StockTicker(stock.symbol, stock.exchange) }
+            if(ratio == null){
+                log.error("Missing ratios for stock ${stock.symbol} ${stock.exchange}")
+                continue
+            }
             stockInfoWithRatios.add(StockInfoWithRatios(stock, ratio))
         }
         return stockInfoWithRatios

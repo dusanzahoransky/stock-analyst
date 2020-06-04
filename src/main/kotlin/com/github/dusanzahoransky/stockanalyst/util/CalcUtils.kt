@@ -11,7 +11,7 @@ class CalcUtils {
         private val log: Logger = LoggerFactory.getLogger(CalcUtils::class.java)
 
         fun cumulativeGrowthRate(currentValue: Double?, previousValue: Double?, numberOfYears: Int, statName: String, signThreshold: Double = 100.0): Double? {
-            if (currentValue == null || previousValue == null) {
+            if (currentValue == null || previousValue == null || previousValue == 0.0) {
                 return null
             }
             if (previousValue < signThreshold) {   //the previous value is too small to get any meaningful result
@@ -21,7 +21,11 @@ class CalcUtils {
             if ((previousValue > 0.0 && signThreshold < 0.0) || (previousValue < 0.0 && signThreshold > 0.0)) {
                 return null
             }
-            return ((currentValue / previousValue).pow(1.0 / numberOfYears) - 1) * 100
+            val currDivPrev = currentValue / previousValue
+            if(currDivPrev < 0){    //imaginary number, can't calculate
+                return null
+            }
+            return (currDivPrev.pow(1.0 / numberOfYears) - 1) * 100
         }
 
         fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String, signThreshold: Double = 100.0): Double? {
@@ -77,26 +81,12 @@ class CalcUtils {
         }
 
         /**
-         * Null-safe division of nullable Numbers
+         * Null-safe minus of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> minus(value1: N?, value2: N?): N? {
-            return if (value1 == null) {
-                if (value2 is Double)
-                    -value2 as N
-                else if (value2 is Long)
-                    -value2 as N
-                else if (value2 == null) {
-                    return null
-                } else
-                    throw IllegalArgumentException("Unsupported minus argument types " + value2.javaClass)
-            } else if (value2 == null) {
-                if (value1 is Double)
-                    -value1 as N
-                else if (value1 is Long)
-                    -value1 as N
-                else
-                    throw IllegalArgumentException("Unsupported minus argument types " + value1.javaClass)
+            return if (value1 == null || value2 == null) {
+                null
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 - value2) as N
@@ -112,22 +102,8 @@ class CalcUtils {
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> plus(value1: N?, value2: N?): N? {
-            return if (value1 == null) {
-                if (value2 is Double)
-                    value2 as N
-                else if (value2 is Long)
-                    value2 as N
-                else if (value2 == null) {
-                    return null
-                } else
-                    throw IllegalArgumentException("Unsupported plus argument types " + value2.javaClass)
-            } else if (value2 == null) {
-                if (value1 is Double)
-                    value1 as N
-                else if (value1 is Long)
-                    value1 as N
-                else
-                    throw IllegalArgumentException("Unsupported plus argument types " + value1.javaClass)
+            return if (value1 == null || value2 == null) {
+                null
             } else {
                 if (value1 is Double && value2 is Double)
                     (value1 + value2) as N
@@ -156,7 +132,7 @@ class CalcUtils {
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> multiply(value1: N?, value2: N?): N? {
-            return if (value1 == null || value2 == 0) {
+            return if (value1 == null || value2 == null) {
                 return null
             } else {
                 if (value1 is Double && value2 is Double)
@@ -190,7 +166,7 @@ class CalcUtils {
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> div(value1: N?, size: Int): N? {
-            return if (value1 == null) value1 else {
+            return if (value1 == null) null else {
                 if (value1 is Double)
                     (value1 / size) as N
                 else if (value1 is Long)
@@ -206,7 +182,7 @@ class CalcUtils {
         fun min(value1: Double?, value2: Double?): Double? {
             return when {
                 value1 == null -> value2
-                value2 == null -> null
+                value2 == null -> value1
                 else -> kotlin.math.min(value1, value2)
             }
         }

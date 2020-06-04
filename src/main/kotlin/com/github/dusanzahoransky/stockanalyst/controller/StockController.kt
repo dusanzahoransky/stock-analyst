@@ -22,12 +22,13 @@ class StockController @Autowired constructor(
     fun loadWatchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
+        @RequestParam(value = "forceRefreshRatios", required = false) forceRefreshRatios: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): AnalysisResult {
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
         stockAnalysisService.calcStockStats(stocks)
 
-        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData)
+        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefreshRatios, mockData)
         keyRatiosAnalysisService.calcRule1(stocks, ratios)
 
         val averages = stockAnalysisService.calcStocksAverages(stocks)

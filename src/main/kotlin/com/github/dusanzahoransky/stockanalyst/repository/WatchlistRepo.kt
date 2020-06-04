@@ -232,14 +232,14 @@ class WatchlistRepo {
             StockTicker.fromString("GRPN:NASDAQ"),
             StockTicker.fromString("BKNG:NASDAQ"),
             StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("EB:NASDAQ"),
+            StockTicker.fromString("EB:NYSE"),
             StockTicker.fromString("CMCSA:NASDAQ"),
             StockTicker.fromString("CTSH:NASDAQ"),
             StockTicker.fromString("EBAY:NASDAQ"),
             StockTicker.fromString("FB:NASDAQ"),
             StockTicker.fromString("QCOM:NASDAQ"),
             StockTicker.fromString("AVGO:NASDAQ"),
-            StockTicker.fromString("CLDR:NASDAQ")
+            StockTicker.fromString("CLDR:NYSE")
         )
     }
 
