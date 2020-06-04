@@ -58,10 +58,7 @@ class WatchlistRepo {
     fun toInvest(): Set<StockTicker> {
         return setOf(
 //            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("BKNG:NASDAQ"),
-            StockTicker.fromString("DAL:NYSE"),
-            StockTicker.fromString("EB:NYSE"),
-            StockTicker.fromString("MAR:NASDAQ")
+            StockTicker.fromString("CLDR:NYSE")
            /* StockTicker.fromString("LMT:NYSE"),
             StockTicker.fromString("SO:NYSE")*/
 /*            StockTicker.fromString("DAL:NYSE"),
@@ -219,14 +216,16 @@ class WatchlistRepo {
             StockTicker.fromString("GILD:NASDAQ"),
             StockTicker.fromString("AMAT:NASDAQ"),
             StockTicker.fromString("CHTR:NASDAQ"),
-            StockTicker.fromString("REGI:NASDAQ")
+            StockTicker.fromString("REGI:NASDAQ"),
+            StockTicker.fromString("T:NYSE"),
+            StockTicker.fromString("SO:NYSE")
         )
     }
 
     fun investedInUsdTech(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("GOOGL:NASDAQ"),
-            StockTicker.fromString("GOOG:NASDAQ"),
+            //StockTicker.fromString("GOOG:NASDAQ"),
             StockTicker.fromString("INTC:NASDAQ"),
             StockTicker.fromString("MAR:NASDAQ"),
             StockTicker.fromString("GRPN:NASDAQ"),

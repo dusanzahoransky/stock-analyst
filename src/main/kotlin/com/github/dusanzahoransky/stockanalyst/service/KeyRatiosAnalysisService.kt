@@ -8,6 +8,7 @@ import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.min
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minIfPositive
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -90,18 +91,14 @@ class KeyRatiosAnalysisService {
         stock.roic1Y = cumulativeGrowthRate(roicCurrent, roic1YBefore, 1, "roic1Y", 0.01)
         stock.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
 
-        val estimatedEpsGrowthRate = stock.bps9Y
-        stock.rule1GrowthRate = min(stock.bps9Y, stock.growthEstimate5y)
-        stock.defaultPE = multiply(estimatedEpsGrowthRate, 2.0)
+        val estimatedEpsGrowthRate = stock.bps9Y?: stock.bps5Y?: stock.bps3Y
+        stock.rule1GrowthRate = minIfPositive(estimatedEpsGrowthRate, stock.growthEstimate5y)
+        stock.defaultPE = multiply(stock.rule1GrowthRate, 2.0)
         stock.historicalPE = average(current?.pe, oneYBefore?.pe, threeYBefore?.pe, fiveYBefore?.pe, nineYBefore?.pe)
-        stock.rule1PE = if (stock.historicalPE != null && stock.historicalPE!! > 0) {
-            min(stock.historicalPE, stock.defaultPE)
-        } else {
-            stock.defaultPE
-        }
+        stock.rule1PE = minIfPositive(stock.historicalPE, stock.defaultPE)
         stock.currentEps =  stock.epsLastYear ?: multiply(stock.epsLastQuarter, 4.0)
         val numberOfYear = 10.0
-        val epsGrowthEstimate = plus(div(estimatedEpsGrowthRate, 100), 1.0)
+        val epsGrowthEstimate = plus(div(stock.rule1GrowthRate, 100), 1.0)
         stock.futureEPS10Years = multiply(stock.currentEps, epsGrowthEstimate?.pow(numberOfYear))
         stock.futurePrice10Years = multiply(stock.rule1PE, stock.futureEPS10Years)
 

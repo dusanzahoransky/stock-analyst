@@ -186,6 +186,17 @@ class CalcUtils {
                 else -> kotlin.math.min(value1, value2)
             }
         }
+
+        /**
+         * Null-safe Math.min skipping negative values
+         */
+        fun minIfPositive(value1: Double?, value2: Double?): Double? {
+            return when {
+                value1 == null || value1 < 0.0 -> value2
+                value2 == null || value2 < 0.0 -> value1
+                else -> kotlin.math.min(value1, value2)
+            }
+        }
     }
 
 }
