@@ -10,7 +10,7 @@ enum class Mic(
     FTSE("London Stock Exchange", "XLON"),
     DAX("Deutsche Börse Xetra", "XETR"),
     ENX("Euronext Netherlands", "XBRU"),
-    SIX("SIX Swiss", "ROSR"),
+    SIX("SIX Swiss", "XSWX"),
     PA("Euronext Paris", "XPAR"),
-    MCE("Bolsa de Madrid", "BMEX");
+    MCE("Bolsa de Madrid", "XMAD");
 }
