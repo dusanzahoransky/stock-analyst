@@ -13,7 +13,10 @@ class ClientLoggingInterceptor : ClientHttpRequestInterceptor {
     override fun intercept(request: HttpRequest, body: ByteArray, execution: ClientHttpRequestExecution): ClientHttpResponse {
         logger.debug("Calling: ${request.method} ${request.uri} $body")
         val response = execution.execute(request, body)
-        val remainingQuota = response.headers.getOrEmpty("X-RateLimit-requests-Remaining")
+        var remainingQuota = response.headers.getOrEmpty("X-RateLimit-requests-Remaining")
+        if(remainingQuota.isEmpty()) {
+            remainingQuota = response.headers.getOrEmpty("X-RateLimit-Original-Raw-Formatting-Remaining")
+        }
         logger.debug("Response [remaining quota: $remainingQuota]: ${response.statusCode}")
         return response
     }

@@ -6,6 +6,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.service.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
+import java.time.LocalDate
 
 @RestController
 @RequestMapping("stocks")
@@ -23,12 +24,16 @@ class StockController @Autowired constructor(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "forceRefreshRatios", required = false) forceRefreshRatios: Boolean = false,
-        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
+        @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
+        @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
     ): AnalysisResult {
-        val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData)
+
+        val forceRefreshLocalDate = if(forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
+
+        val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
         stockAnalysisService.calcStockStats(stocks)
 
-        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefreshRatios, mockData)
+        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefreshRatios, mockData, forceRefreshLocalDate)
         keyRatiosAnalysisService.calcRule1(stocks, ratios)
 
         val averages = stockAnalysisService.calcStocksAverages(stocks)

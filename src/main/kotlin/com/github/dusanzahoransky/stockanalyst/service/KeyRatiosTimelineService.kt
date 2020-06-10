@@ -6,6 +6,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.repository.KeyRatiosFinancialsRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRatiosTimelineRepo
@@ -30,10 +31,10 @@ class KeyRatiosTimelineService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistKeyRatios(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<StockRatiosTimeline> {
+    fun getWatchlistKeyRatios(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<StockRatiosTimeline> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
-        val keyRatiosFinantials = watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
+        val keyRatiosFinantials = watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
 
         var stockRatiosList = toStockRatios(keyRatiosFinantials)
 
@@ -102,11 +103,21 @@ class KeyRatiosTimelineService @Autowired constructor(
         return stockRatios
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): KeyRatiosFinancials? {
+    private fun useCache(forceRefreshCache: Boolean, stock: KeyRatiosFinancials?, forceRefreshDate: LocalDate): Boolean {
+        if (stock == null) return false
+
+        if (!forceRefreshCache) return true
+
+        val lastRefreshDate = stock.date
+
+        return !lastRefreshDate.isBefore(forceRefreshDate)
+    }
+
+    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
         var krp = krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())
 
         //retrieve from cache
-        if (!forceRefreshCache && krp != null) {
+        if (useCache(forceRefreshCache, krp, forceRefreshDate)) {
             log.debug("Retrieving stock info from cache: $ticker")
             return krp
         }

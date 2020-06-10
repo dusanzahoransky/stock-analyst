@@ -38,22 +38,22 @@ class StockService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<StockInfo> {
+    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<StockInfo> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
-        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
+        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 
     fun getStocks(symbols: Array<String>, forceRefresh: Boolean, mockData: Boolean): List<StockInfo> {
         val watchlistTickers = symbols.map { symbol -> StockTicker.fromString(symbol) }
-        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
+        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, LocalDate.now()) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): StockInfo? {
+    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): StockInfo? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache
-        if (!forceRefreshCache && stock != null) {
+        if (useCache(forceRefreshCache, stock, forceRefreshDate)) {
             log.debug("Retrieving stock info from cache: $ticker")
             return stock
         }
@@ -63,7 +63,7 @@ class StockService @Autowired constructor(
         val financials = yahooFinanceClient.getFinancials(ticker, mockData)
         if (financials == null) {
             log.error("Failed to retrieve stock Financials from Yahoo $ticker")
-            return null
+            throw RuntimeException("Failed to load $ticker")
         }
 
         val exchangeRate = getExchangeRate(financials, stock)
@@ -73,26 +73,26 @@ class StockService @Autowired constructor(
         val stats = yahooFinanceClient.getStatistics(ticker, mockData)
         if (stats == null) {
             log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
-            return null
+            throw RuntimeException("Failed to load $ticker")
         }
         processStatistics(stats, stock, exchangeRate)
 
         val analysis = yahooFinanceClient.getAnalysis(ticker, mockData)
         if (analysis == null) {
             log.error("Failed to retrieve stock Analysis from Yahoo $ticker")
-            return null
+            throw RuntimeException("Failed to load $ticker")
         }
         processAnalysis(analysis, stock)
 
         val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
         if (chart == null) {
             log.error("Failed to retrieve stock Chart from Yahoo $ticker")
-            return null
+            throw RuntimeException("Failed to load $ticker")
         }
         processChart(chart, stock, CHART_SAMPLING_INTERVAL)
 
         //do not cache mock data
-        if(mockData) {
+        if (mockData) {
             return stock
         }
 
@@ -101,6 +101,16 @@ class StockService @Autowired constructor(
         //store new version
         log.debug("Saving $ticker into DB")
         return stockRepo.insert(stock)
+    }
+
+    private fun useCache(forceRefreshCache: Boolean, stock: StockInfo?, forceRefreshDate: LocalDate): Boolean {
+        if (stock == null) return false
+
+        if (!forceRefreshCache) return true
+
+        val lastRefreshDate = stock.date
+
+        return !lastRefreshDate.isBefore(forceRefreshDate)
     }
 
     private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {

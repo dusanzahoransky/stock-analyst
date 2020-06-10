@@ -112,7 +112,7 @@ class WatchlistRepo {
 
     fun test(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("MA:NYSE")
+            StockTicker.fromString("TSM:NYSE")
         )
     }
 
@@ -313,7 +313,7 @@ class WatchlistRepo {
             /*StockTicker.fromString("ZNH:NYSE"),*/
            /* StockTicker.fromString("INO:NYSE"),*/
              //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
-            StockTicker.fromString("ROK:NASDAQ"),
+            StockTicker.fromString("ROK:NYSE"),
             StockTicker.fromString("HON:NYSE")
         )
     }
@@ -379,6 +379,7 @@ class WatchlistRepo {
     }
     fun auIndicesAud(): Set<StockTicker> {
         return setOf(
+            StockTicker.fromString("ATEC:ASX"),
             StockTicker.fromString("VLC:ASX"),
             StockTicker.fromString("A200:ASX"),
             StockTicker.fromString("VAS:ASX"),
