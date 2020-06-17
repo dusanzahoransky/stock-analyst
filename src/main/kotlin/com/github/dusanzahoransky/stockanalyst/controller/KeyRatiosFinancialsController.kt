@@ -22,7 +22,6 @@ class KeyRatiosFinancialsController @Autowired constructor(
         @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
     ): List<StockRatiosTimeline> {
         val forceRefreshLocalDate = if(forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
-
         return keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
     }
 

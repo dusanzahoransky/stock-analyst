@@ -6,13 +6,13 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.repository.KeyRatiosFinancialsRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRatiosTimelineRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
-import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -43,15 +43,15 @@ class KeyRatiosTimelineService @Autowired constructor(
         return stockRatiosList
     }
 
-    fun mergeWithDb(stockRatiosTimelineList: List<StockRatiosTimeline>): List<StockRatiosTimeline>  {
+    fun mergeWithDb(stockRatiosTimelineList: List<StockRatiosTimeline>): List<StockRatiosTimeline> {
         val mergedList = mutableListOf<StockRatiosTimeline>()
-        for(stockRatios in stockRatiosTimelineList){
+        for (stockRatios in stockRatiosTimelineList) {
             val stockRatiosDb = ratiosTimelineRepo.findBySymbolAndMic(stockRatios.symbol, stockRatios.mic)
-            if(stockRatiosDb == null){
+            if (stockRatiosDb == null) {
                 log.debug("Saving new StockRatios ${stockRatios.symbol} ${stockRatios.mic} into DB")
                 ratiosTimelineRepo.save(stockRatios)
                 mergedList.add(stockRatios)
-            } else{
+            } else {
                 log.debug("Merging StockRatios ${stockRatios.symbol} ${stockRatios.mic} with existing DB record")
                 stockRatiosDb.periods.putAll(stockRatios.periods)
                 stockRatiosDb.date = stockRatios.date
@@ -72,26 +72,26 @@ class KeyRatiosTimelineService @Autowired constructor(
                 val firstSection = result.sections[0]
                 val ratios = Ratios()
                 for (item in firstSection.lineItems) {
-                        when (item.label) {
-                            "BOOK VALUE PER SHARE *" -> ratios.bookValuePerShare = item.value
-                            "CAP SPENDING" -> ratios.capSpending = item.value
-                            "DIVIDENDS" -> ratios.dividends = item.value
-                            "EARNINGS PER SHARE" -> ratios.earningsPerShare = item.value
-                            "FREE CASH FLOW" -> ratios.freeCashFlow = item.value
-                            "FREE CASH FLOW PER SHARE *" -> ratios.freeCashFlowPerShare = item.value
-                            "GROSS MARGIN %" -> ratios.grossMargin = item.value
-                            "NET INCOME" -> ratios.netIncome = item.value
-                            "OPERATING CASH FLOW" -> ratios.operatingCashFlow = item.value
-                            "OPERATING INCOME" -> ratios.operatingIncome = item.value
-                            "OPERATING MARGIN %" -> ratios.operatingMargin = item.value
-                            "PAYOUT RATIO % *" -> ratios.payoutRatio = item.value
-                            "REVENUE" -> ratios.revenue = item.value
-                            "SHARES" -> ratios.shares = item.value
-                            "WORKING CAPITAL" -> ratios.workingCapital = item.value
-                        }
+                    when (item.label) {
+                        "BOOK VALUE PER SHARE *" -> ratios.bookValuePerShare = item.value
+                        "CAP SPENDING" -> ratios.capSpending = item.value
+                        "DIVIDENDS" -> ratios.dividends = item.value
+                        "EARNINGS PER SHARE" -> ratios.earningsPerShare = item.value
+                        "FREE CASH FLOW" -> ratios.freeCashFlow = item.value
+                        "FREE CASH FLOW PER SHARE *" -> ratios.freeCashFlowPerShare = item.value
+                        "GROSS MARGIN %" -> ratios.grossMargin = item.value
+                        "NET INCOME" -> ratios.netIncome = item.value
+                        "OPERATING CASH FLOW" -> ratios.operatingCashFlow = item.value
+                        "OPERATING INCOME" -> ratios.operatingIncome = item.value
+                        "OPERATING MARGIN %" -> ratios.operatingMargin = item.value
+                        "PAYOUT RATIO % *" -> ratios.payoutRatio = item.value
+                        "REVENUE" -> ratios.revenue = item.value
+                        "SHARES" -> ratios.shares = item.value
+                        "WORKING CAPITAL" -> ratios.workingCapital = item.value
+                    }
 
                 }
-                if(stockInfo?.chartData != null){
+                if (stockInfo?.chartData != null) {
                     ratios.price = stockAnalysisService.chartDataFirstBefore(periodDate, stockInfo.chartData!!)?.price
                     ratios.pe = div(ratios.price, ratios.earningsPerShare)
                 }
@@ -101,16 +101,6 @@ class KeyRatiosTimelineService @Autowired constructor(
             stockRatios.add(stockRatio)
         }
         return stockRatios
-    }
-
-    private fun useCache(forceRefreshCache: Boolean, stock: KeyRatiosFinancials?, forceRefreshDate: LocalDate): Boolean {
-        if (stock == null) return false
-
-        if (!forceRefreshCache) return true
-
-        val lastRefreshDate = stock.date
-
-        return !lastRefreshDate.isBefore(forceRefreshDate)
     }
 
     private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
@@ -130,7 +120,7 @@ class KeyRatiosTimelineService @Autowired constructor(
         krp = KeyRatiosFinancials(null, ticker.symbol, ticker.getMic(), LocalDate.now(), krpResponse.results)
 
         //do not cache mock data
-        if(mockData) {
+        if (mockData) {
             return krp
         }
 

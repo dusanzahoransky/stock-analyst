@@ -2,7 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Mic(
     val fullName: String,
-    val value: String) {
+    val mic: String) {
 
     ASX("ASX", "XASX"),
     NASDAQ("NASDAQ", "XNAS"),

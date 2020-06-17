@@ -18,4 +18,8 @@ data class KeyRatiosFinancials(
     val mic: Mic,
     val date: LocalDate = LocalDate.now(),
     var results: List<Result> = ArrayList()
-)
+) : LastRefreshDate {
+    override fun getLastRefreshDate(): LocalDate {
+        return date
+    }
+}

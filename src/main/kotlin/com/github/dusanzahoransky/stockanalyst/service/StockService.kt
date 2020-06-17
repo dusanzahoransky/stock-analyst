@@ -15,6 +15,8 @@ import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.Financials
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
@@ -101,16 +103,6 @@ class StockService @Autowired constructor(
         //store new version
         log.debug("Saving $ticker into DB")
         return stockRepo.insert(stock)
-    }
-
-    private fun useCache(forceRefreshCache: Boolean, stock: StockInfo?, forceRefreshDate: LocalDate): Boolean {
-        if (stock == null) return false
-
-        if (!forceRefreshCache) return true
-
-        val lastRefreshDate = stock.date
-
-        return !lastRefreshDate.isBefore(forceRefreshDate)
     }
 
     private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {
