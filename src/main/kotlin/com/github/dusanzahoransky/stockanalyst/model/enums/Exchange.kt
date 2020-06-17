@@ -13,10 +13,4 @@ enum class Exchange(
     SIX("SIX Swiss", "SW"),
     PA("Euronext Paris", "PA"),
     MCE("Bolsa de Madrid", "MC");
-
-    companion object{
-        fun fromMic(mic: Mic): Exchange{
-            return Exchange.valueOf(mic.name)
-        }
-    }
 }

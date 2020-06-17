@@ -5,12 +5,12 @@ import java.time.LocalDate
 import java.time.ZoneId
 
 class FormattingUtils {
-    companion object{
+    companion object {
 
-        public fun localDateToEpochSec(currentInterval: LocalDate) =
+        fun localDateToEpochSec(currentInterval: LocalDate) =
             currentInterval.atStartOfDay(ZoneId.of("UTC")).toEpochSecond()
 
-        public fun epochSecToLocalDate(epochSeconds: Long) =
+        fun epochSecToLocalDate(epochSeconds: Long) =
             Instant.ofEpochSecond(epochSeconds).atZone(ZoneId.of("UTC")).toLocalDate()
     }
 }

@@ -2,7 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.client
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.KetRatiosResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,7 +22,7 @@ class MorningStartClient @Autowired constructor(
         const val CALL_THRESHOLD_TIMEOUT = 500L
     }
 
-    fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse {
+    fun getKeyRatiosFinancials(ticker: Ticker, mockData: Boolean): KetRatiosResponse {
         if (mockData) {
             val statisticsMock = ClassPathResource("keyratiosGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<KetRatiosResponse>())
@@ -34,7 +34,7 @@ class MorningStartClient @Autowired constructor(
         val response = restTemplate.getForObject(
             "https://morningstar1.p.rapidapi.com/keyratios/financials?Ticker={symbol}&Mic={mic}",
             KetRatiosResponse::class.java,
-            mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic().mic)
+            mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic())
         ) ?: throw RuntimeException("Failed to load $ticker")
 
         logger.debug("Financial KeyRatios from Morningstar API: ${jacksonObjectMapper().writeValueAsString(response)}")

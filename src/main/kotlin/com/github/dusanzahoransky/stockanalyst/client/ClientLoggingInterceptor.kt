@@ -14,7 +14,7 @@ class ClientLoggingInterceptor : ClientHttpRequestInterceptor {
         logger.debug("Calling: ${request.method} ${request.uri} $body")
         val response = execution.execute(request, body)
         var remainingQuota = response.headers.getOrEmpty("X-RateLimit-requests-Remaining")
-        if(remainingQuota.isEmpty()) {
+        if (remainingQuota.isEmpty()) {
             remainingQuota = response.headers.getOrEmpty("X-RateLimit-Original-Raw-Formatting-Remaining")
         }
         logger.debug("Response [remaining quota: $remainingQuota]: ${response.statusCode}")

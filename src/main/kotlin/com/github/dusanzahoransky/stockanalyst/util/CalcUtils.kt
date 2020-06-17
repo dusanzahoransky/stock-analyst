@@ -22,7 +22,7 @@ class CalcUtils {
                 return null
             }
             val currDivPrev = currentValue / previousValue
-            if(currDivPrev < 0){    //imaginary number, can't calculate
+            if (currDivPrev < 0) {    //imaginary number, can't calculate
                 return null
             }
             return (currDivPrev.pow(1.0 / numberOfYears) - 1) * 100
@@ -140,7 +140,7 @@ class CalcUtils {
                 else if (value1 is Long && value2 is Long)
                     (value1 * value2) as N
                 else
-                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2?.javaClass}")
+                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }
         }
 

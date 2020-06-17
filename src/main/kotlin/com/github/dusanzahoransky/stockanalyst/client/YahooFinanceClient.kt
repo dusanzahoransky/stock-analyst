@@ -2,13 +2,13 @@ package com.github.dusanzahoransky.stockanalyst.client
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -28,7 +28,7 @@ class YahooFinanceClient @Autowired constructor(
         const val CALL_THRESHOLD_TIMEOUT = 200L
     }
 
-    fun getStatistics(ticker: StockTicker, mockData: Boolean): StatisticsResponse {
+    fun getStatistics(ticker: Ticker, mockData: Boolean): StatisticsResponse {
         if (mockData) {
             val statisticsMock = ClassPathResource("StatisticsMockGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<StatisticsResponse>())
@@ -57,7 +57,7 @@ class YahooFinanceClient @Autowired constructor(
         }
     }
 
-    fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse {
+    fun getChart(ticker: Ticker, interval: Interval, range: Range, mockData: Boolean): ChartResponse {
         if (mockData) {
             val data =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("ChartMockVUSA.json")
@@ -81,7 +81,7 @@ class YahooFinanceClient @Autowired constructor(
         return response
     }
 
-    fun getEtfStatistics(ticker: StockTicker, mockData: Boolean): EtfStatisticsResponse {
+    fun getEtfStatistics(ticker: Ticker, mockData: Boolean): EtfStatisticsResponse {
         if (mockData) {
             val statisticsMock =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
@@ -102,7 +102,7 @@ class YahooFinanceClient @Autowired constructor(
     }
 
 
-    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse {
+    fun getFinancials(ticker: Ticker, mockData: Boolean): FinancialsResponse {
         if (mockData) {
             val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
@@ -119,7 +119,7 @@ class YahooFinanceClient @Autowired constructor(
 
     }
 
-    fun getAnalysis(ticker: StockTicker, mockData: Boolean): AnalysisResponse {
+    fun getAnalysis(ticker: Ticker, mockData: Boolean): AnalysisResponse {
         if (mockData) {
             val balanceSheetMock = ClassPathResource("AnalysisMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<AnalysisResponse>())

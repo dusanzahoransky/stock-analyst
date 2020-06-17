@@ -2,13 +2,13 @@ package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.client.ExchangeRateClient
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
@@ -45,7 +45,7 @@ class StockService @Autowired constructor(
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Stock? {
+    private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Stock? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache

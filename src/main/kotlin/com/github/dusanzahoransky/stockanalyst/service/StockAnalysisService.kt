@@ -1,11 +1,11 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.dto.StockWithRatios
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.EtfsAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
@@ -261,8 +261,8 @@ class StockAnalysisService {
             /**
             Iterate though all stats using reflection to sum all values in order to calculate averages using averages object holding values and counter with xxxCount fields accumulating number of non null values, such as:
             if (stock.enterpriseValue != null) {
-                averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
-                counter.enterpriseValueCount++
+            averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
+            counter.enterpriseValueCount++
             }
              */
 
@@ -300,10 +300,10 @@ class StockAnalysisService {
 
     fun combineWithRatios(stocks: List<Stock>, ratios: List<StockRatiosTimeline>): List<StockWithRatios> {
         val stockInfoWithRatios = mutableListOf<StockWithRatios>()
-        for (stock in stocks){
-            val ratio =  ratios
-                .firstOrNull { StockTicker.fromSymbolAndMic(it.symbol, it.mic) == StockTicker(stock.symbol, stock.exchange) }
-            if(ratio == null){
+        for (stock in stocks) {
+            val ratio = ratios
+                .firstOrNull { Ticker(it.symbol, it.exchange) == Ticker(stock.symbol, stock.exchange) }
+            if (ratio == null) {
                 log.error("Missing ratios for stock ${stock.symbol} ${stock.exchange}")
                 continue
             }

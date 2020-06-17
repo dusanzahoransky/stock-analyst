@@ -1,14 +1,10 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
-import com.github.dusanzahoransky.stockanalyst.model.enums.Mic
-import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
-import com.google.gson.internal.LinkedTreeMap
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 import java.util.*
-import kotlin.collections.HashMap
 
 /**
  * Simplified data processed from keyRatiosFinancials
@@ -17,7 +13,6 @@ import kotlin.collections.HashMap
 class StockRatiosTimeline(
     @Id var id: String? = null,
     val symbol: String,
-    val mic: Mic,
     val exchange: Exchange,
     var date: LocalDate = LocalDate.now(),
 

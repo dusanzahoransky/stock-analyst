@@ -1,7 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
-import com.github.dusanzahoransky.stockanalyst.model.enums.Mic
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -15,7 +14,7 @@ import java.util.*
 data class KeyRatiosFinancials(
     @Id var id: String? = null,
     val symbol: String,
-    val mic: Mic,
+    val exchange: Exchange,
     val date: LocalDate = LocalDate.now(),
     var results: List<Result> = ArrayList()
 ) : LastRefreshDate {

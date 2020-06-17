@@ -18,7 +18,7 @@ class ExchangeRateClient @Autowired constructor(
     fun getRate(fromCurrency: Currency, toCurrency: Currency): Double {
 
         //TODO use a different API to support more currencies
-        if(fromCurrency == Currency.TWD || toCurrency == Currency.TWD){
+        if (fromCurrency == Currency.TWD || toCurrency == Currency.TWD) {
             return 1.0
         }
 

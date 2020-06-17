@@ -28,7 +28,7 @@ class StockController @Autowired constructor(
         @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
     ): AnalysisResult {
 
-        val forceRefreshLocalDate = if(forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
+        val forceRefreshLocalDate = if (forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
 
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
         stockAnalysisService.calcStockStats(stocks)

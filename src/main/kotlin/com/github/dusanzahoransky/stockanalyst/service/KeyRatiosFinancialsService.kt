@@ -1,7 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.client.MorningStartClient
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
 import com.github.dusanzahoransky.stockanalyst.repository.KeyRatiosFinancialsRepo
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
@@ -14,12 +14,12 @@ import java.time.LocalDate
 class KeyRatiosFinancialsService @Autowired constructor(
     val krpRepo: KeyRatiosFinancialsRepo,
     val morningStarClient: MorningStartClient
-){
+) {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
-        var krp = krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())
+    fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
+        var krp = krpRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache
         if (CacheUtils.useCache(forceRefreshCache, krp, forceRefreshDate)) {
@@ -29,7 +29,7 @@ class KeyRatiosFinancialsService @Autowired constructor(
 
         val krpResponse = morningStarClient.getKeyRatiosFinancials(ticker, mockData)
 
-        krp = KeyRatiosFinancials(null, ticker.symbol, ticker.getMic(), LocalDate.now(), krpResponse.results)
+        krp = KeyRatiosFinancials(null, ticker.symbol, ticker.exchange, LocalDate.now(), krpResponse.results)
 
         //do not cache mock data
         if (mockData) {
@@ -37,7 +37,7 @@ class KeyRatiosFinancialsService @Autowired constructor(
         }
 
         //delete previous version
-        krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())?.let { krpRepo.delete(it) }
+        krpRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { krpRepo.delete(it) }
         //store new version
         log.debug("Saving $ticker into DB")
         return krpRepo.insert(krp)

@@ -1,6 +1,5 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
@@ -28,8 +27,8 @@ class KeyRatiosTimelineService @Autowired constructor(
     fun getWatchlistKeyRatios(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<StockRatiosTimeline> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
-        val keyRatiosFinantials = watchlistTickers.mapNotNull {
-            ticker -> keyRatiosFinancialsService.findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate)
+        val keyRatiosFinantials = watchlistTickers.mapNotNull { ticker ->
+            keyRatiosFinancialsService.findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate)
         }
 
         var stockRatiosList = toStockRatios(keyRatiosFinantials)
@@ -42,13 +41,13 @@ class KeyRatiosTimelineService @Autowired constructor(
     fun mergeWithDb(stockRatiosTimelineList: List<StockRatiosTimeline>): List<StockRatiosTimeline> {
         val mergedList = mutableListOf<StockRatiosTimeline>()
         for (stockRatios in stockRatiosTimelineList) {
-            val stockRatiosDb = ratiosTimelineRepo.findBySymbolAndMic(stockRatios.symbol, stockRatios.mic)
+            val stockRatiosDb = ratiosTimelineRepo.findBySymbolAndExchange(stockRatios.symbol, stockRatios.exchange)
             if (stockRatiosDb == null) {
-                log.debug("Saving new StockRatios ${stockRatios.symbol} ${stockRatios.mic} into DB")
+                log.debug("Saving new StockRatios ${stockRatios.symbol} ${stockRatios.exchange} into DB")
                 ratiosTimelineRepo.save(stockRatios)
                 mergedList.add(stockRatios)
             } else {
-                log.debug("Merging StockRatios ${stockRatios.symbol} ${stockRatios.mic} with existing DB record")
+                log.debug("Merging StockRatios ${stockRatios.symbol} ${stockRatios.exchange} with existing DB record")
                 stockRatiosDb.periods.putAll(stockRatios.periods)
                 stockRatiosDb.date = stockRatios.date
                 ratiosTimelineRepo.save(stockRatiosDb)
@@ -61,7 +60,7 @@ class KeyRatiosTimelineService @Autowired constructor(
     private fun toStockRatios(keyRatiosFinantials: List<KeyRatiosFinancials>): List<StockRatiosTimeline> {
         val stockRatios = mutableListOf<StockRatiosTimeline>()
         for (krf in keyRatiosFinantials) {
-            val stockRatio = StockRatiosTimeline(null, krf.symbol, krf.mic, Exchange.fromMic(krf.mic))
+            val stockRatio = StockRatiosTimeline(null, krf.symbol, krf.exchange)
             val stockInfo = stockRepo.findBySymbolAndExchange(stockRatio.symbol, stockRatio.exchange)
             for (result in krf.results) {
                 val periodDate = LocalDate.parse(result.periodEndDate)

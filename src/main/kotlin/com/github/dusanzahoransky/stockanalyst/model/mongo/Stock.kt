@@ -266,7 +266,7 @@ data class Stock(
     var yearEnds: List<Long>? = null,
     var chartData: MutableList<StockChartData>? = mutableListOf()
 
-): LastRefreshDate {
+) : LastRefreshDate {
     override fun getLastRefreshDate(): LocalDate {
         return date
     }

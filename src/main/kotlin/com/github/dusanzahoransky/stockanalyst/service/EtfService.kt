@@ -1,13 +1,13 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
+import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfChartData
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.EtfRepo
@@ -36,7 +36,7 @@ class EtfService @Autowired constructor(
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): Etf? {
+    private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean): Etf? {
         var stock = indexRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache

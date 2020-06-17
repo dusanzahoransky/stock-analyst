@@ -4,7 +4,7 @@ import com.github.dusanzahoransky.stockanalyst.model.mongo.LastRefreshDate
 import java.time.LocalDate
 
 class CacheUtils {
-    companion object{
+    companion object {
         fun useCache(forceRefreshCache: Boolean, refreshableEntity: LastRefreshDate?, forceRefreshDate: LocalDate): Boolean {
             if (refreshableEntity == null) return false
 

@@ -1,6 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
@@ -42,10 +42,10 @@ class KeyRatiosAnalysisService {
         val fiveYBefore = periodYearsBefore(periods, 5)
         val nineYBefore = periodYearsBefore(periods, 9)
 
-        val stock = stockList.firstOrNull { StockTicker(it.symbol, it.exchange) == StockTicker.fromSymbolAndMic(ratios.symbol, ratios.mic) }
+        val stock = stockList.firstOrNull { Ticker(it.symbol, it.exchange) == Ticker(ratios.symbol, ratios.exchange) }
 
         if (stock == null) {
-            log.debug("Failed to compute Rule1, stock is missing ${ratios.symbol}, ${ratios.mic}")
+            log.debug("Failed to compute Rule1, stock is missing ${ratios.symbol}, ${ratios.exchange}")
             return
         }
 
@@ -90,12 +90,12 @@ class KeyRatiosAnalysisService {
         stock.roic1Y = cumulativeGrowthRate(roicCurrent, roic1YBefore, 1, "roic1Y", 0.01)
         stock.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
 
-        val estimatedEpsGrowthRate = stock.bps9Y?: stock.bps5Y?: stock.bps3Y
+        val estimatedEpsGrowthRate = stock.bps9Y ?: stock.bps5Y ?: stock.bps3Y
         stock.rule1GrowthRate = minIfPositive(estimatedEpsGrowthRate, stock.growthEstimate5y)
         stock.defaultPE = multiply(stock.rule1GrowthRate, 2.0)
         stock.historicalPE = average(current?.pe, oneYBefore?.pe, threeYBefore?.pe, fiveYBefore?.pe, nineYBefore?.pe)
         stock.rule1PE = minIfPositive(stock.historicalPE, stock.defaultPE)
-        stock.currentEps =  stock.epsLastYear ?: multiply(stock.epsLastQuarter, 4.0)
+        stock.currentEps = stock.epsLastYear ?: multiply(stock.epsLastQuarter, 4.0)
         val numberOfYear = 10.0
         val epsGrowthEstimate = plus(div(stock.rule1GrowthRate, 100), 1.0)
         stock.futureEPS10Years = multiply(stock.currentEps, epsGrowthEstimate?.pow(numberOfYear))
