@@ -9,7 +9,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.istatistics.IndexStatisticsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.IndexStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.IndexRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
