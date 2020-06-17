@@ -48,7 +48,7 @@ class StockController @Autowired constructor(
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
     ): EtfsAnalysisResult {
-        val indices = indexService.getWatchlistStocks(watchlist, forceRefresh, mockData)
+        val indices = indexService.getWatchlistEtfs(watchlist, forceRefresh, mockData)
         val averages = stockAnalysisService.calcEtfsAverages(indices)
         return EtfsAnalysisResult(averages, indices)
     }

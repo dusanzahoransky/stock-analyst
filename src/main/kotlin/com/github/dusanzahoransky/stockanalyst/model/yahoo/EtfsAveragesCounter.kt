@@ -1,9 +1,9 @@
 package com.github.dusanzahoransky.stockanalyst.model.yahoo
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 
 data class EtfsAveragesCounter(
-    var averages: EtfInfo,
+    var averages: Etf,
     var changeCount: Int = 0,
     var totalAssetsCount: Int = 0,
 

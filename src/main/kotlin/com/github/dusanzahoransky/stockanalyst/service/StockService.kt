@@ -8,14 +8,13 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
-import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -40,13 +39,13 @@ class StockService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<StockInfo> {
+    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<Stock> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): StockInfo? {
+    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Stock? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache
@@ -55,7 +54,7 @@ class StockService @Autowired constructor(
             return stock
         }
 
-        stock = StockInfo(symbol = ticker.symbol, exchange = ticker.exchange)
+        stock = Stock(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
         val financials = yahooFinanceClient.getFinancials(ticker, mockData)
         val exchangeRate = getExchangeRate(financials, stock)
@@ -83,7 +82,7 @@ class StockService @Autowired constructor(
         return stockRepo.insert(stock)
     }
 
-    private fun processChart(chart: ChartResponse, stock: StockInfo, samplingInterval: Period) {
+    private fun processChart(chart: ChartResponse, stock: Stock, samplingInterval: Period) {
         val result = chart.chart?.result?.getOrNull(0) ?: return
         val closePrices = result.indicators?.quote?.getOrNull(0)?.close ?: return
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
@@ -117,7 +116,7 @@ class StockService @Autowired constructor(
         return StockChartData(localDateToEpochSec(currentInterval), priceAtInterval)
     }
 
-    private fun processFinancials(financials: FinancialsResponse, stock: StockInfo, exchangeRate: Double) {
+    private fun processFinancials(financials: FinancialsResponse, stock: Stock, exchangeRate: Double) {
 
         val incomeStatementLastQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
         val incomeStatement2QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
@@ -236,11 +235,11 @@ class StockService @Autowired constructor(
         stock.yearEnds = timeSeries?.timestamp?.reversed()
     }
 
-    private fun processAnalysis(analysis: AnalysisResponse, stock: StockInfo) {
+    private fun processAnalysis(analysis: AnalysisResponse, stock: Stock) {
         stock.growthEstimate5y = percent(analysis.earningsTrend?.trend?.firstOrNull { it.period == "+5y" }?.growth?.raw)
     }
 
-    private fun processStatistics(stats: StatisticsResponse, stock: StockInfo, exchangeRate: Double) {
+    private fun processStatistics(stats: StatisticsResponse, stock: Stock, exchangeRate: Double) {
         val financialData = stats.financialData
         val price = stats.price
         val defaultKeyStatistics = stats.defaultKeyStatistics
@@ -301,7 +300,7 @@ class StockService @Autowired constructor(
         stock.payoutRatio = percent(summaryDetail.payoutRatio?.raw)
     }
 
-    private fun getExchangeRate(financials: FinancialsResponse, stock: StockInfo): Double {
+    private fun getExchangeRate(financials: FinancialsResponse, stock: Stock): Double {
         stock.currency = financials.price?.currency?.let { it -> Currency.valueOf(it) }
         stock.financialCurrency = financials.earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }
 

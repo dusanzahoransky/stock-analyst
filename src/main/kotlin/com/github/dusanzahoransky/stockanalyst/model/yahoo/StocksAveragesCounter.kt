@@ -1,9 +1,9 @@
 package com.github.dusanzahoransky.stockanalyst.model.yahoo
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 
 data class StocksAveragesCounter(
-    var averages: StockInfo,
+    var averages: Stock,
 
     var changeCount: Int = 0,
     var enterpriseValueCount: Int = 0,

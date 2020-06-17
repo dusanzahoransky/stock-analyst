@@ -6,8 +6,8 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 
-@Document
-data class EtfInfo(
+@Document("EtfInfo")
+data class Etf(
     @Id var id: String? = null,
     val date: LocalDate = LocalDate.now(),
     var asOfDate: LocalDate? = null,

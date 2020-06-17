@@ -1,11 +1,11 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
-import com.github.dusanzahoransky.stockanalyst.model.dto.StockInfoWithRatios
+import com.github.dusanzahoransky.stockanalyst.model.dto.StockWithRatios
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
-import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.EtfsAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
@@ -18,7 +18,6 @@ import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.ep
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.time.LocalDate
-import java.time.Period
 import java.time.temporal.ChronoUnit
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
@@ -31,7 +30,7 @@ class StockAnalysisService {
     /**
      * Enhance the stock data with Growth and other ratios that were not provided by Yahoo finance API. It's good to keep this logic separated so the calculation can be changed without a need to fetch data from Yahoo API again.
      */
-    fun calcStockStats(stocks: List<StockInfo>): List<StockInfo> {
+    fun calcStockStats(stocks: List<Stock>): List<Stock> {
         for (stock in stocks) {
             calcFinancialStats(stock)
             calcChartData(stock)
@@ -39,7 +38,7 @@ class StockAnalysisService {
         return stocks
     }
 
-    private fun calcFinancialStats(stock: StockInfo) {
+    private fun calcFinancialStats(stock: Stock) {
         if (stock.price != null && stock.week52Low != null) {
             stock.week52AboveLowPercent = percent((stock.price!! - stock.week52Low!!) / stock.price!!)
         }
@@ -136,7 +135,7 @@ class StockAnalysisService {
         stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast3Years", 0.2)
     }
 
-    private fun calcChartData(stock: StockInfo) {
+    private fun calcChartData(stock: Stock) {
 
         val chartData = stock.chartData ?: return
 
@@ -213,12 +212,12 @@ class StockAnalysisService {
         }
     }
 
-    fun calcStocksAverages(stocks: List<StockInfo>): StockInfo {
+    fun calcStocksAverages(stocks: List<Stock>): Stock {
 
-        val counter = StocksAveragesCounter(StockInfo(symbol = "Avg.", exchange = Exchange.NASDAQ))
+        val counter = StocksAveragesCounter(Stock(symbol = "Avg.", exchange = Exchange.NASDAQ))
         val averages = counter.averages
 
-        val stockNumericFields = StockInfo::class.memberProperties
+        val stockNumericFields = Stock::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
             .filter { f ->
                 when (f.name) {
@@ -234,11 +233,11 @@ class StockAnalysisService {
     }
 
 
-    fun calcEtfsAverages(indices: List<EtfInfo>): EtfInfo {
-        val counter = EtfsAveragesCounter(EtfInfo(symbol = "Avg."))
+    fun calcEtfsAverages(indices: List<Etf>): Etf {
+        val counter = EtfsAveragesCounter(Etf(symbol = "Avg."))
         val averages = counter.averages
 
-        val indexNumericFields = EtfInfo::class.memberProperties
+        val indexNumericFields = Etf::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
             .filter { f ->
                 when (f.name) {
@@ -299,8 +298,8 @@ class StockAnalysisService {
         }
     }
 
-    fun combineWithRatios(stocks: List<StockInfo>, ratios: List<StockRatiosTimeline>): List<StockInfoWithRatios> {
-        val stockInfoWithRatios = mutableListOf<StockInfoWithRatios>()
+    fun combineWithRatios(stocks: List<Stock>, ratios: List<StockRatiosTimeline>): List<StockWithRatios> {
+        val stockInfoWithRatios = mutableListOf<StockWithRatios>()
         for (stock in stocks){
             val ratio =  ratios
                 .firstOrNull { StockTicker.fromSymbolAndMic(it.symbol, it.mic) == StockTicker(stock.symbol, stock.exchange) }
@@ -308,7 +307,7 @@ class StockAnalysisService {
                 log.error("Missing ratios for stock ${stock.symbol} ${stock.exchange}")
                 continue
             }
-            stockInfoWithRatios.add(StockInfoWithRatios(stock, ratio))
+            stockInfoWithRatios.add(StockWithRatios(stock, ratio))
         }
         return stockInfoWithRatios
     }

@@ -2,12 +2,11 @@ package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
-import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.min
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minIfPositive
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
@@ -30,11 +29,11 @@ class KeyRatiosAnalysisService {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun calcRule1(stockInfoList: List<StockInfo>, ratiosList: List<StockRatiosTimeline>) {
-        ratiosList.forEach { calcRule1(it, stockInfoList) }
+    fun calcRule1(stockList: List<Stock>, ratiosList: List<StockRatiosTimeline>) {
+        ratiosList.forEach { calcRule1(it, stockList) }
     }
 
-    fun calcRule1(ratios: StockRatiosTimeline, stockInfoList: List<StockInfo>) {
+    fun calcRule1(ratios: StockRatiosTimeline, stockList: List<Stock>) {
         val periods = ratios.periods.toSortedMap(compareByDescending { it })
 
         val current = periodYearsBefore(periods, 0)
@@ -43,7 +42,7 @@ class KeyRatiosAnalysisService {
         val fiveYBefore = periodYearsBefore(periods, 5)
         val nineYBefore = periodYearsBefore(periods, 9)
 
-        val stock = stockInfoList.firstOrNull { StockTicker(it.symbol, it.exchange) == StockTicker.fromSymbolAndMic(ratios.symbol, ratios.mic) }
+        val stock = stockList.firstOrNull { StockTicker(it.symbol, it.exchange) == StockTicker.fromSymbolAndMic(ratios.symbol, ratios.mic) }
 
         if (stock == null) {
             log.debug("Failed to compute Rule1, stock is missing ${ratios.symbol}, ${ratios.mic}")

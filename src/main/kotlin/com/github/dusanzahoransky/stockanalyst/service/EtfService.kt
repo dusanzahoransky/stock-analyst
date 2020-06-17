@@ -7,7 +7,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfChartData
-import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.EtfRepo
@@ -31,12 +31,12 @@ class EtfService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<EtfInfo> {
+    fun getWatchlistEtfs(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<Etf> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): EtfInfo? {
+    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): Etf? {
         var stock = indexRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache
@@ -45,21 +45,13 @@ class EtfService @Autowired constructor(
             return stock
         }
 
-        stock = EtfInfo(symbol = ticker.symbol, exchange = ticker.exchange)
+        stock = Etf(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
 
         val stats = yahooFinanceClient.getEtfStatistics(ticker, mockData)
-        if (stats == null) {
-            log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
-            return null
-        }
         processStatistics(stats, stock)
 
         val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
-        if (chart == null) {
-            log.error("Failed to retrieve stock Chart from Yahoo $ticker")
-            return null
-        }
         processChart(chart, stock, Period.ofDays(7))
 
         //delete previous version
@@ -69,7 +61,7 @@ class EtfService @Autowired constructor(
         return indexRepo.insert(stock)
     }
 
-    private fun processChart(chart: ChartResponse, stock: EtfInfo, samplingInterval: Period) {
+    private fun processChart(chart: ChartResponse, stock: Etf, samplingInterval: Period) {
         val result = chart.chart?.result?.get(0) ?: return
         val closePrices = result.indicators?.quote?.get(0)?.close ?: return
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
@@ -105,7 +97,7 @@ class EtfService @Autowired constructor(
     }
 
 
-    private fun processStatistics(stats: EtfStatisticsResponse, stock: EtfInfo) {
+    private fun processStatistics(stats: EtfStatisticsResponse, stock: Etf) {
         val price = stats.price
         val summaryDetail = stats.summaryDetail
         val topHoldings = stats.topHoldings

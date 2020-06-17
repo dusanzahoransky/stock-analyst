@@ -6,8 +6,8 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 
-@Document
-data class StockInfo(
+@Document("StockInfo")
+data class Stock(
     @Id var id: String? = null,
     val date: LocalDate = LocalDate.now(),
     var lastReportedQuarter: LocalDate? = null,
