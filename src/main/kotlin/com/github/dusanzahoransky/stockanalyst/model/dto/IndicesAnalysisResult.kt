@@ -1,8 +1,8 @@
 package com.github.dusanzahoransky.stockanalyst.model.dto
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
 
-data class IndicesAnalysisResult(
-    var averages: IndexInfo,
-    var stocks: List<IndexInfo>
+data class EtfsAnalysisResult(
+    var averages: EtfInfo,
+    var stocks: List<EtfInfo>
 )

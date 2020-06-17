@@ -133,8 +133,8 @@ class StockService @Autowired constructor(
         timestamps: List<LocalDate>,
         closePrices: MutableList<Double?>): StockChartData {
 
-        val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
-        val priceAtInterval = closePrices[timestampIndexAtInterval]
+        val timestampEtfAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
+        val priceAtInterval = closePrices[timestampEtfAtInterval]
 
         return StockChartData(localDateToEpochSec(currentInterval), priceAtInterval)
     }

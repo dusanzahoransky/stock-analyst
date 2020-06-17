@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 
 @Document
-data class IndexInfo(
+data class EtfInfo(
     @Id var id: String? = null,
     val date: LocalDate = LocalDate.now(),
     var asOfDate: LocalDate? = null,
@@ -55,7 +55,7 @@ data class IndexInfo(
 
     var fundInceptionDate: LocalDate? = null,
 
-    var chartData: MutableList<IndexChartData>? = mutableListOf()
+    var chartData: MutableList<EtfChartData>? = mutableListOf()
 
     /*
     risk

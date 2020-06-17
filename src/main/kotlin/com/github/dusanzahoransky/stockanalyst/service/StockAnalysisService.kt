@@ -3,11 +3,11 @@ package com.github.dusanzahoransky.stockanalyst.service
 import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.dto.StockInfoWithRatios
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
-import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.IndicesAveragesCounter
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.EtfsAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
@@ -234,11 +234,11 @@ class StockAnalysisService {
     }
 
 
-    fun calcIndicesAverages(indices: List<IndexInfo>): IndexInfo {
-        val counter = IndicesAveragesCounter(IndexInfo(symbol = "Avg."))
+    fun calcEtfsAverages(indices: List<EtfInfo>): EtfInfo {
+        val counter = EtfsAveragesCounter(EtfInfo(symbol = "Avg."))
         val averages = counter.averages
 
-        val indexNumericFields = IndexInfo::class.memberProperties
+        val indexNumericFields = EtfInfo::class.memberProperties
             .filterIsInstance<KMutableProperty<*>>()
             .filter { f ->
                 when (f.name) {

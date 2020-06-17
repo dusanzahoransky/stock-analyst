@@ -1,7 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.controller
 
 import com.github.dusanzahoransky.stockanalyst.model.dto.AnalysisResult
-import com.github.dusanzahoransky.stockanalyst.model.dto.IndicesAnalysisResult
+import com.github.dusanzahoransky.stockanalyst.model.dto.EtfsAnalysisResult
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.service.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +15,7 @@ class StockController @Autowired constructor(
     val keyRatiosTimelineService: KeyRatiosTimelineService,
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService,
-    val indexService: IndexService
+    val indexService: EtfService
 ) {
 
     @GetMapping("watchlist")
@@ -43,14 +43,14 @@ class StockController @Autowired constructor(
 
     @GetMapping("indicesWatchlist")
     @ResponseBody
-    fun loadIndicesWatchlist(
+    fun loadEtfsWatchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false
-    ): IndicesAnalysisResult {
+    ): EtfsAnalysisResult {
         val indices = indexService.getWatchlistStocks(watchlist, forceRefresh, mockData)
-        val averages = stockAnalysisService.calcIndicesAverages(indices)
-        return IndicesAnalysisResult(averages, indices)
+        val averages = stockAnalysisService.calcEtfsAverages(indices)
+        return EtfsAnalysisResult(averages, indices)
     }
 
     //TODO

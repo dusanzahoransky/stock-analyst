@@ -63,7 +63,7 @@ enum class Watchlist {
     TRADING_212_EU,
     TRADING_212_GB;
 
-    fun isIndex(): Boolean {
+    fun isEtf(): Boolean {
         return when (this) {
             ETF_ALL,
             GB_ETF_ALL,

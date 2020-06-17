@@ -6,11 +6,11 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexChartData
-import com.github.dusanzahoransky.stockanalyst.model.mongo.IndexInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfChartData
+import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfInfo
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.IndexStatisticsResponse
-import com.github.dusanzahoransky.stockanalyst.repository.IndexRepo
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
+import com.github.dusanzahoransky.stockanalyst.repository.EtfRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
@@ -23,20 +23,20 @@ import java.time.LocalDate
 import java.time.Period
 
 @Service
-class IndexService @Autowired constructor(
+class EtfService @Autowired constructor(
     val watchlistRepo: WatchlistRepo,
-    val indexRepo: IndexRepo,
+    val indexRepo: EtfRepo,
     val yahooFinanceClient: YahooFinanceClient
 ) {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<IndexInfo> {
+    fun getWatchlistStocks(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<EtfInfo> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): IndexInfo? {
+    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean): EtfInfo? {
         var stock = indexRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache
@@ -45,10 +45,10 @@ class IndexService @Autowired constructor(
             return stock
         }
 
-        stock = IndexInfo(symbol = ticker.symbol, exchange = ticker.exchange)
+        stock = EtfInfo(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
 
-        val stats = yahooFinanceClient.getIndexStatistics(ticker, mockData)
+        val stats = yahooFinanceClient.getEtfStatistics(ticker, mockData)
         if (stats == null) {
             log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
             return null
@@ -69,7 +69,7 @@ class IndexService @Autowired constructor(
         return indexRepo.insert(stock)
     }
 
-    private fun processChart(chart: ChartResponse, stock: IndexInfo, samplingInterval: Period) {
+    private fun processChart(chart: ChartResponse, stock: EtfInfo, samplingInterval: Period) {
         val result = chart.chart?.result?.get(0) ?: return
         val closePrices = result.indicators?.quote?.get(0)?.close ?: return
         val timestamps = result.timestamp?.map { epochSecToLocalDate(it) } ?: return
@@ -77,7 +77,7 @@ class IndexService @Autowired constructor(
         val chartTo = timestamps.last()
         var currentInterval = timestamps.first { t -> t.dayOfWeek == DayOfWeek.MONDAY }
         val samplingDays = samplingInterval.days
-        val chartData = mutableListOf<IndexChartData>()
+        val chartData = mutableListOf<EtfChartData>()
 
         while (currentInterval < chartTo) {
             val chartDataPoint = dataAtInterval(currentInterval, timestamps, closePrices)
@@ -96,16 +96,16 @@ class IndexService @Autowired constructor(
     private fun dataAtInterval(
         currentInterval: LocalDate,
         timestamps: List<LocalDate>,
-        closePrices: MutableList<Double?>): IndexChartData {
+        closePrices: MutableList<Double?>): EtfChartData {
 
-        val timestampIndexAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
-        val priceAtInterval = closePrices[timestampIndexAtInterval]
+        val timestampEtfAtInterval = timestamps.indexOfFirst { !it.isBefore(currentInterval) }
+        val priceAtInterval = closePrices[timestampEtfAtInterval]
 
-        return IndexChartData(localDateToEpochSec(currentInterval), priceAtInterval)
+        return EtfChartData(localDateToEpochSec(currentInterval), priceAtInterval)
     }
 
 
-    private fun processStatistics(stats: IndexStatisticsResponse, stock: IndexInfo) {
+    private fun processStatistics(stats: EtfStatisticsResponse, stock: EtfInfo) {
         val price = stats.price
         val summaryDetail = stats.summaryDetail
         val topHoldings = stats.topHoldings

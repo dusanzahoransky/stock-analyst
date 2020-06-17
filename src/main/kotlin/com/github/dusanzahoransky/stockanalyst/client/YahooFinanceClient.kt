@@ -8,7 +8,7 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.IndexStatisticsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -81,18 +81,18 @@ class YahooFinanceClient @Autowired constructor(
         return response
     }
 
-    fun getIndexStatistics(ticker: StockTicker, mockData: Boolean): IndexStatisticsResponse? {
+    fun getEtfStatistics(ticker: StockTicker, mockData: Boolean): EtfStatisticsResponse? {
         if (mockData) {
             val statisticsMock =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
                 else ClassPathResource("StatisticsVTS.json")
-            return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<IndexStatisticsResponse>())
+            return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<EtfStatisticsResponse>())
         }
         waitTimeout()
         val response = restTemplate.getForObject(
 
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
-            IndexStatisticsResponse::class.java,
+            EtfStatisticsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
         )
 

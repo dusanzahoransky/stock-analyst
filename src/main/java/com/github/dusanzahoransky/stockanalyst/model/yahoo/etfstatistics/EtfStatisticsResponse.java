@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "quoteData",
     "mktmData"
 })
-public class IndexStatisticsResponse {
+public class EtfStatisticsResponse {
 
     @JsonProperty("defaultKeyStatistics")
     private DefaultKeyStatistics defaultKeyStatistics;
@@ -213,7 +213,7 @@ public class IndexStatisticsResponse {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(IndexStatisticsResponse.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(EtfStatisticsResponse.class.getName()).append('@').append(Long.toHexString(System.identityHashCode(this))).append('[');
         sb.append("defaultKeyStatistics");
         sb.append('=');
         sb.append(((this.defaultKeyStatistics == null)?"<null>":this.defaultKeyStatistics));
@@ -308,10 +308,10 @@ public class IndexStatisticsResponse {
         if (other == this) {
             return true;
         }
-        if ((other instanceof IndexStatisticsResponse) == false) {
+        if ((other instanceof EtfStatisticsResponse) == false) {
             return false;
         }
-        IndexStatisticsResponse rhs = ((IndexStatisticsResponse) other);
+        EtfStatisticsResponse rhs = ((EtfStatisticsResponse) other);
         return ((((((((((((((((this.assetProfile == rhs.assetProfile)||((this.assetProfile!= null)&&this.assetProfile.equals(rhs.assetProfile)))&&((this.symbol == rhs.symbol)||((this.symbol!= null)&&this.symbol.equals(rhs.symbol))))&&((this.esgScores == rhs.esgScores)||((this.esgScores!= null)&&this.esgScores.equals(rhs.esgScores))))&&((this.defaultKeyStatistics == rhs.defaultKeyStatistics)||((this.defaultKeyStatistics!= null)&&this.defaultKeyStatistics.equals(rhs.defaultKeyStatistics))))&&((this.topHoldings == rhs.topHoldings)||((this.topHoldings!= null)&&this.topHoldings.equals(rhs.topHoldings))))&&((this.financialsTemplate == rhs.financialsTemplate)||((this.financialsTemplate!= null)&&this.financialsTemplate.equals(rhs.financialsTemplate))))&&((this.fundPerformance == rhs.fundPerformance)||((this.fundPerformance!= null)&&this.fundPerformance.equals(rhs.fundPerformance))))&&((this.mktmData == rhs.mktmData)||((this.mktmData!= null)&&this.mktmData.equals(rhs.mktmData))))&&((this.quoteType == rhs.quoteType)||((this.quoteType!= null)&&this.quoteType.equals(rhs.quoteType))))&&((this.fundProfile == rhs.fundProfile)||((this.fundProfile!= null)&&this.fundProfile.equals(rhs.fundProfile))))&&((this.summaryDetail == rhs.summaryDetail)||((this.summaryDetail!= null)&&this.summaryDetail.equals(rhs.summaryDetail))))&&((this.quoteData == rhs.quoteData)||((this.quoteData!= null)&&this.quoteData.equals(rhs.quoteData))))&&((this.pageViews == rhs.pageViews)||((this.pageViews!= null)&&this.pageViews.equals(rhs.pageViews))))&&((this.price == rhs.price)||((this.price!= null)&&this.price.equals(rhs.price))))&&((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties))));
     }
 
