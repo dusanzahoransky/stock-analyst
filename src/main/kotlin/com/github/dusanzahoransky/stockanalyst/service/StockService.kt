@@ -46,11 +46,6 @@ class StockService @Autowired constructor(
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 
-    fun getStocks(symbols: Array<String>, forceRefresh: Boolean, mockData: Boolean): List<StockInfo> {
-        val watchlistTickers = symbols.map { symbol -> StockTicker.fromString(symbol) }
-        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, LocalDate.now()) }
-    }
-
     private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): StockInfo? {
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
@@ -63,34 +58,17 @@ class StockService @Autowired constructor(
         stock = StockInfo(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
         val financials = yahooFinanceClient.getFinancials(ticker, mockData)
-        if (financials == null) {
-            log.error("Failed to retrieve stock Financials from Yahoo $ticker")
-            throw RuntimeException("Failed to load $ticker")
-        }
-
         val exchangeRate = getExchangeRate(financials, stock)
 
         processFinancials(financials, stock, exchangeRate)
 
         val stats = yahooFinanceClient.getStatistics(ticker, mockData)
-        if (stats == null) {
-            log.error("Failed to retrieve stock Statistics from Yahoo $ticker")
-            throw RuntimeException("Failed to load $ticker")
-        }
         processStatistics(stats, stock, exchangeRate)
 
         val analysis = yahooFinanceClient.getAnalysis(ticker, mockData)
-        if (analysis == null) {
-            log.error("Failed to retrieve stock Analysis from Yahoo $ticker")
-            throw RuntimeException("Failed to load $ticker")
-        }
         processAnalysis(analysis, stock)
 
         val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
-        if (chart == null) {
-            log.error("Failed to retrieve stock Chart from Yahoo $ticker")
-            throw RuntimeException("Failed to load $ticker")
-        }
         processChart(chart, stock, CHART_SAMPLING_INTERVAL)
 
         //do not cache mock data

@@ -1,18 +1,13 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.client.MorningStartClient
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.KeyRatiosFinancials
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
-import com.github.dusanzahoransky.stockanalyst.repository.KeyRatiosFinancialsRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRatiosTimelineRepo
 import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
-import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
-import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,10 +18,9 @@ import java.time.LocalDate
 class KeyRatiosTimelineService @Autowired constructor(
     val stockRepo: StockRepo,
     val watchlistRepo: WatchlistRepo,
-    val krpRepo: KeyRatiosFinancialsRepo,
     val ratiosTimelineRepo: StockRatiosTimelineRepo,
-    val morningStarClient: MorningStartClient,
-    val stockAnalysisService: StockAnalysisService
+    val stockAnalysisService: StockAnalysisService,
+    val keyRatiosFinancialsService: KeyRatiosFinancialsService
 ) {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
@@ -34,7 +28,9 @@ class KeyRatiosTimelineService @Autowired constructor(
     fun getWatchlistKeyRatios(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<StockRatiosTimeline> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
-        val keyRatiosFinantials = watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
+        val keyRatiosFinantials = watchlistTickers.mapNotNull {
+            ticker -> keyRatiosFinancialsService.findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate)
+        }
 
         var stockRatiosList = toStockRatios(keyRatiosFinantials)
 
@@ -103,31 +99,5 @@ class KeyRatiosTimelineService @Autowired constructor(
         return stockRatios
     }
 
-    private fun findOrLoad(ticker: StockTicker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
-        var krp = krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())
 
-        //retrieve from cache
-        if (useCache(forceRefreshCache, krp, forceRefreshDate)) {
-            log.debug("Retrieving stock info from cache: $ticker")
-            return krp
-        }
-
-        val krpResponse = morningStarClient.getKeyRatiosFinancials(ticker, mockData)
-        if (krpResponse == null) {
-            log.error("Failed to retrieve stock Key Ratios Financials from MorningStar $ticker")
-            return null
-        }
-        krp = KeyRatiosFinancials(null, ticker.symbol, ticker.getMic(), LocalDate.now(), krpResponse.results)
-
-        //do not cache mock data
-        if (mockData) {
-            return krp
-        }
-
-        //delete previous version
-        krpRepo.findBySymbolAndMic(ticker.symbol, ticker.getMic())?.let { krpRepo.delete(it) }
-        //store new version
-        log.debug("Saving $ticker into DB")
-        return krpRepo.insert(krp)
-    }
 }

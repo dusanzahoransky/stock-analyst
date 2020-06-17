@@ -28,7 +28,7 @@ class YahooFinanceClient @Autowired constructor(
         const val CALL_THRESHOLD_TIMEOUT = 200L
     }
 
-    fun getStatistics(ticker: StockTicker, mockData: Boolean): StatisticsResponse? {
+    fun getStatistics(ticker: StockTicker, mockData: Boolean): StatisticsResponse {
         if (mockData) {
             val statisticsMock = ClassPathResource("StatisticsMockGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<StatisticsResponse>())
@@ -40,7 +40,7 @@ class YahooFinanceClient @Autowired constructor(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
             StatisticsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
 
         logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
@@ -57,7 +57,7 @@ class YahooFinanceClient @Autowired constructor(
         }
     }
 
-    fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse? {
+    fun getChart(ticker: StockTicker, interval: Interval, range: Range, mockData: Boolean): ChartResponse {
         if (mockData) {
             val data =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("ChartMockVUSA.json")
@@ -74,14 +74,14 @@ class YahooFinanceClient @Autowired constructor(
                 "interval" to interval.value,
                 "range" to range.value
             )
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
 
         logger.debug("Chart from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
         return response
     }
 
-    fun getEtfStatistics(ticker: StockTicker, mockData: Boolean): EtfStatisticsResponse? {
+    fun getEtfStatistics(ticker: StockTicker, mockData: Boolean): EtfStatisticsResponse {
         if (mockData) {
             val statisticsMock =
                 if (ticker.symbol.contains("VUSA")) ClassPathResource("StatisticsVUSA.L.json")
@@ -94,7 +94,7 @@ class YahooFinanceClient @Autowired constructor(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
             EtfStatisticsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
 
         logger.debug("Statistics from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
@@ -102,7 +102,7 @@ class YahooFinanceClient @Autowired constructor(
     }
 
 
-    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse? {
+    fun getFinancials(ticker: StockTicker, mockData: Boolean): FinancialsResponse {
         if (mockData) {
             val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
@@ -112,14 +112,14 @@ class YahooFinanceClient @Autowired constructor(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",
             FinancialsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
         logger.debug("Financials from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
         return response
 
     }
 
-    fun getAnalysis(ticker: StockTicker, mockData: Boolean): AnalysisResponse? {
+    fun getAnalysis(ticker: StockTicker, mockData: Boolean): AnalysisResponse {
         if (mockData) {
             val balanceSheetMock = ClassPathResource("AnalysisMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<AnalysisResponse>())
@@ -129,7 +129,7 @@ class YahooFinanceClient @Autowired constructor(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-analysis?symbol={ticker}",
             AnalysisResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
         logger.debug("Analysis from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
         return response

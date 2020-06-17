@@ -22,7 +22,7 @@ class MorningStartClient @Autowired constructor(
         const val CALL_THRESHOLD_TIMEOUT = 500L
     }
 
-    fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse? {
+    fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse {
         if (mockData) {
             val statisticsMock = ClassPathResource("keyratiosGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<KetRatiosResponse>())
@@ -35,7 +35,7 @@ class MorningStartClient @Autowired constructor(
             "https://morningstar1.p.rapidapi.com/keyratios/financials?Ticker={symbol}&Mic={mic}",
             KetRatiosResponse::class.java,
             mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic().mic)
-        )
+        ) ?: throw RuntimeException("Failed to load $ticker")
 
         logger.debug("Financial KeyRatios from Morningstar API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
