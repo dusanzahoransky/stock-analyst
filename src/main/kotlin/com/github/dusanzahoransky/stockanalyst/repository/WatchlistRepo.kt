@@ -112,7 +112,7 @@ class WatchlistRepo {
     fun testIndices(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VTS:ASX"),
-            StockTicker.fromString("VUSA:FTSE")
+            StockTicker.fromString("ASIA:ASX")
         )
     }
 
@@ -317,7 +317,11 @@ class WatchlistRepo {
             StockTicker.fromString("NOK:NYSE"),
             StockTicker.fromString("UBER:NYSE"),
             StockTicker.fromString("BYND:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ")
+            StockTicker.fromString("NEWR:NYSE"),
+            StockTicker.fromString("ESTC:NYSE"),
+            StockTicker.fromString("BIDU:NASDAQ"),
+            StockTicker.fromString("TRIP:NASDAQ"),
+            StockTicker.fromString("TCOM:NASDAQ")
         )
     }
 

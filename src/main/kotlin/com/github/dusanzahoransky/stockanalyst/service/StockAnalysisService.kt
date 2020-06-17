@@ -260,16 +260,16 @@ class StockAnalysisService {
         for (stock in stocks) {
 
             /**
-            Iterate though all stats using reflection to sum all values in order to calculate averages, such as:
+            Iterate though all stats using reflection to sum all values in order to calculate averages using averages object holding values and counter with xxxCount fields accumulating number of non null values, such as:
             if (stock.enterpriseValue != null) {
-            averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
-            counter.enterpriseValueCount++
+                averages.enterpriseValue = sum(averages.enterpriseValue, stock.enterpriseValue)
+                counter.enterpriseValueCount++
             }
              */
 
             for (stockField in stockNumericFields) {
                 val fieldValue = stockField.getter.call(stock) as Number?
-                if (fieldValue != null) {
+                if (fieldValue != null && fieldValue != 0.0) {  //some fields default to 0.0 instead of null when missing values
                     val sumValue = stockField.getter.call(averages) as Number?
                     stockField.setter.call(averages, sum(fieldValue, sumValue))
                     val counterFieldName = stockField.name + "Count"

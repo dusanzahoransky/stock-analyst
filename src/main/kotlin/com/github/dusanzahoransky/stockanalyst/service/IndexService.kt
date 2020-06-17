@@ -120,7 +120,7 @@ class IndexService @Autowired constructor(
 
         stock.yield = percent(summaryDetail?.yield?.raw)
 
-        stock.ytdReturn = percent(summaryDetail?.ytdReturn?.raw)
+        stock.ytdReturn = percent(trailingReturns?.ytd?.raw)
         stock.threeYearAverageReturn = percent(defaultKeyStatistics?.threeYearAverageReturn?.raw)
         stock.fiveYearAverageReturn = percent(defaultKeyStatistics?.fiveYearAverageReturn?.raw)
 
@@ -144,7 +144,6 @@ class IndexService @Autowired constructor(
         stock.threeMonth = percent(trailingReturns?.threeMonth?.raw)
         stock.oneYear = percent(trailingReturns?.oneYear?.raw)
         stock.threeYear = percent(trailingReturns?.threeYear?.raw)
-        stock.ytd = percent(trailingReturns?.ytd?.raw)
         stock.fiveYear = percent(trailingReturns?.fiveYear?.raw)
         stock.tenYear = percent(trailingReturns?.tenYear?.raw)
 
