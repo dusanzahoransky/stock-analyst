@@ -10,106 +10,114 @@ import org.springframework.stereotype.Repository
 class WatchlistRepo {
 
     fun getWatchlist(watchlist: Watchlist): Set<StockTicker> {
-        when (watchlist) {
-            TEST -> return test()
-            TEST_INDICES -> return testIndices()
-            INDICES -> return indices()
-            TO_INVEST -> return toInvest()
-            INVESTED -> return invested()
-            EUR -> return eur()
-            AUD -> return aud()
-            USD -> return usd()
-            USD_TECH -> return usdTech()
-            GBP -> return gbp()
-            CHF -> return chf()
-            GBP_INDICES -> return gbpIndices()
-            EUR_INDICES -> return eurIndices()
-            INVESTED_IN_GBP_INDICES -> return investedIndicesInGbp()
-            INVESTED_IN_EUR_INDICES -> return investedIndicesInEur()
-            AUD_INDICES -> return audIndices()
-            AUD_INDICES_AU -> return auIndicesAud()
-            AUD_INDICES_US -> return usIndicesAud()
-            AUD_INDICES_ASIA -> return asiaIndicesAud()
-            AUD_INDICES_BOND -> return bondIndicesAud()
-            INVESTED_IN_AUD_INDICES -> return investedIndicesInAud()
-            INVESTED_IN_EUR -> return investedInEur()
-            INVESTED_IN_GBP -> return investedInGbp()
-            INVESTED_INDICES_IN_GBP -> return investedIndicesInGbp()
-            GBP_INDICES_BOND -> return bondIndicesInGbp()
-            EUR_INDICES_BOND -> return bondIndicesInEur()
-            WATCH_LIST_INDICES_GBP -> return watchListIndicesGbp()
-            WATCH_LIST_INDICES_EUR -> return watchListIndicesEur()
-            INVESTED_IN_USD -> return investedInUsd()
-            INVESTED_IN_USD_TECH -> return investedInUsdTech()
-            WATCH_LIST_USD -> return watchListUsd()
-            WATCH_LIST_EUR -> return watchListEur()
-            WATCH_LIST_CHF -> return watchListChf()
-            INVESTED_IN_CHF -> return investedInChf()
-            WATCH_LIST_GBP -> return watchListGbp()
-            WATCH_LIST_AUD -> return watchListAud()
-            WATCH_LIST_INDICES_AUD -> return watchListIndicesAud()
-            INVESTED_INDICES_IN_AUD -> return investedIndicesInAud()
-            INVESTED_IN_AUD -> return investedInAud()
-            NASDAQ_100 -> return nasdaq100()
-            USD_DIVIDENDS -> return dividendsUsd()
-            AIRLINES -> return airlines()
-/*            TRADING_212 -> return allTrading212()
-            TRADING_212_US -> return allTrading212(Exchange.NYSE, Exchange.NASDAQ)
-            TRADING_212_EUR -> return allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
-            TRADING_212_GBP -> return allTrading212(Exchange.FTSE)*/
+        return when (watchlist) {
+            //Test
+            TEST -> test()
+            TEST_ETF -> testEtfs()
+            TO_CHECK -> toCheck()
+
+            //ETFs
+            ETF_ALL -> etfsAll()
+
+            AU_ETF_ALL -> audEtfsAll()
+            AU_ETF_AU -> auEtfsAu()
+            AU_ETF_US -> auEtfsUs()
+            AU_ETF_ASIA -> auEtfsAsia()
+            AU_ETF_BOND -> auEtfsBond()
+            AU_ETF_INVESTED_IN -> auEtfsInvestedIn()
+            AU_ETF_WATCHLIST -> auEtfsWatchlist()
+
+            GB_ETF_ALL -> gbpEtfsAll()
+            GB_ETF_BOND -> gbEtfsBonds()
+            GB_ETF_INVESTED_IN -> gbEtfsInvestedIn()
+            GB_ETF_WATCHLIST -> gbEtfsWatchlist()
+
+            EU_ETF_ALL -> euEtfsAll()
+            EU_ETF_BOND -> euEtfsBondEtfs()
+            EU_ETF_INVESTED_IN -> euEtfsInvestedIn()
+            EU_ETF_WATCHLIST -> euEtfsWatchlist()
+
+            //Stocks
+            ALL_INVESTED -> invested()
+
+            US_ALL -> us()
+            US_INVESTED_IN -> usInvestedIn()
+            US_WATCHLIST -> usWatchList()
+
+            EU_ALL -> eu()
+            EU_INVESTED_IN -> euInvestedIn()
+            EU_WATCHLIST -> euWatchList()
+
+            GB_ALL -> gb()
+            GB_INVESTED_IN -> gbInvestedIn()
+            GB_WATCHLIST -> gbWatchlist()
+
+            AU_ALL -> au()
+            AU_WATCHLIST -> auWatchlist()
+            AU_INVESTED_IN -> auInvestedIn()
+
+            CHF_ALL -> chf()
+            CHF_WATCHLIST -> chfWatchlist()
+
+            AIRLINES -> airlines()
+            TECH -> tech()
+            NASDAQ_100 -> nasdaq100()
+            DIVIDENDS -> dividends()
+
+/*          TRADING_212 -> allTrading212()
+            TRADING_212_US -> allTrading212(Exchange.NYSE, Exchange.NASDAQ)
+            TRADING_212_EU -> allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
+            TRADING_212_GB -> allTrading212(Exchange.FTSE)
+            */
             else -> throw IllegalArgumentException("Watchlist $this is not supported yet")
         }
     }
 
-    fun toInvest(): Set<StockTicker> {
+    fun toCheck(): Set<StockTicker> {
         return setOf(
-//            StockTicker.fromString("MSFT:NASDAQ"),
             StockTicker.fromString("CLDR:NYSE")
-            /* StockTicker.fromString("LMT:NYSE"),
-             StockTicker.fromString("SO:NYSE")*/
-/*            StockTicker.fromString("DAL:NYSE"),
-            StockTicker.fromString("UAL:NASDAQ")*/
         )
     }
 
     fun invested(): Set<StockTicker> {
         return setOf(
-            *investedInAud().toTypedArray(),
-            *investedInUsd().toTypedArray(),
-            *investedInGbp().toTypedArray(),
-            *investedInEur().toTypedArray()
+            *auInvestedIn().toTypedArray(),
+            *usInvestedIn().toTypedArray(),
+            *gbInvestedIn().toTypedArray(),
+            *euInvestedIn().toTypedArray()
         )
     }
 
-    fun eur(): Set<StockTicker> {
+    fun eu(): Set<StockTicker> {
         return setOf(
-            *investedInEur().toTypedArray(),
-            *watchListEur().toTypedArray()
+            *euInvestedIn().toTypedArray(),
+            *euWatchList().toTypedArray()
         )
     }
 
-    fun aud(): Set<StockTicker> {
+    fun au(): Set<StockTicker> {
         return setOf(
-            *investedInAud().toTypedArray(),
-            *watchListAud().toTypedArray()
+            *auInvestedIn().toTypedArray(),
+            *auWatchlist().toTypedArray()
         )
     }
 
-    fun audIndices(): Set<StockTicker> {
+    fun audEtfsAll(): Set<StockTicker> {
         return setOf(
-            *investedIndicesInAud().toTypedArray(),
-            *watchListIndicesAud().toTypedArray()
+            *auEtfsInvestedIn().toTypedArray(),
+            *auEtfsWatchlist().toTypedArray()
         )
     }
 
-    fun indices(): Set<StockTicker> {
+    fun etfsAll(): Set<StockTicker> {
         return setOf(
-            *audIndices().toTypedArray(),
-            *gbpIndices().toTypedArray()
+            *audEtfsAll().toTypedArray(),
+            *euEtfsAll().toTypedArray(),
+            *gbpEtfsAll().toTypedArray()
         )
     }
 
-    fun testIndices(): Set<StockTicker> {
+    fun testEtfs(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VTS:ASX"),
             StockTicker.fromString("ASIA:ASX")
@@ -122,67 +130,66 @@ class WatchlistRepo {
         )
     }
 
-    fun usdTech(): Set<StockTicker> {
+    fun tech(): Set<StockTicker> {
         return setOf(
             *investedInUsdTech().toTypedArray(),
             *watchListUsdTech().toTypedArray()
         )
     }
 
-    fun usd(): Set<StockTicker> {
+    fun us(): Set<StockTicker> {
         return setOf(
-            *investedInUsd().toTypedArray(),
-            *watchListUsd().toTypedArray(),
-            *dividendsUsd().toTypedArray()
+            *usInvestedIn().toTypedArray(),
+            *usWatchList().toTypedArray(),
+            *dividends().toTypedArray()
             /**nasdaq100().toTypedArray()*/
         )
     }
 
-    fun gbp(): Set<StockTicker> {
+    fun gb(): Set<StockTicker> {
         return setOf(
-            *investedInGbp().toTypedArray(),
-            *watchListGbp().toTypedArray()
+            *gbInvestedIn().toTypedArray(),
+            *gbWatchlist().toTypedArray()
         )
     }
 
-    fun eurIndices(): Set<StockTicker> {
+    fun euEtfsAll(): Set<StockTicker> {
         return setOf(
-            *investedIndicesInEur().toTypedArray(),
-            *watchListIndicesEur().toTypedArray(),
-            *bondIndicesInEur().toTypedArray()
+            *euEtfsInvestedIn().toTypedArray(),
+            *euEtfsWatchlist().toTypedArray(),
+            *euEtfsBondEtfs().toTypedArray()
         )
     }
 
-    fun gbpIndices(): Set<StockTicker> {
+    fun gbpEtfsAll(): Set<StockTicker> {
         return setOf(
-            *investedIndicesInGbp().toTypedArray(),
-            *watchListIndicesGbp().toTypedArray(),
-            *bondIndicesInGbp().toTypedArray()
+            *gbEtfsInvestedIn().toTypedArray(),
+            *gbEtfsWatchlist().toTypedArray(),
+            *gbEtfsBonds().toTypedArray()
         )
     }
 
     fun chf(): Set<StockTicker> {
         return setOf(
-            *investedInChf().toTypedArray(),
-            *watchListChf().toTypedArray()
+            *chfWatchlist().toTypedArray()
         )
     }
 
-    fun watchListEur(): Set<StockTicker> {
+    fun euWatchList(): Set<StockTicker> {
         return setOf(
 /*            StockTicker.fromString("KU2:DAX"),*/
             StockTicker.fromString("SU:PA")
         )
     }
 
-    fun investedInEur(): Set<StockTicker> {
+    fun euInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("SIE:DAX"),
             StockTicker.fromString("LHA:DAX")
         )
     }
 
-    fun investedIndicesInGbp(): Set<StockTicker> {
+    fun gbEtfsInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VUSA:FTSE"),
             StockTicker.fromString("CNDX:FTSE"),
@@ -192,14 +199,14 @@ class WatchlistRepo {
         )
     }
 
-    fun investedIndicesInEur(): Set<StockTicker> {
+    fun euEtfsInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VWCE:DAX"),
             StockTicker.fromString("IUS3:DAX")
         )
     }
 
-    fun bondIndicesInEur(): Set<StockTicker> {
+    fun euEtfsBondEtfs(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VGTY:DAX"), //USD Treasury Bond
             StockTicker.fromString("VGOV:DAX"), //U.K. Gilt
@@ -208,12 +215,12 @@ class WatchlistRepo {
         )
     }
 
-    fun bondIndicesInGbp(): Set<StockTicker> {
+    fun gbEtfsBonds(): Set<StockTicker> {
         return setOf(
         )
     }
 
-    fun watchListIndicesEur(): Set<StockTicker> {
+    fun euEtfsWatchlist(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("SXR1:DAX"),
             StockTicker.fromString("EXS1:DAX"),     //iShares Core DAX UCITS ETF (DE)
@@ -224,7 +231,7 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListIndicesGbp(): Set<StockTicker> {
+    fun gbEtfsWatchlist(): Set<StockTicker> {
         return setOf(
 
             StockTicker.fromString("CPJ1:FTSE"),
@@ -234,7 +241,7 @@ class WatchlistRepo {
             StockTicker.fromString("UKDV:FTSE"), //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
             /*StockTicker.fromString("INRG:FTSE"),*/
             StockTicker.fromString("PHGP:FTSE"),    //WisdomTree Physical Gold
-            StockTicker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GBP (Dist)
+            StockTicker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GB (Dist)
 
             /*     StockTicker.fromString("NASD:FTSE"), */
 /*            StockTicker.fromString("CNX1:FTSE"),*/
@@ -253,7 +260,7 @@ class WatchlistRepo {
         )
     }
 
-    fun investedInUsd(): Set<StockTicker> {
+    fun usInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("AAl:NASDAQ"),
             StockTicker.fromString("UAL:NASDAQ"),
@@ -325,7 +332,7 @@ class WatchlistRepo {
         )
     }
 
-    fun dividendsUsd(): Set<StockTicker> {
+    fun dividends(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("SPG:NYSE"),
             StockTicker.fromString("LMT:NYSE"),
@@ -357,7 +364,7 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListUsd(): Set<StockTicker> {
+    fun usWatchList(): Set<StockTicker> {
         return setOf(
             //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
             /*StockTicker.fromString("ZNH:NYSE"),*/
@@ -368,24 +375,19 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListChf(): Set<StockTicker> {
+    fun chfWatchlist(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("ABBN:SIX")
         )
     }
 
-    fun investedInChf(): Set<StockTicker> {
-        return setOf(
-        )
-    }
-
-    fun watchListGbp(): Set<StockTicker> {
+    fun gbWatchlist(): Set<StockTicker> {
         return setOf(
         )
     }
 
 
-    fun investedInGbp(): Set<StockTicker> {
+    fun gbInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("IAG:FTSE"),
             StockTicker.fromString("RYA:FTSE"),
@@ -394,7 +396,7 @@ class WatchlistRepo {
     }
 
 
-    fun watchListAud(): Set<StockTicker> {
+    fun auWatchlist(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("CBA:ASX"),
             StockTicker.fromString("ING:ASX"),
@@ -411,7 +413,7 @@ class WatchlistRepo {
         )
     }
 
-    fun asiaIndicesAud(): Set<StockTicker> {
+    fun auEtfsAsia(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("ASIA:ASX"),
 /*            StockTicker.fromString("AAXJ:NASDAQ"),*/
@@ -421,7 +423,7 @@ class WatchlistRepo {
     }
 
 
-    fun bondIndicesAud(): Set<StockTicker> {
+    fun auEtfsBond(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VAF:ASX"),
             StockTicker.fromString("VGB:ASX"),
@@ -433,15 +435,16 @@ class WatchlistRepo {
         )
     }
 
-    fun usIndicesAud(): Set<StockTicker> {
+    fun auEtfsUs(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VTS:ASX"),
             StockTicker.fromString("IVV:ASX"),
-            StockTicker.fromString("NDQ:ASX")
+            StockTicker.fromString("NDQ:ASX"),
+            StockTicker.fromString("UMAX:ASX")
         )
     }
 
-    fun auIndicesAud(): Set<StockTicker> {
+    fun auEtfsAu(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("ATEC:ASX"),
             StockTicker.fromString("VLC:ASX"),
@@ -453,19 +456,15 @@ class WatchlistRepo {
         )
     }
 
-    fun watchListIndicesAud(): Set<StockTicker> {
+    fun auEtfsWatchlist(): Set<StockTicker> {
         return setOf(
-            StockTicker.fromString("ATEC:ASX"),
-            StockTicker.fromString("VSO:ASX"),
-            StockTicker.fromString("VISM:ASX"),
-            StockTicker.fromString("VDHG:ASX"),
-            StockTicker.fromString("VLC:ASX"),
-            StockTicker.fromString("A200:ASX"),
-            StockTicker.fromString("VAS:ASX"),
+            *auEtfsAu().toTypedArray(),
+            *auEtfsUs().toTypedArray(),
+            *auEtfsAsia().toTypedArray(),
+            *auEtfsBond().toTypedArray(),
             StockTicker.fromString("ETHI:ASX"),
             StockTicker.fromString("QLTY:ASX"),
             StockTicker.fromString("RBTZ:ASX"),
-            StockTicker.fromString("UMAX:ASX"),
             StockTicker.fromString("VESG:ASX"),
             StockTicker.fromString("VEU:ASX"),
             StockTicker.fromString("VGS:ASX"),
@@ -473,14 +472,13 @@ class WatchlistRepo {
             StockTicker.fromString("MNRS:ASX"),
             StockTicker.fromString("BBOZ:ASX"),
             StockTicker.fromString("RBTZ:ASX"),
-            StockTicker.fromString("NDQ:ASX"),
             StockTicker.fromString("VBLD:ASX"),
             StockTicker.fromString("VAE:ASX"),
             StockTicker.fromString("VESG:ASX")
         )
     }
 
-    fun investedIndicesInAud(): Set<StockTicker> {
+    fun auEtfsInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("VTS:ASX"),
             StockTicker.fromString("VEU:ASX"),
@@ -494,7 +492,7 @@ class WatchlistRepo {
         )
     }
 
-    fun investedInAud(): Set<StockTicker> {
+    fun auInvestedIn(): Set<StockTicker> {
         return setOf(
             StockTicker.fromString("ANZ:ASX")
         )
@@ -1412,7 +1410,7 @@ class WatchlistRepo {
             StockTicker.fromFullExchangeNameString("EUNA:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EUNK:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EUNL:Deutsche Börse Xetra"),
-            StockTicker.fromFullExchangeNameString("EURL:London Stock Exchange"),
+            StockTicker.fromFullExchangeNameString("EUL:London Stock Exchange"),
             StockTicker.fromFullExchangeNameString("EUSV:London Stock Exchange"),
             StockTicker.fromFullExchangeNameString("EUZ:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EVA:NYSE"),

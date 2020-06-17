@@ -1,61 +1,86 @@
 package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Watchlist {
-    INDICES,
-    AIRLINES,
-    USD_DIVIDENDS,
+    //Test
     TEST,
-    TEST_INDICES,
-    TO_INVEST,
-    INVESTED,
-    EUR,
-    AUD,
-    AUD_INDICES,
-    INVESTED_IN_AUD_INDICES,
-    AUD_INDICES_AU,
-    AUD_INDICES_ASIA,
-    AUD_INDICES_US,
-    AUD_INDICES_BOND,
-    USD,
-    USD_TECH,
-    GBP,
-    GBP_INDICES,
-    EUR_INDICES,
-    INVESTED_IN_GBP_INDICES,
-    INVESTED_IN_EUR_INDICES,
-    GBP_INDICES_BOND,
-    EUR_INDICES_BOND,
-    CHF,
-    INVESTED_IN_EUR,
-    INVESTED_IN_GBP,
-    INVESTED_INDICES_IN_GBP,
-    WATCH_LIST_INDICES_GBP,
-    WATCH_LIST_INDICES_EUR,
-    INVESTED_IN_USD,
-    INVESTED_IN_USD_TECH,
-    WATCH_LIST_USD,
-    WATCH_LIST_EUR,
-    WATCH_LIST_CHF,
-    INVESTED_IN_CHF,
-    WATCH_LIST_GBP,
-    WATCH_LIST_AUD,
-    WATCH_LIST_INDICES_AUD,
-    INVESTED_INDICES_IN_AUD,
-    INVESTED_IN_AUD,
+    TEST_ETF,
+    TO_CHECK,
+
+    //All
+    ALL_INVESTED,
+
+    //ETFs
+    ETF_ALL,
+
+    //Australia
+    AU_ETF_ALL,
+    AU_ETF_AU,
+    AU_ETF_US,
+    AU_ETF_ASIA,
+    AU_ETF_BOND,
+    AU_ETF_INVESTED_IN,
+    AU_ETF_WATCHLIST,
+
+    //Great Britain
+    GB_ETF_ALL,
+    GB_ETF_BOND,
+    GB_ETF_INVESTED_IN,
+    GB_ETF_WATCHLIST,
+
+    //European Union
+    EU_ETF_ALL,
+    EU_ETF_BOND,
+    EU_ETF_INVESTED_IN,
+    EU_ETF_WATCHLIST,
+
+    //Stocks
+    US_ALL,
+    TECH,
+    US_INVESTED_IN,
+    US_WATCHLIST,
     NASDAQ_100,
+    DIVIDENDS,
+
+    EU_ALL,
+    EU_INVESTED_IN,
+    EU_WATCHLIST,
+
+    GB_ALL,
+    GB_INVESTED_IN,
+    GB_WATCHLIST,
+
+    AU_ALL,
+    AU_WATCHLIST,
+    AU_INVESTED_IN,
+
+    CHF_ALL,
+    CHF_WATCHLIST,
+
+    AIRLINES,
+
     TRADING_212,
     TRADING_212_US,
-    TRADING_212_EUR,
-    TRADING_212_GBP;
+    TRADING_212_EU,
+    TRADING_212_GB;
 
     fun isIndex(): Boolean {
         return when (this) {
-            AUD_INDICES,
-            GBP_INDICES,
-            INVESTED_INDICES_IN_GBP,
-            WATCH_LIST_INDICES_GBP,
-            INVESTED_INDICES_IN_AUD,
-            WATCH_LIST_INDICES_AUD -> true
+            ETF_ALL,
+            GB_ETF_ALL,
+            AU_ETF_ALL,
+            AU_ETF_AU,
+            AU_ETF_US,
+            AU_ETF_ASIA,
+            AU_ETF_BOND,
+            AU_ETF_INVESTED_IN,
+            AU_ETF_WATCHLIST,
+            GB_ETF_BOND,
+            GB_ETF_INVESTED_IN,
+            GB_ETF_WATCHLIST,
+            EU_ETF_ALL,
+            EU_ETF_BOND,
+            EU_ETF_INVESTED_IN,
+            EU_ETF_WATCHLIST -> true
             else -> false
         }
     }
