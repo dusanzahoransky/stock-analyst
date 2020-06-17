@@ -1,6 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.util
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.LastRefreshDate
+import com.github.dusanzahoransky.stockanalyst.model.LastRefreshDate
 import java.time.LocalDate
 
 class CacheUtils {

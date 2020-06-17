@@ -36,7 +36,6 @@ class YahooFinanceClient @Autowired constructor(
 
         waitTimeout()
         val response = restTemplate.getForObject(
-
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
             StatisticsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
@@ -64,9 +63,9 @@ class YahooFinanceClient @Autowired constructor(
                 else ClassPathResource("ChartMockGOOGL.json")
             return jacksonObjectMapper().readValue(data.inputStream, jacksonTypeRef<ChartResponse>())
         }
+
         waitTimeout()
         val response = restTemplate.getForObject(
-
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-chart?symbol={ticker}&interval={interval}&range={range}",
             ChartResponse::class.java,
             mapOf(
@@ -88,9 +87,9 @@ class YahooFinanceClient @Autowired constructor(
                 else ClassPathResource("StatisticsVTS.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<EtfStatisticsResponse>())
         }
+
         waitTimeout()
         val response = restTemplate.getForObject(
-
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-statistics?symbol={ticker}",
             EtfStatisticsResponse::class.java,
             mapOf("ticker" to ticker.toYahooFormat())
@@ -107,6 +106,7 @@ class YahooFinanceClient @Autowired constructor(
             val balanceSheetMock = ClassPathResource("FinancialsMockGOOGL.json")
             return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<FinancialsResponse>())
         }
+
         waitTimeout()
         val response = restTemplate.getForObject(
             "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-financials?symbol={ticker}",

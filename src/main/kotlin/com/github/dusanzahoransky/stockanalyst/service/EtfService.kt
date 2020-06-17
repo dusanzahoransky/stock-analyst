@@ -6,12 +6,11 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
-import com.github.dusanzahoransky.stockanalyst.model.mongo.EtfChartData
+import com.github.dusanzahoransky.stockanalyst.model.mongo.*
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
-import com.github.dusanzahoransky.stockanalyst.repository.EtfRepo
-import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
+import com.github.dusanzahoransky.stockanalyst.repository.*
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.localDateToEpochSec
@@ -25,40 +24,94 @@ import java.time.Period
 @Service
 class EtfService @Autowired constructor(
     val watchlistRepo: WatchlistRepo,
-    val indexRepo: EtfRepo,
-    val yahooFinanceClient: YahooFinanceClient
+    val etfRepo: EtfRepo,
+    val yahooFinanceClient: YahooFinanceClient,
+    val etfStatisticsRepo: EtfStatisticsRepo,
+    val chartRepo: ChartRepo
 ) {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistEtfs(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean): List<Etf> {
+    fun getWatchlistEtfs(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<Etf> {
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
-        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData) }
+        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 
-    private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean): Etf? {
-        var stock = indexRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+    private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Etf? {
+        val (etfStatistics, chart) = loadData(ticker, forceRefreshCache, mockData, forceRefreshDate)
 
-        //retrieve from cache
-        if (!forceRefreshCache && stock != null) {
-            log.debug("Retrieving stock info from cache: $ticker")
-            return stock
-        }
+        val etf = Etf(symbol = ticker.symbol, exchange = ticker.exchange)
 
-        stock = Etf(symbol = ticker.symbol, exchange = ticker.exchange)
-        //load from yahoo
-
-        val stats = yahooFinanceClient.getEtfStatistics(ticker, mockData)
-        processStatistics(stats, stock)
-
-        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
-        processChart(chart, stock, Period.ofDays(7))
+        processStatistics(etfStatistics.response, etf)
+        processChart(chart.response, etf, Period.ofDays(7))
 
         //delete previous version
-        indexRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { indexRepo.delete(it) }
+        etfRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { etfRepo.delete(it) }
         //store new version
-        log.debug("Saving $ticker into DB")
-        return indexRepo.insert(stock)
+        log.debug("Saving etf $ticker into DB")
+        return etfRepo.insert(etf)
+    }
+
+
+    data class YahooData(
+        val etfStatistics: EtfStatistics,
+        val chart: Chart
+    )
+
+    private fun loadData(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): YahooData {
+        val chart = loadChart(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        val etfStatistics = loadEtfStatistics(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        return YahooData(etfStatistics, chart)
+    }
+
+    private fun loadChart(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Chart {
+        val cachedData = chartRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (CacheUtils.useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Chart from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
+
+        val data = Chart(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        chartRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { chartRepo.delete(it) }
+        //store new version
+        log.debug("Saving Chart $ticker into DB")
+        return chartRepo.insert(data)
+    }
+
+    private fun loadEtfStatistics(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): EtfStatistics {
+        val cachedData = etfStatisticsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (CacheUtils.useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving EtfStatistics from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getEtfStatistics(ticker, mockData)
+
+        val data = EtfStatistics(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        etfStatisticsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { etfStatisticsRepo.delete(it) }
+        //store new version
+        log.debug("Saving EtfStatistics $ticker into DB")
+        return etfStatisticsRepo.insert(data)
     }
 
     private fun processChart(chart: ChartResponse, stock: Etf, samplingInterval: Period) {

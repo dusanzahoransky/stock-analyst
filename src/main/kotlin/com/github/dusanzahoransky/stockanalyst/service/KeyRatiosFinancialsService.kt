@@ -18,7 +18,7 @@ class KeyRatiosFinancialsService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
+    fun load(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): KeyRatiosFinancials? {
         var krp = krpRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
 
         //retrieve from cache

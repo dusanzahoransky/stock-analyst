@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
+import com.github.dusanzahoransky.stockanalyst.model.LastRefreshDate
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import org.springframework.data.annotation.Id
@@ -61,4 +62,16 @@ data class Etf(
     risk
      */
 
+): LastRefreshDate {
+    override fun getLastRefreshDate(): LocalDate {
+        return date
+    }
+}
+
+data class EtfChartData(
+    /**
+     * Epoch sec
+     */
+    val date: Long,
+    var price: Double? = null
 )

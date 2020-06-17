@@ -1,4 +1,4 @@
-package com.github.dusanzahoransky.stockanalyst.model.mongo
+package com.github.dusanzahoransky.stockanalyst.model
 
 import java.time.LocalDate
 

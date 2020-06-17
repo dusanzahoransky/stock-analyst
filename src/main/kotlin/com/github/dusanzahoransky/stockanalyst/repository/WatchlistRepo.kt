@@ -119,8 +119,7 @@ class WatchlistRepo {
 
     fun testEtfs(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("VTS:ASX"),
-            Ticker.fromString("ASIA:ASX")
+            Ticker.fromString("VTS:ASX")
         )
     }
 
@@ -222,6 +221,8 @@ class WatchlistRepo {
 
     fun euEtfsWatchlist(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("QDVE:DAX"),
+            Ticker.fromString("SXR8:DAX"),
             Ticker.fromString("SXR1:DAX"),
             Ticker.fromString("EXS1:DAX"),     //iShares Core DAX UCITS ETF (DE)
             Ticker.fromString("ZPRA:DAX"), //SPDR S&amp;P Pan Asia Dividend Aristocrats UCITS ETF

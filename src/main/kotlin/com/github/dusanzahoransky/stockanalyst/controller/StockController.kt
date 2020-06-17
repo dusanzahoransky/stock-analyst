@@ -41,14 +41,16 @@ class StockController @Autowired constructor(
         return AnalysisResult(averages, stockAnalysisService.combineWithRatios(stocks, ratios))
     }
 
-    @GetMapping("indicesWatchlist")
+    @GetMapping("etfWatchlist")
     @ResponseBody
     fun loadEtfsWatchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
-        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
+        @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
+        @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
     ): EtfsAnalysisResult {
-        val indices = indexService.getWatchlistEtfs(watchlist, forceRefresh, mockData)
+        val forceRefreshLocalDate = if (forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
+        val indices = indexService.getWatchlistEtfs(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
         val averages = stockAnalysisService.calcEtfsAverages(indices)
         return EtfsAnalysisResult(averages, indices)
     }

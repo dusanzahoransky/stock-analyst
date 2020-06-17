@@ -28,7 +28,7 @@ class KeyRatiosTimelineService @Autowired constructor(
         val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
 
         val keyRatiosFinantials = watchlistTickers.mapNotNull { ticker ->
-            keyRatiosFinancialsService.findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate)
+            keyRatiosFinancialsService.load(ticker, forceRefresh, mockData, forceRefreshDate)
         }
 
         var stockRatiosList = toStockRatios(keyRatiosFinantials)
