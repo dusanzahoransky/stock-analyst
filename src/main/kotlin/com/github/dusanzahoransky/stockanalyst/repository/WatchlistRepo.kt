@@ -37,6 +37,8 @@ class WatchlistRepo {
             EU_ETF_INVESTED_IN -> euEtfsInvestedIn()
             EU_ETF_WATCHLIST -> euEtfsWatchlist()
 
+            ETF_TRADING_212_INVESTED_IN -> etfTrading212InvestedIn()
+
             //Stocks
             ALL_INVESTED -> invested()
 
@@ -201,7 +203,9 @@ class WatchlistRepo {
     fun euEtfsInvestedIn(): Set<Ticker> {
         return setOf(
             Ticker.fromString("VWCE:DAX"),
-            Ticker.fromString("IUS3:DAX")
+            Ticker.fromString("IUS3:DAX"),
+            Ticker.fromString("SXR8:DAX"),
+            Ticker.fromString("QDVE:DAX")
         )
     }
 
@@ -219,14 +223,21 @@ class WatchlistRepo {
         )
     }
 
+    fun etfTrading212InvestedIn(): Set<Ticker> {
+        return setOf(
+            *euEtfsInvestedIn().toTypedArray(),
+            *gbEtfsInvestedIn().toTypedArray()
+        )
+    }
+
     fun euEtfsWatchlist(): Set<Ticker> {
         return setOf(
             Ticker.fromString("QDVE:DAX"),
             Ticker.fromString("SXR8:DAX"),
             Ticker.fromString("SXR1:DAX"),
-            Ticker.fromString("EXS1:DAX"),     //iShares Core DAX UCITS ETF (DE)
-            Ticker.fromString("ZPRA:DAX"), //SPDR S&amp;P Pan Asia Dividend Aristocrats UCITS ETF
-            Ticker.fromString("SPYW:DAX"),  //SPDR S&amp;P Euro Dividend Aristocrats UCITS ETF
+            Ticker.fromString("EXS1:DAX"),      //iShares Core DAX UCITS ETF (DE)
+            Ticker.fromString("ZPRA:DAX"),      //SPDR S&P Pan Asia Dividend Aristocrats UCITS ETF
+            Ticker.fromString("SPYW:DAX"),      //SPDR S&P Euro Dividend Aristocrats UCITS ETF
             Ticker.fromString("ZPRV:DAX"),
             Ticker.fromString("LYMS:DAX")
         )
@@ -237,9 +248,9 @@ class WatchlistRepo {
 
             Ticker.fromString("CPJ1:FTSE"),
             /*StockTicker.fromString("VAPX:FTSE"),*/
-            Ticker.fromString("WSML:FTSE"), //iShares MSCI World Small Cap UCITS ETF USD (Acc)
-            Ticker.fromString("VMID:FTSE"), //Vanguard FTSE 250 UCITS ETF
-            Ticker.fromString("UKDV:FTSE"), //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
+            Ticker.fromString("WSML:FTSE"),     //iShares MSCI World Small Cap UCITS ETF USD (Acc)
+            Ticker.fromString("VMID:FTSE"),     //Vanguard FTSE 250 UCITS ETF
+            Ticker.fromString("UKDV:FTSE"),     //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
             /*StockTicker.fromString("INRG:FTSE"),*/
             Ticker.fromString("PHGP:FTSE"),    //WisdomTree Physical Gold
             Ticker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GB (Dist)
@@ -249,11 +260,11 @@ class WatchlistRepo {
 
             /*StockTicker.fromString("VHYL:FTSE"),*/
             /*StockTicker.fromString("VWRL:FTSE"),*/
-            Ticker.fromString("VEVE:FTSE"),    //Vanguard FTSE Developed World UCITS ETF USD Distributing
+            Ticker.fromString("VEVE:FTSE"),     //Vanguard FTSE Developed World UCITS ETF USD Distributing
 
-            Ticker.fromString("VJPN:FTSE"),    //Vanguard FTSE Japan UCITS ETF USD Distributing
-            /*StockTicker.fromString("UKDV:FTSE"),*/    //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
-            Ticker.fromString("USDV:FTSE"),    //SPDR S&amp;P US Dividend Aristocrats UCITS ETF Dis
+            Ticker.fromString("VJPN:FTSE"),     //Vanguard FTSE Japan UCITS ETF USD Distributing
+            /*StockTicker.fromString("UKDV:FTSE"),*/  //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
+            Ticker.fromString("USDV:FTSE"),     //SPDR S&amp;P US Dividend Aristocrats UCITS ETF Dis
 
             Ticker.fromString("SGVL:FTSE"),
             Ticker.fromString("VVAL:FTSE"),

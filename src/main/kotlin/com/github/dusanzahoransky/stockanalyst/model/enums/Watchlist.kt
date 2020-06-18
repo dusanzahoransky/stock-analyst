@@ -33,6 +33,8 @@ enum class Watchlist {
     EU_ETF_INVESTED_IN,
     EU_ETF_WATCHLIST,
 
+    ETF_TRADING_212_INVESTED_IN,
+
     //Stocks
     US_ALL,
     TECH,
