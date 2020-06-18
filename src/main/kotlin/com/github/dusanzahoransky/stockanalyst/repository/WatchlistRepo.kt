@@ -284,6 +284,7 @@ class WatchlistRepo {
             Ticker.fromString("AMAT:NASDAQ"),
             Ticker.fromString("CHTR:NASDAQ"),
             Ticker.fromString("REGI:NASDAQ"),
+            Ticker.fromString("GRPN:NASDAQ"),
             Ticker.fromString("T:NYSE"),
             Ticker.fromString("SO:NYSE"),
             Ticker.fromString("MA:NYSE"),
@@ -506,7 +507,8 @@ class WatchlistRepo {
 
     fun auInvestedIn(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("ANZ:ASX")
+            Ticker.fromString("ANZ:ASX"),
+            Ticker.fromString("WBC:ASX")
         )
     }
 

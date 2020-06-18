@@ -7,14 +7,13 @@ import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
+import com.github.dusanzahoransky.stockanalyst.model.mongo.*
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
-import com.github.dusanzahoransky.stockanalyst.repository.StockRepo
-import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
+import com.github.dusanzahoransky.stockanalyst.repository.*
+import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -31,7 +30,11 @@ class StockService @Autowired constructor(
     val watchlistRepo: WatchlistRepo,
     val stockRepo: StockRepo,
     val yahooFinanceClient: YahooFinanceClient,
-    val exchangeRateClient: ExchangeRateClient
+    val exchangeRateClient: ExchangeRateClient,
+    val chartRepo: ChartRepo,
+    val financialsRepo:FinancialsRepo,
+    val analysisRepo:AnalysisRepo,
+    val statisticsRepo:StatisticsRepo
 ) {
     companion object {
         val CHART_SAMPLING_INTERVAL: Period = Period.ofDays(7)
@@ -46,40 +49,138 @@ class StockService @Autowired constructor(
     }
 
     private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Stock? {
-        var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+        val (chart, financials, analysis, statistics) = loadData(ticker, forceRefreshCache, mockData, forceRefreshDate)
 
-        //retrieve from cache
-        if (useCache(forceRefreshCache, stock, forceRefreshDate)) {
-            log.debug("Retrieving stock info from cache: $ticker")
-            return stock
-        }
+        val stock = Stock(symbol = ticker.symbol, exchange = ticker.exchange)
 
-        stock = Stock(symbol = ticker.symbol, exchange = ticker.exchange)
         //load from yahoo
-        val financials = yahooFinanceClient.getFinancials(ticker, mockData)
-        val exchangeRate = getExchangeRate(financials, stock)
+        val exchangeRate = getExchangeRate(financials.response, stock)
 
-        processFinancials(financials, stock, exchangeRate)
-
-        val stats = yahooFinanceClient.getStatistics(ticker, mockData)
-        processStatistics(stats, stock, exchangeRate)
-
-        val analysis = yahooFinanceClient.getAnalysis(ticker, mockData)
-        processAnalysis(analysis, stock)
-
-        val chart = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
-        processChart(chart, stock, CHART_SAMPLING_INTERVAL)
-
-        //do not cache mock data
-        if (mockData) {
-            return stock
-        }
+        processFinancials(financials.response, stock, exchangeRate)
+        processStatistics(statistics.response, stock, exchangeRate)
+        processAnalysis(analysis.response, stock)
+        processChart(chart.response, stock, CHART_SAMPLING_INTERVAL)
 
         //delete previous version
         stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { stockRepo.delete(it) }
         //store new version
-        log.debug("Saving $ticker into DB")
+        log.debug("Saving stock $ticker into DB")
         return stockRepo.insert(stock)
+    }
+
+    data class YahooData(
+        val chart: Chart,
+        val financials: Financials,
+        val analysis:Analysis,
+        val statistics:Statistics
+    )
+
+    private fun loadData(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): YahooData {
+        val chart = loadChart(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        val financials = loadFinancials(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        val analysis = loadAnalysis(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        val statistics = loadStatistics(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        return YahooData(chart, financials, analysis, statistics)
+    }
+
+    private fun loadChart(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Chart {
+        val cachedData = chartRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Chart from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getChart(ticker, Interval.OneDay, Range.TenYears, mockData)
+
+        val data = Chart(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        chartRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { chartRepo.delete(it) }
+        //store new version
+        log.debug("Saving Chart $ticker into DB")
+        return chartRepo.insert(data)
+    }
+
+    private fun loadFinancials(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Financials {
+        val cachedData = financialsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Financials from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getFinancials(ticker, mockData)
+
+        val data = Financials(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        financialsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { financialsRepo.delete(it) }
+        //store new version
+        log.debug("Saving Financials $ticker into DB")
+        return financialsRepo.insert(data)
+    }
+
+    private fun loadAnalysis(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Analysis {
+        val cachedData = analysisRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Analysis from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getAnalysis(ticker, mockData)
+
+        val data = Analysis(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        analysisRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { analysisRepo.delete(it) }
+        //store new version
+        log.debug("Saving Analysis $ticker into DB")
+        return analysisRepo.insert(data)
+    }
+
+    private fun loadStatistics(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Statistics {
+        val cachedData = statisticsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Statistics from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getStatistics(ticker, mockData)
+
+        val data = Statistics(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        statisticsRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { statisticsRepo.delete(it) }
+        //store new version
+        log.debug("Saving Statistics $ticker into DB")
+        return statisticsRepo.insert(data)
     }
 
     private fun processChart(chart: ChartResponse, stock: Stock, samplingInterval: Period) {
