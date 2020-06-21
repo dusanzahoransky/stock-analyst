@@ -306,7 +306,6 @@ class StockService @Autowired constructor(
         stock.totalLiabilities3QuartersAgo = balanceSheet3QuartersAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilitiesLastYear = balanceSheetLastYear?.totalLiab?.raw?.toLong()
         stock.totalLiabilities2YearsAgo = balanceSheet2YearsAgo?.totalLiab?.raw?.toLong()
-        stock.totalLiabilities3YearsAgo = balanceSheet3YearsAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilities4YearsAgo = balanceSheet4YearsAgo?.totalLiab?.raw?.toLong()
 
         stock.totalShareholdersEquityLastQuarter = balanceSheetLastQuarter?.totalStockholderEquity?.raw?.toLong()

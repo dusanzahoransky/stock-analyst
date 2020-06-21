@@ -156,7 +156,6 @@ data class Stock(
     var totalLiabilities3QuartersAgo: Long? = null,
     var totalLiabilitiesLastYear: Long? = null,
     var totalLiabilities2YearsAgo: Long? = null,
-    var totalLiabilities3YearsAgo: Long? = null,
     var totalLiabilities4YearsAgo: Long? = null,
 
     var totalLiabilitiesGrowthLastQuarter: Double? = null,

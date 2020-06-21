@@ -2,6 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.math.abs
 import kotlin.math.pow
 
 class CalcUtils {
@@ -14,7 +15,7 @@ class CalcUtils {
             if (currentValue == null || previousValue == null || previousValue == 0.0) {
                 return null
             }
-            if (previousValue < signThreshold) {   //the previous value is too small to get any meaningful result
+            if (abs(previousValue) < signThreshold) {   //the previous value is too small to get any meaningful result
                 log.debug("Skipping $statName cumulative growth rate calculation, value $previousValue is too insignificant")
                 return null
             }
@@ -34,7 +35,7 @@ class CalcUtils {
             }
             val currValueD = currentValue.toDouble()
             val prevValueD = previousValue.toDouble()
-            if (prevValueD < signThreshold) {   //the previous value is too small to get any meaningful result
+            if (abs(prevValueD) < signThreshold) {   //the previous value is too small to get any meaningful result
                 log.debug("Skipping $statName percentGrowth calculation, value $prevValueD is too insignificant")
                 return null
             }

@@ -143,7 +143,6 @@ data class StocksAveragesCounter(
     var totalLiabilities3QuartersAgoCount: Int = 0,
     var totalLiabilitiesLastYearCount: Int = 0,
     var totalLiabilities2YearsAgoCount: Int = 0,
-    var totalLiabilities3YearsAgoCount: Int = 0,
     var totalLiabilities4YearsAgoCount: Int = 0,
 
     var totalLiabilitiesGrowthLastQuarterCount: Int = 0,
