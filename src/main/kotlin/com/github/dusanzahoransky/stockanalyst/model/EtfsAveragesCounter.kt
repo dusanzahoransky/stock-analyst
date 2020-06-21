@@ -1,4 +1,4 @@
-package com.github.dusanzahoransky.stockanalyst.model.yahoo
+package com.github.dusanzahoransky.stockanalyst.model
 
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 

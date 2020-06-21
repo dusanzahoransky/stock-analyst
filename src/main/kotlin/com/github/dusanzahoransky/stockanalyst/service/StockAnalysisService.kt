@@ -7,8 +7,8 @@ import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.EtfsAveragesCounter
-import com.github.dusanzahoransky.stockanalyst.model.yahoo.StocksAveragesCounter
+import com.github.dusanzahoransky.stockanalyst.model.EtfsAveragesCounter
+import com.github.dusanzahoransky.stockanalyst.model.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -59,80 +59,79 @@ class StockAnalysisService {
             stock.totalDebtEquity = div(stock.totalLiabilitiesLastQuarter!!.toDouble(), stock.totalShareholdersEquityLastQuarter!!.toDouble())
         }
 
-        stock.netIncomeGrowthLastQuarter = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome2QuartersAgo, "netIncomeGrowthLastQuarter")
-        stock.netIncomeGrowthLast2Quarters = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome3QuartersAgo, "netIncomeGrowthLast2Quarters")
-        stock.netIncomeGrowthLast3Years = percentGrowth(stock.netIncomeLastYear, stock.netIncome3YearsAgo, "netIncomeGrowthLast3Years")
-
-        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
-        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
-        stock.grossIncomeGrowthLast3Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome3YearsAgo, "grossIncomeGrowthLast3Years")
-
         stock.revenueGrowthLastQuarter = percentGrowth(stock.revenueLastQuarter, stock.revenue2QuartersAgo, "revenueGrowthLastQuarter")
         stock.revenueGrowthLast2Quarters = percentGrowth(stock.revenueLastQuarter, stock.revenue3QuartersAgo, "revenueGrowthLast2Quarters")
         stock.revenueGrowthLastYear = percentGrowth(stock.revenueLastYear, stock.revenue2YearsAgo, "revenueGrowthLastYear")
-        stock.revenueGrowthLast3Years = percentGrowth(stock.revenueLastYear, stock.revenue3YearsAgo, "revenueGrowthLast3Years")
+        stock.revenueGrowthLast4Years = percentGrowth(stock.revenueLastYear, stock.revenue4YearsAgo, "revenueGrowthLast4Years")
+
+        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
+        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
+        stock.grossIncomeGrowthLastYear = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome2YearsAgo, "grossIncomeGrowthLastYear")
+        stock.grossIncomeGrowthLast4Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome4YearsAgo, "grossIncomeGrowthLast4Years")
+
+        stock.ebitGrowthLastQuarter = percentGrowth(stock.ebitLastQuarter, stock.ebit2QuartersAgo, "ebitGrowthLastQuarter")
+        stock.ebitGrowthLast2Quarters = percentGrowth(stock.ebitLastQuarter, stock.ebit3QuartersAgo, "ebitGrowthLast2Quarters")
+        stock.ebitGrowthLastYear = percentGrowth(stock.ebitLastYear, stock.ebit2YearsAgo, "ebitGrowthLastYear")
+        stock.ebitGrowthLast4Years = percentGrowth(stock.ebitLastYear, stock.ebit4YearsAgo, "ebitGrowthLast4Years")
+
+        stock.netIncomeGrowthLastQuarter = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome2QuartersAgo, "netIncomeGrowthLastQuarter")
+        stock.netIncomeGrowthLast2Quarters = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome3QuartersAgo, "netIncomeGrowthLast2Quarters")
+        stock.netIncomeGrowthLastYear = percentGrowth(stock.netIncomeLastYear, stock.netIncome2YearsAgo, "netIncomeGrowthLastYear")
+        stock.netIncomeGrowthLast4Years = percentGrowth(stock.netIncomeLastYear, stock.netIncome4YearsAgo, "netIncomeGrowthLast4Years")
+
+        stock.freeCashFlowGrowthLastQuarter = percentGrowth(stock.freeCashFlowLastQuarter, stock.freeCashFlow2QuartersAgo, "freeCashFlowGrowthLastQuarter")
+        stock.freeCashFlowGrowthLast2Quarters = percentGrowth(stock.freeCashFlowLastQuarter, stock.freeCashFlow3QuartersAgo, "freeCashFlowGrowthLast2Quarters")
+        stock.freeCashFlowGrowthLastYear = percentGrowth(stock.freeCashFlowLastYear, stock.freeCashFlow2YearsAgo, "freeCashFlowGrowthLastYear")
+        stock.freeCashFlowGrowthLast4Years = percentGrowth(stock.freeCashFlowLastYear, stock.freeCashFlow4YearsAgo, "freeCashFlowGrowthLast4Years")
 
         stock.cashGrowthLastQuarter = percentGrowth(stock.cashLastQuarter, stock.cash2QuartersAgo, "cashGrowthLastQuarter")
-        stock.cashGrowthLastYear = percentGrowth(stock.cashLastYear, stock.cash2YearsAgo, "cashGrowthLastYear")
-        stock.cashGrowthLast3Years = percentGrowth(stock.cashLastYear, stock.cash3YearsAgo, "cashGrowthLast3Years")
+        stock.cashGrowthLast2Quarters = percentGrowth(stock.cashLastQuarter, stock.cash3QuartersAgo, "cashGrowthLast2Quarters")
+        stock.cashGrowthLastYear = percentGrowth(stock.cashLastYear, stock.cash4YearsAgo, "cashGrowthLast4Years")
+        stock.cashGrowthLast4Years = percentGrowth(stock.cashLastYear, stock.cash4YearsAgo, "cashGrowthLast4Years")
 
         stock.inventoryGrowthLastQuarter = percentGrowth(stock.inventoryLastQuarter, stock.inventory2QuartersAgo, "inventoryGrowthLastQuarter")
+        stock.inventoryGrowthLast2Quarters = percentGrowth(stock.inventoryLastQuarter, stock.inventory3QuartersAgo, "inventoryGrowthLast2Quarters")
         stock.inventoryGrowthLastYear = percentGrowth(stock.inventoryLastYear, stock.inventory2YearsAgo, "inventoryGrowthLastYear")
-        stock.inventoryGrowthLast3Years = percentGrowth(stock.inventoryLastYear, stock.inventory3YearsAgo, "inventoryGrowthLast3Years")
-
-        stock.currentAssetsGrowthLastQuarter = percentGrowth(stock.currentAssetsLastQuarter, stock.currentAssets2QuartersAgo, "currentAssetsGrowthLastQuarter")
-        stock.currentAssetsGrowthLastYear = percentGrowth(stock.currentAssetsLastYear, stock.currentAssets2YearsAgo, "currentAssetsGrowthLastYear")
-        stock.currentAssetsGrowthLast3Years = percentGrowth(stock.currentAssetsLastYear, stock.currentAssets3YearsAgo, "currentAssetsGrowthLast3Years")
-
-        stock.currentLiabilitiesGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesLastQuarter, stock.currentLiabilities2QuartersAgo, "currentLiabilitiesGrowthLastQuarter")
-        stock.currentLiabilitiesGrowthLastYear = percentGrowth(stock.currentLiabilitiesLastYear, stock.currentLiabilities2YearsAgo, "currentLiabilitiesGrowthLastYear")
-        stock.currentLiabilitiesGrowthLast3Years = percentGrowth(stock.currentLiabilitiesLastYear, stock.currentLiabilities3YearsAgo, "currentLiabilitiesGrowthLast3Years")
+        stock.inventoryGrowthLast4Years = percentGrowth(stock.inventoryLastYear, stock.inventory4YearsAgo, "inventoryGrowthLast4Years")
 
         stock.totalLiabilitiesGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesLastQuarter, stock.totalLiabilities2QuartersAgo, "totalLiabilitiesGrowthLastQuarter")
+        stock.totalLiabilitiesGrowthLast2Quarters = percentGrowth(stock.totalLiabilitiesLastQuarter, stock.totalLiabilities3QuartersAgo, "totalLiabilitiesGrowthLast2Quarters")
         stock.totalLiabilitiesGrowthLastYear = percentGrowth(stock.totalLiabilitiesLastYear, stock.totalLiabilities2YearsAgo, "totalLiabilitiesGrowthLastYear")
-        stock.totalLiabilitiesGrowthLast3Years = percentGrowth(stock.totalLiabilitiesLastYear, stock.totalLiabilities3YearsAgo, "totalLiabilitiesGrowthLast3Years")
+        stock.totalLiabilitiesGrowthLast4Years = percentGrowth(stock.totalLiabilitiesLastYear, stock.totalLiabilities4YearsAgo, "totalLiabilitiesGrowthLast4Years")
 
         stock.totalShareholdersEquityGrowthLastQuarter = percentGrowth(stock.totalShareholdersEquityLastQuarter, stock.totalShareholdersEquity2QuartersAgo, "totalShareholdersEquityGrowthLastQuarter")
+        stock.totalShareholdersEquityGrowthLast2Quarters = percentGrowth(stock.totalShareholdersEquityLastQuarter, stock.totalShareholdersEquity3QuartersAgo, "totalShareholdersEquityGrowthLast2Quarters")
         stock.totalShareholdersEquityGrowthLastYear = percentGrowth(stock.totalShareholdersEquityLastYear, stock.totalShareholdersEquity2YearsAgo, "totalShareholdersEquityGrowthLastYear")
-        stock.totalShareholdersEquityGrowthLast3Years = percentGrowth(stock.totalShareholdersEquityLastYear, stock.totalShareholdersEquity3YearsAgo, "totalShareholdersEquityGrowthLast3Years")
 
-        stock.currentLiabilitiesToEquityLastQuarter = div(stock.currentLiabilitiesLastQuarter?.toDouble(), stock.totalShareholdersEquityLastQuarter?.toDouble())
-        val currentLiabilitiesToEquityPreviousQuarter = div(stock.currentLiabilities2QuartersAgo?.toDouble(), stock.totalShareholdersEquity2QuartersAgo?.toDouble())
-        stock.currentLiabilitiesToEquityLastYear = div(stock.currentLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
-        val currentLiabilitiesToEquity2YearsAgo = div(stock.currentLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble())
-        val currentLiabilitiesToEquity3YearsAgo = div(stock.currentLiabilities3YearsAgo?.toDouble(), stock.totalShareholdersEquity3YearsAgo?.toDouble())
-        stock.currentLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.currentLiabilitiesToEquityLastQuarter, currentLiabilitiesToEquityPreviousQuarter, "currentLiabilitiesToEquityGrowthLastQuarter", 0.01)
-        stock.currentLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity2YearsAgo, "currentLiabilitiesToEquityGrowthLastYear", 0.01)
+        stock.totalShareholdersEquityGrowthLast4Years = percentGrowth(stock.totalShareholdersEquityLastYear, stock.totalShareholdersEquity4YearsAgo, "totalShareholdersEquityGrowthLast4Years")
 
-        stock.currentLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.currentLiabilitiesToEquityLastYear, currentLiabilitiesToEquity3YearsAgo, "currentLiabilitiesToEquityGrowthLast3Years", 0.01)
 
         stock.totalLiabilitiesToEquityLastQuarter = div(stock.totalLiabilitiesLastQuarter?.toDouble(), stock.totalShareholdersEquityLastQuarter?.toDouble())
-        val totalLiabilitiesToEquityPreviousQuarter = div(stock.totalLiabilities2QuartersAgo?.toDouble(), stock.totalShareholdersEquity2QuartersAgo?.toDouble())
+        stock.totalLiabilitiesToEquity2QuartersAgo = div(stock.totalLiabilities2QuartersAgo?.toDouble(), stock.totalShareholdersEquity2QuartersAgo?.toDouble())
+        stock.totalLiabilitiesToEquity3QuartersAgo = div(stock.totalLiabilities3QuartersAgo?.toDouble(), stock.totalShareholdersEquity3QuartersAgo?.toDouble())
         stock.totalLiabilitiesToEquityLastYear = div(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
-        val totalLiabilitiesToEquity2YearsAgo = div(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble())
-        val totalLiabilitiesToEquity3YearsAgo = div(stock.totalLiabilities3YearsAgo?.toDouble(), stock.totalShareholdersEquity3YearsAgo?.toDouble())
+        stock.totalLiabilitiesToEquity2YearsAgo = div(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble())
+        stock.totalLiabilitiesToEquity4YearsAgo = div(stock.totalLiabilities4YearsAgo?.toDouble(), stock.totalShareholdersEquity4YearsAgo?.toDouble())
 
-        stock.totalLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesToEquityLastQuarter, totalLiabilitiesToEquityPreviousQuarter, "totalLiabilitiesToEquityGrowthLastQuarter", 0.01)
-        stock.totalLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity2YearsAgo, "totalLiabilitiesToEquityGrowthLastYear", 0.01)
-
-        stock.totalLiabilitiesToEquityGrowthLast3Years = percentGrowth(stock.totalLiabilitiesToEquityLastYear, totalLiabilitiesToEquity3YearsAgo, "totalLiabilitiesToEquityGrowthLast3Years", 0.01)
+        stock.totalLiabilitiesToEquityGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesToEquityLastQuarter, stock.totalLiabilitiesToEquity2QuartersAgo, "totalLiabilitiesToEquityGrowthLastQuarter", 0.01)
+        stock.totalLiabilitiesToEquityGrowthLast2Quarters = percentGrowth(stock.totalLiabilitiesToEquityLastQuarter, stock.totalLiabilitiesToEquity3QuartersAgo, "totalLiabilitiesToEquityGrowthLast2Quarters", 0.01)
+        stock.totalLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.totalLiabilitiesToEquityLastYear, stock.totalLiabilitiesToEquity2YearsAgo, "totalLiabilitiesToEquityGrowthLastYear", 0.01)
+        stock.totalLiabilitiesToEquityGrowthLast4Years = percentGrowth(stock.totalLiabilitiesToEquityLastYear, stock.totalLiabilitiesToEquity4YearsAgo, "totalLiabilitiesToEquityGrowthLast4Years", 0.01)
 
         stock.stockGrowthLastQuarter = percentGrowth(stock.stockLastQuarter, stock.stock2QuartersAgo, "stockGrowthLastQuarter")
+        stock.stockGrowthLast2Quarters = percentGrowth(stock.stockLastQuarter, stock.stock3QuartersAgo, "stockGrowthLast2Quarters")
         stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, stock.stock2YearsAgo, "stockGrowthLastYear")
-        stock.stockGrowthLast3Years = percentGrowth(stock.stockLastYear, stock.stock3YearsAgo, "stockGrowthLast3Years")
+        stock.stockGrowthLast4Years = percentGrowth(stock.stockLastYear, stock.stock4YearsAgo, "stockGrowthLast4Years")
 
         stock.stockRepurchasedGrowthLastQuarter = percentGrowth(stock.stockRepurchasedLastQuarter, stock.stockRepurchased2QuartersAgo, "stockRepurchasedGrowthLastQuarter")
+        stock.stockRepurchasedGrowthLast2Quarters = percentGrowth(stock.stockRepurchasedLastQuarter, stock.stockRepurchased3QuartersAgo, "stockRepurchasedGrowthLast2Quarters")
         stock.stockRepurchasedGrowthLastYear = percentGrowth(stock.stockRepurchasedLastYear, stock.stockRepurchased2YearsAgo, "stockRepurchasedGrowthLastYear")
-        stock.stockRepurchasedGrowthLast3Years = percentGrowth(stock.stockRepurchasedLastYear, stock.stockRepurchased3YearsAgo, "stockRepurchasedGrowthLast3Years")
+        stock.stockRepurchasedGrowthLast4Years = percentGrowth(stock.stockRepurchasedLastYear, stock.stockRepurchased4YearsAgo, "stockRepurchasedGrowthLast4Years")
 
         stock.epsGrowthLastQuarter = percentGrowth(stock.epsLastQuarter, stock.eps2QuartersAgo, "epsGrowthLastQuarter", 0.2)
         stock.epsGrowthLast2Quarters = percentGrowth(stock.epsLastQuarter, stock.eps3QuartersAgo, "epsGrowthLast2Quarters", 0.2)
-        stock.epsGrowthLast3Quarters = percentGrowth(stock.epsLastQuarter, stock.eps4QuartersAgo, "epsGrowthLast3Quarters", 0.2)
-        stock.epsGrowthEstimateLastQuarter = percentGrowth(stock.epsCurrentQuarterEstimate, stock.epsLastQuarter, "epsGrowthEstimateLastQuarter", 0.02)
-
         stock.epsGrowthLastYear = percentGrowth(stock.epsLastYear, stock.eps2YearsAgo, "epsGrowthLastYear", 0.2)
-        stock.epsGrowthLast2Years = percentGrowth(stock.epsLastYear, stock.eps3YearsAgo, "epsGrowthLast2Years", 0.2)
-        stock.epsGrowthLast3Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast3Years", 0.2)
+        stock.epsGrowthLast4Years = percentGrowth(stock.epsLastYear, stock.eps4YearsAgo, "epsGrowthLast4Years", 0.2)
     }
 
     private fun calcChartData(stock: Stock) {

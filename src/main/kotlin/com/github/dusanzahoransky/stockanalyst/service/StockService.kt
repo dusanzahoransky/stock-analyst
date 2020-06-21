@@ -15,8 +15,10 @@ import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.Statistics
 import com.github.dusanzahoransky.stockanalyst.repository.*
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCache
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.plus
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.epochSecToLocalDate
 import com.github.dusanzahoransky.stockanalyst.util.FormattingUtils.Companion.localDateToEpochSec
 import org.slf4j.LoggerFactory
@@ -222,73 +224,86 @@ class StockService @Autowired constructor(
         val incomeStatementLastQuarter = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(0)
         val incomeStatement2QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(1)
         val incomeStatement3QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(2)
+        val incomeStatement4QuartersAgo = financials.incomeStatementHistoryQuarterly?.incomeStatementHistory?.getOrNull(3)
         val incomeStatementLastYear = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(0)
         val incomeStatement2YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(1)
         val incomeStatement3YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(2)
+        val incomeStatement4YearsAgo = financials.incomeStatementHistory?.incomeStatementHistory?.getOrNull(3)
 
         val balanceSheetStatements = financials.balanceSheetHistoryQuarterly?.balanceSheetStatements
         val balanceSheetLastQuarter = balanceSheetStatements?.getOrNull(0)
         val balanceSheet2QuartersAgo = balanceSheetStatements?.getOrNull(1)
+        val balanceSheet3QuartersAgo = balanceSheetStatements?.getOrNull(2)
+        val balanceSheet4QuartersAgo = balanceSheetStatements?.getOrNull(3)
         val balanceSheetLastYear = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(0)
         val balanceSheet2YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(1)
         val balanceSheet3YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(2)
         val balanceSheet4YearsAgo = financials.balanceSheetHistory?.balanceSheetStatements?.getOrNull(3)
 
-        val timeSeries = financials.timeSeries
-
-        val earnings = financials.earnings
-
         val cashFlowLastQuarter = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(0)
         val cashFlow2QuartersAgo = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(1)
+        val cashFlow3QuartersAgo = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(2)
+        val cashFlow4QuartersAgo = financials.cashflowStatementHistoryQuarterly?.cashflowStatements?.getOrNull(3)
         val cashFlowLastYear = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(0)
         val cashFlow2YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(1)
         val cashFlow3YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(2)
+        val cashFlow4YearsAgo = financials.cashflowStatementHistory?.cashflowStatements?.getOrNull(3)
 
-        stock.netIncomeLastQuarter = incomeStatementLastQuarter?.netIncome?.raw?.toLong()
-        stock.netIncome2QuartersAgo = incomeStatement2QuartersAgo?.netIncome?.raw?.toLong()
-        stock.netIncome3QuartersAgo = incomeStatement3QuartersAgo?.netIncome?.raw?.toLong()
-        stock.netIncomeLastYear = incomeStatementLastYear?.netIncome?.raw?.toLong()
-        stock.netIncome3YearsAgo = incomeStatement3YearsAgo?.netIncome?.raw?.toLong()
-
-        stock.grossIncomeLastQuarter = incomeStatementLastQuarter?.grossProfit?.raw?.toLong()
-        stock.grossIncome2QuartersAgo = incomeStatement2QuartersAgo?.grossProfit?.raw?.toLong()
-        stock.grossIncome3QuartersAgo = incomeStatement3QuartersAgo?.grossProfit?.raw?.toLong()
-        stock.grossIncomeLastYear = incomeStatementLastYear?.grossProfit?.raw?.toLong()
-        stock.grossIncome3YearsAgo = incomeStatement3YearsAgo?.grossProfit?.raw?.toLong()
+        val timeSeries = financials.timeSeries
+        val earnings = financials.earnings
 
         stock.revenueLastQuarter = incomeStatementLastQuarter?.totalRevenue?.raw?.toLong()
         stock.revenue2QuartersAgo = incomeStatement2QuartersAgo?.totalRevenue?.raw?.toLong()
         stock.revenue3QuartersAgo = incomeStatement3QuartersAgo?.totalRevenue?.raw?.toLong()
         stock.revenueLastYear = incomeStatementLastYear?.totalRevenue?.raw?.toLong()
         stock.revenue2YearsAgo = incomeStatement2YearsAgo?.totalRevenue?.raw?.toLong()
-        stock.revenue3YearsAgo = incomeStatement3YearsAgo?.totalRevenue?.raw?.toLong()
+        stock.revenue4YearsAgo = incomeStatement4YearsAgo?.totalRevenue?.raw?.toLong()
+
+        stock.grossIncomeLastQuarter = incomeStatementLastQuarter?.grossProfit?.raw?.toLong()
+        stock.grossIncome2QuartersAgo = incomeStatement2QuartersAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncome3QuartersAgo = incomeStatement3QuartersAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncomeLastYear = incomeStatementLastYear?.grossProfit?.raw?.toLong()
+        stock.grossIncome2YearsAgo = incomeStatement2YearsAgo?.grossProfit?.raw?.toLong()
+        stock.grossIncome4YearsAgo = incomeStatement4YearsAgo?.grossProfit?.raw?.toLong()
+
+        stock.ebitLastQuarter = incomeStatementLastQuarter?.ebit?.raw?.toLong()
+        stock.ebit2QuartersAgo = incomeStatement2QuartersAgo?.ebit?.raw?.toLong()
+        stock.ebit3QuartersAgo = incomeStatement3QuartersAgo?.ebit?.raw?.toLong()
+        stock.ebitLastYear = incomeStatementLastYear?.ebit?.raw?.toLong()
+        stock.ebit2YearsAgo = incomeStatement2YearsAgo?.ebit?.raw?.toLong()
+        stock.ebit4YearsAgo = incomeStatement4YearsAgo?.ebit?.raw?.toLong()
+
+        stock.netIncomeLastQuarter = incomeStatementLastQuarter?.netIncome?.raw?.toLong()
+        stock.netIncome2QuartersAgo = incomeStatement2QuartersAgo?.netIncome?.raw?.toLong()
+        stock.netIncome3QuartersAgo = incomeStatement3QuartersAgo?.netIncome?.raw?.toLong()
+        stock.netIncomeLastYear = incomeStatementLastYear?.netIncome?.raw?.toLong()
+        stock.netIncome2YearsAgo = incomeStatement2YearsAgo?.netIncome?.raw?.toLong()
+        stock.netIncome4YearsAgo = incomeStatement4YearsAgo?.netIncome?.raw?.toLong()
+
+        stock.freeCashFlowLastQuarter = plus(cashFlowLastQuarter?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlowLastQuarter?.capitalExpenditures?.raw?.toLong())
+        stock.freeCashFlow2QuartersAgo = plus(cashFlow2QuartersAgo?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlow2QuartersAgo?.capitalExpenditures?.raw?.toLong())
+        stock.freeCashFlow3QuartersAgo = plus(cashFlow3QuartersAgo?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlow3QuartersAgo?.capitalExpenditures?.raw?.toLong())
+        stock.freeCashFlowLastYear = plus(cashFlowLastYear?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlowLastYear?.capitalExpenditures?.raw?.toLong())
+        stock.freeCashFlow2YearsAgo = plus(cashFlow2YearsAgo?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlow2YearsAgo?.capitalExpenditures?.raw?.toLong())
+        stock.freeCashFlow4YearsAgo = plus(cashFlow4YearsAgo?.totalCashFromOperatingActivities?.raw?.toLong(), cashFlow4YearsAgo?.capitalExpenditures?.raw?.toLong())
 
         stock.cashLastQuarter = balanceSheetLastQuarter?.cash?.raw?.toLong()
-        stock.cash2QuartersAgo = balanceSheet2YearsAgo?.cash?.raw?.toLong()
+        stock.cash2QuartersAgo = balanceSheet2QuartersAgo?.cash?.raw?.toLong()
+        stock.cash3QuartersAgo = balanceSheet3QuartersAgo?.cash?.raw?.toLong()
         stock.cashLastYear = balanceSheetLastYear?.cash?.raw?.toLong()
         stock.cash2YearsAgo = balanceSheet2YearsAgo?.cash?.raw?.toLong()
-        stock.cash3YearsAgo = balanceSheet3YearsAgo?.cash?.raw?.toLong()
+        stock.cash4YearsAgo = balanceSheet4YearsAgo?.cash?.raw?.toLong()
 
         stock.inventoryLastQuarter = balanceSheetLastQuarter?.inventory?.raw?.toLong()
         stock.inventory2QuartersAgo = balanceSheet2QuartersAgo?.inventory?.raw?.toLong()
+        stock.inventory3QuartersAgo = balanceSheet3QuartersAgo?.inventory?.raw?.toLong()
         stock.inventoryLastYear = balanceSheetLastYear?.inventory?.raw?.toLong()
         stock.inventory2YearsAgo = balanceSheet2YearsAgo?.inventory?.raw?.toLong()
-        stock.inventory3YearsAgo = balanceSheet3YearsAgo?.inventory?.raw?.toLong()
-
-        stock.currentAssetsLastQuarter = balanceSheetLastQuarter?.totalCurrentAssets?.raw?.toLong()
-        stock.currentAssets2QuartersAgo = balanceSheet2QuartersAgo?.totalCurrentAssets?.raw?.toLong()
-        stock.currentAssetsLastYear = balanceSheetLastYear?.totalCurrentAssets?.raw?.toLong()
-        stock.currentAssets2YearsAgo = balanceSheet2YearsAgo?.totalCurrentAssets?.raw?.toLong()
-        stock.currentAssets3YearsAgo = balanceSheet3YearsAgo?.totalCurrentAssets?.raw?.toLong()
-
-        stock.currentLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalCurrentLiabilities?.raw?.toLong()
-        stock.currentLiabilities2QuartersAgo = balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw?.toLong()
-        stock.currentLiabilitiesLastYear = balanceSheetLastYear?.totalCurrentLiabilities?.raw?.toLong()
-        stock.currentLiabilities2YearsAgo = balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toLong()
-        stock.currentLiabilities3YearsAgo = balanceSheet3YearsAgo?.totalCurrentLiabilities?.raw?.toLong()
+        stock.inventory4YearsAgo = balanceSheet4YearsAgo?.inventory?.raw?.toLong()
 
         stock.totalLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalLiab?.raw?.toLong()
         stock.totalLiabilities2QuartersAgo = balanceSheet2QuartersAgo?.totalLiab?.raw?.toLong()
+        stock.totalLiabilities3QuartersAgo = balanceSheet3QuartersAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilitiesLastYear = balanceSheetLastYear?.totalLiab?.raw?.toLong()
         stock.totalLiabilities2YearsAgo = balanceSheet2YearsAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilities3YearsAgo = balanceSheet3YearsAgo?.totalLiab?.raw?.toLong()
@@ -296,22 +311,24 @@ class StockService @Autowired constructor(
 
         stock.totalShareholdersEquityLastQuarter = balanceSheetLastQuarter?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity2QuartersAgo = balanceSheet2QuartersAgo?.totalStockholderEquity?.raw?.toLong()
+        stock.totalShareholdersEquity3QuartersAgo = balanceSheet3QuartersAgo?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquityLastYear = balanceSheetLastYear?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity2YearsAgo = balanceSheet2YearsAgo?.totalStockholderEquity?.raw?.toLong()
-        stock.totalShareholdersEquity3YearsAgo = balanceSheet3YearsAgo?.totalStockholderEquity?.raw?.toLong()
         stock.totalShareholdersEquity4YearsAgo = balanceSheet4YearsAgo?.totalStockholderEquity?.raw?.toLong()
 
         stock.stockRepurchasedLastQuarter = cashFlowLastQuarter?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchased2QuartersAgo = cashFlow2QuartersAgo?.repurchaseOfStock?.raw?.toLong()
+        stock.stockRepurchased3QuartersAgo = cashFlow3QuartersAgo?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchasedLastYear = cashFlowLastYear?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchased2YearsAgo = cashFlow2YearsAgo?.repurchaseOfStock?.raw?.toLong()
-        stock.stockRepurchased3YearsAgo = cashFlow3YearsAgo?.repurchaseOfStock?.raw?.toLong()
+        stock.stockRepurchased4YearsAgo = cashFlow4YearsAgo?.repurchaseOfStock?.raw?.toLong()
 
         stock.stockLastQuarter = balanceSheetLastQuarter?.commonStock?.raw?.toLong()
         stock.stock2QuartersAgo = balanceSheet2QuartersAgo?.commonStock?.raw?.toLong()
+        stock.stock3QuartersAgo = balanceSheet3QuartersAgo?.commonStock?.raw?.toLong()
         stock.stockLastYear = balanceSheetLastYear?.commonStock?.raw?.toLong()
         stock.stock2YearsAgo = balanceSheet2YearsAgo?.commonStock?.raw?.toLong()
-        stock.stock3YearsAgo = balanceSheet3YearsAgo?.commonStock?.raw?.toLong()
+        stock.stock4YearsAgo = balanceSheet4YearsAgo?.commonStock?.raw?.toLong()
 
         stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
@@ -372,8 +389,6 @@ class StockService @Autowired constructor(
         }
         stock.enterpriseValueRevenue = defaultKeyStatistics.enterpriseToRevenue?.raw
         stock.enterpriseValueEBITDA = defaultKeyStatistics.enterpriseToEbitda?.raw
-
-        stock.yoyQuarterlyRevenueGrowthPercent = percent(financialData.revenueGrowth?.raw)
 
         stock.priceEarningGrowth = defaultKeyStatistics.pegRatio?.raw
         val trailingEps = multiply(defaultKeyStatistics.trailingEps?.raw, exchangeRate)
