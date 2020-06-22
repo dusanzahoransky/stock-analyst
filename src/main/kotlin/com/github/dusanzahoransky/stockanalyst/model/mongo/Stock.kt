@@ -51,6 +51,8 @@ data class Stock(
 
     var heldByInsiders: Double? = null,
     var heldByInstitutions: Double? = null,
+    var buyPercentInsiderShares: Double? = null,
+    var sellPercentInsiderShares: Double? = null,
     var shortToFloat: Double? = null,
     var sharesShortPrevMonthCompare: Double? = null,
 
@@ -235,19 +237,29 @@ data class Stock(
     var price2QuartersAgo: Double? = null,
     var price3QuartersAgo: Double? = null,
     var price4QuartersAgo: Double? = null,
+    var priceLastYear: Double? = null,
+    var price2YearsAgo: Double? = null,
+    var price3YearsAgo: Double? = null,
+    var price4YearsAgo: Double? = null,
 
     var priceGrowthLastQuarter: Double? = null,
     var priceGrowthLast2Quarters: Double? = null,
-    var priceGrowthLast3Quarters: Double? = null,
+    var priceGrowthLastYear: Double? = null,
+    var priceGrowthLast4Years: Double? = null,
 
     var peLastQuarter: Double? = null,
     var pe2QuartersAgo: Double? = null,
     var pe3QuartersAgo: Double? = null,
     var pe4QuartersAgo: Double? = null,
+    var peLastYear: Double? = null,
+    var pe2YearsAgo: Double? = null,
+    var pe3YearsAgo: Double? = null,
+    var pe4YearsAgo: Double? = null,
 
     var peGrowthLastQuarter: Double? = null,
     var peGrowthLast2Quarters: Double? = null,
-    var peGrowthLast3Quarters: Double? = null,
+    var peGrowthLastYear: Double? = null,
+    var peGrowthLast4Years: Double? = null,
 
     var growthEstimate5y: Double? = null,
 

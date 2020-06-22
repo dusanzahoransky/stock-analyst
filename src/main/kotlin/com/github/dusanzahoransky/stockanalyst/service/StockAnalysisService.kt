@@ -1,5 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
+import com.github.dusanzahoransky.stockanalyst.model.EtfsAveragesCounter
+import com.github.dusanzahoransky.stockanalyst.model.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.dto.StockWithRatios
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
@@ -7,8 +9,6 @@ import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockChartData
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
-import com.github.dusanzahoransky.stockanalyst.model.EtfsAveragesCounter
-import com.github.dusanzahoransky.stockanalyst.model.StocksAveragesCounter
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -140,37 +140,34 @@ class StockAnalysisService {
 
         if (stock.quarterEnds != null) {
             for ((index, quarter) in stock.quarterEnds!!.withIndex()) {
+                val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                 when (index) {
                     0 -> {
+                        stock.priceLastQuarter = chartDataAt?.price
                         if (stock.epsLastQuarter != null) {
-                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                             chartDataAt?.epsQuarterly = stock.epsLastQuarter
-                            stock.priceLastQuarter = chartDataAt?.price
                             stock.peLastQuarter = div(stock.priceLastQuarter, CalcUtils.multiply(stock.epsLastQuarter, 4.0))
                         }
                     }
                     1 -> {
+                        stock.price2QuartersAgo = chartDataAt?.price
                         if (stock.eps2QuartersAgo != null) {
-                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                             chartDataAt?.epsQuarterly = stock.eps2QuartersAgo
-                            stock.price2QuartersAgo = chartDataAt?.price
                             stock.pe2QuartersAgo = div(stock.price2QuartersAgo, CalcUtils.multiply(stock.eps2QuartersAgo, 4.0))
                         }
                     }
                     2 -> {
+                        stock.price3QuartersAgo = chartDataAt?.price
                         if (stock.eps3QuartersAgo != null) {
-                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                             chartDataAt?.epsQuarterly = stock.eps3QuartersAgo
-                            stock.price3QuartersAgo = chartDataAt?.price
                             stock.pe3QuartersAgo = div(stock.price3QuartersAgo, CalcUtils.multiply(stock.eps3QuartersAgo, 4.0))
                         }
                     }
                     3 -> {
+                        stock.price4QuartersAgo = chartDataAt?.price
                         if (stock.eps4QuartersAgo != null) {
-                            val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                             chartDataAt?.epsQuarterly = stock.eps4QuartersAgo
-                            stock.price4QuartersAgo = chartDataAt?.price
-                            stock.pe4QuartersAgo = div(stock.price4QuartersAgo, CalcUtils.multiply(stock.eps4QuartersAgo, 4.0))
+                            stock.pe4QuartersAgo = div(chartDataAt?.price, CalcUtils.multiply(stock.eps4QuartersAgo, 4.0))
                         }
                     }
                 }
@@ -179,27 +176,50 @@ class StockAnalysisService {
 
         if (stock.yearEnds != null) {
             for ((index, year) in stock.yearEnds!!.withIndex()) {
-                val eps = when (index) {
-                    0 -> stock.epsLastYear
-                    1 -> stock.eps2YearsAgo
-                    2 -> stock.eps3YearsAgo
-                    3 -> stock.eps4YearsAgo
-                    else -> null
-                }
-                if (eps != null) {
-                    val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(year), chartData)
-                    chartDataAt?.epsAnnually = eps
+                val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(year), chartData)
+
+                when (index) {
+                    0 -> {
+                        stock.priceLastYear = chartDataAt?.price
+                        if (stock.epsLastYear != null) {
+                            chartDataAt?.epsAnnually = stock.epsLastYear
+                            stock.peLastYear = div(chartDataAt?.price, stock.epsLastYear)
+                        }
+                    }
+                    1 -> {
+                        stock.price2YearsAgo = chartDataAt?.price
+                        if (stock.eps2YearsAgo != null) {
+                            chartDataAt?.epsAnnually = stock.eps2YearsAgo
+                            stock.pe2YearsAgo = div(chartDataAt?.price, stock.eps2YearsAgo)
+                        }
+                    }
+                    2 -> {
+                        stock.price3YearsAgo = chartDataAt?.price
+                        if (stock.eps3YearsAgo != null) {
+                            chartDataAt?.epsAnnually = stock.eps3YearsAgo
+                            stock.pe3YearsAgo = div(chartDataAt?.price, stock.eps3YearsAgo)
+                        }
+                    }
+                    3 -> {
+                        stock.price4YearsAgo = chartDataAt?.price
+                        if (stock.eps4YearsAgo != null) {
+                            chartDataAt?.epsAnnually = stock.eps4YearsAgo
+                            stock.pe4YearsAgo = div(chartDataAt?.price, stock.eps4YearsAgo)
+                        }
+                    }
                 }
             }
         }
 
         stock.priceGrowthLastQuarter = percentGrowth(stock.priceLastQuarter, stock.price2QuartersAgo, "priceGrowthLastQuarter")
         stock.priceGrowthLast2Quarters = percentGrowth(stock.priceLastQuarter, stock.price3QuartersAgo, "priceGrowthLast2Quarters")
-        stock.priceGrowthLast3Quarters = percentGrowth(stock.priceLastQuarter, stock.price4QuartersAgo, "priceGrowthLast3Quarters")
+        stock.priceGrowthLastYear = percentGrowth(stock.priceLastYear, stock.price2YearsAgo, "priceGrowthLastYear")
+        stock.priceGrowthLast4Years = percentGrowth(stock.priceLastYear, stock.price4YearsAgo, "priceGrowthLast4Years")
 
         stock.peGrowthLastQuarter = percentGrowth(stock.peLastQuarter, stock.pe2QuartersAgo, "peGrowthLastQuarter", 0.01)
         stock.peGrowthLast2Quarters = percentGrowth(stock.peLastQuarter, stock.pe3QuartersAgo, "peGrowthLast2Quarters", 0.01)
-        stock.peGrowthLast3Quarters = percentGrowth(stock.peLastQuarter, stock.pe4QuartersAgo, "peGrowthLast3Quarters", 0.01)
+        stock.peGrowthLastYear = percentGrowth(stock.peLastYear, stock.pe2YearsAgo, "peGrowthLastYear", 0.01)
+        stock.peGrowthLast4Years = percentGrowth(stock.peLastYear, stock.pe4YearsAgo, "peGrowthLast4Years", 0.01)
 
         stock.chartData = chartData
     }

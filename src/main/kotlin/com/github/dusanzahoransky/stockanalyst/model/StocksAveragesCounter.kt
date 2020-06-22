@@ -38,6 +38,8 @@ data class StocksAveragesCounter(
 
     var heldByInsidersCount: Int = 0,
     var heldByInstitutionsCount: Int = 0,
+    var buyPercentInsiderShares: Int = 0,
+    var sellPercentInsiderShares: Int = 0,
     var shortToFloatCount: Int = 0,
     var sharesShortPrevMonthCompareCount: Int = 0,
 
@@ -222,19 +224,29 @@ data class StocksAveragesCounter(
     var price2QuartersAgoCount: Int = 0,
     var price3QuartersAgoCount: Int = 0,
     var price4QuartersAgoCount: Int = 0,
+    var priceLastYearCount: Int = 0,
+    var price2YearsAgoCount: Int = 0,
+    var price3YearsAgoCount: Int = 0,
+    var price4YearsAgoCount: Int = 0,
 
     var priceGrowthLastQuarterCount: Int = 0,
     var priceGrowthLast2QuartersCount: Int = 0,
-    var priceGrowthLast3QuartersCount: Int = 0,
+    var priceGrowthLastYearCount: Int = 0,
+    var priceGrowthLast4YearsCount: Int = 0,
 
     var peLastQuarterCount: Int = 0,
     var pe2QuartersAgoCount: Int = 0,
     var pe3QuartersAgoCount: Int = 0,
     var pe4QuartersAgoCount: Int = 0,
+    var peLastYearCount: Int = 0,
+    var pe2YearsAgoCount: Int = 0,
+    var pe3YearsAgoCount: Int = 0,
+    var pe4YearsAgoCount: Int = 0,
 
     var peGrowthLastQuarterCount: Int = 0,
     var peGrowthLast2QuartersCount: Int = 0,
-    var peGrowthLast3QuartersCount: Int = 0,
+    var peGrowthLastYearCount: Int = 0,
+    var peGrowthLast4YearsCount: Int = 0,
 
     var growthEstimate5yCount: Int = 0,
 

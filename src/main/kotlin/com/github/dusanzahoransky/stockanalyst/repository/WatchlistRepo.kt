@@ -181,13 +181,13 @@ class WatchlistRepo {
     fun euWatchList(): Set<Ticker> {
         return setOf(
 /*            StockTicker.fromString("KU2:DAX"),*/
+            Ticker.fromString("SIE:DAX"),
             Ticker.fromString("SU:PA")
         )
     }
 
     fun euInvestedIn(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("SIE:DAX"),
             Ticker.fromString("LHA:DAX")
         )
     }
@@ -265,8 +265,8 @@ class WatchlistRepo {
             Ticker.fromString("VEVE:FTSE"),     //Vanguard FTSE Developed World UCITS ETF USD Distributing
 
             Ticker.fromString("VJPN:FTSE"),     //Vanguard FTSE Japan UCITS ETF USD Distributing
-            /*StockTicker.fromString("UKDV:FTSE"),*/  //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
-            Ticker.fromString("USDV:FTSE"),     //SPDR S&amp;P US Dividend Aristocrats UCITS ETF Dis
+            /*StockTicker.fromString("UKDV:FTSE"),*/  //SPDR S&P UK Dividend Aristocrats UCITS ETF
+            Ticker.fromString("USDV:FTSE"),     //SPDR S&P US Dividend Aristocrats UCITS ETF Dis
 
             Ticker.fromString("SGVL:FTSE"),
             Ticker.fromString("VVAL:FTSE"),
@@ -276,10 +276,6 @@ class WatchlistRepo {
 
     fun usInvestedIn(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("AAl:NASDAQ"),
-            Ticker.fromString("UAL:NASDAQ"),
-//            StockTicker.fromString("LTM:NYSE"),
-            Ticker.fromString("DAL:NYSE"),
             Ticker.fromString("ALXN:NASDAQ"),
             Ticker.fromString("TMUS:NASDAQ"),
             Ticker.fromString("GILD:NASDAQ"),
@@ -289,13 +285,13 @@ class WatchlistRepo {
             Ticker.fromString("GRPN:NASDAQ"),
             Ticker.fromString("T:NYSE"),
             Ticker.fromString("SO:NYSE"),
-            Ticker.fromString("MA:NYSE"),
             Ticker.fromString("TSM:NYSE"),
             Ticker.fromString("LMT:NYSE"),
             Ticker.fromString("KO:NYSE"),
             Ticker.fromString("EMR:NYSE"),
             Ticker.fromString("KO:NYSE"),
-            Ticker.fromString("TSM:NYSE")
+            Ticker.fromString("TSM:NYSE"),
+            *investedInUsdTech().toTypedArray()
         )
     }
 
@@ -310,8 +306,6 @@ class WatchlistRepo {
             Ticker.fromString("MSFT:NASDAQ"),
             Ticker.fromString("EB:NYSE"),
             Ticker.fromString("CMCSA:NASDAQ"),
-            Ticker.fromString("CTSH:NASDAQ"),
-            Ticker.fromString("EBAY:NASDAQ"),
             Ticker.fromString("FB:NASDAQ"),
             Ticker.fromString("QCOM:NASDAQ"),
             Ticker.fromString("AVGO:NASDAQ"),
@@ -321,6 +315,8 @@ class WatchlistRepo {
 
     fun watchListUsdTech(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("CTSH:NASDAQ"),
+            Ticker.fromString("EBAY:NASDAQ"),
             Ticker.fromString("DELL:NYSE"),
             Ticker.fromString("JD:NASDAQ"),
             Ticker.fromString("TEAM:NASDAQ"),
@@ -386,7 +382,12 @@ class WatchlistRepo {
             /* StockTicker.fromString("INO:NYSE"),*/
             //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
             Ticker.fromString("ROK:NYSE"),
-            Ticker.fromString("HON:NYSE")
+            Ticker.fromString("HON:NYSE"),
+            Ticker.fromString("AAl:NASDAQ"),
+            Ticker.fromString("UAL:NASDAQ"),
+//            StockTicker.fromString("LTM:NYSE"),
+            Ticker.fromString("DAL:NYSE"),
+            Ticker.fromString("MA:NYSE")
         )
     }
 
@@ -398,13 +399,13 @@ class WatchlistRepo {
 
     fun gbWatchlist(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("IAG:FTSE")
         )
     }
 
 
     fun gbInvestedIn(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("IAG:FTSE"),
             Ticker.fromString("RYA:FTSE"),
             Ticker.fromString("WIZZ:FTSE")
         )
