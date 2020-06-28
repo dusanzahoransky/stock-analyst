@@ -21,6 +21,7 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
 
 @Service
 class StockAnalysisService {
@@ -64,10 +65,10 @@ class StockAnalysisService {
         stock.revenueGrowthLastYear = percentGrowth(stock.revenueLastYear, stock.revenue2YearsAgo, "revenueGrowthLastYear")
         stock.revenueGrowthLast4Years = percentGrowth(stock.revenueLastYear, stock.revenue4YearsAgo, "revenueGrowthLast4Years")
 
-//        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
-//        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
-//        stock.grossIncomeGrowthLastYear = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome2YearsAgo, "grossIncomeGrowthLastYear")
-//        stock.grossIncomeGrowthLast4Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome4YearsAgo, "grossIncomeGrowthLast4Years")
+        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
+        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
+        stock.grossIncomeGrowthLastYear = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome2YearsAgo, "grossIncomeGrowthLastYear")
+        stock.grossIncomeGrowthLast4Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome4YearsAgo, "grossIncomeGrowthLast4Years")
 
         stock.ebitGrowthLastQuarter = percentGrowth(stock.ebitLastQuarter, stock.ebit2QuartersAgo, "ebitGrowthLastQuarter")
         stock.ebitGrowthLast2Quarters = percentGrowth(stock.ebitLastQuarter, stock.ebit3QuartersAgo, "ebitGrowthLast2Quarters")
@@ -122,6 +123,11 @@ class StockAnalysisService {
         stock.totalLiabilitiesGrowthLast2Quarters = percentGrowth(stock.totalLiabilitiesLastQuarter, stock.totalLiabilities3QuartersAgo, "totalLiabilitiesGrowthLast2Quarters")
         stock.totalLiabilitiesGrowthLastYear = percentGrowth(stock.totalLiabilitiesLastYear, stock.totalLiabilities2YearsAgo, "totalLiabilitiesGrowthLastYear")
         stock.totalLiabilitiesGrowthLast4Years = percentGrowth(stock.totalLiabilitiesLastYear, stock.totalLiabilities4YearsAgo, "totalLiabilitiesGrowthLast4Years")
+
+        stock.totalAssetsGrowthLastQuarter = percentGrowth(stock.totalAssetsLastQuarter, stock.totalAssets2QuartersAgo, "totalAssetsGrowthLastQuarter")
+        stock.totalAssetsGrowthLast2Quarters = percentGrowth(stock.totalAssetsLastQuarter, stock.totalAssets3QuartersAgo, "totalAssetsGrowthLast2Quarters")
+        stock.totalAssetsGrowthLastYear = percentGrowth(stock.totalAssetsLastYear, stock.totalAssets2YearsAgo, "totalAssetsGrowthLastYear")
+        stock.totalAssetsGrowthLast4Years = percentGrowth(stock.totalAssetsLastYear, stock.totalAssets4YearsAgo, "totalAssetsGrowthLast4Years")
 
         stock.totalShareholdersEquityGrowthLastQuarter = percentGrowth(stock.totalShareholdersEquityLastQuarter, stock.totalShareholdersEquity2QuartersAgo, "totalShareholdersEquityGrowthLastQuarter")
         stock.totalShareholdersEquityGrowthLast2Quarters = percentGrowth(stock.totalShareholdersEquityLastQuarter, stock.totalShareholdersEquity3QuartersAgo, "totalShareholdersEquityGrowthLast2Quarters")
@@ -257,7 +263,7 @@ class StockAnalysisService {
 
     fun calcStocksAverages(stocks: List<Stock>): Stock {
 
-        val counter = StocksAveragesCounter(Stock(symbol = "Avg.", exchange = Exchange.NASDAQ))
+        val counter = StocksAveragesCounter(Stock("Avg.", Exchange.NASDAQ))
         val averages = counter.averages
 
         val stockNumericFields = Stock::class.memberProperties
@@ -310,6 +316,7 @@ class StockAnalysisService {
              */
 
             for (stockField in stockNumericFields) {
+                stockField.isAccessible = true
                 val fieldValue = stockField.getter.call(stock) as Number?
                 if (fieldValue != null && fieldValue != 0.0) {  //some fields default to 0.0 instead of null when missing values
                     val sumValue = stockField.getter.call(averages) as Number?
@@ -320,6 +327,7 @@ class StockAnalysisService {
                     if (counterField == null) {
                         log.debug("Missing counter $counterFieldName")
                     } else {
+                        counterField.isAccessible = true
                         counterField.setter.call(counter, counterField.getter.call(counter) as Int + 1)
                     }
                 }
@@ -328,6 +336,7 @@ class StockAnalysisService {
 
         //divide the calculated sums by counters to get averages
         for (stockField in stockNumericFields) {
+            stockField.isAccessible = true
             val sumValue = stockField.getter.call(averages) as Number?
             val counterFieldName = stockField.name + "Count"
             val counterField = counterFields
@@ -335,6 +344,7 @@ class StockAnalysisService {
             if (counterField == null) {
                 log.debug("Missing counter $counterFieldName")
             } else {
+                counterField.isAccessible = true
                 val counterValue = counterField.getter.call(counter) as Int
                 stockField.setter.call(averages, div(sumValue, counterValue))
             }

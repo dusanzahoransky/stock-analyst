@@ -74,21 +74,23 @@ class KeyRatiosAnalysisService {
         stock.pe5Y = cumulativeGrowthRate(current?.pe, fiveYBefore?.pe, 5, "pe5Y", 0.1)
         stock.pe9Y = cumulativeGrowthRate(current?.pe, nineYBefore?.pe, 9, "pe9Y", 0.1)
 
+        //multiple slightly different ways how to calculate, common one is (net income - dividends) / (total assets - current liabilities - cash and cash equivaletns)
 
         stock.roicLastYear = div(
             minus(current?.netIncome, current?.dividends?:0.0),
-            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+            minus(plus(stock.totalAssetsLastYear?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+//            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
         )
         stock.roicLast2YearsAgo = div(
             minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
-            minus(plus(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble()), stock.cash2YearsAgo?.toDouble())
+            minus(plus(stock.totalAssets2YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash2YearsAgo?.toDouble())
         )
         stock.roicLast4YearsAgo = div(
             minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
-            minus(plus(stock.totalLiabilities4YearsAgo?.toDouble(), stock.totalShareholdersEquity4YearsAgo?.toDouble()), stock.cash4YearsAgo?.toDouble())
+            minus(plus(stock.totalAssets4YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash4YearsAgo?.toDouble())
         )
-        stock.roic1Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast2YearsAgo, 1, "roic1Y", 0.01)
-        stock.roic3Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast4YearsAgo, 3, "roic3Y", 0.01)
+        stock.roic1Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast2YearsAgo, 1, "roic1Y", 0.001)
+        stock.roic3Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast4YearsAgo, 3, "roic3Y", 0.001)
 
         val estimatedEpsGrowthRate = stock.bps9Y ?: stock.bps5Y ?: stock.bps3Y
         stock.rule1GrowthRate = minIfPositive(estimatedEpsGrowthRate, stock.growthEstimate5y)
