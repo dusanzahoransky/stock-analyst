@@ -182,13 +182,13 @@ class WatchlistRepo {
         return setOf(
 /*            StockTicker.fromString("KU2:DAX"),*/
             Ticker.fromString("SIE:DAX"),
-            Ticker.fromString("SU:PA")
+            Ticker.fromString("SU:PA"),
+            Ticker.fromString("LHA:DAX")
         )
     }
 
     fun euInvestedIn(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("LHA:DAX")
         )
     }
 

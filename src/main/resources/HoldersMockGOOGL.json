@@ -1,0 +1,4398 @@
+{
+  "financialsTemplate": {
+    "code": "N",
+    "maxAge": 1
+  },
+  "majorDirectHolders": {
+    "holders": [],
+    "maxAge": 1
+  },
+  "price": {
+    "quoteSourceName": "Delayed Quote",
+    "regularMarketOpen": {
+      "raw": 1452,
+      "fmt": "1,452.00"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 2227356,
+      "fmt": "2.23M",
+      "longFmt": "2,227,356"
+    },
+    "exchange": "NMS",
+    "regularMarketTime": 1592942401,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 1475.2,
+      "fmt": "1,475.20"
+    },
+    "shortName": "Alphabet Inc.",
+    "averageDailyVolume10Day": {
+      "raw": 1760642,
+      "fmt": "1.76M",
+      "longFmt": "1,760,642"
+    },
+    "longName": "Alphabet Inc.",
+    "regularMarketChange": {
+      "raw": 13.319946,
+      "fmt": "13.32"
+    },
+    "currencySymbol": "$",
+    "regularMarketPreviousClose": {
+      "raw": 1450.66,
+      "fmt": "1,450.66"
+    },
+    "postMarketTime": 1592953618,
+    "preMarketPrice": {
+      "raw": 1458,
+      "fmt": "1,458.00"
+    },
+    "preMarketTime": 1592997722,
+    "exchangeDataDelayedBy": 0,
+    "toCurrency": null,
+    "postMarketChange": {
+      "raw": -1.0499268,
+      "fmt": "-1.05"
+    },
+    "postMarketPrice": {
+      "raw": 1462.93,
+      "fmt": "1,462.93"
+    },
+    "exchangeName": "NasdaqGS",
+    "preMarketChange": {
+      "raw": -5.9799805,
+      "fmt": "-5.98"
+    },
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 1445,
+      "fmt": "1,445.00"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "regularMarketPrice": {
+      "raw": 1463.98,
+      "fmt": "1,463.98"
+    },
+    "regularMarketVolume": {
+      "raw": 1887583,
+      "fmt": "1.89M",
+      "longFmt": "1,887,583.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "FREE_REALTIME",
+    "openInterest": {},
+    "marketState": "PRE",
+    "underlyingSymbol": null,
+    "marketCap": {
+      "raw": 999486914560,
+      "fmt": "999.49B",
+      "longFmt": "999,486,914,560.00"
+    },
+    "quoteType": "EQUITY",
+    "preMarketChangePercent": {
+      "raw": -0.004084742,
+      "fmt": "-0.41%"
+    },
+    "volumeAllCurrencies": {},
+    "postMarketSource": "DELAYED",
+    "strikePrice": {},
+    "symbol": "GOOGL",
+    "postMarketChangePercent": {
+      "raw": -0.0007171729,
+      "fmt": "-0.07%"
+    },
+    "preMarketSource": "DELAYED",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.00918199,
+      "fmt": "0.92%"
+    }
+  },
+  "fundOwnership": {
+    "maxAge": 1,
+    "ownershipList": [
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Parnassus Endeavor Fund",
+        "pctHeld": {
+          "raw": 0.121400006,
+          "fmt": "12.14%"
+        },
+        "position": {
+          "raw": 36433789,
+          "fmt": "36.43M",
+          "longFmt": "36,433,789"
+        },
+        "value": {
+          "raw": 42334241128,
+          "fmt": "42.33B",
+          "longFmt": "42,334,241,128"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Vanguard Total Stock Market Index Fund",
+        "pctHeld": {
+          "raw": 0.0293,
+          "fmt": "2.93%"
+        },
+        "position": {
+          "raw": 8789965,
+          "fmt": "8.79M",
+          "longFmt": "8,789,965"
+        },
+        "value": {
+          "raw": 10213499831,
+          "fmt": "10.21B",
+          "longFmt": "10,213,499,831"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Vanguard 500 Index Fund",
+        "pctHeld": {
+          "raw": 0.020499999,
+          "fmt": "2.05%"
+        },
+        "position": {
+          "raw": 6156481,
+          "fmt": "6.16M",
+          "longFmt": "6,156,481"
+        },
+        "value": {
+          "raw": 7153523097,
+          "fmt": "7.15B",
+          "longFmt": "7,153,523,097"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "SPDR S&P 500 ETF Trust",
+        "pctHeld": {
+          "raw": 0.011,
+          "fmt": "1.10%"
+        },
+        "position": {
+          "raw": 3313015,
+          "fmt": "3.31M",
+          "longFmt": "3,313,015"
+        },
+        "value": {
+          "raw": 3849557779,
+          "fmt": "3.85B",
+          "longFmt": "3,849,557,779"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Invesco ETF Tr-Invesco QQQ Tr, Series 1 ETF",
+        "pctHeld": {
+          "raw": 0.0095,
+          "fmt": "0.95%"
+        },
+        "position": {
+          "raw": 2849969,
+          "fmt": "2.85M",
+          "longFmt": "2,849,969"
+        },
+        "value": {
+          "raw": 3311521479,
+          "fmt": "3.31B",
+          "longFmt": "3,311,521,479"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1582934400,
+          "fmt": "2020-02-29"
+        },
+        "organization": "Fidelity 500 Index Fund",
+        "pctHeld": {
+          "raw": 0.0089,
+          "fmt": "0.89%"
+        },
+        "position": {
+          "raw": 2677182,
+          "fmt": "2.68M",
+          "longFmt": "2,677,182"
+        },
+        "value": {
+          "raw": 3585415993,
+          "fmt": "3.59B",
+          "longFmt": "3,585,415,993"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Vanguard Institutional Index Fund-Institutional Index Fund",
+        "pctHeld": {
+          "raw": 0.0088,
+          "fmt": "0.88%"
+        },
+        "position": {
+          "raw": 2651520,
+          "fmt": "2.65M",
+          "longFmt": "2,651,520"
+        },
+        "value": {
+          "raw": 3080933664,
+          "fmt": "3.08B",
+          "longFmt": "3,080,933,664"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1582934400,
+          "fmt": "2020-02-29"
+        },
+        "organization": "Fidelity Contrafund Inc",
+        "pctHeld": {
+          "raw": 0.0083,
+          "fmt": "0.83%"
+        },
+        "position": {
+          "raw": 2475480,
+          "fmt": "2.48M",
+          "longFmt": "2,475,480"
+        },
+        "value": {
+          "raw": 3315286590,
+          "fmt": "3.32B",
+          "longFmt": "3,315,286,590"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Vanguard Growth Index Fund",
+        "pctHeld": {
+          "raw": 0.0076,
+          "fmt": "0.76%"
+        },
+        "position": {
+          "raw": 2273110,
+          "fmt": "2.27M",
+          "longFmt": "2,273,110"
+        },
+        "value": {
+          "raw": 2641240164,
+          "fmt": "2.64B",
+          "longFmt": "2,641,240,164"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "iShares Core S&P 500 ETF",
+        "pctHeld": {
+          "raw": 0.0075,
+          "fmt": "0.75%"
+        },
+        "position": {
+          "raw": 2261115,
+          "fmt": "2.26M",
+          "longFmt": "2,261,115"
+        },
+        "value": {
+          "raw": 2627302574,
+          "fmt": "2.63B",
+          "longFmt": "2,627,302,574"
+        }
+      }
+    ]
+  },
+  "insiderTransactions": {
+    "transactions": [
+      {
+        "filerName": "PORAT RUTH M",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1588204800,
+          "fmt": "2020-04-30"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Chief Financial Officer",
+        "shares": {
+          "raw": 280,
+          "fmt": "280",
+          "longFmt": "280"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PORAT RUTH M",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1588204800,
+          "fmt": "2020-04-30"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Chief Financial Officer",
+        "shares": {
+          "raw": 280,
+          "fmt": "280",
+          "longFmt": "280"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1348.18 - 1367.09 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        },
+        "value": {
+          "raw": 38629705,
+          "fmt": "38.63M",
+          "longFmt": "38,629,705"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28429,
+          "fmt": "28.43k",
+          "longFmt": "28,429"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        },
+        "value": {
+          "raw": 8719831,
+          "fmt": "8.72M",
+          "longFmt": "8,719,831"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28429,
+          "fmt": "28.43k",
+          "longFmt": "28,429"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1348.18 - 1367.09 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        },
+        "value": {
+          "raw": 38629705,
+          "fmt": "38.63M",
+          "longFmt": "38,629,705"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28429,
+          "fmt": "28.43k",
+          "longFmt": "28,429"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        },
+        "value": {
+          "raw": 8719831,
+          "fmt": "8.72M",
+          "longFmt": "8,719,831"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28429,
+          "fmt": "28.43k",
+          "longFmt": "28,429"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1288.98 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1575244800,
+          "fmt": "2019-12-02"
+        },
+        "value": {
+          "raw": 36645792,
+          "fmt": "36.65M",
+          "longFmt": "36,645,792"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1575244800,
+          "fmt": "2019-12-02"
+        },
+        "value": {
+          "raw": 8720119,
+          "fmt": "8.72M",
+          "longFmt": "8,720,119"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1288.98 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1575244800,
+          "fmt": "2019-12-02"
+        },
+        "value": {
+          "raw": 36645792,
+          "fmt": "36.65M",
+          "longFmt": "36,645,792"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1575244800,
+          "fmt": "2019-12-02"
+        },
+        "value": {
+          "raw": 8720119,
+          "fmt": "8.72M",
+          "longFmt": "8,720,119"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PORAT RUTH M",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1573776000,
+          "fmt": "2019-11-15"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Chief Financial Officer",
+        "shares": {
+          "raw": 1861,
+          "fmt": "1.86k",
+          "longFmt": "1,861"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PORAT RUTH M",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1573776000,
+          "fmt": "2019-11-15"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Chief Financial Officer",
+        "shares": {
+          "raw": 1861,
+          "fmt": "1.86k",
+          "longFmt": "1,861"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1260.91 - 1271.11 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1572566400,
+          "fmt": "2019-11-01"
+        },
+        "value": {
+          "raw": 35992360,
+          "fmt": "35.99M",
+          "longFmt": "35,992,360"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1572566400,
+          "fmt": "2019-11-01"
+        },
+        "value": {
+          "raw": 8720119,
+          "fmt": "8.72M",
+          "longFmt": "8,720,119"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1260.91 - 1271.11 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1572566400,
+          "fmt": "2019-11-01"
+        },
+        "value": {
+          "raw": 35992360,
+          "fmt": "35.99M",
+          "longFmt": "35,992,360"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 - 318.21 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1572566400,
+          "fmt": "2019-11-01"
+        },
+        "value": {
+          "raw": 8720119,
+          "fmt": "8.72M",
+          "longFmt": "8,720,119"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 28430,
+          "fmt": "28.43k",
+          "longFmt": "28,430"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "O TOOLE AMIE THUENER",
+        "transactionText": "Sale at price 1195.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569974400,
+          "fmt": "2019-10-02"
+        },
+        "value": {
+          "raw": 65725,
+          "fmt": "65.72k",
+          "longFmt": "65,725"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 55,
+          "fmt": "55",
+          "longFmt": "55"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "O TOOLE AMIE THUENER",
+        "transactionText": "Sale at price 1195.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569974400,
+          "fmt": "2019-10-02"
+        },
+        "value": {
+          "raw": 65725,
+          "fmt": "65.72k",
+          "longFmt": "65,725"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 55,
+          "fmt": "55",
+          "longFmt": "55"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1222.49 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569888000,
+          "fmt": "2019-10-01"
+        },
+        "value": {
+          "raw": 977992,
+          "fmt": "977.99k",
+          "longFmt": "977,992"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569888000,
+          "fmt": "2019-10-01"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1222.49 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569888000,
+          "fmt": "2019-10-01"
+        },
+        "value": {
+          "raw": 977992,
+          "fmt": "977.99k",
+          "longFmt": "977,992"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1569888000,
+          "fmt": "2019-10-01"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1227.77 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1569542400,
+          "fmt": "2019-09-27"
+        },
+        "value": {
+          "raw": 92083,
+          "fmt": "92.08k",
+          "longFmt": "92,083"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1227.77 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1569542400,
+          "fmt": "2019-09-27"
+        },
+        "value": {
+          "raw": 92083,
+          "fmt": "92.08k",
+          "longFmt": "92,083"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1200.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1567641600,
+          "fmt": "2019-09-05"
+        },
+        "value": {
+          "raw": 90000,
+          "fmt": "90k",
+          "longFmt": "90,000"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1200.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1567641600,
+          "fmt": "2019-09-05"
+        },
+        "value": {
+          "raw": 90000,
+          "fmt": "90k",
+          "longFmt": "90,000"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1181.85 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1567468800,
+          "fmt": "2019-09-03"
+        },
+        "value": {
+          "raw": 945480,
+          "fmt": "945.48k",
+          "longFmt": "945,480"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1567468800,
+          "fmt": "2019-09-03"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1181.85 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1567468800,
+          "fmt": "2019-09-03"
+        },
+        "value": {
+          "raw": 945480,
+          "fmt": "945.48k",
+          "longFmt": "945,480"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1567468800,
+          "fmt": "2019-09-03"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1217.63 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1564617600,
+          "fmt": "2019-08-01"
+        },
+        "value": {
+          "raw": 974104,
+          "fmt": "974.1k",
+          "longFmt": "974,104"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1564617600,
+          "fmt": "2019-08-01"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1217.63 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1564617600,
+          "fmt": "2019-08-01"
+        },
+        "value": {
+          "raw": 974104,
+          "fmt": "974.1k",
+          "longFmt": "974,104"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 282.74 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1564617600,
+          "fmt": "2019-08-01"
+        },
+        "value": {
+          "raw": 226192,
+          "fmt": "226.19k",
+          "longFmt": "226,192"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 800,
+          "fmt": "800",
+          "longFmt": "800"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1238.57 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1564358400,
+          "fmt": "2019-07-29"
+        },
+        "value": {
+          "raw": 92893,
+          "fmt": "92.89k",
+          "longFmt": "92,893"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1238.57 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1564358400,
+          "fmt": "2019-07-29"
+        },
+        "value": {
+          "raw": 92893,
+          "fmt": "92.89k",
+          "longFmt": "92,893"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Conversion of Exercise of derivative security at price 218.56 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1561507200,
+          "fmt": "2019-06-26"
+        },
+        "value": {
+          "raw": 532403,
+          "fmt": "532.4k",
+          "longFmt": "532,403"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 2436,
+          "fmt": "2.44k",
+          "longFmt": "2,436"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Conversion of Exercise of derivative security at price 218.56 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1561507200,
+          "fmt": "2019-06-26"
+        },
+        "value": {
+          "raw": 532403,
+          "fmt": "532.4k",
+          "longFmt": "532,403"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 2436,
+          "fmt": "2.44k",
+          "longFmt": "2,436"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1280.51 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1556496000,
+          "fmt": "2019-04-29"
+        },
+        "value": {
+          "raw": 96038,
+          "fmt": "96.04k",
+          "longFmt": "96,038"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1280.51 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1556496000,
+          "fmt": "2019-04-29"
+        },
+        "value": {
+          "raw": 96038,
+          "fmt": "96.04k",
+          "longFmt": "96,038"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 75,
+          "fmt": "75",
+          "longFmt": "75"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1556150400,
+          "fmt": "2019-04-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1556150400,
+          "fmt": "2019-04-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1553472000,
+          "fmt": "2019-03-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1553472000,
+          "fmt": "2019-03-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1200.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1552348800,
+          "fmt": "2019-03-12"
+        },
+        "value": {
+          "raw": 180000,
+          "fmt": "180k",
+          "longFmt": "180,000"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 150,
+          "fmt": "150",
+          "longFmt": "150"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1200.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1552348800,
+          "fmt": "2019-03-12"
+        },
+        "value": {
+          "raw": 180000,
+          "fmt": "180k",
+          "longFmt": "180,000"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 150,
+          "fmt": "150",
+          "longFmt": "150"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 2769,
+          "fmt": "2.77k",
+          "longFmt": "2,769"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 2769,
+          "fmt": "2.77k",
+          "longFmt": "2,769"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1548374400,
+          "fmt": "2019-01-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1548374400,
+          "fmt": "2019-01-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1090.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547596800,
+          "fmt": "2019-01-16"
+        },
+        "value": {
+          "raw": 354250,
+          "fmt": "354.25k",
+          "longFmt": "354,250"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1090.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547596800,
+          "fmt": "2019-01-16"
+        },
+        "value": {
+          "raw": 354250,
+          "fmt": "354.25k",
+          "longFmt": "354,250"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1053.34 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547424000,
+          "fmt": "2019-01-14"
+        },
+        "value": {
+          "raw": 2995699,
+          "fmt": "3M",
+          "longFmt": "2,995,699"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547424000,
+          "fmt": "2019-01-14"
+        },
+        "value": {
+          "raw": 454411,
+          "fmt": "454.41k",
+          "longFmt": "454,411"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1053.34 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547424000,
+          "fmt": "2019-01-14"
+        },
+        "value": {
+          "raw": 2995699,
+          "fmt": "3M",
+          "longFmt": "2,995,699"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1547424000,
+          "fmt": "2019-01-14"
+        },
+        "value": {
+          "raw": 454411,
+          "fmt": "454.41k",
+          "longFmt": "454,411"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 84039,
+          "fmt": "84.04k",
+          "longFmt": "84,039"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 84039,
+          "fmt": "84.04k",
+          "longFmt": "84,039"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1027.20 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "value": {
+          "raw": 333840,
+          "fmt": "333.84k",
+          "longFmt": "333,840"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 84039,
+          "fmt": "84.04k",
+          "longFmt": "84,039"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 84039,
+          "fmt": "84.04k",
+          "longFmt": "84,039"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1027.20 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1546387200,
+          "fmt": "2019-01-02"
+        },
+        "value": {
+          "raw": 333840,
+          "fmt": "333.84k",
+          "longFmt": "333,840"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1545868800,
+          "fmt": "2018-12-27"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 48896,
+          "fmt": "48.9k",
+          "longFmt": "48,896"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1545868800,
+          "fmt": "2018-12-27"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 24075,
+          "fmt": "24.07k",
+          "longFmt": "24,075"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1545868800,
+          "fmt": "2018-12-27"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 48896,
+          "fmt": "48.9k",
+          "longFmt": "48,896"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1545868800,
+          "fmt": "2018-12-27"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 24075,
+          "fmt": "24.07k",
+          "longFmt": "24,075"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1545782400,
+          "fmt": "2018-12-26"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1545782400,
+          "fmt": "2018-12-26"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1045.38 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1545177600,
+          "fmt": "2018-12-19"
+        },
+        "value": {
+          "raw": 339748,
+          "fmt": "339.75k",
+          "longFmt": "339,748"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1045.38 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1545177600,
+          "fmt": "2018-12-19"
+        },
+        "value": {
+          "raw": 339748,
+          "fmt": "339.75k",
+          "longFmt": "339,748"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1077.08 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544572800,
+          "fmt": "2018-12-12"
+        },
+        "value": {
+          "raw": 3063216,
+          "fmt": "3.06M",
+          "longFmt": "3,063,216"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544572800,
+          "fmt": "2018-12-12"
+        },
+        "value": {
+          "raw": 454411,
+          "fmt": "454.41k",
+          "longFmt": "454,411"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1077.08 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544572800,
+          "fmt": "2018-12-12"
+        },
+        "value": {
+          "raw": 3063216,
+          "fmt": "3.06M",
+          "longFmt": "3,063,216"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544572800,
+          "fmt": "2018-12-12"
+        },
+        "value": {
+          "raw": 454411,
+          "fmt": "454.41k",
+          "longFmt": "454,411"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2844,
+          "fmt": "2.84k",
+          "longFmt": "2,844"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1045.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544054400,
+          "fmt": "2018-12-06"
+        },
+        "value": {
+          "raw": 339625,
+          "fmt": "339.62k",
+          "longFmt": "339,625"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1045.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1544054400,
+          "fmt": "2018-12-06"
+        },
+        "value": {
+          "raw": 339625,
+          "fmt": "339.62k",
+          "longFmt": "339,625"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1543190400,
+          "fmt": "2018-11-26"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 2768,
+          "fmt": "2.77k",
+          "longFmt": "2,768"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1543190400,
+          "fmt": "2018-11-26"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1543190400,
+          "fmt": "2018-11-26"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 2768,
+          "fmt": "2.77k",
+          "longFmt": "2,768"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1543190400,
+          "fmt": "2018-11-26"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1046.28 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1542758400,
+          "fmt": "2018-11-21"
+        },
+        "value": {
+          "raw": 340041,
+          "fmt": "340.04k",
+          "longFmt": "340,041"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1046.28 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1542758400,
+          "fmt": "2018-11-21"
+        },
+        "value": {
+          "raw": 340041,
+          "fmt": "340.04k",
+          "longFmt": "340,041"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1072.58 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541980800,
+          "fmt": "2018-11-12"
+        },
+        "value": {
+          "raw": 3051490,
+          "fmt": "3.05M",
+          "longFmt": "3,051,490"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541980800,
+          "fmt": "2018-11-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1072.58 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541980800,
+          "fmt": "2018-11-12"
+        },
+        "value": {
+          "raw": 3051490,
+          "fmt": "3.05M",
+          "longFmt": "3,051,490"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541980800,
+          "fmt": "2018-11-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1085.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541548800,
+          "fmt": "2018-11-07"
+        },
+        "value": {
+          "raw": 352625,
+          "fmt": "352.62k",
+          "longFmt": "352,625"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1085.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1541548800,
+          "fmt": "2018-11-07"
+        },
+        "value": {
+          "raw": 352625,
+          "fmt": "352.62k",
+          "longFmt": "352,625"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1540944000,
+          "fmt": "2018-10-31"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 178700,
+          "fmt": "178.7k",
+          "longFmt": "178,700"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1540944000,
+          "fmt": "2018-10-31"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 178700,
+          "fmt": "178.7k",
+          "longFmt": "178,700"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1540944000,
+          "fmt": "2018-10-31"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 178700,
+          "fmt": "178.7k",
+          "longFmt": "178,700"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1540944000,
+          "fmt": "2018-10-31"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 178700,
+          "fmt": "178.7k",
+          "longFmt": "178,700"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1540425600,
+          "fmt": "2018-10-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1540425600,
+          "fmt": "2018-10-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1141.14 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539734400,
+          "fmt": "2018-10-17"
+        },
+        "value": {
+          "raw": 370870,
+          "fmt": "370.87k",
+          "longFmt": "370,870"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1141.14 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539734400,
+          "fmt": "2018-10-17"
+        },
+        "value": {
+          "raw": 370870,
+          "fmt": "370.87k",
+          "longFmt": "370,870"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1120.02 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539302400,
+          "fmt": "2018-10-12"
+        },
+        "value": {
+          "raw": 3186457,
+          "fmt": "3.19M",
+          "longFmt": "3,186,457"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539302400,
+          "fmt": "2018-10-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1120.02 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539302400,
+          "fmt": "2018-10-12"
+        },
+        "value": {
+          "raw": 3186457,
+          "fmt": "3.19M",
+          "longFmt": "3,186,457"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1539302400,
+          "fmt": "2018-10-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1212.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1538524800,
+          "fmt": "2018-10-03"
+        },
+        "value": {
+          "raw": 393900,
+          "fmt": "393.9k",
+          "longFmt": "393,900"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1212.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1538524800,
+          "fmt": "2018-10-03"
+        },
+        "value": {
+          "raw": 393900,
+          "fmt": "393.9k",
+          "longFmt": "393,900"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1537833600,
+          "fmt": "2018-09-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1537833600,
+          "fmt": "2018-09-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1168.96 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1537315200,
+          "fmt": "2018-09-19"
+        },
+        "value": {
+          "raw": 379912,
+          "fmt": "379.91k",
+          "longFmt": "379,912"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1168.96 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1537315200,
+          "fmt": "2018-09-19"
+        },
+        "value": {
+          "raw": 379912,
+          "fmt": "379.91k",
+          "longFmt": "379,912"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1182.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536710400,
+          "fmt": "2018-09-12"
+        },
+        "value": {
+          "raw": 3362790,
+          "fmt": "3.36M",
+          "longFmt": "3,362,790"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536710400,
+          "fmt": "2018-09-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1182.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536710400,
+          "fmt": "2018-09-12"
+        },
+        "value": {
+          "raw": 3362790,
+          "fmt": "3.36M",
+          "longFmt": "3,362,790"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536710400,
+          "fmt": "2018-09-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1208.60 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536105600,
+          "fmt": "2018-09-05"
+        },
+        "value": {
+          "raw": 392795,
+          "fmt": "392.8k",
+          "longFmt": "392,795"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1208.60 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1536105600,
+          "fmt": "2018-09-05"
+        },
+        "value": {
+          "raw": 392795,
+          "fmt": "392.8k",
+          "longFmt": "392,795"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 309,
+          "fmt": "309",
+          "longFmt": "309"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 3078,
+          "fmt": "3.08k",
+          "longFmt": "3,078"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "I",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 309,
+          "fmt": "309",
+          "longFmt": "309"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "SCHMIDT ERIC E",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 3078,
+          "fmt": "3.08k",
+          "longFmt": "3,078"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1535328000,
+          "fmt": "2018-08-27"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1245.30 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534291200,
+          "fmt": "2018-08-15"
+        },
+        "value": {
+          "raw": 404722,
+          "fmt": "404.72k",
+          "longFmt": "404,722"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1245.30 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534291200,
+          "fmt": "2018-08-15"
+        },
+        "value": {
+          "raw": 404722,
+          "fmt": "404.72k",
+          "longFmt": "404,722"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1251.20 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534118400,
+          "fmt": "2018-08-13"
+        },
+        "value": {
+          "raw": 3559664,
+          "fmt": "3.56M",
+          "longFmt": "3,559,664"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534118400,
+          "fmt": "2018-08-13"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1251.20 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534118400,
+          "fmt": "2018-08-13"
+        },
+        "value": {
+          "raw": 3559664,
+          "fmt": "3.56M",
+          "longFmt": "3,559,664"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1534118400,
+          "fmt": "2018-08-13"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1533081600,
+          "fmt": "2018-08-01"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 50,
+          "fmt": "50",
+          "longFmt": "50"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1242.73 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1533081600,
+          "fmt": "2018-08-01"
+        },
+        "value": {
+          "raw": 403887,
+          "fmt": "403.89k",
+          "longFmt": "403,887"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Stock Gift at price 0.00 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1533081600,
+          "fmt": "2018-08-01"
+        },
+        "value": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 50,
+          "fmt": "50",
+          "longFmt": "50"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1242.73 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1533081600,
+          "fmt": "2018-08-01"
+        },
+        "value": {
+          "raw": 403887,
+          "fmt": "403.89k",
+          "longFmt": "403,887"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1257.92 per share.",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1532476800,
+          "fmt": "2018-07-25"
+        },
+        "value": {
+          "raw": 503168,
+          "fmt": "503.17k",
+          "longFmt": "503,168"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 400,
+          "fmt": "400",
+          "longFmt": "400"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1532476800,
+          "fmt": "2018-07-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "HENNESSY JOHN L",
+        "transactionText": "Sale at price 1257.92 per share.",
+        "moneyText": "",
+        "ownership": "D/I",
+        "startDate": {
+          "raw": 1532476800,
+          "fmt": "2018-07-25"
+        },
+        "value": {
+          "raw": 503168,
+          "fmt": "503.17k",
+          "longFmt": "503,168"
+        },
+        "filerRelation": "Director",
+        "shares": {
+          "raw": 400,
+          "fmt": "400",
+          "longFmt": "400"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1532476800,
+          "fmt": "2018-07-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 636,
+          "fmt": "636",
+          "longFmt": "636"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1208.73 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531872000,
+          "fmt": "2018-07-18"
+        },
+        "value": {
+          "raw": 392837,
+          "fmt": "392.84k",
+          "longFmt": "392,837"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1208.73 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531872000,
+          "fmt": "2018-07-18"
+        },
+        "value": {
+          "raw": 392837,
+          "fmt": "392.84k",
+          "longFmt": "392,837"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1174.86 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531353600,
+          "fmt": "2018-07-12"
+        },
+        "value": {
+          "raw": 3342477,
+          "fmt": "3.34M",
+          "longFmt": "3,342,477"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531353600,
+          "fmt": "2018-07-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1174.86 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531353600,
+          "fmt": "2018-07-12"
+        },
+        "value": {
+          "raw": 3342477,
+          "fmt": "3.34M",
+          "longFmt": "3,342,477"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1531353600,
+          "fmt": "2018-07-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1124.60 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1530748800,
+          "fmt": "2018-07-05"
+        },
+        "value": {
+          "raw": 365495,
+          "fmt": "365.5k",
+          "longFmt": "365,495"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1124.60 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1530748800,
+          "fmt": "2018-07-05"
+        },
+        "value": {
+          "raw": 365495,
+          "fmt": "365.5k",
+          "longFmt": "365,495"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1529884800,
+          "fmt": "2018-06-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1529884800,
+          "fmt": "2018-06-25"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 637,
+          "fmt": "637",
+          "longFmt": "637"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1183.04 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1529452800,
+          "fmt": "2018-06-20"
+        },
+        "value": {
+          "raw": 384488,
+          "fmt": "384.49k",
+          "longFmt": "384,488"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "PICHAI SUNDAR",
+        "transactionText": "Sale at price 1183.04 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1529452800,
+          "fmt": "2018-06-20"
+        },
+        "value": {
+          "raw": 384488,
+          "fmt": "384.49k",
+          "longFmt": "384,488"
+        },
+        "filerRelation": "Officer and Director",
+        "shares": {
+          "raw": 325,
+          "fmt": "325",
+          "longFmt": "325"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1141.02 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1528761600,
+          "fmt": "2018-06-12"
+        },
+        "value": {
+          "raw": 3246202,
+          "fmt": "3.25M",
+          "longFmt": "3,246,202"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1528761600,
+          "fmt": "2018-06-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Sale at price 1141.02 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1528761600,
+          "fmt": "2018-06-12"
+        },
+        "value": {
+          "raw": 3246202,
+          "fmt": "3.25M",
+          "longFmt": "3,246,202"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      },
+      {
+        "filerName": "DRUMMOND DAVID C",
+        "transactionText": "Conversion of Exercise of derivative security at price 159.78 per share.",
+        "moneyText": "",
+        "ownership": "D",
+        "startDate": {
+          "raw": 1528761600,
+          "fmt": "2018-06-12"
+        },
+        "value": {
+          "raw": 454571,
+          "fmt": "454.57k",
+          "longFmt": "454,571"
+        },
+        "filerRelation": "Officer",
+        "shares": {
+          "raw": 2845,
+          "fmt": "2.85k",
+          "longFmt": "2,845"
+        },
+        "filerUrl": "",
+        "maxAge": 1
+      }
+    ],
+    "maxAge": 1
+  },
+  "insiderHolders": {
+    "holders": [
+      {
+        "maxAge": 1,
+        "name": "BRIN SERGEY",
+        "relation": "President",
+        "url": "",
+        "transactionDescription": "Conversion of Exercise of derivative security",
+        "latestTransDate": {
+          "raw": 1502323200,
+          "fmt": "2017-08-10"
+        },
+        "positionDirect": {
+          "raw": 12000,
+          "fmt": "12k",
+          "longFmt": "12,000"
+        },
+        "positionDirectDate": {
+          "raw": 1502323200,
+          "fmt": "2017-08-10"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "DRUMMOND DAVID C",
+        "relation": "Officer",
+        "url": "",
+        "transactionDescription": "Sale",
+        "latestTransDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        },
+        "positionDirectDate": {
+          "raw": 1577923200,
+          "fmt": "2020-01-02"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "GREENE DIANE B",
+        "relation": "Officer and Director",
+        "url": "",
+        "transactionDescription": "Conversion of Exercise of derivative security",
+        "latestTransDate": {
+          "raw": 1498435200,
+          "fmt": "2017-06-26"
+        },
+        "positionDirect": {
+          "raw": 184,
+          "fmt": "184",
+          "longFmt": "184"
+        },
+        "positionDirectDate": {
+          "raw": 1498435200,
+          "fmt": "2017-06-26"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "HENNESSY JOHN L",
+        "relation": "Director",
+        "url": "",
+        "transactionDescription": "Sale",
+        "latestTransDate": {
+          "raw": 1569542400,
+          "fmt": "2019-09-27"
+        },
+        "positionIndirect": {
+          "raw": 3993,
+          "fmt": "3.99k",
+          "longFmt": "3,993"
+        },
+        "positionIndirectDate": {
+          "raw": 1569542400,
+          "fmt": "2019-09-27"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "MATHER ANN",
+        "relation": "Director",
+        "url": "",
+        "transactionDescription": "Sale",
+        "latestTransDate": {
+          "raw": 1499040000,
+          "fmt": "2017-07-03"
+        },
+        "positionDirect": {
+          "raw": 1680,
+          "fmt": "1.68k",
+          "longFmt": "1,680"
+        },
+        "positionDirectDate": {
+          "raw": 1499040000,
+          "fmt": "2017-07-03"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "O TOOLE AMIE THUENER",
+        "relation": "Officer",
+        "url": "",
+        "transactionDescription": "Sale",
+        "latestTransDate": {
+          "raw": 1569974400,
+          "fmt": "2019-10-02"
+        },
+        "positionDirect": {
+          "raw": 447,
+          "fmt": "447",
+          "longFmt": "447"
+        },
+        "positionDirectDate": {
+          "raw": 1569974400,
+          "fmt": "2019-10-02"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "PAGE LAWRENCE",
+        "relation": "Chief Executive Officer",
+        "url": "",
+        "transactionDescription": "Conversion of Exercise of derivative security",
+        "latestTransDate": {
+          "raw": 1487721600,
+          "fmt": "2017-02-22"
+        },
+        "positionDirect": {
+          "raw": 25000,
+          "fmt": "25k",
+          "longFmt": "25,000"
+        },
+        "positionDirectDate": {
+          "raw": 1487721600,
+          "fmt": "2017-02-22"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "PICHAI SUNDAR",
+        "relation": "Officer and Director",
+        "url": "",
+        "transactionDescription": "Conversion of Exercise of derivative security",
+        "latestTransDate": {
+          "raw": 1561507200,
+          "fmt": "2019-06-26"
+        },
+        "positionDirect": {
+          "raw": 5473,
+          "fmt": "5.47k",
+          "longFmt": "5,473"
+        },
+        "positionDirectDate": {
+          "raw": 1561507200,
+          "fmt": "2019-06-26"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "PORAT RUTH M",
+        "relation": "Chief Financial Officer",
+        "url": "",
+        "transactionDescription": "Stock Gift",
+        "latestTransDate": {
+          "raw": 1588204800,
+          "fmt": "2020-04-30"
+        },
+        "positionDirect": {
+          "raw": 859,
+          "fmt": "859",
+          "longFmt": "859"
+        },
+        "positionDirectDate": {
+          "raw": 1588204800,
+          "fmt": "2020-04-30"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "SCHMIDT ERIC E",
+        "relation": "Director",
+        "url": "",
+        "transactionDescription": "Conversion of Exercise of derivative security",
+        "latestTransDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        },
+        "positionDirect": {
+          "raw": 18882,
+          "fmt": "18.88k",
+          "longFmt": "18,882"
+        },
+        "positionDirectDate": {
+          "raw": 1551052800,
+          "fmt": "2019-02-25"
+        }
+      }
+    ],
+    "maxAge": 1
+  },
+  "netSharePurchaseActivity": {
+    "period": "6m",
+    "netPercentInsiderShares": {
+      "raw": 0.005,
+      "fmt": "0.50%"
+    },
+    "netInfoCount": {
+      "raw": 12,
+      "fmt": "12",
+      "longFmt": "12"
+    },
+    "totalInsiderShares": {
+      "raw": 976146,
+      "fmt": "976.15k",
+      "longFmt": "976,146"
+    },
+    "buyInfoShares": {
+      "raw": 34408,
+      "fmt": "34.41k",
+      "longFmt": "34,408"
+    },
+    "buyPercentInsiderShares": {
+      "raw": 0.035,
+      "fmt": "3.50%"
+    },
+    "sellInfoCount": {
+      "raw": 4,
+      "fmt": "4",
+      "longFmt": "4"
+    },
+    "sellInfoShares": {
+      "raw": 29392,
+      "fmt": "29.39k",
+      "longFmt": "29,392"
+    },
+    "sellPercentInsiderShares": {
+      "raw": 0.03,
+      "fmt": "3.00%"
+    },
+    "maxAge": 1,
+    "buyInfoCount": {
+      "raw": 8,
+      "fmt": "8",
+      "longFmt": "8"
+    },
+    "netInfoShares": {
+      "raw": 5016,
+      "fmt": "5.02k",
+      "longFmt": "5,016"
+    }
+  },
+  "majorHoldersBreakdown": {
+    "maxAge": 1,
+    "insidersPercentHeld": {
+      "raw": 0.0014300001,
+      "fmt": "0.14%"
+    },
+    "institutionsPercentHeld": {
+      "raw": 0.82294,
+      "fmt": "82.29%"
+    },
+    "institutionsFloatPercentHeld": {
+      "raw": 0.82411003,
+      "fmt": "82.41%"
+    },
+    "institutionsCount": {
+      "raw": 3746,
+      "fmt": "3.75k",
+      "longFmt": "3,746"
+    }
+  },
+  "quoteType": {
+    "exchange": "NMS",
+    "shortName": "Alphabet Inc.",
+    "longName": "Alphabet Inc.",
+    "exchangeTimezoneName": "America/New_York",
+    "exchangeTimezoneShortName": "EDT",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "-14400000",
+    "quoteType": "EQUITY",
+    "symbol": "GOOGL",
+    "messageBoardId": "finmb_29096",
+    "market": "us_market"
+  },
+  "institutionOwnership": {
+    "maxAge": 1,
+    "ownershipList": [
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Vanguard Group, Inc. (The)",
+        "pctHeld": {
+          "raw": 0.0785,
+          "fmt": "7.85%"
+        },
+        "position": {
+          "raw": 23553069,
+          "fmt": "23.55M",
+          "longFmt": "23,553,069"
+        },
+        "value": {
+          "raw": 27367488524,
+          "fmt": "27.37B",
+          "longFmt": "27,367,488,524"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Blackrock Inc.",
+        "pctHeld": {
+          "raw": 0.067,
+          "fmt": "6.70%"
+        },
+        "position": {
+          "raw": 20100166,
+          "fmt": "20.1M",
+          "longFmt": "20,100,166"
+        },
+        "value": {
+          "raw": 23355387883,
+          "fmt": "23.36B",
+          "longFmt": "23,355,387,883"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "FMR, LLC",
+        "pctHeld": {
+          "raw": 0.0428,
+          "fmt": "4.28%"
+        },
+        "position": {
+          "raw": 12852942,
+          "fmt": "12.85M",
+          "longFmt": "12,852,942"
+        },
+        "value": {
+          "raw": 14934475956,
+          "fmt": "14.93B",
+          "longFmt": "14,934,475,956"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "State Street Corporation",
+        "pctHeld": {
+          "raw": 0.039,
+          "fmt": "3.90%"
+        },
+        "position": {
+          "raw": 11689009,
+          "fmt": "11.69M",
+          "longFmt": "11,689,009"
+        },
+        "value": {
+          "raw": 13582044007,
+          "fmt": "13.58B",
+          "longFmt": "13,582,044,007"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Price (T.Rowe) Associates Inc",
+        "pctHeld": {
+          "raw": 0.023599999,
+          "fmt": "2.36%"
+        },
+        "position": {
+          "raw": 7084564,
+          "fmt": "7.08M",
+          "longFmt": "7,084,564"
+        },
+        "value": {
+          "raw": 8231909139,
+          "fmt": "8.23B",
+          "longFmt": "8,231,909,139"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1577750400,
+          "fmt": "2019-12-31"
+        },
+        "organization": "Norges Bank Investment Management",
+        "pctHeld": {
+          "raw": 0.016900001,
+          "fmt": "1.69%"
+        },
+        "position": {
+          "raw": 5082064,
+          "fmt": "5.08M",
+          "longFmt": "5,082,064"
+        },
+        "value": {
+          "raw": 6806865700,
+          "fmt": "6.81B",
+          "longFmt": "6,806,865,700"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Geode Capital Management, LLC",
+        "pctHeld": {
+          "raw": 0.0161,
+          "fmt": "1.61%"
+        },
+        "position": {
+          "raw": 4844024,
+          "fmt": "4.84M",
+          "longFmt": "4,844,024"
+        },
+        "value": {
+          "raw": 5628513686,
+          "fmt": "5.63B",
+          "longFmt": "5,628,513,686"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Wellington Management Company, LLP",
+        "pctHeld": {
+          "raw": 0.0149,
+          "fmt": "1.49%"
+        },
+        "position": {
+          "raw": 4485396,
+          "fmt": "4.49M",
+          "longFmt": "4,485,396"
+        },
+        "value": {
+          "raw": 5211805882,
+          "fmt": "5.21B",
+          "longFmt": "5,211,805,882"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Northern Trust Corporation",
+        "pctHeld": {
+          "raw": 0.0126,
+          "fmt": "1.26%"
+        },
+        "position": {
+          "raw": 3774414,
+          "fmt": "3.77M",
+          "longFmt": "3,774,414"
+        },
+        "value": {
+          "raw": 4385680347,
+          "fmt": "4.39B",
+          "longFmt": "4,385,680,347"
+        }
+      },
+      {
+        "maxAge": 1,
+        "reportDate": {
+          "raw": 1585612800,
+          "fmt": "2020-03-31"
+        },
+        "organization": "Bank of America Corporation",
+        "pctHeld": {
+          "raw": 0.012,
+          "fmt": "1.20%"
+        },
+        "position": {
+          "raw": 3585936,
+          "fmt": "3.59M",
+          "longFmt": "3,585,936"
+        },
+        "value": {
+          "raw": 4166678335,
+          "fmt": "4.17B",
+          "longFmt": "4,166,678,335"
+        }
+      }
+    ]
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 1450.66,
+      "fmt": "1,450.66"
+    },
+    "regularMarketOpen": {
+      "raw": 1452,
+      "fmt": "1,452.00"
+    },
+    "twoHundredDayAverage": {
+      "raw": 1349.4263,
+      "fmt": "1,349.43"
+    },
+    "trailingAnnualDividendYield": {},
+    "payoutRatio": {
+      "raw": 0,
+      "fmt": "0.00%"
+    },
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 1475.2,
+      "fmt": "1,475.20"
+    },
+    "navPrice": {},
+    "averageDailyVolume10Day": {
+      "raw": 1760642,
+      "fmt": "1.76M",
+      "longFmt": "1,760,642"
+    },
+    "totalAssets": {},
+    "regularMarketPreviousClose": {
+      "raw": 1450.66,
+      "fmt": "1,450.66"
+    },
+    "fiftyDayAverage": {
+      "raw": 1412.3077,
+      "fmt": "1,412.31"
+    },
+    "trailingAnnualDividendRate": {},
+    "open": {
+      "raw": 1452,
+      "fmt": "1,452.00"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 1760642,
+      "fmt": "1.76M",
+      "longFmt": "1,760,642"
+    },
+    "expireDate": {},
+    "yield": {},
+    "algorithm": null,
+    "dividendRate": {},
+    "exDividendDate": {},
+    "beta": {
+      "raw": 1.068946,
+      "fmt": "1.07"
+    },
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 1445,
+      "fmt": "1,445.00"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "trailingPE": {
+      "raw": 29.532398,
+      "fmt": "29.53"
+    },
+    "regularMarketVolume": {
+      "raw": 1887583,
+      "fmt": "1.89M",
+      "longFmt": "1,887,583"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {
+      "raw": 999486914560,
+      "fmt": "999.49B",
+      "longFmt": "999,486,914,560"
+    },
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 2227356,
+      "fmt": "2.23M",
+      "longFmt": "2,227,356"
+    },
+    "priceToSalesTrailing12Months": {
+      "raw": 5.9965496,
+      "fmt": "6.00"
+    },
+    "dayLow": {
+      "raw": 1445,
+      "fmt": "1,445.00"
+    },
+    "ask": {
+      "raw": 0,
+      "fmt": "0.00"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 1200,
+      "fmt": "1.2k",
+      "longFmt": "1,200"
+    },
+    "volume": {
+      "raw": 1887583,
+      "fmt": "1.89M",
+      "longFmt": "1,887,583"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 1530.74,
+      "fmt": "1,530.74"
+    },
+    "forwardPE": {
+      "raw": 26.680882,
+      "fmt": "26.68"
+    },
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {},
+    "fiftyTwoWeekLow": {
+      "raw": 1008.87,
+      "fmt": "1,008.87"
+    },
+    "bid": {
+      "raw": 1452.21,
+      "fmt": "1,452.21"
+    },
+    "tradeable": false,
+    "dividendYield": {},
+    "bidSize": {
+      "raw": 1200,
+      "fmt": "1.2k",
+      "longFmt": "1,200"
+    },
+    "dayHigh": {
+      "raw": 1475.2,
+      "fmt": "1,475.20"
+    }
+  },
+  "symbol": "GOOGL",
+  "pageViews": {
+    "shortTermTrend": "UP",
+    "midTermTrend": "UP",
+    "longTermTrend": "UP",
+    "maxAge": 1
+  },
+  "quoteData": {
+    "GOOGL": {
+      "sourceInterval": 15,
+      "regularMarketOpen": {
+        "raw": 1452,
+        "fmt": "1,452.00"
+      },
+      "exchange": "NMS",
+      "regularMarketTime": {
+        "raw": 1592942401,
+        "fmt": "4:00PM EDT"
+      },
+      "fiftyTwoWeekRange": {
+        "raw": "1008.87 - 1530.74",
+        "fmt": "1,008.87 - 1,530.74"
+      },
+      "sharesOutstanding": {
+        "raw": 300049984,
+        "fmt": "300.05M",
+        "longFmt": "300,049,984"
+      },
+      "regularMarketDayHigh": {
+        "raw": 1475.2,
+        "fmt": "1,475.20"
+      },
+      "shortName": "Alphabet Inc.",
+      "longName": "Alphabet Inc.",
+      "exchangeTimezoneName": "America/New_York",
+      "regularMarketChange": {
+        "raw": 13.319946,
+        "fmt": "13.32"
+      },
+      "regularMarketPreviousClose": {
+        "raw": 1450.66,
+        "fmt": "1,450.66"
+      },
+      "fiftyTwoWeekHighChange": {
+        "raw": -66.76001,
+        "fmt": "-66.76"
+      },
+      "exchangeTimezoneShortName": "EDT",
+      "fiftyTwoWeekLowChange": {
+        "raw": 455.11,
+        "fmt": "455.11"
+      },
+      "exchangeDataDelayedBy": 0,
+      "regularMarketDayLow": {
+        "raw": 1445,
+        "fmt": "1,445.00"
+      },
+      "priceHint": 2,
+      "currency": "USD",
+      "regularMarketPrice": {
+        "raw": 1463.98,
+        "fmt": "1,463.98"
+      },
+      "regularMarketVolume": {
+        "raw": 1887583,
+        "fmt": "1.888M",
+        "longFmt": "1,887,583"
+      },
+      "isLoading": false,
+      "triggerable": true,
+      "gmtOffSetMilliseconds": -14400000,
+      "firstTradeDateMilliseconds": 1092922200000,
+      "region": "US",
+      "marketState": "PRE",
+      "marketCap": {
+        "raw": 999486914560,
+        "fmt": "999.487B",
+        "longFmt": "999,486,914,560"
+      },
+      "quoteType": "EQUITY",
+      "invalid": false,
+      "symbol": "GOOGL",
+      "language": "en-US",
+      "fiftyTwoWeekLowChangePercent": {
+        "raw": 0.45110866,
+        "fmt": "45.11%"
+      },
+      "regularMarketDayRange": {
+        "raw": "1445.0 - 1475.2",
+        "fmt": "1,445.00 - 1,475.20"
+      },
+      "messageBoardId": "finmb_29096",
+      "fiftyTwoWeekHigh": {
+        "raw": 1530.74,
+        "fmt": "1,530.74"
+      },
+      "fiftyTwoWeekHighChangePercent": {
+        "raw": -0.0436129,
+        "fmt": "-4.36%"
+      },
+      "uuid": "e15ce71f-f533-3912-9f11-a46c09e2412b",
+      "market": "us_market",
+      "fiftyTwoWeekLow": {
+        "raw": 1008.87,
+        "fmt": "1,008.87"
+      },
+      "regularMarketChangePercent": {
+        "raw": 0.918199,
+        "fmt": "0.92%"
+      },
+      "fullExchangeName": "NasdaqGS",
+      "tradeable": false
+    }
+  },
+  "mktmData": {}
+}

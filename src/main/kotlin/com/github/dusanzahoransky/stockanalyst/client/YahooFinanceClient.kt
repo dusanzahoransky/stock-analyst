@@ -9,6 +9,7 @@ import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResp
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.etfstatistics.EtfStatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.holders.HoldersResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -131,6 +132,22 @@ class YahooFinanceClient @Autowired constructor(
             mapOf("ticker" to ticker.toYahooFormat())
         ) ?: throw RuntimeException("Failed to load $ticker")
         logger.debug("Analysis from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        lastCallTime = System.currentTimeMillis()
+        return response
+    }
+
+    fun getHolders(ticker: Ticker, mockData: Boolean): HoldersResponse {
+        if (mockData) {
+            val balanceSheetMock = ClassPathResource("HoldersMockGOOGL.json")
+            return jacksonObjectMapper().readValue(balanceSheetMock.inputStream, jacksonTypeRef<HoldersResponse>())
+        }
+        waitTimeout()
+        val response = restTemplate.getForObject(
+            "https://apidojo-yahoo-finance-v1.p.rapidapi.com/stock/v2/get-holders?symbol={ticker}",
+            HoldersResponse::class.java,
+            mapOf("ticker" to ticker.toYahooFormat())
+        ) ?: throw RuntimeException("Failed to load $ticker")
+        logger.debug("Holders from Yahoo API: ${jacksonObjectMapper().writeValueAsString(response)}")
         lastCallTime = System.currentTimeMillis()
         return response
     }

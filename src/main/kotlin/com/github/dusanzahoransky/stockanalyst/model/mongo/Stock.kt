@@ -16,8 +16,8 @@ data class Stock(
     val exchange: Exchange,
     var companyName: String? = null,
     var price: Double? = null,
-    var currency: Currency? = null,
-    var financialCurrency: Currency? = null,
+//    var currency: Currency? = null,
+//    var financialCurrency: Currency? = null,
     var change: Double? = null,
     var enterpriseValue: Double? = null,
 
@@ -75,18 +75,18 @@ data class Stock(
     var revenueGrowthLastYear: Double? = null,
     var revenueGrowthLast4Years: Double? = null,
 
-
-    var grossIncomeLastQuarter: Long? = null,
-    var grossIncome2QuartersAgo: Long? = null,
-    var grossIncome3QuartersAgo: Long? = null,
-    var grossIncomeLastYear: Long? = null,
-    var grossIncome2YearsAgo: Long? = null,
-    var grossIncome4YearsAgo: Long? = null,
-
-    var grossIncomeGrowthLastQuarter: Double? = null,
-    var grossIncomeGrowthLast2Quarters: Double? = null,
-    var grossIncomeGrowthLastYear: Double? = null,
-    var grossIncomeGrowthLast4Years: Double? = null,
+//
+//    var grossIncomeLastQuarter: Long? = null,
+//    var grossIncome2QuartersAgo: Long? = null,
+//    var grossIncome3QuartersAgo: Long? = null,
+//    var grossIncomeLastYear: Long? = null,
+//    var grossIncome2YearsAgo: Long? = null,
+//    var grossIncome4YearsAgo: Long? = null,
+//
+//    var grossIncomeGrowthLastQuarter: Double? = null,
+//    var grossIncomeGrowthLast2Quarters: Double? = null,
+//    var grossIncomeGrowthLastYear: Double? = null,
+//    var grossIncomeGrowthLast4Years: Double? = null,
 
 
     var ebitLastQuarter: Long? = null,
@@ -114,6 +114,17 @@ data class Stock(
     var netIncomeGrowthLastYear: Double? = null,
     var netIncomeGrowthLast4Years: Double? = null,
 
+    var profitMarginLastQuarter: Long? = null,
+    var profitMargin2QuartersAgo: Long? = null,
+    var profitMargin3QuartersAgo: Long? = null,
+    var profitMarginLastYear: Long? = null,
+    var profitMargin2YearsAgo: Long? = null,
+    var profitMargin4YearsAgo: Long? = null,
+
+    var profitMarginGrowthLastQuarter: Double? = null,
+    var profitMarginGrowthLast2Quarters: Double? = null,
+    var profitMarginGrowthLastYear: Double? = null,
+    var profitMarginGrowthLast4Years: Double? = null,
 
     var freeCashFlowLastQuarter: Long? = null,
     var freeCashFlow2QuartersAgo: Long? = null,
@@ -152,6 +163,31 @@ data class Stock(
     var inventoryGrowthLastYear: Double? = null,
     var inventoryGrowthLast4Years: Double? = null,
 
+    var currentAssetsLastQuarter: Long? = null,
+    var currentAssets2QuartersAgo: Long? = null,
+    var currentAssets3QuartersAgo: Long? = null,
+    var currentAssetsLastYear: Long? = null,
+    var currentAssets2YearsAgo: Long? = null,
+    var currentAssets4YearsAgo: Long? = null,
+
+    var currentLiabilitiesLastQuarter: Long? = null,
+    var currentLiabilities2QuartersAgo: Long? = null,
+    var currentLiabilities3QuartersAgo: Long? = null,
+    var currentLiabilitiesLastYear: Long? = null,
+    var currentLiabilities2YearsAgo: Long? = null,
+    var currentLiabilities4YearsAgo: Long? = null,
+
+    var currentRatioLastQuarter: Double? = null,
+    var currentRatio2QuartersAgo: Double? = null,
+    var currentRatio3QuartersAgo: Double? = null,
+    var currentRatioLastYear: Double? = null,
+    var currentRatio2YearsAgo: Double? = null,
+    var currentRatio4YearsAgo: Double? = null,
+
+    var currentRatioGrowthLastQuarter: Double? = null,
+    var currentRatioGrowthLast2Quarters: Double? = null,
+    var currentRatioGrowthLastYear: Double? = null,
+    var currentRatioGrowthLast4Years: Double? = null,
 
     var totalLiabilitiesLastQuarter: Long? = null,
     var totalLiabilities2QuartersAgo: Long? = null,
@@ -218,7 +254,7 @@ data class Stock(
     var stockGrowthLast4Years: Double? = null,
 
 
-    var epsCurrentQuarterEstimate: Double? = null,
+//    var epsCurrentQuarterEstimate: Double? = null,
     var epsLastQuarter: Double? = null,
     var eps2QuartersAgo: Double? = null,
     var eps3QuartersAgo: Double? = null,
@@ -233,19 +269,19 @@ data class Stock(
     var epsGrowthLastYear: Double? = null,
     var epsGrowthLast4Years: Double? = null,
 
-    var priceLastQuarter: Double? = null,
-    var price2QuartersAgo: Double? = null,
-    var price3QuartersAgo: Double? = null,
-    var price4QuartersAgo: Double? = null,
-    var priceLastYear: Double? = null,
-    var price2YearsAgo: Double? = null,
-    var price3YearsAgo: Double? = null,
-    var price4YearsAgo: Double? = null,
-
-    var priceGrowthLastQuarter: Double? = null,
-    var priceGrowthLast2Quarters: Double? = null,
-    var priceGrowthLastYear: Double? = null,
-    var priceGrowthLast4Years: Double? = null,
+//    var priceLastQuarter: Double? = null,
+//    var price2QuartersAgo: Double? = null,
+//    var price3QuartersAgo: Double? = null,
+//    var price4QuartersAgo: Double? = null,
+//    var priceLastYear: Double? = null,
+//    var price2YearsAgo: Double? = null,
+//    var price3YearsAgo: Double? = null,
+//    var price4YearsAgo: Double? = null,
+//
+//    var priceGrowthLastQuarter: Double? = null,
+//    var priceGrowthLast2Quarters: Double? = null,
+//    var priceGrowthLastYear: Double? = null,
+//    var priceGrowthLast4Years: Double? = null,
 
     var peLastQuarter: Double? = null,
     var pe2QuartersAgo: Double? = null,
@@ -262,6 +298,10 @@ data class Stock(
     var peGrowthLast4Years: Double? = null,
 
     var growthEstimate5y: Double? = null,
+
+    var roicLastYear: Double? = null,
+    var roicLast2YearsAgo: Double? = null,
+    var roicLast4YearsAgo: Double? = null,
 
     var roic1Y: Double? = null,
     var roic3Y: Double? = null,
@@ -300,11 +340,11 @@ data class Stock(
     var futurePrice10Years: Double? = null,
 
     var stickerPrice15pcGrowth: Double? = null,
-    var stickerPrice10pcGrowth: Double? = null,
+//    var stickerPrice10pcGrowth: Double? = null,
     var stickerPrice5pcGrowth: Double? = null,
 
     var belowStickerPrice15pc: Double? = null,
-    var belowStickerPrice10pc: Double? = null,
+//    var belowStickerPrice10pc: Double? = null,
     var belowStickerPrice5pc: Double? = null,
 
     var quarterEnds: List<Long>? = null,

@@ -11,6 +11,7 @@ import com.github.dusanzahoransky.stockanalyst.model.mongo.*
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.chart.ChartResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.financials.FinancialsResponse
+import com.github.dusanzahoransky.stockanalyst.model.yahoo.holders.HoldersResponse
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.statistics.StatisticsResponse
 import com.github.dusanzahoransky.stockanalyst.repository.*
 import com.github.dusanzahoransky.stockanalyst.util.CacheUtils
@@ -36,6 +37,7 @@ class StockService @Autowired constructor(
     val chartRepo: ChartRepo,
     val financialsRepo:FinancialsRepo,
     val analysisRepo:AnalysisRepo,
+    val holdersRepo: HoldersRepo,
     val statisticsRepo:StatisticsRepo
 ) {
     companion object {
@@ -51,7 +53,7 @@ class StockService @Autowired constructor(
     }
 
     private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Stock? {
-        val (chart, financials, analysis, statistics) = loadData(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        val (chart, financials, analysis, statistics, holders) = loadData(ticker, forceRefreshCache, mockData, forceRefreshDate)
 
         val stock = Stock(symbol = ticker.symbol, exchange = ticker.exchange)
 
@@ -61,6 +63,7 @@ class StockService @Autowired constructor(
         processFinancials(financials.response, stock, exchangeRate)
         processStatistics(statistics.response, stock, exchangeRate)
         processAnalysis(analysis.response, stock)
+        processHolders(holders.response, stock)
         processChart(chart.response, stock, CHART_SAMPLING_INTERVAL)
 
         //delete previous version
@@ -74,7 +77,8 @@ class StockService @Autowired constructor(
         val chart: Chart,
         val financials: Financials,
         val analysis:Analysis,
-        val statistics:Statistics
+        val statistics:Statistics,
+        val holders:Holders
     )
 
     private fun loadData(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): YahooData {
@@ -82,7 +86,8 @@ class StockService @Autowired constructor(
         val financials = loadFinancials(ticker, forceRefreshCache, mockData, forceRefreshDate)
         val analysis = loadAnalysis(ticker, forceRefreshCache, mockData, forceRefreshDate)
         val statistics = loadStatistics(ticker, forceRefreshCache, mockData, forceRefreshDate)
-        return YahooData(chart, financials, analysis, statistics)
+        val holders = loadHolders(ticker, forceRefreshCache, mockData, forceRefreshDate)
+        return YahooData(chart, financials, analysis, statistics, holders)
     }
 
     private fun loadChart(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Chart {
@@ -158,6 +163,31 @@ class StockService @Autowired constructor(
         //store new version
         log.debug("Saving Analysis $ticker into DB")
         return analysisRepo.insert(data)
+    }
+
+    private fun loadHolders(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Holders {
+        val cachedData = holdersRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
+
+        //retrieve from cache
+        if (useCache(forceRefreshCache, cachedData, forceRefreshDate)) {
+            log.debug("Retrieving Holders from cache: $ticker")
+            return cachedData!!
+        }
+
+        val response = yahooFinanceClient.getHolders(ticker, mockData)
+
+        val data = Holders(null, ticker.symbol, ticker.exchange, LocalDate.now(), response)
+
+        //do not cache mock data
+        if (mockData) {
+            return data
+        }
+
+        //delete previous version
+        holdersRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)?.let { holdersRepo.delete(it) }
+        //store new version
+        log.debug("Saving Holders $ticker into DB")
+        return holdersRepo.insert(data)
     }
 
     private fun loadStatistics(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Statistics {
@@ -259,12 +289,12 @@ class StockService @Autowired constructor(
         stock.revenue2YearsAgo = incomeStatement2YearsAgo?.totalRevenue?.raw?.toLong()
         stock.revenue4YearsAgo = incomeStatement4YearsAgo?.totalRevenue?.raw?.toLong()
 
-        stock.grossIncomeLastQuarter = incomeStatementLastQuarter?.grossProfit?.raw?.toLong()
-        stock.grossIncome2QuartersAgo = incomeStatement2QuartersAgo?.grossProfit?.raw?.toLong()
-        stock.grossIncome3QuartersAgo = incomeStatement3QuartersAgo?.grossProfit?.raw?.toLong()
-        stock.grossIncomeLastYear = incomeStatementLastYear?.grossProfit?.raw?.toLong()
-        stock.grossIncome2YearsAgo = incomeStatement2YearsAgo?.grossProfit?.raw?.toLong()
-        stock.grossIncome4YearsAgo = incomeStatement4YearsAgo?.grossProfit?.raw?.toLong()
+//        stock.grossIncomeLastQuarter = incomeStatementLastQuarter?.grossProfit?.raw?.toLong()
+//        stock.grossIncome2QuartersAgo = incomeStatement2QuartersAgo?.grossProfit?.raw?.toLong()
+//        stock.grossIncome3QuartersAgo = incomeStatement3QuartersAgo?.grossProfit?.raw?.toLong()
+//        stock.grossIncomeLastYear = incomeStatementLastYear?.grossProfit?.raw?.toLong()
+//        stock.grossIncome2YearsAgo = incomeStatement2YearsAgo?.grossProfit?.raw?.toLong()
+//        stock.grossIncome4YearsAgo = incomeStatement4YearsAgo?.grossProfit?.raw?.toLong()
 
         stock.ebitLastQuarter = incomeStatementLastQuarter?.ebit?.raw?.toLong()
         stock.ebit2QuartersAgo = incomeStatement2QuartersAgo?.ebit?.raw?.toLong()
@@ -301,6 +331,20 @@ class StockService @Autowired constructor(
         stock.inventory2YearsAgo = balanceSheet2YearsAgo?.inventory?.raw?.toLong()
         stock.inventory4YearsAgo = balanceSheet4YearsAgo?.inventory?.raw?.toLong()
 
+        stock.currentAssetsLastQuarter = balanceSheetLastQuarter?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssets2QuartersAgo = balanceSheet2QuartersAgo?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssets3QuartersAgo = balanceSheet3QuartersAgo?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssetsLastYear = balanceSheetLastYear?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssets2YearsAgo = balanceSheet2YearsAgo?.totalCurrentAssets?.raw?.toLong()
+        stock.currentAssets4YearsAgo = balanceSheet4YearsAgo?.totalCurrentAssets?.raw?.toLong()
+
+        stock.currentLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalCurrentLiabilities?.raw?.toLong()
+        stock.currentLiabilities2QuartersAgo = balanceSheet2QuartersAgo?.totalCurrentLiabilities?.raw?.toLong()
+        stock.currentLiabilities3QuartersAgo = balanceSheet3QuartersAgo?.totalCurrentLiabilities?.raw?.toLong()
+        stock.currentLiabilitiesLastYear = balanceSheetLastYear?.totalCurrentLiabilities?.raw?.toLong()
+        stock.currentLiabilities2YearsAgo = balanceSheet2YearsAgo?.totalCurrentLiabilities?.raw?.toLong()
+        stock.currentLiabilities4YearsAgo = balanceSheet4YearsAgo?.totalCurrentLiabilities?.raw?.toLong()
+
         stock.totalLiabilitiesLastQuarter = balanceSheetLastQuarter?.totalLiab?.raw?.toLong()
         stock.totalLiabilities2QuartersAgo = balanceSheet2QuartersAgo?.totalLiab?.raw?.toLong()
         stock.totalLiabilities3QuartersAgo = balanceSheet3QuartersAgo?.totalLiab?.raw?.toLong()
@@ -329,7 +373,7 @@ class StockService @Autowired constructor(
         stock.stock2YearsAgo = balanceSheet2YearsAgo?.commonStock?.raw?.toLong()
         stock.stock4YearsAgo = balanceSheet4YearsAgo?.commonStock?.raw?.toLong()
 
-        stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
+//        stock.epsCurrentQuarterEstimate = multiply(earnings?.earningsChart?.currentQuarterEstimate?.raw?.toDouble(), exchangeRate)
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
         stock.epsLastQuarter = multiply(epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
@@ -356,6 +400,11 @@ class StockService @Autowired constructor(
         stock.growthEstimate5y = percent(analysis.earningsTrend?.trend?.firstOrNull { it.period == "+5y" }?.growth?.raw)
     }
 
+    private fun processHolders(holders: HoldersResponse, stock: Stock) {
+        stock.buyPercentInsiderShares = percent(holders.netSharePurchaseActivity?.buyPercentInsiderShares?.raw)
+        stock.sellPercentInsiderShares = percent(holders.netSharePurchaseActivity?.sellPercentInsiderShares?.raw)
+    }
+
     private fun processStatistics(stats: StatisticsResponse, stock: Stock, exchangeRate: Double) {
         val financialData = stats.financialData
         val price = stats.price
@@ -365,8 +414,8 @@ class StockService @Autowired constructor(
 
         stock.companyName = stats.quoteType?.shortName
         stock.price = price?.regularMarketPrice?.raw
-        stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
-        stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
+//        stock.currency = price?.currency?.let { it -> Currency.valueOf(it) }
+//        stock.financialCurrency = financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }
 
         stock.change = percent(price?.regularMarketChangePercent?.raw)
         stock.enterpriseValue = defaultKeyStatistics.enterpriseValue?.raw
@@ -416,13 +465,13 @@ class StockService @Autowired constructor(
     }
 
     private fun getExchangeRate(financials: FinancialsResponse, stock: Stock): Double {
-        stock.currency = financials.price?.currency?.let { it -> Currency.valueOf(it) }
-        stock.financialCurrency = financials.earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }
+        val currency = financials.price?.currency?.let { it -> Currency.valueOf(it) }
+        val financialCurrency = financials.earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }
 
-        val differentCurrencies = stock.currency != stock.financialCurrency
+        val differentCurrencies = currency != financialCurrency
 
-        return if (differentCurrencies && stock.currency != null && stock.financialCurrency != null) {
-            exchangeRateClient.getRate(stock.financialCurrency!!, stock.currency!!)
+        return if (differentCurrencies && currency != null && financialCurrency != null) {
+            exchangeRateClient.getRate(financialCurrency, currency)
         } else {
             1.0
         }

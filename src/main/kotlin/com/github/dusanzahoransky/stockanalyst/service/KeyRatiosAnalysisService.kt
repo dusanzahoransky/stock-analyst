@@ -75,20 +75,20 @@ class KeyRatiosAnalysisService {
         stock.pe9Y = cumulativeGrowthRate(current?.pe, nineYBefore?.pe, 9, "pe9Y", 0.1)
 
 
-        val roicCurrent = div(
-            minus(current?.netIncome, current?.dividends),
-            plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
+        stock.roicLastYear = div(
+            minus(current?.netIncome, current?.dividends?:0.0),
+            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
         )
-        val roic1YBefore = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends),
-            plus(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble())
+        stock.roicLast2YearsAgo = div(
+            minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+            minus(plus(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble()), stock.cash2YearsAgo?.toDouble())
         )
-        val roic3YBefore = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends),
-            plus(stock.totalLiabilities4YearsAgo?.toDouble(), stock.totalShareholdersEquity4YearsAgo?.toDouble())
+        stock.roicLast4YearsAgo = div(
+            minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+            minus(plus(stock.totalLiabilities4YearsAgo?.toDouble(), stock.totalShareholdersEquity4YearsAgo?.toDouble()), stock.cash4YearsAgo?.toDouble())
         )
-        stock.roic1Y = cumulativeGrowthRate(roicCurrent, roic1YBefore, 1, "roic1Y", 0.01)
-        stock.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
+        stock.roic1Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast2YearsAgo, 1, "roic1Y", 0.01)
+        stock.roic3Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast4YearsAgo, 3, "roic3Y", 0.01)
 
         val estimatedEpsGrowthRate = stock.bps9Y ?: stock.bps5Y ?: stock.bps3Y
         stock.rule1GrowthRate = minIfPositive(estimatedEpsGrowthRate, stock.growthEstimate5y)
@@ -99,15 +99,18 @@ class KeyRatiosAnalysisService {
         val numberOfYear = 10.0
         val epsGrowthEstimate = plus(div(stock.rule1GrowthRate, 100), 1.0)
         stock.futureEPS10Years = multiply(stock.currentEps, epsGrowthEstimate?.pow(numberOfYear))
-        stock.futurePrice10Years = multiply(stock.rule1PE, stock.futureEPS10Years)
 
-        stock.stickerPrice15pcGrowth = div(stock.futurePrice10Years, (1 + 0.15).pow(10))
-        stock.stickerPrice10pcGrowth = div(stock.futurePrice10Years, (1 + 0.10).pow(10))
-        stock.stickerPrice5pcGrowth = div(stock.futurePrice10Years, (1 + 0.05).pow(10))
+        if(stock.rule1PE != null && stock.rule1PE!! > 0.0 && stock.futureEPS10Years != null && stock.futureEPS10Years!! > 0.0) {
+            stock.futurePrice10Years = multiply(stock.rule1PE, stock.futureEPS10Years)
 
-        stock.belowStickerPrice15pc = percent(div(minus(stock.stickerPrice15pcGrowth, stock.price), stock.price))
-        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
-        stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
+            stock.stickerPrice15pcGrowth = div(stock.futurePrice10Years, (1 + 0.15).pow(10))
+//        stock.stickerPrice10pcGrowth = div(stock.futurePrice10Years, (1 + 0.10).pow(10))
+            stock.stickerPrice5pcGrowth = div(stock.futurePrice10Years, (1 + 0.05).pow(10))
+
+            stock.belowStickerPrice15pc = percent(div(minus(stock.stickerPrice15pcGrowth, stock.price), stock.price))
+//        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
+            stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
+        }
     }
 
     private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {

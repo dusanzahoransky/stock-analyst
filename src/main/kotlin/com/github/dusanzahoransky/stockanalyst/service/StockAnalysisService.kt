@@ -64,10 +64,10 @@ class StockAnalysisService {
         stock.revenueGrowthLastYear = percentGrowth(stock.revenueLastYear, stock.revenue2YearsAgo, "revenueGrowthLastYear")
         stock.revenueGrowthLast4Years = percentGrowth(stock.revenueLastYear, stock.revenue4YearsAgo, "revenueGrowthLast4Years")
 
-        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
-        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
-        stock.grossIncomeGrowthLastYear = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome2YearsAgo, "grossIncomeGrowthLastYear")
-        stock.grossIncomeGrowthLast4Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome4YearsAgo, "grossIncomeGrowthLast4Years")
+//        stock.grossIncomeGrowthLastQuarter = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome2QuartersAgo, "grossIncomeGrowthLastQuarter")
+//        stock.grossIncomeGrowthLast2Quarters = percentGrowth(stock.grossIncomeLastQuarter, stock.grossIncome3QuartersAgo, "grossIncomeGrowthLast2Quarters")
+//        stock.grossIncomeGrowthLastYear = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome2YearsAgo, "grossIncomeGrowthLastYear")
+//        stock.grossIncomeGrowthLast4Years = percentGrowth(stock.grossIncomeLastYear, stock.grossIncome4YearsAgo, "grossIncomeGrowthLast4Years")
 
         stock.ebitGrowthLastQuarter = percentGrowth(stock.ebitLastQuarter, stock.ebit2QuartersAgo, "ebitGrowthLastQuarter")
         stock.ebitGrowthLast2Quarters = percentGrowth(stock.ebitLastQuarter, stock.ebit3QuartersAgo, "ebitGrowthLast2Quarters")
@@ -78,6 +78,18 @@ class StockAnalysisService {
         stock.netIncomeGrowthLast2Quarters = percentGrowth(stock.netIncomeLastQuarter, stock.netIncome3QuartersAgo, "netIncomeGrowthLast2Quarters")
         stock.netIncomeGrowthLastYear = percentGrowth(stock.netIncomeLastYear, stock.netIncome2YearsAgo, "netIncomeGrowthLastYear")
         stock.netIncomeGrowthLast4Years = percentGrowth(stock.netIncomeLastYear, stock.netIncome4YearsAgo, "netIncomeGrowthLast4Years")
+
+        stock.profitMarginLastQuarter = div(stock.netIncomeLastQuarter, stock.revenueLastQuarter)
+        stock.profitMargin2QuartersAgo = div(stock.netIncome2QuartersAgo, stock.revenue2QuartersAgo)
+        stock.profitMargin3QuartersAgo = div(stock.netIncome3QuartersAgo, stock.revenue3QuartersAgo)
+        stock.profitMarginLastYear = div(stock.netIncomeLastYear, stock.revenueLastYear)
+        stock.profitMargin2YearsAgo = div(stock.netIncome2YearsAgo, stock.revenue2YearsAgo)
+        stock.profitMargin4YearsAgo = div(stock.netIncome4YearsAgo, stock.revenue4YearsAgo)
+
+        stock.profitMarginGrowthLastQuarter = percentGrowth(stock.profitMarginLastQuarter, stock.profitMargin2QuartersAgo, "profitMarginGrowthLastQuarter", 0.1)
+        stock.profitMarginGrowthLast2Quarters = percentGrowth(stock.profitMarginLastQuarter, stock.profitMargin3QuartersAgo, "profitMarginGrowthLast2Quarters", 0.1)
+        stock.profitMarginGrowthLastYear = percentGrowth(stock.profitMarginLastYear, stock.profitMargin2YearsAgo, "profitMarginGrowthLastYear", 0.1)
+        stock.profitMarginGrowthLast4Years = percentGrowth(stock.profitMarginLastYear, stock.profitMargin4YearsAgo, "profitMarginGrowthLast4Years", 0.1)
 
         stock.freeCashFlowGrowthLastQuarter = percentGrowth(stock.freeCashFlowLastQuarter, stock.freeCashFlow2QuartersAgo, "freeCashFlowGrowthLastQuarter")
         stock.freeCashFlowGrowthLast2Quarters = percentGrowth(stock.freeCashFlowLastQuarter, stock.freeCashFlow3QuartersAgo, "freeCashFlowGrowthLast2Quarters")
@@ -93,6 +105,18 @@ class StockAnalysisService {
         stock.inventoryGrowthLast2Quarters = percentGrowth(stock.inventoryLastQuarter, stock.inventory3QuartersAgo, "inventoryGrowthLast2Quarters")
         stock.inventoryGrowthLastYear = percentGrowth(stock.inventoryLastYear, stock.inventory2YearsAgo, "inventoryGrowthLastYear")
         stock.inventoryGrowthLast4Years = percentGrowth(stock.inventoryLastYear, stock.inventory4YearsAgo, "inventoryGrowthLast4Years")
+
+        stock.currentRatioLastQuarter = div(stock.currentAssetsLastQuarter?.toDouble(), stock.currentLiabilitiesLastQuarter?.toDouble())
+        stock.currentRatio2QuartersAgo = div(stock.currentAssets2QuartersAgo?.toDouble(), stock.currentLiabilities2QuartersAgo?.toDouble())
+        stock.currentRatio3QuartersAgo = div(stock.currentAssets3QuartersAgo?.toDouble(), stock.currentLiabilities3QuartersAgo?.toDouble())
+        stock.currentRatioLastYear = div(stock.currentAssetsLastYear?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble())
+        stock.currentRatio2YearsAgo = div(stock.currentAssets2YearsAgo?.toDouble(), stock.currentLiabilities2YearsAgo?.toDouble())
+        stock.currentRatio4YearsAgo = div(stock.currentAssets4YearsAgo?.toDouble(), stock.currentLiabilities4YearsAgo?.toDouble())
+
+        stock.currentRatioGrowthLastQuarter = percentGrowth(stock.currentRatioLastQuarter, stock.currentRatio2QuartersAgo, "currentRatioGrowthLastQuarter", 0.1)
+        stock.currentRatioGrowthLast2Quarters = percentGrowth(stock.currentRatioLastQuarter, stock.currentRatio3QuartersAgo, "currentRatioGrowthLast2Quarters", 0.1)
+        stock.currentRatioGrowthLastYear = percentGrowth(stock.currentRatioLastYear, stock.currentRatio2YearsAgo, "currentRatioGrowthLastYear", 0.1)
+        stock.currentRatioGrowthLast4Years = percentGrowth(stock.currentRatioLastYear, stock.currentRatio4YearsAgo, "currentRatioGrowthLast4Years", 0.1)
 
         stock.totalLiabilitiesGrowthLastQuarter = percentGrowth(stock.totalLiabilitiesLastQuarter, stock.totalLiabilities2QuartersAgo, "totalLiabilitiesGrowthLastQuarter")
         stock.totalLiabilitiesGrowthLast2Quarters = percentGrowth(stock.totalLiabilitiesLastQuarter, stock.totalLiabilities3QuartersAgo, "totalLiabilitiesGrowthLast2Quarters")
@@ -143,28 +167,28 @@ class StockAnalysisService {
                 val chartDataAt = chartDataFirstBefore(epochSecToLocalDate(quarter), chartData)
                 when (index) {
                     0 -> {
-                        stock.priceLastQuarter = chartDataAt?.price
+//                        stock.priceLastQuarter = chartDataAt?.price
                         if (stock.epsLastQuarter != null) {
                             chartDataAt?.epsQuarterly = stock.epsLastQuarter
-                            stock.peLastQuarter = div(stock.priceLastQuarter, CalcUtils.multiply(stock.epsLastQuarter, 4.0))
+                            stock.peLastQuarter = div(chartDataAt?.price, CalcUtils.multiply(stock.epsLastQuarter, 4.0))
                         }
                     }
                     1 -> {
-                        stock.price2QuartersAgo = chartDataAt?.price
+//                        stock.price2QuartersAgo = chartDataAt?.price
                         if (stock.eps2QuartersAgo != null) {
                             chartDataAt?.epsQuarterly = stock.eps2QuartersAgo
-                            stock.pe2QuartersAgo = div(stock.price2QuartersAgo, CalcUtils.multiply(stock.eps2QuartersAgo, 4.0))
+                            stock.pe2QuartersAgo = div(chartDataAt?.price, CalcUtils.multiply(stock.eps2QuartersAgo, 4.0))
                         }
                     }
                     2 -> {
-                        stock.price3QuartersAgo = chartDataAt?.price
+//                        stock.price3QuartersAgo = chartDataAt?.price
                         if (stock.eps3QuartersAgo != null) {
                             chartDataAt?.epsQuarterly = stock.eps3QuartersAgo
-                            stock.pe3QuartersAgo = div(stock.price3QuartersAgo, CalcUtils.multiply(stock.eps3QuartersAgo, 4.0))
+                            stock.pe3QuartersAgo = div(chartDataAt?.price, CalcUtils.multiply(stock.eps3QuartersAgo, 4.0))
                         }
                     }
                     3 -> {
-                        stock.price4QuartersAgo = chartDataAt?.price
+//                        stock.price4QuartersAgo = chartDataAt?.price
                         if (stock.eps4QuartersAgo != null) {
                             chartDataAt?.epsQuarterly = stock.eps4QuartersAgo
                             stock.pe4QuartersAgo = div(chartDataAt?.price, CalcUtils.multiply(stock.eps4QuartersAgo, 4.0))
@@ -180,28 +204,28 @@ class StockAnalysisService {
 
                 when (index) {
                     0 -> {
-                        stock.priceLastYear = chartDataAt?.price
+//                        stock.priceLastYear = chartDataAt?.price
                         if (stock.epsLastYear != null) {
                             chartDataAt?.epsAnnually = stock.epsLastYear
                             stock.peLastYear = div(chartDataAt?.price, stock.epsLastYear)
                         }
                     }
                     1 -> {
-                        stock.price2YearsAgo = chartDataAt?.price
+//                        stock.price2YearsAgo = chartDataAt?.price
                         if (stock.eps2YearsAgo != null) {
                             chartDataAt?.epsAnnually = stock.eps2YearsAgo
                             stock.pe2YearsAgo = div(chartDataAt?.price, stock.eps2YearsAgo)
                         }
                     }
                     2 -> {
-                        stock.price3YearsAgo = chartDataAt?.price
+//                        stock.price3YearsAgo = chartDataAt?.price
                         if (stock.eps3YearsAgo != null) {
                             chartDataAt?.epsAnnually = stock.eps3YearsAgo
                             stock.pe3YearsAgo = div(chartDataAt?.price, stock.eps3YearsAgo)
                         }
                     }
                     3 -> {
-                        stock.price4YearsAgo = chartDataAt?.price
+//                        stock.price4YearsAgo = chartDataAt?.price
                         if (stock.eps4YearsAgo != null) {
                             chartDataAt?.epsAnnually = stock.eps4YearsAgo
                             stock.pe4YearsAgo = div(chartDataAt?.price, stock.eps4YearsAgo)
@@ -211,10 +235,10 @@ class StockAnalysisService {
             }
         }
 
-        stock.priceGrowthLastQuarter = percentGrowth(stock.priceLastQuarter, stock.price2QuartersAgo, "priceGrowthLastQuarter")
-        stock.priceGrowthLast2Quarters = percentGrowth(stock.priceLastQuarter, stock.price3QuartersAgo, "priceGrowthLast2Quarters")
-        stock.priceGrowthLastYear = percentGrowth(stock.priceLastYear, stock.price2YearsAgo, "priceGrowthLastYear")
-        stock.priceGrowthLast4Years = percentGrowth(stock.priceLastYear, stock.price4YearsAgo, "priceGrowthLast4Years")
+//        stock.priceGrowthLastQuarter = percentGrowth(stock.priceLastQuarter, stock.price2QuartersAgo, "priceGrowthLastQuarter")
+//        stock.priceGrowthLast2Quarters = percentGrowth(stock.priceLastQuarter, stock.price3QuartersAgo, "priceGrowthLast2Quarters")
+//        stock.priceGrowthLastYear = percentGrowth(stock.priceLastYear, stock.price2YearsAgo, "priceGrowthLastYear")
+//        stock.priceGrowthLast4Years = percentGrowth(stock.priceLastYear, stock.price4YearsAgo, "priceGrowthLast4Years")
 
         stock.peGrowthLastQuarter = percentGrowth(stock.peLastQuarter, stock.pe2QuartersAgo, "peGrowthLastQuarter", 0.01)
         stock.peGrowthLast2Quarters = percentGrowth(stock.peLastQuarter, stock.pe3QuartersAgo, "peGrowthLast2Quarters", 0.01)
