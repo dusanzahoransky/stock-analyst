@@ -281,13 +281,31 @@ class WatchlistRepo {
         )
     }
 
+    fun usWatchList(): Set<Ticker> {
+        return setOf(
+            //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
+            /*StockTicker.fromString("ZNH:NYSE"),*/
+            /* StockTicker.fromString("INO:NYSE"),*/
+            //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
+            Ticker.fromString("ROK:NYSE"),
+            Ticker.fromString("HON:NYSE"),
+            Ticker.fromString("AAl:NASDAQ"),
+            Ticker.fromString("UAL:NASDAQ"),
+//            StockTicker.fromString("LTM:NYSE"),
+            Ticker.fromString("DAL:NYSE"),
+            Ticker.fromString("MA:NYSE"),
+            Ticker.fromString("EMR:NYSE"),
+            Ticker.fromString("CHTR:NASDAQ"),
+            Ticker.fromString("CMCSA:NASDAQ")
+        )
+    }
+
     fun usInvestedIn(): Set<Ticker> {
         return setOf(
             Ticker.fromString("ALXN:NASDAQ"),
             Ticker.fromString("TMUS:NASDAQ"),
             Ticker.fromString("GILD:NASDAQ"),
             Ticker.fromString("AMAT:NASDAQ"),
-            Ticker.fromString("CHTR:NASDAQ"),
             Ticker.fromString("REGI:NASDAQ"),
             Ticker.fromString("GRPN:NASDAQ"),
             Ticker.fromString("T:NYSE"),
@@ -295,7 +313,6 @@ class WatchlistRepo {
             Ticker.fromString("TSM:NYSE"),
             Ticker.fromString("LMT:NYSE"),
             Ticker.fromString("KO:NYSE"),
-            Ticker.fromString("EMR:NYSE"),
             Ticker.fromString("KO:NYSE"),
             Ticker.fromString("TSM:NYSE"),
             *investedInUsdTech().toTypedArray()
@@ -312,7 +329,6 @@ class WatchlistRepo {
             Ticker.fromString("BKNG:NASDAQ"),
             Ticker.fromString("MSFT:NASDAQ"),
             Ticker.fromString("EB:NYSE"),
-            Ticker.fromString("CMCSA:NASDAQ"),
             Ticker.fromString("FB:NASDAQ"),
             Ticker.fromString("QCOM:NASDAQ"),
             Ticker.fromString("AVGO:NASDAQ"),
@@ -379,22 +395,6 @@ class WatchlistRepo {
             Ticker.fromString("RYA:FTSE"),
             Ticker.fromString("WIZZ:FTSE")
 
-        )
-    }
-
-    fun usWatchList(): Set<Ticker> {
-        return setOf(
-            //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
-            /*StockTicker.fromString("ZNH:NYSE"),*/
-            /* StockTicker.fromString("INO:NYSE"),*/
-            //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
-            Ticker.fromString("ROK:NYSE"),
-            Ticker.fromString("HON:NYSE"),
-            Ticker.fromString("AAl:NASDAQ"),
-            Ticker.fromString("UAL:NASDAQ"),
-//            StockTicker.fromString("LTM:NYSE"),
-            Ticker.fromString("DAL:NYSE"),
-            Ticker.fromString("MA:NYSE")
         )
     }
 

@@ -76,18 +76,24 @@ class KeyRatiosAnalysisService {
 
         //multiple slightly different ways how to calculate, common one is (net income - dividends) / (total assets - current liabilities - cash and cash equivaletns)
 
-        stock.roicLastYear = div(
-            minus(current?.netIncome, current?.dividends?:0.0),
-            minus(plus(stock.totalAssetsLastYear?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cashLastYear?.toDouble())
-//            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+        stock.roicLastYear = percent(
+            div(
+                minus(current?.netIncome, current?.dividends?:0.0),
+                minus(plus(stock.totalAssetsLastYear?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+    //            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+            )
         )
-        stock.roicLast2YearsAgo = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
-            minus(plus(stock.totalAssets2YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash2YearsAgo?.toDouble())
+        stock.roicLast2YearsAgo = percent(
+            div(
+                minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+                minus(plus(stock.totalAssets2YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash2YearsAgo?.toDouble())
+            )
         )
-        stock.roicLast4YearsAgo = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
-            minus(plus(stock.totalAssets4YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash4YearsAgo?.toDouble())
+        stock.roicLast4YearsAgo = percent(
+            div(
+                minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+                minus(plus(stock.totalAssets4YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash4YearsAgo?.toDouble())
+            )
         )
         stock.roic1Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast2YearsAgo, 1, "roic1Y", 0.001)
         stock.roic3Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast4YearsAgo, 3, "roic3Y", 0.001)
