@@ -148,11 +148,6 @@ class StockAnalysisService {
         stock.totalLiabilitiesToEquityGrowthLastYear = percentGrowth(stock.totalLiabilitiesToEquityLastYear, stock.totalLiabilitiesToEquity2YearsAgo, "totalLiabilitiesToEquityGrowthLastYear", 0.01)
         stock.totalLiabilitiesToEquityGrowthLast4Years = percentGrowth(stock.totalLiabilitiesToEquityLastYear, stock.totalLiabilitiesToEquity4YearsAgo, "totalLiabilitiesToEquityGrowthLast4Years", 0.01)
 
-        stock.stockGrowthLastQuarter = percentGrowth(stock.stockLastQuarter, stock.stock2QuartersAgo, "stockGrowthLastQuarter")
-        stock.stockGrowthLast2Quarters = percentGrowth(stock.stockLastQuarter, stock.stock3QuartersAgo, "stockGrowthLast2Quarters")
-        stock.stockGrowthLastYear = percentGrowth(stock.stockLastYear, stock.stock2YearsAgo, "stockGrowthLastYear")
-        stock.stockGrowthLast4Years = percentGrowth(stock.stockLastYear, stock.stock4YearsAgo, "stockGrowthLast4Years")
-
         stock.stockRepurchasedGrowthLastQuarter = percentGrowth(stock.stockRepurchasedLastQuarter, stock.stockRepurchased2QuartersAgo, "stockRepurchasedGrowthLastQuarter")
         stock.stockRepurchasedGrowthLast2Quarters = percentGrowth(stock.stockRepurchasedLastQuarter, stock.stockRepurchased3QuartersAgo, "stockRepurchasedGrowthLast2Quarters")
         stock.stockRepurchasedGrowthLastYear = percentGrowth(stock.stockRepurchasedLastYear, stock.stockRepurchased2YearsAgo, "stockRepurchasedGrowthLastYear")

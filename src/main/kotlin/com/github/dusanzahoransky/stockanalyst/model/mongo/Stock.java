@@ -264,16 +264,12 @@ public class Stock implements LastRefreshDate {
     private Double stockRepurchasedGrowthLastYear = null;
     private Double stockRepurchasedGrowthLast4Years = null;
 
-
-    private Long stockLastQuarter = null;
-    private Long stock2QuartersAgo = null;
-    private Long stock3QuartersAgo = null;
-    private Long stockLastYear = null;
-    private Long stock2YearsAgo = null;
-    private Long stock4YearsAgo = null;
+    private Double stockLastQuarter = null;
+    private Double stockLastYear = null;
+    private Double stock2YearsAgo = null;
+    private Double stock4YearsAgo = null;
 
     private Double stockGrowthLastQuarter = null;
-    private Double stockGrowthLast2Quarters = null;
     private Double stockGrowthLastYear = null;
     private Double stockGrowthLast4Years = null;
 
@@ -2115,56 +2111,38 @@ public class Stock implements LastRefreshDate {
         return this;
     }
 
-    public Long getStockLastQuarter() {
+    public Double getStockLastQuarter() {
         return stockLastQuarter;
     }
 
-    public Stock setStockLastQuarter(Long stockLastQuarter) {
+    public Stock setStockLastQuarter(Double stockLastQuarter) {
         this.stockLastQuarter = stockLastQuarter;
         return this;
     }
 
-    public Long getStock2QuartersAgo() {
-        return stock2QuartersAgo;
-    }
-
-    public Stock setStock2QuartersAgo(Long stock2QuartersAgo) {
-        this.stock2QuartersAgo = stock2QuartersAgo;
-        return this;
-    }
-
-    public Long getStock3QuartersAgo() {
-        return stock3QuartersAgo;
-    }
-
-    public Stock setStock3QuartersAgo(Long stock3QuartersAgo) {
-        this.stock3QuartersAgo = stock3QuartersAgo;
-        return this;
-    }
-
-    public Long getStockLastYear() {
+    public Double getStockLastYear() {
         return stockLastYear;
     }
 
-    public Stock setStockLastYear(Long stockLastYear) {
+    public Stock setStockLastYear(Double stockLastYear) {
         this.stockLastYear = stockLastYear;
         return this;
     }
 
-    public Long getStock2YearsAgo() {
+    public Double getStock2YearsAgo() {
         return stock2YearsAgo;
     }
 
-    public Stock setStock2YearsAgo(Long stock2YearsAgo) {
+    public Stock setStock2YearsAgo(Double stock2YearsAgo) {
         this.stock2YearsAgo = stock2YearsAgo;
         return this;
     }
 
-    public Long getStock4YearsAgo() {
+    public Double getStock4YearsAgo() {
         return stock4YearsAgo;
     }
 
-    public Stock setStock4YearsAgo(Long stock4YearsAgo) {
+    public Stock setStock4YearsAgo(Double stock4YearsAgo) {
         this.stock4YearsAgo = stock4YearsAgo;
         return this;
     }
@@ -2175,15 +2153,6 @@ public class Stock implements LastRefreshDate {
 
     public Stock setStockGrowthLastQuarter(Double stockGrowthLastQuarter) {
         this.stockGrowthLastQuarter = stockGrowthLastQuarter;
-        return this;
-    }
-
-    public Double getStockGrowthLast2Quarters() {
-        return stockGrowthLast2Quarters;
-    }
-
-    public Stock setStockGrowthLast2Quarters(Double stockGrowthLast2Quarters) {
-        this.stockGrowthLast2Quarters = stockGrowthLast2Quarters;
         return this;
     }
 

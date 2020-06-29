@@ -373,13 +373,6 @@ class StockService @Autowired constructor(
         stock.stockRepurchased2YearsAgo = cashFlow2YearsAgo?.repurchaseOfStock?.raw?.toLong()
         stock.stockRepurchased4YearsAgo = cashFlow4YearsAgo?.repurchaseOfStock?.raw?.toLong()
 
-        stock.stockLastQuarter = balanceSheetLastQuarter?.commonStock?.raw?.toLong()
-        stock.stock2QuartersAgo = balanceSheet2QuartersAgo?.commonStock?.raw?.toLong()
-        stock.stock3QuartersAgo = balanceSheet3QuartersAgo?.commonStock?.raw?.toLong()
-        stock.stockLastYear = balanceSheetLastYear?.commonStock?.raw?.toLong()
-        stock.stock2YearsAgo = balanceSheet2YearsAgo?.commonStock?.raw?.toLong()
-        stock.stock4YearsAgo = balanceSheet4YearsAgo?.commonStock?.raw?.toLong()
-
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
         stock.epsLastQuarter = multiply(epsQuarterly?.getOrNull(0)?.actual?.raw?.toDouble(), exchangeRate)
         stock.eps2QuartersAgo = multiply(epsQuarterly?.getOrNull(1)?.actual?.raw?.toDouble(), exchangeRate)
@@ -468,6 +461,8 @@ class StockService @Autowired constructor(
         stock.fiveYearAvgDividendYield = summaryDetail.fiveYearAvgDividendYield?.raw
         stock.trailingAnnualDividendYield = percent(summaryDetail.trailingAnnualDividendYield?.raw)
         stock.payoutRatio = percent(summaryDetail.payoutRatio?.raw)
+
+        stock.stockLastQuarter = defaultKeyStatistics.sharesOutstanding?.raw
     }
 
     private fun getExchangeRate(currency: Currency?, financialCurrency: Currency?, stock: Stock): Double {

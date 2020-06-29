@@ -4,6 +4,7 @@ import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
@@ -119,6 +120,15 @@ class KeyRatiosAnalysisService {
 //        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
             stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
         }
+
+        //TODO not Rule 1 related, move somewhere else
+        stock.stockLastYear = current?.shares
+        stock.stock2YearsAgo = oneYBefore?.shares
+        stock.stock4YearsAgo = threeYBefore?.shares
+
+        stock.stockGrowthLastQuarter = CalcUtils.percentGrowth(stock.stockLastQuarter, stock.stockLastYear, "stockGrowthLastQuarter")
+        stock.stockGrowthLastYear = CalcUtils.percentGrowth(stock.stockLastYear, stock.stock2YearsAgo, "stockGrowthLastYear")
+        stock.stockGrowthLast4Years = CalcUtils.percentGrowth(stock.stockLastYear, stock.stock4YearsAgo, "stockGrowthLast4Years")
     }
 
     private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {
