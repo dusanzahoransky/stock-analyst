@@ -1,6 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.repository
 
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist.*
 import org.springframework.stereotype.Repository
@@ -9,602 +9,625 @@ import org.springframework.stereotype.Repository
 @Repository
 class WatchlistRepo {
 
-    fun getWatchlist(watchlist: Watchlist): Set<StockTicker> {
-        when (watchlist) {
-            TEST -> return test()
-            TEST_INDICES -> return testIndices()
-            INDICES -> return indices()
-            TO_INVEST -> return toInvest()
-            INVESTED -> return invested()
-            EUR -> return eur()
-            AUD -> return aud()
-            USD -> return usd()
-            USD_TECH -> return usdTech()
-            GBP -> return gbp()
-            CHF -> return chf()
-            GBP_INDICES -> return gbpIndices()
-            EUR_INDICES -> return eurIndices()
-            INVESTED_IN_GBP_INDICES -> return investedIndicesInGbp()
-            INVESTED_IN_EUR_INDICES -> return investedIndicesInEur()
-            AUD_INDICES -> return audIndices()
-            AUD_INDICES_AU -> return auIndicesAud()
-            AUD_INDICES_US -> return usIndicesAud()
-            AUD_INDICES_ASIA -> return asiaIndicesAud()
-            AUD_INDICES_BOND -> return bondIndicesAud()
-            INVESTED_IN_AUD_INDICES -> return investedIndicesInAud()
-            INVESTED_IN_EUR -> return investedInEur()
-            INVESTED_IN_GBP -> return investedInGbp()
-            INVESTED_INDICES_IN_GBP -> return investedIndicesInGbp()
-            GBP_INDICES_BOND -> return bondIndicesInGbp()
-            EUR_INDICES_BOND -> return bondIndicesInEur()
-            WATCH_LIST_INDICES_GBP -> return watchListIndicesGbp()
-            WATCH_LIST_INDICES_EUR -> return watchListIndicesEur()
-            INVESTED_IN_USD -> return investedInUsd()
-            INVESTED_IN_USD_TECH -> return investedInUsdTech()
-            WATCH_LIST_USD -> return watchListUsd()
-            WATCH_LIST_EUR -> return watchListEur()
-            WATCH_LIST_CHF -> return watchListChf()
-            INVESTED_IN_CHF -> return investedInChf()
-            WATCH_LIST_GBP -> return watchListGbp()
-            WATCH_LIST_AUD -> return watchListAud()
-            WATCH_LIST_INDICES_AUD -> return watchListIndicesAud()
-            INVESTED_INDICES_IN_AUD -> return investedIndicesInAud()
-            INVESTED_IN_AUD -> return investedInAud()
-            NASDAQ_100 -> return nasdaq100()
-            USD_DIVIDENDS -> return dividendsUsd()
-            AIRLINES -> return airlines()
-/*            TRADING_212 -> return allTrading212()
-            TRADING_212_US -> return allTrading212(Exchange.NYSE, Exchange.NASDAQ)
-            TRADING_212_EUR -> return allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
-            TRADING_212_GBP -> return allTrading212(Exchange.FTSE)*/
+    fun getWatchlist(watchlist: Watchlist): Set<Ticker> {
+        return when (watchlist) {
+            //Test
+            TEST -> test()
+            TEST_ETF -> testEtfs()
+            TO_CHECK -> toCheck()
+
+            //ETFs
+            ETF_ALL -> etfsAll()
+
+            AU_ETF_ALL -> audEtfsAll()
+            AU_ETF_AU -> auEtfsAu()
+            AU_ETF_US -> auEtfsUs()
+            AU_ETF_ASIA -> auEtfsAsia()
+            AU_ETF_BOND -> auEtfsBond()
+            AU_ETF_INVESTED_IN -> auEtfsInvestedIn()
+            AU_ETF_WATCHLIST -> auEtfsWatchlist()
+
+            GB_ETF_ALL -> gbpEtfsAll()
+            GB_ETF_BOND -> gbEtfsBonds()
+            GB_ETF_INVESTED_IN -> gbEtfsInvestedIn()
+            GB_ETF_WATCHLIST -> gbEtfsWatchlist()
+
+            EU_ETF_ALL -> euEtfsAll()
+            EU_ETF_BOND -> euEtfsBondEtfs()
+            EU_ETF_INVESTED_IN -> euEtfsInvestedIn()
+            EU_ETF_WATCHLIST -> euEtfsWatchlist()
+
+            ETF_TRADING_212_INVESTED_IN -> etfTrading212InvestedIn()
+
+            //Stocks
+            ALL_INVESTED -> invested()
+
+            US_ALL -> us()
+            US_INVESTED_IN -> usInvestedIn()
+            US_WATCHLIST -> usWatchList()
+
+            EU_ALL -> eu()
+            EU_INVESTED_IN -> euInvestedIn()
+            EU_WATCHLIST -> euWatchList()
+
+            GB_ALL -> gb()
+            GB_INVESTED_IN -> gbInvestedIn()
+            GB_WATCHLIST -> gbWatchlist()
+
+            AU_ALL -> au()
+            AU_WATCHLIST -> auWatchlist()
+            AU_INVESTED_IN -> auInvestedIn()
+
+            CHF_ALL -> chf()
+            CHF_WATCHLIST -> chfWatchlist()
+
+            AIRLINES -> airlines()
+            TECH -> tech()
+            NASDAQ_100 -> nasdaq100()
+            DIVIDENDS -> dividends()
+
+/*          TRADING_212 -> allTrading212()
+            TRADING_212_US -> allTrading212(Exchange.NYSE, Exchange.NASDAQ)
+            TRADING_212_EU -> allTrading212(Exchange.DAX, Exchange.ENX, Exchange.MCE, Exchange.PA, Exchange.SIX)
+            TRADING_212_GB -> allTrading212(Exchange.FTSE)
+            */
             else -> throw IllegalArgumentException("Watchlist $this is not supported yet")
         }
     }
 
-    fun toInvest(): Set<StockTicker> {
+    fun toCheck(): Set<Ticker> {
         return setOf(
-//            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("CLDR:NYSE")
-            /* StockTicker.fromString("LMT:NYSE"),
-             StockTicker.fromString("SO:NYSE")*/
-/*            StockTicker.fromString("DAL:NYSE"),
-            StockTicker.fromString("UAL:NASDAQ")*/
+//            Ticker.fromString("ALXN:NASDAQ")
+//            Ticker.fromString("GOOGL:NASDAQ"),
+            Ticker.fromString("MSFT:NASDAQ"),
+            Ticker.fromString("BKNG:NASDAQ"),
+//            Ticker.fromString("REGI:NASDAQ"),
+            Ticker.fromString("CLDR:NYSE"),
+            Ticker.fromString("TCOM:NASDAQ")
+//            Ticker.fromString("GRPN:NASDAQ"),
+//            Ticker.fromString("NOK:NYSE"),
+//            Ticker.fromString("INTC:NASDAQ"),
+//            Ticker.fromString("AVGO:NASDAQ")
         )
     }
 
-    fun invested(): Set<StockTicker> {
+    fun invested(): Set<Ticker> {
         return setOf(
-            *investedInAud().toTypedArray(),
-            *investedInUsd().toTypedArray(),
-            *investedInGbp().toTypedArray(),
-            *investedInEur().toTypedArray()
+            *auInvestedIn().toTypedArray(),
+            *usInvestedIn().toTypedArray(),
+            *gbInvestedIn().toTypedArray(),
+            *euInvestedIn().toTypedArray()
         )
     }
 
-    fun eur(): Set<StockTicker> {
+    fun eu(): Set<Ticker> {
         return setOf(
-            *investedInEur().toTypedArray(),
-            *watchListEur().toTypedArray()
+            *euInvestedIn().toTypedArray(),
+            *euWatchList().toTypedArray()
         )
     }
 
-    fun aud(): Set<StockTicker> {
+    fun au(): Set<Ticker> {
         return setOf(
-            *investedInAud().toTypedArray(),
-            *watchListAud().toTypedArray()
+            *auInvestedIn().toTypedArray(),
+            *auWatchlist().toTypedArray()
         )
     }
 
-    fun audIndices(): Set<StockTicker> {
+    fun audEtfsAll(): Set<Ticker> {
         return setOf(
-            *investedIndicesInAud().toTypedArray(),
-            *watchListIndicesAud().toTypedArray()
+            *auEtfsInvestedIn().toTypedArray(),
+            *auEtfsWatchlist().toTypedArray()
         )
     }
 
-    fun indices(): Set<StockTicker> {
+    fun etfsAll(): Set<Ticker> {
         return setOf(
-            *audIndices().toTypedArray(),
-            *gbpIndices().toTypedArray()
+            *audEtfsAll().toTypedArray(),
+            *euEtfsAll().toTypedArray(),
+            *gbpEtfsAll().toTypedArray()
         )
     }
 
-    fun testIndices(): Set<StockTicker> {
+    fun testEtfs(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("VTS:ASX"),
-            StockTicker.fromString("ASIA:ASX")
+            Ticker.fromString("VTS:ASX")
         )
     }
 
-    fun test(): Set<StockTicker> {
+    fun test(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("TSM:NYSE")
+            Ticker.fromString("TSM:NYSE")
         )
     }
 
-    fun usdTech(): Set<StockTicker> {
+    fun tech(): Set<Ticker> {
         return setOf(
             *investedInUsdTech().toTypedArray(),
             *watchListUsdTech().toTypedArray()
         )
     }
 
-    fun usd(): Set<StockTicker> {
+    fun us(): Set<Ticker> {
         return setOf(
-            *investedInUsd().toTypedArray(),
-            *watchListUsd().toTypedArray(),
-            *dividendsUsd().toTypedArray()
+            *usInvestedIn().toTypedArray(),
+            *usWatchList().toTypedArray(),
+            *dividends().toTypedArray()
             /**nasdaq100().toTypedArray()*/
         )
     }
 
-    fun gbp(): Set<StockTicker> {
+    fun gb(): Set<Ticker> {
         return setOf(
-            *investedInGbp().toTypedArray(),
-            *watchListGbp().toTypedArray()
+            *gbInvestedIn().toTypedArray(),
+            *gbWatchlist().toTypedArray()
         )
     }
 
-    fun eurIndices(): Set<StockTicker> {
+    fun euEtfsAll(): Set<Ticker> {
         return setOf(
-            *investedIndicesInEur().toTypedArray(),
-            *watchListIndicesEur().toTypedArray(),
-            *bondIndicesInEur().toTypedArray()
+            *euEtfsInvestedIn().toTypedArray(),
+            *euEtfsWatchlist().toTypedArray(),
+            *euEtfsBondEtfs().toTypedArray()
         )
     }
 
-    fun gbpIndices(): Set<StockTicker> {
+    fun gbpEtfsAll(): Set<Ticker> {
         return setOf(
-            *investedIndicesInGbp().toTypedArray(),
-            *watchListIndicesGbp().toTypedArray(),
-            *bondIndicesInGbp().toTypedArray()
+            *gbEtfsInvestedIn().toTypedArray(),
+            *gbEtfsWatchlist().toTypedArray(),
+            *gbEtfsBonds().toTypedArray()
         )
     }
 
-    fun chf(): Set<StockTicker> {
+    fun chf(): Set<Ticker> {
         return setOf(
-            *investedInChf().toTypedArray(),
-            *watchListChf().toTypedArray()
+            *chfWatchlist().toTypedArray()
         )
     }
 
-    fun watchListEur(): Set<StockTicker> {
+    fun euWatchList(): Set<Ticker> {
         return setOf(
 /*            StockTicker.fromString("KU2:DAX"),*/
-            StockTicker.fromString("SU:PA")
+            Ticker.fromString("SIE:DAX"),
+            Ticker.fromString("SU:PA"),
+            Ticker.fromString("LHA:DAX")
         )
     }
 
-    fun investedInEur(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("SIE:DAX"),
-            StockTicker.fromString("LHA:DAX")
-        )
-    }
-
-    fun investedIndicesInGbp(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("VUSA:FTSE"),
-            StockTicker.fromString("CNDX:FTSE"),
-            StockTicker.fromString("VDEV:FTSE"),
-            StockTicker.fromString("VUKE:FTSE"),
-            StockTicker.fromString("VFEM:FTSE")
-        )
-    }
-
-    fun investedIndicesInEur(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("VWCE:DAX"),
-            StockTicker.fromString("IUS3:DAX")
-        )
-    }
-
-    fun bondIndicesInEur(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("VGTY:DAX"), //USD Treasury Bond
-            StockTicker.fromString("VGOV:DAX"), //U.K. Gilt
-            StockTicker.fromString("VGEM:DAX"), //Emerging Markets Government Bond
-            StockTicker.fromString("VGEB:DAX")  //Eurozone Government Bond
-        )
-    }
-
-    fun bondIndicesInGbp(): Set<StockTicker> {
+    fun euInvestedIn(): Set<Ticker> {
         return setOf(
         )
     }
 
-    fun watchListIndicesEur(): Set<StockTicker> {
+    fun gbEtfsInvestedIn(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("SXR1:DAX"),
-            StockTicker.fromString("EXS1:DAX"),     //iShares Core DAX UCITS ETF (DE)
-            StockTicker.fromString("ZPRA:DAX"), //SPDR S&amp;P Pan Asia Dividend Aristocrats UCITS ETF
-            StockTicker.fromString("SPYW:DAX"),  //SPDR S&amp;P Euro Dividend Aristocrats UCITS ETF
-            StockTicker.fromString("ZPRV:DAX"),
-            StockTicker.fromString("LYMS:DAX")
+            Ticker.fromString("VUSA:FTSE"),
+            Ticker.fromString("CNDX:FTSE"),
+            Ticker.fromString("VDEV:FTSE"),
+            Ticker.fromString("VUKE:FTSE"),
+            Ticker.fromString("VFEM:FTSE")
         )
     }
 
-    fun watchListIndicesGbp(): Set<StockTicker> {
+    fun euEtfsInvestedIn(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("VWCE:DAX"),
+            Ticker.fromString("IUS3:DAX"),
+            Ticker.fromString("SXR8:DAX"),
+            Ticker.fromString("QDVE:DAX")
+        )
+    }
+
+    fun euEtfsBondEtfs(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("VGTY:DAX"), //USD Treasury Bond
+            Ticker.fromString("VGOV:DAX"), //U.K. Gilt
+            Ticker.fromString("VGEM:DAX"), //Emerging Markets Government Bond
+            Ticker.fromString("VGEB:DAX")  //Eurozone Government Bond
+        )
+    }
+
+    fun gbEtfsBonds(): Set<Ticker> {
+        return setOf(
+        )
+    }
+
+    fun etfTrading212InvestedIn(): Set<Ticker> {
+        return setOf(
+            *euEtfsInvestedIn().toTypedArray(),
+            *gbEtfsInvestedIn().toTypedArray()
+        )
+    }
+
+    fun euEtfsWatchlist(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("QDVE:DAX"),
+            Ticker.fromString("SXR8:DAX"),
+            Ticker.fromString("SXR1:DAX"),
+            Ticker.fromString("EXS1:DAX"),      //iShares Core DAX UCITS ETF (DE)
+            Ticker.fromString("ZPRA:DAX"),      //SPDR S&P Pan Asia Dividend Aristocrats UCITS ETF
+            Ticker.fromString("SPYW:DAX"),      //SPDR S&P Euro Dividend Aristocrats UCITS ETF
+            Ticker.fromString("ZPRV:DAX"),
+            Ticker.fromString("LYMS:DAX")
+        )
+    }
+
+    fun gbEtfsWatchlist(): Set<Ticker> {
         return setOf(
 
-            StockTicker.fromString("CPJ1:FTSE"),
+            Ticker.fromString("CPJ1:FTSE"),
             /*StockTicker.fromString("VAPX:FTSE"),*/
-            StockTicker.fromString("WSML:FTSE"), //iShares MSCI World Small Cap UCITS ETF USD (Acc)
-            StockTicker.fromString("VMID:FTSE"), //Vanguard FTSE 250 UCITS ETF
-            StockTicker.fromString("UKDV:FTSE"), //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
+            Ticker.fromString("WSML:FTSE"),     //iShares MSCI World Small Cap UCITS ETF USD (Acc)
+            Ticker.fromString("VMID:FTSE"),     //Vanguard FTSE 250 UCITS ETF
+            Ticker.fromString("UKDV:FTSE"),     //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
             /*StockTicker.fromString("INRG:FTSE"),*/
-            StockTicker.fromString("PHGP:FTSE"),    //WisdomTree Physical Gold
-            StockTicker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GBP (Dist)
+            Ticker.fromString("PHGP:FTSE"),    //WisdomTree Physical Gold
+            Ticker.fromString("IUKP:FTSE"),    //iShares UK Property UCITS ETF GB (Dist)
 
             /*     StockTicker.fromString("NASD:FTSE"), */
 /*            StockTicker.fromString("CNX1:FTSE"),*/
 
             /*StockTicker.fromString("VHYL:FTSE"),*/
             /*StockTicker.fromString("VWRL:FTSE"),*/
-            StockTicker.fromString("VEVE:FTSE"),    //Vanguard FTSE Developed World UCITS ETF USD Distributing
+            Ticker.fromString("VEVE:FTSE"),     //Vanguard FTSE Developed World UCITS ETF USD Distributing
 
-            StockTicker.fromString("VJPN:FTSE"),    //Vanguard FTSE Japan UCITS ETF USD Distributing
-            /*StockTicker.fromString("UKDV:FTSE"),*/    //SPDR S&amp;P UK Dividend Aristocrats UCITS ETF
-            StockTicker.fromString("USDV:FTSE"),    //SPDR S&amp;P US Dividend Aristocrats UCITS ETF Dis
+            Ticker.fromString("VJPN:FTSE"),     //Vanguard FTSE Japan UCITS ETF USD Distributing
+            /*StockTicker.fromString("UKDV:FTSE"),*/  //SPDR S&P UK Dividend Aristocrats UCITS ETF
+            Ticker.fromString("USDV:FTSE"),     //SPDR S&P US Dividend Aristocrats UCITS ETF Dis
 
-            StockTicker.fromString("SGVL:FTSE"),
-            StockTicker.fromString("VVAL:FTSE"),
-            StockTicker.fromString("IWVL:FTSE")
+            Ticker.fromString("SGVL:FTSE"),
+            Ticker.fromString("VVAL:FTSE"),
+            Ticker.fromString("IWVL:FTSE")
         )
     }
 
-    fun investedInUsd(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("AAl:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ"),
-//            StockTicker.fromString("LTM:NYSE"),
-            StockTicker.fromString("DAL:NYSE"),
-            StockTicker.fromString("ALXN:NASDAQ"),
-            StockTicker.fromString("TMUS:NASDAQ"),
-            StockTicker.fromString("GILD:NASDAQ"),
-            StockTicker.fromString("AMAT:NASDAQ"),
-            StockTicker.fromString("CHTR:NASDAQ"),
-            StockTicker.fromString("REGI:NASDAQ"),
-            StockTicker.fromString("T:NYSE"),
-            StockTicker.fromString("SO:NYSE"),
-            StockTicker.fromString("MA:NYSE"),
-            StockTicker.fromString("TSM:NYSE"),
-            StockTicker.fromString("LMT:NYSE"),
-            StockTicker.fromString("KO:NYSE"),
-            StockTicker.fromString("EMR:NYSE"),
-            StockTicker.fromString("KO:NYSE"),
-            StockTicker.fromString("TSM:NYSE")
-        )
-    }
-
-    fun investedInUsdTech(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("GOOGL:NASDAQ"),
-            //StockTicker.fromString("GOOG:NASDAQ"),
-            StockTicker.fromString("INTC:NASDAQ"),
-            StockTicker.fromString("MAR:NASDAQ"),
-            StockTicker.fromString("GRPN:NASDAQ"),
-            StockTicker.fromString("BKNG:NASDAQ"),
-            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("EB:NYSE"),
-            StockTicker.fromString("CMCSA:NASDAQ"),
-            StockTicker.fromString("CTSH:NASDAQ"),
-            StockTicker.fromString("EBAY:NASDAQ"),
-            StockTicker.fromString("FB:NASDAQ"),
-            StockTicker.fromString("QCOM:NASDAQ"),
-            StockTicker.fromString("AVGO:NASDAQ"),
-            StockTicker.fromString("CLDR:NYSE")
-        )
-    }
-
-    fun watchListUsdTech(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("DELL:NYSE"),
-            StockTicker.fromString("JD:NASDAQ"),
-            StockTicker.fromString("TEAM:NASDAQ"),
-            StockTicker.fromString("AMD:NASDAQ"),
-            StockTicker.fromString("BABA:NYSE"),
-            StockTicker.fromString("NET:NYSE"),
-            StockTicker.fromString("DOCU:NASDAQ"),
-            StockTicker.fromString("HUBS:NYSE"),
-            StockTicker.fromString("OKTA:NASDAQ"),
-            StockTicker.fromString("PYPL:NASDAQ"),
-            StockTicker.fromString("WORK:NYSE"),
-            StockTicker.fromString("SQ:NYSE"),
-            StockTicker.fromString("ZEN:NYSE"),
-            StockTicker.fromString("ZM:NASDAQ"),
-            StockTicker.fromString("PD:NYSE"),
-            StockTicker.fromString("NOK:NYSE"),
-            StockTicker.fromString("UBER:NYSE"),
-            StockTicker.fromString("BYND:NASDAQ"),
-            StockTicker.fromString("NEWR:NYSE"),
-            StockTicker.fromString("ESTC:NYSE"),
-            StockTicker.fromString("BIDU:NASDAQ"),
-            StockTicker.fromString("TRIP:NASDAQ"),
-            StockTicker.fromString("TCOM:NASDAQ")
-        )
-    }
-
-    fun dividendsUsd(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("SPG:NYSE"),
-            StockTicker.fromString("LMT:NYSE"),
-            StockTicker.fromString("WM:NYSE"),
-            StockTicker.fromString("UNP:NYSE"),
-            StockTicker.fromString("T:NYSE"),
-            StockTicker.fromString("NEE:NYSE"),
-            StockTicker.fromString("DUK:NYSE"),
-            StockTicker.fromString("SO:NYSE"),
-            StockTicker.fromString("D:NYSE"),
-            StockTicker.fromString("CMCSA:NASDAQ"),
-            StockTicker.fromString("COST:NASDAQ"),
-            StockTicker.fromString("HD:NYSE"),
-            StockTicker.fromString("DIS:NYSE"),
-            StockTicker.fromString("PEP:NASDAQ")
-        )
-    }
-
-    fun airlines(): Set<StockTicker> {
-        return setOf(
-            StockTicker.fromString("DAL:NYSE"),
-            StockTicker.fromString("UAL:NASDAQ"),
-            StockTicker.fromString("AAL:NASDAQ"),
-//            StockTicker.fromString("LTM:NYSE"),
-            StockTicker.fromString("IAG:FTSE"),
-            StockTicker.fromString("RYA:FTSE"),
-            StockTicker.fromString("WIZZ:FTSE")
-
-        )
-    }
-
-    fun watchListUsd(): Set<StockTicker> {
+    fun usWatchList(): Set<Ticker> {
         return setOf(
             //TODO need currency conversion /*StockTicker.fromString("CAJ:NASDAQ"),*/
             /*StockTicker.fromString("ZNH:NYSE"),*/
             /* StockTicker.fromString("INO:NYSE"),*/
             //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
-            StockTicker.fromString("ROK:NYSE"),
-            StockTicker.fromString("HON:NYSE")
+            Ticker.fromString("ROK:NYSE"),
+            Ticker.fromString("HON:NYSE"),
+            Ticker.fromString("AAl:NASDAQ"),
+            Ticker.fromString("UAL:NASDAQ"),
+//            StockTicker.fromString("LTM:NYSE"),
+            Ticker.fromString("DAL:NYSE"),
+            Ticker.fromString("MA:NYSE"),
+            Ticker.fromString("EMR:NYSE"),
+            Ticker.fromString("CHTR:NASDAQ"),
+            Ticker.fromString("CMCSA:NASDAQ")
         )
     }
 
-    fun watchListChf(): Set<StockTicker> {
+    fun usInvestedIn(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("ABBN:SIX")
+            Ticker.fromString("ALXN:NASDAQ"),
+            Ticker.fromString("TMUS:NASDAQ"),
+            Ticker.fromString("GILD:NASDAQ"),
+            Ticker.fromString("AMAT:NASDAQ"),
+            Ticker.fromString("REGI:NASDAQ"),
+            Ticker.fromString("GRPN:NASDAQ"),
+            Ticker.fromString("T:NYSE"),
+            Ticker.fromString("SO:NYSE"),
+            Ticker.fromString("TSM:NYSE"),
+            Ticker.fromString("LMT:NYSE"),
+            Ticker.fromString("KO:NYSE"),
+            Ticker.fromString("KO:NYSE"),
+            Ticker.fromString("TSM:NYSE"),
+            *investedInUsdTech().toTypedArray()
         )
     }
 
-    fun investedInChf(): Set<StockTicker> {
+    fun investedInUsdTech(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("GOOGL:NASDAQ"),
+            //StockTicker.fromString("GOOG:NASDAQ"),
+            Ticker.fromString("INTC:NASDAQ"),
+            Ticker.fromString("MAR:NASDAQ"),
+            Ticker.fromString("GRPN:NASDAQ"),
+            Ticker.fromString("BKNG:NASDAQ"),
+            Ticker.fromString("MSFT:NASDAQ"),
+            Ticker.fromString("EB:NYSE"),
+            Ticker.fromString("FB:NASDAQ"),
+            Ticker.fromString("QCOM:NASDAQ"),
+            Ticker.fromString("AVGO:NASDAQ"),
+            Ticker.fromString("CLDR:NYSE")
         )
     }
 
-    fun watchListGbp(): Set<StockTicker> {
+    fun watchListUsdTech(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("CTSH:NASDAQ"),
+            Ticker.fromString("EBAY:NASDAQ"),
+            Ticker.fromString("DELL:NYSE"),
+            Ticker.fromString("JD:NASDAQ"),
+            Ticker.fromString("TEAM:NASDAQ"),
+            Ticker.fromString("AMD:NASDAQ"),
+            Ticker.fromString("BABA:NYSE"),
+            Ticker.fromString("NET:NYSE"),
+            Ticker.fromString("DOCU:NASDAQ"),
+            Ticker.fromString("HUBS:NYSE"),
+            Ticker.fromString("OKTA:NASDAQ"),
+            Ticker.fromString("PYPL:NASDAQ"),
+            Ticker.fromString("WORK:NYSE"),
+            Ticker.fromString("SQ:NYSE"),
+            Ticker.fromString("ZEN:NYSE"),
+            Ticker.fromString("ZM:NASDAQ"),
+            Ticker.fromString("PD:NYSE"),
+            Ticker.fromString("NOK:NYSE"),
+            Ticker.fromString("UBER:NYSE"),
+            Ticker.fromString("BYND:NASDAQ"),
+            Ticker.fromString("NEWR:NYSE"),
+            Ticker.fromString("ESTC:NYSE"),
+            Ticker.fromString("BIDU:NASDAQ"),
+            Ticker.fromString("TRIP:NASDAQ"),
+            Ticker.fromString("TCOM:NASDAQ")
+        )
+    }
+
+    fun dividends(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("SPG:NYSE"),
+            Ticker.fromString("LMT:NYSE"),
+            Ticker.fromString("WM:NYSE"),
+            Ticker.fromString("UNP:NYSE"),
+            Ticker.fromString("T:NYSE"),
+            Ticker.fromString("NEE:NYSE"),
+            Ticker.fromString("DUK:NYSE"),
+            Ticker.fromString("SO:NYSE"),
+            Ticker.fromString("D:NYSE"),
+            Ticker.fromString("CMCSA:NASDAQ"),
+            Ticker.fromString("COST:NASDAQ"),
+            Ticker.fromString("HD:NYSE"),
+            Ticker.fromString("DIS:NYSE"),
+            Ticker.fromString("PEP:NASDAQ")
+        )
+    }
+
+    fun airlines(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("DAL:NYSE"),
+            Ticker.fromString("UAL:NASDAQ"),
+            Ticker.fromString("AAL:NASDAQ"),
+//            StockTicker.fromString("LTM:NYSE"),
+            Ticker.fromString("IAG:FTSE"),
+            Ticker.fromString("RYA:FTSE"),
+            Ticker.fromString("WIZZ:FTSE")
+
+        )
+    }
+
+    fun chfWatchlist(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("ABBN:SIX")
+        )
+    }
+
+    fun gbWatchlist(): Set<Ticker> {
+        return setOf(
+            Ticker.fromString("IAG:FTSE")
         )
     }
 
 
-    fun investedInGbp(): Set<StockTicker> {
+    fun gbInvestedIn(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("IAG:FTSE"),
-            StockTicker.fromString("RYA:FTSE"),
-            StockTicker.fromString("WIZZ:FTSE")
+            Ticker.fromString("RYA:FTSE"),
+            Ticker.fromString("WIZZ:FTSE")
         )
     }
 
 
-    fun watchListAud(): Set<StockTicker> {
+    fun auWatchlist(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("CBA:ASX"),
-            StockTicker.fromString("ING:ASX"),
-            StockTicker.fromString("WBC:ASX"),
-            StockTicker.fromString("NAB:ASX"),
-            StockTicker.fromString("QAN:ASX"),
-            StockTicker.fromString("SYD:ASX"),
-            StockTicker.fromString("SEK:ASX"),
-            StockTicker.fromString("WTC:ASX"),
-            StockTicker.fromString("XRO:ASX"),
+            Ticker.fromString("CBA:ASX"),
+            Ticker.fromString("ING:ASX"),
+            Ticker.fromString("WBC:ASX"),
+            Ticker.fromString("NAB:ASX"),
+            Ticker.fromString("QAN:ASX"),
+            Ticker.fromString("SYD:ASX"),
+            Ticker.fromString("SEK:ASX"),
+            Ticker.fromString("WTC:ASX"),
+            Ticker.fromString("XRO:ASX"),
 //            StockTicker.fromString("Z1P:ASX"),
-            StockTicker.fromString("APT:ASX")
+            Ticker.fromString("APT:ASX")
 //            StockTicker.fromString("OPY:ASX")
         )
     }
 
-    fun asiaIndicesAud(): Set<StockTicker> {
+    fun auEtfsAsia(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("ASIA:ASX"),
+            Ticker.fromString("ASIA:ASX"),
 /*            StockTicker.fromString("AAXJ:NASDAQ"),*/
-            StockTicker.fromString("VGE:ASX"),
-            StockTicker.fromString("VAE:ASX")
+            Ticker.fromString("VGE:ASX"),
+            Ticker.fromString("VAE:ASX")
         )
     }
 
 
-    fun bondIndicesAud(): Set<StockTicker> {
+    fun auEtfsBond(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("VAF:ASX"),
-            StockTicker.fromString("VGB:ASX"),
-            StockTicker.fromString("VACF:ASX"),
-            StockTicker.fromString("VBND:ASX"),
-            StockTicker.fromString("VIF:ASX"),
-            StockTicker.fromString("VCF:ASX"),
-            StockTicker.fromString("VEFI:ASX")
+            Ticker.fromString("VAF:ASX"),
+            Ticker.fromString("VGB:ASX"),
+            Ticker.fromString("VACF:ASX"),
+            Ticker.fromString("VBND:ASX"),
+            Ticker.fromString("VIF:ASX"),
+            Ticker.fromString("VCF:ASX"),
+            Ticker.fromString("VEFI:ASX")
         )
     }
 
-    fun usIndicesAud(): Set<StockTicker> {
+    fun auEtfsUs(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("VTS:ASX"),
-            StockTicker.fromString("IVV:ASX"),
-            StockTicker.fromString("NDQ:ASX")
+            Ticker.fromString("VTS:ASX"),
+            Ticker.fromString("IVV:ASX"),
+            Ticker.fromString("NDQ:ASX"),
+            Ticker.fromString("UMAX:ASX")
         )
     }
 
-    fun auIndicesAud(): Set<StockTicker> {
+    fun auEtfsAu(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("ATEC:ASX"),
-            StockTicker.fromString("VLC:ASX"),
-            StockTicker.fromString("A200:ASX"),
-            StockTicker.fromString("VAS:ASX"),
-            StockTicker.fromString("VAP:ASX"),
-            StockTicker.fromString("VHY:ASX"),
-            StockTicker.fromString("VSO:ASX")
+            Ticker.fromString("ATEC:ASX"),
+            Ticker.fromString("VLC:ASX"),
+            Ticker.fromString("A200:ASX"),
+            Ticker.fromString("VAS:ASX"),
+            Ticker.fromString("VAP:ASX"),
+            Ticker.fromString("VHY:ASX"),
+            Ticker.fromString("VSO:ASX")
         )
     }
 
-    fun watchListIndicesAud(): Set<StockTicker> {
+    fun auEtfsWatchlist(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("ATEC:ASX"),
-            StockTicker.fromString("VSO:ASX"),
-            StockTicker.fromString("VISM:ASX"),
-            StockTicker.fromString("VDHG:ASX"),
-            StockTicker.fromString("VLC:ASX"),
-            StockTicker.fromString("A200:ASX"),
-            StockTicker.fromString("VAS:ASX"),
-            StockTicker.fromString("ETHI:ASX"),
-            StockTicker.fromString("QLTY:ASX"),
-            StockTicker.fromString("RBTZ:ASX"),
-            StockTicker.fromString("UMAX:ASX"),
-            StockTicker.fromString("VESG:ASX"),
-            StockTicker.fromString("VEU:ASX"),
-            StockTicker.fromString("VGS:ASX"),
-            StockTicker.fromString("IOO:ASX"),
-            StockTicker.fromString("MNRS:ASX"),
-            StockTicker.fromString("BBOZ:ASX"),
-            StockTicker.fromString("RBTZ:ASX"),
-            StockTicker.fromString("NDQ:ASX"),
-            StockTicker.fromString("VBLD:ASX"),
-            StockTicker.fromString("VAE:ASX"),
-            StockTicker.fromString("VESG:ASX")
+            *auEtfsAu().toTypedArray(),
+            *auEtfsUs().toTypedArray(),
+            *auEtfsAsia().toTypedArray(),
+            *auEtfsBond().toTypedArray(),
+            Ticker.fromString("ETHI:ASX"),
+            Ticker.fromString("QLTY:ASX"),
+            Ticker.fromString("RBTZ:ASX"),
+            Ticker.fromString("VESG:ASX"),
+            Ticker.fromString("VEU:ASX"),
+            Ticker.fromString("VGS:ASX"),
+            Ticker.fromString("IOO:ASX"),
+            Ticker.fromString("MNRS:ASX"),
+            Ticker.fromString("BBOZ:ASX"),
+            Ticker.fromString("RBTZ:ASX"),
+            Ticker.fromString("VBLD:ASX"),
+            Ticker.fromString("VAE:ASX"),
+            Ticker.fromString("VESG:ASX")
         )
     }
 
-    fun investedIndicesInAud(): Set<StockTicker> {
+    fun auEtfsInvestedIn(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("VTS:ASX"),
-            StockTicker.fromString("VEU:ASX"),
-            StockTicker.fromString("VAP:ASX"),
-            StockTicker.fromString("VHY:ASX"),
-            StockTicker.fromString("NDQ:ASX"),
-            StockTicker.fromString("IVV:ASX"),
-            StockTicker.fromString("VGE:ASX"),
-            StockTicker.fromString("ASIA:ASX"),
-            StockTicker.fromString("VAS:ASX")
+            Ticker.fromString("VTS:ASX"),
+            Ticker.fromString("VEU:ASX"),
+            Ticker.fromString("VAP:ASX"),
+            Ticker.fromString("VHY:ASX"),
+            Ticker.fromString("NDQ:ASX"),
+            Ticker.fromString("IVV:ASX"),
+            Ticker.fromString("VGE:ASX"),
+            Ticker.fromString("ASIA:ASX"),
+            Ticker.fromString("VAS:ASX")
         )
     }
 
-    fun investedInAud(): Set<StockTicker> {
+    fun auInvestedIn(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("ANZ:ASX")
+            Ticker.fromString("ANZ:ASX"),
+            Ticker.fromString("WBC:ASX")
         )
     }
 
-    fun nasdaq100(): Set<StockTicker> {
+    fun nasdaq100(): Set<Ticker> {
         return setOf(
-            StockTicker.fromString("MSFT:NASDAQ"),
-            StockTicker.fromString("AAPL:NASDAQ"),
-            StockTicker.fromString("AMZN:NASDAQ"),
-            StockTicker.fromString("GOOG:NASDAQ"),
-            StockTicker.fromString("GOOGL:NASDAQ"),
-            StockTicker.fromString("FB:NASDAQ"),
-            StockTicker.fromString("INTC:NASDAQ"),
-            StockTicker.fromString("PEP:NASDAQ"),
-            StockTicker.fromString("CMCSA:NASDAQ"),
-            StockTicker.fromString("CSCO:NASDAQ"),
-            StockTicker.fromString("ADBE:NASDAQ"),
-            StockTicker.fromString("NFLX:NASDAQ"),
-            StockTicker.fromString("COST:NASDAQ"),
-            StockTicker.fromString("NVDA:NASDAQ"),
-            StockTicker.fromString("AMGN:NASDAQ"),
-            StockTicker.fromString("PYPL:NASDAQ"),
-            StockTicker.fromString("GILD:NASDAQ"),
-            StockTicker.fromString("TXN:NASDAQ"),
-            StockTicker.fromString("CHTR:NASDAQ"),
-            StockTicker.fromString("AVGO:NASDAQ"),
-            StockTicker.fromString("TSLA:NASDAQ"),
-            StockTicker.fromString("QCOM:NASDAQ"),
-            StockTicker.fromString("SBUX:NASDAQ"),
-            StockTicker.fromString("TMUS:NASDAQ"),
-            StockTicker.fromString("MDLZ:NASDAQ"),
-            StockTicker.fromString("FISV:NASDAQ"),
-            StockTicker.fromString("INTU:NASDAQ"),
-            StockTicker.fromString("VRTX:NASDAQ"),
-            StockTicker.fromString("REGN:NASDAQ"),
-            StockTicker.fromString("BIIB:NASDAQ"),
-            StockTicker.fromString("ADP:NASDAQ"),
-            StockTicker.fromString("BKNG:NASDAQ"),
-            StockTicker.fromString("ISRG:NASDAQ"),
-            StockTicker.fromString("AMD:NASDAQ"),
-            StockTicker.fromString("WBA:NASDAQ"),
-            StockTicker.fromString("CSX:NASDAQ"),
-            StockTicker.fromString("ATVI:NASDAQ"),
-            StockTicker.fromString("MU:NASDAQ"),
-            StockTicker.fromString("AMAT:NASDAQ"),
-            StockTicker.fromString("JD:NASDAQ"),
-            StockTicker.fromString("ADI:NASDAQ"),
-            StockTicker.fromString("ILMN:NASDAQ"),
-            StockTicker.fromString("ADSK:NASDAQ"),
-            StockTicker.fromString("EXC:NASDAQ"),
-            StockTicker.fromString("XEL:NASDAQ"),
-            StockTicker.fromString("MNST:NASDAQ"),
-            StockTicker.fromString("LRCX:NASDAQ"),
-            StockTicker.fromString("KHC:NASDAQ"),
-            StockTicker.fromString("EA:NASDAQ"),
-            StockTicker.fromString("CTSH:NASDAQ"),
-            StockTicker.fromString("BIDU:NASDAQ"),
-            StockTicker.fromString("EBAY:NASDAQ"),
-            StockTicker.fromString("ROST:NASDAQ"),
-            StockTicker.fromString("MELI:NASDAQ"),
-            StockTicker.fromString("VRSK:NASDAQ"),
-            StockTicker.fromString("ORLY:NASDAQ"),
-            StockTicker.fromString("MAR:NASDAQ"),
-            StockTicker.fromString("NTES:NASDAQ"),
-            StockTicker.fromString("NXPI:NASDAQ"),
-            StockTicker.fromString("SIRI:NASDAQ"),
-            StockTicker.fromString("WDAY:NASDAQ"),
-            StockTicker.fromString("PAYX:NASDAQ"),
-            StockTicker.fromString("CSGP:NASDAQ"),
-            StockTicker.fromString("KLAC:NASDAQ"),
-            StockTicker.fromString("WLTW:NASDAQ"),
-            StockTicker.fromString("PCAR:NASDAQ"),
-            StockTicker.fromString("VRSN:NASDAQ"),
-            StockTicker.fromString("LULU:NASDAQ"),
-            StockTicker.fromString("XLNX:NASDAQ"),
-            StockTicker.fromString("CTAS:NASDAQ"),
-            StockTicker.fromString("CERN:NASDAQ"),
-            StockTicker.fromString("ANSS:NASDAQ"),
-            StockTicker.fromString("FAST:NASDAQ"),
-            StockTicker.fromString("ALXN:NASDAQ"),
-            StockTicker.fromString("SNPS:NASDAQ"),
-            StockTicker.fromString("SGEN:NASDAQ"),
-            StockTicker.fromString("DLTR:NASDAQ"),
-            StockTicker.fromString("IDXX:NASDAQ"),
-            StockTicker.fromString("CTXS:NASDAQ"),
-            StockTicker.fromString("CPRT:NASDAQ"),
-            StockTicker.fromString("SPLK:NASDAQ"),
-            StockTicker.fromString("ASML:NASDAQ"),
-            StockTicker.fromString("CDNS:NASDAQ"),
-            StockTicker.fromString("MCHP:NASDAQ"),
-            StockTicker.fromString("INCY:NASDAQ"),
-            StockTicker.fromString("CHKP:NASDAQ"),
-            StockTicker.fromString("BMRN:NASDAQ"),
-            StockTicker.fromString("SWKS:NASDAQ"),
-            StockTicker.fromString("CDW:NASDAQ"),
-            StockTicker.fromString("MXIM:NASDAQ"),
-            StockTicker.fromString("TTWO:NASDAQ"),
-            StockTicker.fromString("TCOM:NASDAQ"),
-            StockTicker.fromString("ALGN:NASDAQ"),
-            StockTicker.fromString("WDC:NASDAQ"),
-            StockTicker.fromString("NTAP:NASDAQ"),
-            StockTicker.fromString("ULTA:NASDAQ"),
-            StockTicker.fromString("FOXA:NASDAQ"),
-            StockTicker.fromString("LBTYK:NASDAQ"),
-            StockTicker.fromString("EXPE:NASDAQ"),
-            StockTicker.fromString("FOX:NASDAQ"),
-            StockTicker.fromString("UAL:NASDAQ"),
-            StockTicker.fromString("AAL:NASDAQ"),
-            StockTicker.fromString("LBTYA:NASDAQ")
+            Ticker.fromString("MSFT:NASDAQ"),
+            Ticker.fromString("AAPL:NASDAQ"),
+            Ticker.fromString("AMZN:NASDAQ"),
+            Ticker.fromString("GOOG:NASDAQ"),
+            Ticker.fromString("GOOGL:NASDAQ"),
+            Ticker.fromString("FB:NASDAQ"),
+            Ticker.fromString("INTC:NASDAQ"),
+            Ticker.fromString("PEP:NASDAQ"),
+            Ticker.fromString("CMCSA:NASDAQ"),
+            Ticker.fromString("CSCO:NASDAQ"),
+            Ticker.fromString("ADBE:NASDAQ"),
+            Ticker.fromString("NFLX:NASDAQ"),
+            Ticker.fromString("COST:NASDAQ"),
+            Ticker.fromString("NVDA:NASDAQ"),
+            Ticker.fromString("AMGN:NASDAQ"),
+            Ticker.fromString("PYPL:NASDAQ"),
+            Ticker.fromString("GILD:NASDAQ"),
+            Ticker.fromString("TXN:NASDAQ"),
+            Ticker.fromString("CHTR:NASDAQ"),
+            Ticker.fromString("AVGO:NASDAQ"),
+            Ticker.fromString("TSLA:NASDAQ"),
+            Ticker.fromString("QCOM:NASDAQ"),
+            Ticker.fromString("SBUX:NASDAQ"),
+            Ticker.fromString("TMUS:NASDAQ"),
+            Ticker.fromString("MDLZ:NASDAQ"),
+            Ticker.fromString("FISV:NASDAQ"),
+            Ticker.fromString("INTU:NASDAQ"),
+            Ticker.fromString("VRTX:NASDAQ"),
+            Ticker.fromString("REGN:NASDAQ"),
+            Ticker.fromString("BIIB:NASDAQ"),
+            Ticker.fromString("ADP:NASDAQ"),
+            Ticker.fromString("BKNG:NASDAQ"),
+            Ticker.fromString("ISRG:NASDAQ"),
+            Ticker.fromString("AMD:NASDAQ"),
+            Ticker.fromString("WBA:NASDAQ"),
+            Ticker.fromString("CSX:NASDAQ"),
+            Ticker.fromString("ATVI:NASDAQ"),
+            Ticker.fromString("MU:NASDAQ"),
+            Ticker.fromString("AMAT:NASDAQ"),
+            Ticker.fromString("JD:NASDAQ"),
+            Ticker.fromString("ADI:NASDAQ"),
+            Ticker.fromString("ILMN:NASDAQ"),
+            Ticker.fromString("ADSK:NASDAQ"),
+            Ticker.fromString("EXC:NASDAQ"),
+            Ticker.fromString("XEL:NASDAQ"),
+            Ticker.fromString("MNST:NASDAQ"),
+            Ticker.fromString("LRCX:NASDAQ"),
+            Ticker.fromString("KHC:NASDAQ"),
+            Ticker.fromString("EA:NASDAQ"),
+            Ticker.fromString("CTSH:NASDAQ"),
+            Ticker.fromString("BIDU:NASDAQ"),
+            Ticker.fromString("EBAY:NASDAQ"),
+            Ticker.fromString("ROST:NASDAQ"),
+            Ticker.fromString("MELI:NASDAQ"),
+            Ticker.fromString("VRSK:NASDAQ"),
+            Ticker.fromString("ORLY:NASDAQ"),
+            Ticker.fromString("MAR:NASDAQ"),
+            Ticker.fromString("NTES:NASDAQ"),
+            Ticker.fromString("NXPI:NASDAQ"),
+            Ticker.fromString("SIRI:NASDAQ"),
+            Ticker.fromString("WDAY:NASDAQ"),
+            Ticker.fromString("PAYX:NASDAQ"),
+            Ticker.fromString("CSGP:NASDAQ"),
+            Ticker.fromString("KLAC:NASDAQ"),
+            Ticker.fromString("WLTW:NASDAQ"),
+            Ticker.fromString("PCAR:NASDAQ"),
+            Ticker.fromString("VRSN:NASDAQ"),
+            Ticker.fromString("LULU:NASDAQ"),
+            Ticker.fromString("XLNX:NASDAQ"),
+            Ticker.fromString("CTAS:NASDAQ"),
+            Ticker.fromString("CERN:NASDAQ"),
+            Ticker.fromString("ANSS:NASDAQ"),
+            Ticker.fromString("FAST:NASDAQ"),
+            Ticker.fromString("ALXN:NASDAQ"),
+            Ticker.fromString("SNPS:NASDAQ"),
+            Ticker.fromString("SGEN:NASDAQ"),
+            Ticker.fromString("DLTR:NASDAQ"),
+            Ticker.fromString("IDXX:NASDAQ"),
+            Ticker.fromString("CTXS:NASDAQ"),
+            Ticker.fromString("CPRT:NASDAQ"),
+            Ticker.fromString("SPLK:NASDAQ"),
+            Ticker.fromString("ASML:NASDAQ"),
+            Ticker.fromString("CDNS:NASDAQ"),
+            Ticker.fromString("MCHP:NASDAQ"),
+            Ticker.fromString("INCY:NASDAQ"),
+            Ticker.fromString("CHKP:NASDAQ"),
+            Ticker.fromString("BMRN:NASDAQ"),
+            Ticker.fromString("SWKS:NASDAQ"),
+            Ticker.fromString("CDW:NASDAQ"),
+            Ticker.fromString("MXIM:NASDAQ"),
+            Ticker.fromString("TTWO:NASDAQ"),
+            Ticker.fromString("TCOM:NASDAQ"),
+            Ticker.fromString("ALGN:NASDAQ"),
+            Ticker.fromString("WDC:NASDAQ"),
+            Ticker.fromString("NTAP:NASDAQ"),
+            Ticker.fromString("ULTA:NASDAQ"),
+            Ticker.fromString("FOXA:NASDAQ"),
+            Ticker.fromString("LBTYK:NASDAQ"),
+            Ticker.fromString("EXPE:NASDAQ"),
+            Ticker.fromString("FOX:NASDAQ"),
+            Ticker.fromString("UAL:NASDAQ"),
+            Ticker.fromString("AAL:NASDAQ"),
+            Ticker.fromString("LBTYA:NASDAQ")
         )
     }
 /*
@@ -1412,7 +1435,7 @@ class WatchlistRepo {
             StockTicker.fromFullExchangeNameString("EUNA:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EUNK:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EUNL:Deutsche Börse Xetra"),
-            StockTicker.fromFullExchangeNameString("EURL:London Stock Exchange"),
+            StockTicker.fromFullExchangeNameString("EUL:London Stock Exchange"),
             StockTicker.fromFullExchangeNameString("EUSV:London Stock Exchange"),
             StockTicker.fromFullExchangeNameString("EUZ:Deutsche Börse Xetra"),
             StockTicker.fromFullExchangeNameString("EVA:NYSE"),

@@ -1,13 +1,13 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
-import com.github.dusanzahoransky.stockanalyst.model.mongo.StockInfo
+import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
-import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.min
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minIfPositive
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
@@ -30,11 +30,11 @@ class KeyRatiosAnalysisService {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun calcRule1(stockInfoList: List<StockInfo>, ratiosList: List<StockRatiosTimeline>) {
-        ratiosList.forEach { calcRule1(it, stockInfoList) }
+    fun calcRule1(stockList: List<Stock>, ratiosList: List<StockRatiosTimeline>) {
+        ratiosList.forEach { calcRule1(it, stockList) }
     }
 
-    fun calcRule1(ratios: StockRatiosTimeline, stockInfoList: List<StockInfo>) {
+    fun calcRule1(ratios: StockRatiosTimeline, stockList: List<Stock>) {
         val periods = ratios.periods.toSortedMap(compareByDescending { it })
 
         val current = periodYearsBefore(periods, 0)
@@ -43,10 +43,10 @@ class KeyRatiosAnalysisService {
         val fiveYBefore = periodYearsBefore(periods, 5)
         val nineYBefore = periodYearsBefore(periods, 9)
 
-        val stock = stockInfoList.firstOrNull { StockTicker(it.symbol, it.exchange) == StockTicker.fromSymbolAndMic(ratios.symbol, ratios.mic) }
+        val stock = stockList.firstOrNull { Ticker(it.symbol, it.exchange) == Ticker(ratios.symbol, ratios.exchange) }
 
         if (stock == null) {
-            log.debug("Failed to compute Rule1, stock is missing ${ratios.symbol}, ${ratios.mic}")
+            log.debug("Failed to compute Rule1, stock is missing ${ratios.symbol}, ${ratios.exchange}")
             return
         }
 
@@ -75,40 +75,60 @@ class KeyRatiosAnalysisService {
         stock.pe5Y = cumulativeGrowthRate(current?.pe, fiveYBefore?.pe, 5, "pe5Y", 0.1)
         stock.pe9Y = cumulativeGrowthRate(current?.pe, nineYBefore?.pe, 9, "pe9Y", 0.1)
 
+        //multiple slightly different ways how to calculate, common one is (net income - dividends) / (total assets - current liabilities - cash and cash equivaletns)
 
-        val roicCurrent = div(
-            minus(current?.netIncome, current?.dividends),
-            plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble())
+        stock.roicLastYear = percent(
+            div(
+                minus(current?.netIncome, current?.dividends?:0.0),
+                minus(plus(stock.totalAssetsLastYear?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+    //            minus(plus(stock.totalLiabilitiesLastYear?.toDouble(), stock.totalShareholdersEquityLastYear?.toDouble()), stock.cashLastYear?.toDouble())
+            )
         )
-        val roic1YBefore = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends),
-            plus(stock.totalLiabilities2YearsAgo?.toDouble(), stock.totalShareholdersEquity2YearsAgo?.toDouble())
+        stock.roicLast2YearsAgo = percent(
+            div(
+                minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+                minus(plus(stock.totalAssets2YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash2YearsAgo?.toDouble())
+            )
         )
-        val roic3YBefore = div(
-            minus(oneYBefore?.netIncome, oneYBefore?.dividends),
-            plus(stock.totalLiabilities4YearsAgo?.toDouble(), stock.totalShareholdersEquity4YearsAgo?.toDouble())
+        stock.roicLast4YearsAgo = percent(
+            div(
+                minus(oneYBefore?.netIncome, oneYBefore?.dividends?:0.0),
+                minus(plus(stock.totalAssets4YearsAgo?.toDouble(), stock.currentLiabilitiesLastYear?.toDouble()), stock.cash4YearsAgo?.toDouble())
+            )
         )
-        stock.roic1Y = cumulativeGrowthRate(roicCurrent, roic1YBefore, 1, "roic1Y", 0.01)
-        stock.roic3Y = cumulativeGrowthRate(roicCurrent, roic3YBefore, 3, "roic3Y", 0.01)
+        stock.roic1Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast2YearsAgo, 1, "roic1Y", 0.001)
+        stock.roic3Y = cumulativeGrowthRate(stock.roicLastYear, stock.roicLast4YearsAgo, 3, "roic3Y", 0.001)
 
-        val estimatedEpsGrowthRate = stock.bps9Y?: stock.bps5Y?: stock.bps3Y
+        val estimatedEpsGrowthRate = stock.bps9Y ?: stock.bps5Y ?: stock.bps3Y
         stock.rule1GrowthRate = minIfPositive(estimatedEpsGrowthRate, stock.growthEstimate5y)
         stock.defaultPE = multiply(stock.rule1GrowthRate, 2.0)
         stock.historicalPE = average(current?.pe, oneYBefore?.pe, threeYBefore?.pe, fiveYBefore?.pe, nineYBefore?.pe)
         stock.rule1PE = minIfPositive(stock.historicalPE, stock.defaultPE)
-        stock.currentEps =  stock.epsLastYear ?: multiply(stock.epsLastQuarter, 4.0)
+        stock.currentEps = stock.epsLastYear ?: multiply(stock.epsLastQuarter, 4.0)
         val numberOfYear = 10.0
         val epsGrowthEstimate = plus(div(stock.rule1GrowthRate, 100), 1.0)
         stock.futureEPS10Years = multiply(stock.currentEps, epsGrowthEstimate?.pow(numberOfYear))
-        stock.futurePrice10Years = multiply(stock.rule1PE, stock.futureEPS10Years)
 
-        stock.stickerPrice15pcGrowth = div(stock.futurePrice10Years, (1 + 0.15).pow(10))
-        stock.stickerPrice10pcGrowth = div(stock.futurePrice10Years, (1 + 0.10).pow(10))
-        stock.stickerPrice5pcGrowth = div(stock.futurePrice10Years, (1 + 0.05).pow(10))
+        if(stock.rule1PE != null && stock.rule1PE!! > 0.0 && stock.futureEPS10Years != null && stock.futureEPS10Years!! > 0.0) {
+            stock.futurePrice10Years = multiply(stock.rule1PE, stock.futureEPS10Years)
 
-        stock.belowStickerPrice15pc = percent(div(minus(stock.stickerPrice15pcGrowth, stock.price), stock.price))
-        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
-        stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
+            stock.stickerPrice15pcGrowth = div(stock.futurePrice10Years, (1 + 0.15).pow(10))
+//        stock.stickerPrice10pcGrowth = div(stock.futurePrice10Years, (1 + 0.10).pow(10))
+            stock.stickerPrice5pcGrowth = div(stock.futurePrice10Years, (1 + 0.05).pow(10))
+
+            stock.belowStickerPrice15pc = percent(div(minus(stock.stickerPrice15pcGrowth, stock.price), stock.price))
+//        stock.belowStickerPrice10pc = percent(div(minus(stock.stickerPrice10pcGrowth, stock.price), stock.price))
+            stock.belowStickerPrice5pc = percent(div(minus(stock.stickerPrice5pcGrowth, stock.price), stock.price))
+        }
+
+        //TODO not Rule 1 related, move somewhere else
+        stock.stockLastYear = current?.shares
+        stock.stock2YearsAgo = oneYBefore?.shares
+        stock.stock4YearsAgo = threeYBefore?.shares
+
+        stock.stockGrowthLastQuarter = CalcUtils.percentGrowth(stock.stockLastQuarter, stock.stockLastYear, "stockGrowthLastQuarter")
+        stock.stockGrowthLastYear = CalcUtils.percentGrowth(stock.stockLastYear, stock.stock2YearsAgo, "stockGrowthLastYear")
+        stock.stockGrowthLast4Years = CalcUtils.percentGrowth(stock.stockLastYear, stock.stock4YearsAgo, "stockGrowthLast4Years")
     }
 
     private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {

@@ -12,7 +12,6 @@ class ExchangeRatesRestTemplateConfig {
 
     @Bean
     fun exchangeRatesRestTemplate(builder: RestTemplateBuilder): RestTemplate {
-
         return builder
             .setReadTimeout(Duration.ofSeconds(30))
             .setConnectTimeout(Duration.ofSeconds(30))

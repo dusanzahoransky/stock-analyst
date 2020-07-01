@@ -1,7 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.controller
 
 import com.github.dusanzahoransky.stockanalyst.model.dto.AnalysisResult
-import com.github.dusanzahoransky.stockanalyst.model.dto.IndicesAnalysisResult
+import com.github.dusanzahoransky.stockanalyst.model.dto.EtfsAnalysisResult
 import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.service.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +15,7 @@ class StockController @Autowired constructor(
     val keyRatiosTimelineService: KeyRatiosTimelineService,
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService,
-    val indexService: IndexService
+    val indexService: EtfService
 ) {
 
     @GetMapping("watchlist")
@@ -28,7 +28,7 @@ class StockController @Autowired constructor(
         @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
     ): AnalysisResult {
 
-        val forceRefreshLocalDate = if(forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
+        val forceRefreshLocalDate = if (forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
 
         val stocks = stockService.getWatchlistStocks(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
         stockAnalysisService.calcStockStats(stocks)
@@ -41,16 +41,18 @@ class StockController @Autowired constructor(
         return AnalysisResult(averages, stockAnalysisService.combineWithRatios(stocks, ratios))
     }
 
-    @GetMapping("indicesWatchlist")
+    @GetMapping("etfWatchlist")
     @ResponseBody
-    fun loadIndicesWatchlist(
+    fun loadEtfsWatchlist(
         @RequestParam(value = "watchlist") watchlist: Watchlist,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
-        @RequestParam(value = "mockData", required = false) mockData: Boolean = false
-    ): IndicesAnalysisResult {
-        val indices = indexService.getWatchlistStocks(watchlist, forceRefresh, mockData)
-        val averages = stockAnalysisService.calcIndicesAverages(indices)
-        return IndicesAnalysisResult(averages, indices)
+        @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
+        @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
+    ): EtfsAnalysisResult {
+        val forceRefreshLocalDate = if (forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
+        val indices = indexService.getWatchlistEtfs(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
+        val averages = stockAnalysisService.calcEtfsAverages(indices)
+        return EtfsAnalysisResult(averages, indices)
     }
 
     //TODO

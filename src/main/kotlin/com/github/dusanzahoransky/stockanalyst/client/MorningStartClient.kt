@@ -2,7 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.client
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
-import com.github.dusanzahoransky.stockanalyst.model.StockTicker
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.KetRatiosResponse
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,26 +19,26 @@ class MorningStartClient @Autowired constructor(
 
     companion object {
         var lastCallTime: Long = 0
+        const val CALL_THRESHOLD_TIMEOUT = 500L
     }
 
-    fun getKeyRatiosFinancials(ticker: StockTicker, mockData: Boolean): KetRatiosResponse? {
+    fun getKeyRatiosFinancials(ticker: Ticker, mockData: Boolean): KetRatiosResponse {
         if (mockData) {
             val statisticsMock = ClassPathResource("keyratiosGOOGL.json")
             return jacksonObjectMapper().readValue(statisticsMock.inputStream, jacksonTypeRef<KetRatiosResponse>())
         }
-        return try {
-            val response = restTemplate.getForObject(
-
-                "https://morningstar1.p.rapidapi.com/keyratios/financials?Ticker={symbol}&Mic={mic}",
-                KetRatiosResponse::class.java,
-                mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic().value)
-            )
-
-            logger.debug("Financial KeyRatios from Morningstar API: ${jacksonObjectMapper().writeValueAsString(response)}")
-            return response
-        } catch (e: Exception) {
-            logger.error(e.message, e)
-            null
+        //avoid hitting rate limit 2 calls a second
+        if (System.currentTimeMillis() - lastCallTime < CALL_THRESHOLD_TIMEOUT) {
+            Thread.sleep(CALL_THRESHOLD_TIMEOUT)
         }
+        val response = restTemplate.getForObject(
+            "https://morningstar1.p.rapidapi.com/keyratios/financials?Ticker={symbol}&Mic={mic}",
+            KetRatiosResponse::class.java,
+            mapOf("symbol" to ticker.symbol, "mic" to ticker.getMic())
+        ) ?: throw RuntimeException("Failed to load $ticker")
+
+        logger.debug("Financial KeyRatios from Morningstar API: ${jacksonObjectMapper().writeValueAsString(response)}")
+        lastCallTime = System.currentTimeMillis()
+        return response
     }
 }

@@ -17,16 +17,8 @@ class YahooFinanceRestTemplateConfig {
     @Value("\${yahoo.client.xRapidapiHost}")
     lateinit var xRapidapiHost: String
 
-    private val callThresholdTimeout = 200L
-
     @Bean
     fun yahooFinanceRestTemplate(builder: RestTemplateBuilder): RestTemplate {
-        //avoid hitting rate limit 2 calls a second
-        if (System.currentTimeMillis() - YahooFinanceClient.lastCallTime < callThresholdTimeout) {
-            Thread.sleep(callThresholdTimeout)
-        }
-        YahooFinanceClient.lastCallTime = System.currentTimeMillis()
-
         return builder
             .setReadTimeout(Duration.ofSeconds(30))
             .setConnectTimeout(Duration.ofSeconds(30))
