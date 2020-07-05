@@ -370,12 +370,15 @@ class StockService @Autowired constructor(
         if (quarterEnds != null) {
             for (i in quarterEnds.indices) {
                 val quarter = quarterEnds[i]
-                addEntry(stock.revenueQ, incomeStmQuarterly[i]?.totalRevenue?.raw, quarter)
-                addEntry(stock.revenueQ, incomeStmQuarterly[i]?.totalRevenue?.raw, quarter)
+                val revenue = incomeStmQuarterly[i]?.totalRevenue?.raw
+                addEntry(stock.revenueQ, revenue, quarter)
                 addEntry(stock.grossIncomeQ, incomeStmQuarterly[i]?.grossProfit?.raw, quarter)
                 addEntry(stock.ebitQ, incomeStmQuarterly[i]?.ebit?.raw, quarter)
-                addEntry(stock.netIncomeQ, incomeStmQuarterly[i]?.netIncome?.raw, quarter)
-
+                val netIncome = incomeStmQuarterly[i]?.netIncome?.raw
+                addEntry(stock.netIncomeQ, netIncome, quarter)
+                if(revenue != null && netIncome != null){
+                    stock.profitMarginQ[quarter] = div(netIncome, revenue)
+                }
                 addEntry(stock.totalCashFromOperatingActivitiesQ, cashFlowQuarterly[i]?.totalCashFromOperatingActivities?.raw, quarter)
                 addEntry(stock.capitalExpendituresQ, cashFlowQuarterly[i]?.capitalExpenditures?.raw, quarter)
                 addEntry(stock.stockRepurchasedQ, cashFlowQuarterly[i]?.repurchaseOfStock?.raw, quarter)
@@ -529,8 +532,14 @@ class StockService @Autowired constructor(
         stock.freeCashFlow.forEach { (date, cashFlow) ->
             addEntry(stock.freeCashFlowToPrice, div(cashFlow.toDouble(), stock.price[date]), date)
         }
+        stock.netIncome.forEach{ (date, income) ->
+            addEntry(stock.pe, div(income.toDouble(), stock.price[date]), date)
+        }
+        stock.netIncomeQ.forEach{ (date, income) ->
+            addEntry(stock.peQ, div(income.toDouble(), stock.price[date]), date)
+        }
 
-        //TODO PE
+
     }
 
 
@@ -556,7 +565,6 @@ class StockService @Autowired constructor(
         stock.totalShareholdersEquityGrowthQ = calcGrowth(stock.totalShareholdersEquityQ, "totalShareholdersEquityGrowthQ", 100.0)
         stock.totalLiabilitiesToEquityGrowthQ = calcGrowth(stock.totalLiabilitiesToEquityQ, "totalLiabilitiesToEquityGrowthQ", 100.0)
         stock.stockRepurchasedGrowthQ = calcGrowth(stock.stockRepurchasedQ, "stockRepurchasedGrowthQ", 10.0)
-        stock.stockGrowthQ = calcGrowth(stock.stockQ, "stockGrowthQ", 10.0)
         stock.epsGrowthQ = calcGrowth(stock.epsQ, "epsGrowthQ", 0.01)
         stock.peGrowthQ = calcGrowth(stock.peQ, "peGrowthQ", 0.01)
 
@@ -579,7 +587,6 @@ class StockService @Autowired constructor(
         stock.totalShareholdersEquityGrowth = calcGrowth(stock.totalShareholdersEquity, "totalShareholdersEquity", 0.01)
         stock.totalLiabilitiesToEquityGrowth = calcGrowth(stock.totalLiabilitiesToEquity, "totalLiabilitiesToEquity", 0.01)
         stock.stockRepurchasedGrowth = calcGrowth(stock.stockRepurchased, "stockRepurchased", 10.0)
-        stock.stockGrowth = calcGrowth(stock.stock, "stock", 10.0)
         stock.epsGrowth = calcGrowth(stock.eps, "eps", 0.01)
         stock.peGrowth = calcGrowth(stock.pe, "pe", 0.01)
         stock.bookValuePerShareGrowth = calcGrowth(stock.bookValuePerShare, "bookValuePerShare", 0.01)
