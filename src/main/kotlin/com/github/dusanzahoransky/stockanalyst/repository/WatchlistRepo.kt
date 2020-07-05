@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class WatchlistRepo {
 
-    fun getWatchlist(watchlist: Watchlist): Set<Ticker> {
+    fun getWatchlistTickers(watchlist: Watchlist): Set<Ticker> {
         return when (watchlist) {
             //Test
             TEST -> test()
@@ -297,7 +297,11 @@ class WatchlistRepo {
             Ticker.fromString("MA:NYSE"),
             Ticker.fromString("EMR:NYSE"),
             Ticker.fromString("CHTR:NASDAQ"),
-            Ticker.fromString("CMCSA:NASDAQ")
+            Ticker.fromString("CMCSA:NASDAQ"),
+            Ticker.fromString("BILI:NASDAQ"),
+            Ticker.fromString("SHOP:NASDAQ"),
+            Ticker.fromString("WIX:NASDAQ"),
+            Ticker.fromString("DDOG:NASDAQ")
         )
     }
 

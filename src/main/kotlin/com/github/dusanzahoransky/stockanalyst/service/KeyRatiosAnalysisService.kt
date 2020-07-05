@@ -2,7 +2,7 @@ package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Ratios
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockDto
 import com.github.dusanzahoransky.stockanalyst.model.mongo.StockRatiosTimeline
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
@@ -30,11 +30,11 @@ class KeyRatiosAnalysisService {
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun calcRule1(stockList: List<Stock>, ratiosList: List<StockRatiosTimeline>) {
+    fun calcRule1(stockList: List<StockDto>, ratiosList: List<StockRatiosTimeline>) {
         ratiosList.forEach { calcRule1(it, stockList) }
     }
 
-    fun calcRule1(ratios: StockRatiosTimeline, stockList: List<Stock>) {
+    fun calcRule1(ratios: StockRatiosTimeline, stockList: List<StockDto>) {
         val periods = ratios.periods.toSortedMap(compareByDescending { it })
 
         val current = periodYearsBefore(periods, 0)

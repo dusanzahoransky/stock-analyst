@@ -1,8 +1,8 @@
 package com.github.dusanzahoransky.stockanalyst.model.dto
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockDto
 
 data class AnalysisResult(
-    var averages: Stock,
+    var averages: StockDto,
     var stocks: List<StockWithRatios>
 )

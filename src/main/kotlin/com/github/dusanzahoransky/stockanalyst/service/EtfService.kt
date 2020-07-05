@@ -33,7 +33,7 @@ class EtfService @Autowired constructor(
     val log = LoggerFactory.getLogger(this::class.java)!!
 
     fun getWatchlistEtfs(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<Etf> {
-        val watchlistTickers = watchlistRepo.getWatchlist(watchlist)
+        val watchlistTickers = watchlistRepo.getWatchlistTickers(watchlist)
         return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
     }
 

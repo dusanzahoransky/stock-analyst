@@ -1,17 +1,17 @@
 package com.github.dusanzahoransky.stockanalyst.model;
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Stock;
+import com.github.dusanzahoransky.stockanalyst.model.mongo.StockDto;
 
 public class StocksAveragesCounter {
 
     public StocksAveragesCounter() {
     }
 
-    public StocksAveragesCounter(Stock averages) {
+    public StocksAveragesCounter(StockDto averages) {
         this.averages = averages;
     }
 
-    private Stock averages;
+    private StockDto averages;
 
     private Integer changeCount = 0;
     private Integer enterpriseValueCount = 0;
@@ -559,11 +559,11 @@ public class StocksAveragesCounter {
         return this;
     }
 
-    public Stock getAverages() {
+    public StockDto getAverages() {
         return averages;
     }
 
-    public StocksAveragesCounter setAverages(Stock averages) {
+    public StocksAveragesCounter setAverages(StockDto averages) {
         this.averages = averages;
         return this;
     }

@@ -29,7 +29,7 @@ class CalcUtils {
             return (currDivPrev.pow(1.0 / numberOfYears) - 1) * 100
         }
 
-        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String, signThreshold: Double = 100.0): Double? {
+        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String = "", signThreshold: Double = 100.0): Double? {
             if (currentValue == null || previousValue == null) {
                 return null
             }
@@ -68,14 +68,14 @@ class CalcUtils {
          * Null-safe division of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        fun <N : Number> div(value1: N?, value2: N?): N? {
+        fun <N : Number> div(value1: N?, value2: N?): Double? {
             return if (value1 == null || value2 == null) {
                 null
             } else {
                 if (value1 is Double && value2 is Double)
-                    (value1 / value2) as N
+                    value1 / value2
                 else if (value1 is Long && value2 is Long)
-                    (value1 / value2) as N
+                    value1.toDouble() / value2.toDouble()
                 else
                     throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }
