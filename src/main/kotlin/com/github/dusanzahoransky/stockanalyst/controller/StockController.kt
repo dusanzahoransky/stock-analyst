@@ -30,18 +30,9 @@ class StockController @Autowired constructor(
 
         val forceRefreshLocalDate = if (refreshOlderThan != null) LocalDate.parse(refreshOlderThan) else LocalDate.now()
 
-        val stocks = stockService.getWatchlistStocks(watchlist, refreshDynamicData, refreshFinancials, mockData, forceRefreshLocalDate)
-
-        return stocks
-//
-//        stockAnalysisService.calcStockStats(stocks)
-//
-//        val ratios = keyRatiosTimelineService.getWatchlistKeyRatios(watchlist, refreshFinancials, mockData, forceRefreshLocalDate)
-//        keyRatiosAnalysisService.calcRule1(stocks, ratios)
-//
+        return stockService.getWatchlistStocks(watchlist, refreshDynamicData, refreshFinancials, mockData, forceRefreshLocalDate)
 //        val averages = stockAnalysisService.calcStocksAverages(stocks)
-//
-//        return AnalysisResult(averages, stockAnalysisService.combineWithRatios(stocks, ratios))
+//        return listOf(averages, *stocks.toTypedArray())
     }
 
     @GetMapping("etfWatchlist")
