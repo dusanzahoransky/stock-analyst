@@ -456,7 +456,7 @@ class StockService @Autowired constructor(
     private fun <T> addEntry(statTimelineMap: SortedMap<LocalDate, T>, valueAtDate: T?, date: LocalDate? = LocalDate.now(), statName: String = "") {
         var value = valueAtDate
         if (valueAtDate is Double) {
-            value = BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble() as T
+            value = round(valueAtDate) as T
         }
         val previousValue = statTimelineMap[date]
         if (value != null) {
@@ -467,6 +467,10 @@ class StockService @Autowired constructor(
         } else if (previousValue == null) {
             statTimelineMap[date] = null
         }
+    }
+
+    private fun round(valueAtDate: Double): Double {
+        return BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble()
     }
 
     private fun processAnalysis(analysis: AnalysisResponse, stock: Stock) {
@@ -611,7 +615,6 @@ class StockService @Autowired constructor(
         stock.nonCurrentLiabilitiesToIncomeGrowthQ = calcGrowth(stock.nonCurrentLiabilitiesToIncomeQ, "nonCurrentLiabilitiesToIncomeGrowthQ", 0.01)
         stock.totalAssetsGrowthQ = calcGrowth(stock.totalAssetsQ, "totalAssetsGrowthQ", 100.0)
         stock.totalShareholdersEquityGrowthQ = calcGrowth(stock.totalShareholdersEquityQ, "totalShareholdersEquityGrowthQ", 100.0)
-        stock.totalLiabilitiesToEquityGrowthQ = calcGrowth(stock.totalLiabilitiesToEquityQ, "totalLiabilitiesToEquityGrowthQ", 100.0)
         stock.stockRepurchasedGrowthQ = calcGrowth(stock.stockRepurchasedQ, "stockRepurchasedGrowthQ", 10.0)
         stock.epsGrowthQ = calcGrowth(stock.epsQ, "epsGrowthQ", 0.01)
         stock.peGrowthQ = calcGrowth(stock.peQ, "peGrowthQ", 0.01)
@@ -634,7 +637,6 @@ class StockService @Autowired constructor(
         stock.nonCurrentLiabilitiesToIncomeGrowth = calcGrowth(stock.nonCurrentLiabilitiesToIncome, "nonCurrentLiabilitiesToIncomeGrowth", 0.01)
         stock.totalAssetsGrowth = calcGrowth(stock.totalAssets, "totalAssets", 100.0)
         stock.totalShareholdersEquityGrowth = calcGrowth(stock.totalShareholdersEquity, "totalShareholdersEquity", 0.01)
-        stock.totalLiabilitiesToEquityGrowth = calcGrowth(stock.totalLiabilitiesToEquity, "totalLiabilitiesToEquity", 0.01)
         stock.stockRepurchasedGrowth = calcGrowth(stock.stockRepurchased, "stockRepurchased", 10.0)
         stock.epsGrowth = calcGrowth(stock.eps, "eps", 0.01)
         stock.peGrowth = calcGrowth(stock.pe, "pe", 0.01)
@@ -662,7 +664,7 @@ class StockService @Autowired constructor(
                 val growthAtDate = indexedPeriod.value.key
                 val value = percentGrowth(currentValue, previousValue, statName, significanceThreshold)
                 if (value != null) {
-                    periodicalGrowth[growthAtDate] = value
+                    periodicalGrowth[growthAtDate] = round(value)
                 }
             }
             previousValue = currentValue
