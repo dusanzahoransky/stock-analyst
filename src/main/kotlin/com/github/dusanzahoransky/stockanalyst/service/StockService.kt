@@ -65,7 +65,7 @@ class StockService @Autowired constructor(
     fun getWatchlistStocks(watchlist: Watchlist, refreshDynamicData: Boolean, refreshFinancials: Boolean, mockData: Boolean, refreshOlderThan: LocalDate): List<Stock> {
         val watchlistTickers = watchlistRepo.getWatchlistTickers(watchlist)
 
-        val cacheCtx = CacheContext(refreshDynamicData, refreshFinancials, mockData, refreshOlderThan);
+        val cacheCtx = CacheContext(refreshDynamicData, refreshFinancials, mockData, refreshOlderThan)
 
         return watchlistTickers.mapNotNull { ticker ->
             findOrLoadStock(ticker, cacheCtx)
@@ -322,7 +322,7 @@ class StockService @Autowired constructor(
             }
 
             if (stock.revenue[periodDate] != null && stock.netIncome[periodDate] != null) {
-                stock.profitMarginP[periodDate] = div(stock.netIncome[periodDate], stock.revenue[periodDate])
+                stock.profitMarginP[periodDate] = percent(div(stock.netIncome[periodDate], stock.revenue[periodDate]))
             }
         }
 
@@ -362,7 +362,7 @@ class StockService @Autowired constructor(
         financials.price?.currency?.let { it -> Currency.valueOf(it) }?.let { stock.currency = it }
         earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }?.let { stock.financialCurrency = it }
 
-        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency, stock)
+        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency)
 
         val yearEnds = timeSeries?.timestamp
             ?.reversed()
@@ -456,6 +456,7 @@ class StockService @Autowired constructor(
     private fun <T> addEntry(statTimelineMap: SortedMap<LocalDate, T>, valueAtDate: T?, date: LocalDate? = LocalDate.now(), statName: String = "") {
         var value = valueAtDate
         if (valueAtDate is Double) {
+            @Suppress("UNCHECKED_CAST")
             value = round(valueAtDate) as T
         }
         val previousValue = statTimelineMap[date]
@@ -486,7 +487,7 @@ class StockService @Autowired constructor(
 
     private fun processStatistics(stats: StatisticsResponse, stock: Stock) {
         log.debug("processStatistics $stock")
-        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency, stock)
+        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency)
         val financialData = stats.financialData
         val price = stats.price
         val defaultKeyStatistics = stats.defaultKeyStatistics
@@ -501,7 +502,6 @@ class StockService @Autowired constructor(
         stock.currentPrice = currentPrice
         stock.change = percent(price?.regularMarketChangePercent?.raw)
 
-        val today = LocalDate.now()
         addEntry(stock.enterpriseValue, defaultKeyStatistics.enterpriseValue?.raw)
 
         val targetLowPrice = financialData.targetLowPrice?.raw
@@ -560,29 +560,30 @@ class StockService @Autowired constructor(
      */
     private fun calculateCombinedParts(stock: Stock) {
         log.debug("calculateCombinedParts $stock")
-        stock.freeCashFlowQ.forEach { (date, cashFlow) ->
-            addEntry(stock.priceToFreeCashFlowQ, div(
-                div(priceAt(stock.price, date), 4.0),
-                div(cashFlow.toDouble(), stock.shares[date])
-            ), date)
-        }
+
+        val cashFlow = getCurrentQuarter(stock.freeCashFlowQ)
+        addEntry(stock.currentPriceToFreeCashFlow, div(
+            div(getCurrentQuarter(stock.price), 4.0),
+            div(cashFlow?.toDouble(), getCurrentQuarter(stock.shares))
+        ))
+
         stock.freeCashFlow.forEach { (date, cashFlow) ->
             addEntry(stock.priceToFreeCashFlow, div(
                 priceAt(stock.price, date),
-                div(cashFlow.toDouble(), stock.shares[date])
+                div(cashFlow?.toDouble(), stock.shares[date])
             ), date)
         }
         stock.eps.forEach { (date, eps) ->
             addEntry(stock.pe, div(priceAt(stock.price, date), eps), date)
         }
         stock.epsQ.forEach { (date, epsQ) ->
-            addEntry(stock.peQ, div(priceAt(stock.price, date), multiply(epsQ.toDouble(), 4.0)), date)
+            addEntry(stock.peQ, div(priceAt(stock.price, date), multiply(epsQ, 4.0)), date)
         }
 
 
     }
 
-    private fun priceAt(stockPrices: SortedMap<LocalDate, Double>, atDate: LocalDate): Double? {
+    private fun priceAt(stockPrices: SortedMap<LocalDate, Double?>, atDate: LocalDate): Double? {
         for (i in 0L..7L) {
             val date = atDate.minusDays(i)
             val priceAtDate = stockPrices[date]
@@ -652,20 +653,18 @@ class StockService @Autowired constructor(
         stock.workingCapitalGrowth = calcGrowth(stock.workingCapital, "workingCapital", 100.0)
     }
 
-    private fun <T : Number> calcGrowth(statPeriods: SortedMap<LocalDate, T>, statName: String, significanceThreshold: Double): SortedMap<LocalDate, Double> {
+    private fun <T : Number> calcGrowth(statPeriods: SortedMap<LocalDate, T?>, statName: String, significanceThreshold: Double): SortedMap<LocalDate, Double?> {
         if (statPeriods.size < 2) {
             return sortedMapOf()
         }
-        val periodicalGrowth = TreeMap<LocalDate, Double>()
+        val periodicalGrowth = TreeMap<LocalDate, Double?>()
         var previousValue: T? = null
         for (indexedPeriod in statPeriods.entries.withIndex()) {
             val currentValue = indexedPeriod.value.value
             if (indexedPeriod.index != 0) {
                 val growthAtDate = indexedPeriod.value.key
                 val value = percentGrowth(currentValue, previousValue, statName, significanceThreshold)
-                if (value != null) {
-                    periodicalGrowth[growthAtDate] = round(value)
-                }
+                periodicalGrowth[growthAtDate] = if(value == null) null else round(value)
             }
             previousValue = currentValue
         }
@@ -673,7 +672,7 @@ class StockService @Autowired constructor(
     }
 
 
-    private fun getExchangeRate(currency: Currency?, financialCurrency: Currency?, stock: Stock): Double {
+    private fun getExchangeRate(currency: Currency?, financialCurrency: Currency?): Double {
         val differentCurrencies = currency != financialCurrency
 
         return if (differentCurrencies && currency != null && financialCurrency != null) {
@@ -681,16 +680,6 @@ class StockService @Autowired constructor(
         } else {
             1.0
         }
-    }
-
-    private fun periodYearsBefore(periods: SortedMap<LocalDate, Ratios>, yearsBeforePresent: Int): Ratios? {
-        val present = periods.firstKey()
-        if (yearsBeforePresent == 0) {
-            return periods[present]
-        }
-        val yearsBeforeKey = periods.keys.firstOrNull { ChronoUnit.YEARS.between(it, present) == yearsBeforePresent.toLong() }
-
-        return yearsBeforeKey.let { periods[yearsBeforeKey] }
     }
 
     fun calculateRule1(stock: Stock) {
@@ -770,7 +759,7 @@ class StockService @Autowired constructor(
         }
     }
 
-    private fun <T : Number> getYearsBefore(stat: SortedMap<LocalDate, T>, yearsBefore: Int, date: LocalDate = LocalDate.now()): T? {
+    private fun <T : Number> getYearsBefore(stat: SortedMap<LocalDate, T?>, yearsBefore: Int, date: LocalDate = LocalDate.now()): T? {
         val yearBefore = date.minusYears(yearsBefore.toLong())
         val statCloseToDateFirst = stat.keys.sortedBy { statDate ->
             val daysBetween = ChronoUnit.DAYS.between(statDate, yearBefore)
@@ -780,9 +769,25 @@ class StockService @Autowired constructor(
         return if (olderThanOneYearFrom(closestPeriod, yearBefore)) null else stat[closestPeriod]
     }
 
-    private fun <T : Number> getCurrentYear(stat: SortedMap<LocalDate, T>): T? {
+    private fun <T : Number> getCurrentYear(stat: SortedMap<LocalDate, T?>): T? {
         val lastEntry = stat.entries.lastOrNull() ?: return null
         return if (olderThanOneYearFromNow(lastEntry.key)) null else lastEntry.value
+    }
+
+    private fun <T : Number> getCurrentQuarter(stat: SortedMap<LocalDate, T?>): T? {
+        val lastEntry = stat.entries.lastOrNull() ?: return null
+        return if (olderThanOneQuarterFromNow(lastEntry.key)) null else lastEntry.value
+    }
+
+    private fun olderThanOneQuarterFromNow(timelineEntry: LocalDate): Boolean {
+        return olderThanOneQuarterFrom(timelineEntry, LocalDate.now())
+    }
+
+    private fun olderThanOneQuarterFrom(timelineEntry: LocalDate, date: LocalDate): Boolean {
+        if (ChronoUnit.MONTHS.between(timelineEntry, date) > 4) {   //accept up to 5 months in between, as the current quarter report might not be published yet
+            return true
+        }
+        return false
     }
 
     private fun olderThanOneYearFromNow(timelineEntry: LocalDate): Boolean {
@@ -790,7 +795,7 @@ class StockService @Autowired constructor(
     }
 
     private fun olderThanOneYearFrom(timelineEntry: LocalDate, date: LocalDate): Boolean {
-        if (ChronoUnit.YEARS.between(timelineEntry, date) > 0) {
+        if (ChronoUnit.MONTHS.between(timelineEntry, date) > 15) { //accept up to 15 months in between, as the current year report might not be published yet
             return true
         }
         return false
