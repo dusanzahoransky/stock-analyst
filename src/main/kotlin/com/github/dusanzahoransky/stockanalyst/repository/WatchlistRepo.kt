@@ -137,7 +137,7 @@ class WatchlistRepo {
 
     fun test(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("TSM:NYSE")
+            Ticker.fromString("GOOGL:NYSE")
         )
     }
 
@@ -446,7 +446,8 @@ class WatchlistRepo {
             Ticker.fromString("ASIA:ASX"),
 /*            StockTicker.fromString("AAXJ:NASDAQ"),*/
             Ticker.fromString("VGE:ASX"),
-            Ticker.fromString("VAE:ASX")
+            Ticker.fromString("VAE:ASX"),
+            Ticker.fromString("IIND:ASX")
         )
     }
 
