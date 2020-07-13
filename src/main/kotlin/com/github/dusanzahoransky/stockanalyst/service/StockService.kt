@@ -459,7 +459,7 @@ class StockService @Autowired constructor(
         }
         val previousValue = statTimelineMap[date]
         if (value != null) {
-            if (previousValue != null) {
+            if (previousValue != null && previousValue != value) {
                 log.debug("Replacing $statName $previousValue -> $value")
             }
             statTimelineMap[date] = value

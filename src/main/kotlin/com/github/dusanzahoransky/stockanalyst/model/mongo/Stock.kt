@@ -178,11 +178,11 @@ data class Stock(
     var shares: SortedMap<LocalDate, Double?> = TreeMap(),
     var sharesGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
+    var roicP: SortedMap<LocalDate, Double?> = TreeMap(),
+
     var growthEstimate5y: SortedMap<LocalDate, Double?> = TreeMap(),
 
     //Rule 1 calc
-    var roicP: SortedMap<LocalDate, Double?> = TreeMap(),
-
     var roic1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var roic3Y: SortedMap<LocalDate, Double?> = TreeMap(),
 

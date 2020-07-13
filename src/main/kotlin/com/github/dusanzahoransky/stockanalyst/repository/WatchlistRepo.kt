@@ -79,9 +79,8 @@ class WatchlistRepo {
         return setOf(
 //            Ticker.fromString("ALXN:NASDAQ")
 //            Ticker.fromString("GOOGL:NASDAQ"),
-            Ticker.fromString("MSFT:NASDAQ"),
-            Ticker.fromString("BKNG:NASDAQ"),
-            Ticker.fromString("TEAM:NASDAQ")
+            Ticker.fromString("MSFT:NASDAQ")
+//            Ticker.fromString("BKNG:NASDAQ")
 //            Ticker.fromString("REGI:NASDAQ"),
 //            Ticker.fromString("CLDR:NYSE"),
 //            Ticker.fromString("TCOM:NASDAQ")
@@ -138,7 +137,7 @@ class WatchlistRepo {
 
     fun test(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("GOOGL:NYSE")
+            Ticker.fromString("MSFT:NASDAQ")
         )
     }
 

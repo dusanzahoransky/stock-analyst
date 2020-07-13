@@ -27,7 +27,7 @@ class CacheUtils {
         fun useCacheDynamicData(cacheCtx: CacheContext, refreshableEntity: LastRefreshDate?): Boolean {
             if (refreshableEntity == null) return false
 
-            if (!cacheCtx.refreshDynamicData) return true
+            if (!cacheCtx.refreshDynamicData && !cacheCtx.refreshFinancials) return true
 
             return !refreshableEntity.getLastRefreshDate().isBefore(cacheCtx.refreshOlderThan)
         }
@@ -35,7 +35,7 @@ class CacheUtils {
         fun useCacheFinancialsData(cacheCtx: CacheContext, refreshableEntity: LastRefreshDate?): Boolean {
             if (refreshableEntity == null) return false
 
-            if (!cacheCtx.refreshFinancials || !cacheCtx.refreshDynamicData) return true
+            if (!cacheCtx.refreshFinancials) return true
 
             return !refreshableEntity.getLastRefreshDate().isBefore(cacheCtx.refreshOlderThan)
         }
