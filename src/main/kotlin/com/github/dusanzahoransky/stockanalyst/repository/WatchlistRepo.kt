@@ -81,9 +81,10 @@ class WatchlistRepo {
 //            Ticker.fromString("GOOGL:NASDAQ"),
             Ticker.fromString("MSFT:NASDAQ"),
             Ticker.fromString("BKNG:NASDAQ"),
+            Ticker.fromString("TEAM:NASDAQ")
 //            Ticker.fromString("REGI:NASDAQ"),
-            Ticker.fromString("CLDR:NYSE"),
-            Ticker.fromString("TCOM:NASDAQ")
+//            Ticker.fromString("CLDR:NYSE"),
+//            Ticker.fromString("TCOM:NASDAQ")
 //            Ticker.fromString("GRPN:NASDAQ"),
 //            Ticker.fromString("NOK:NYSE"),
 //            Ticker.fromString("INTC:NASDAQ"),
