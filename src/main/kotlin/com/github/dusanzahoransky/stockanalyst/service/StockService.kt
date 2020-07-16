@@ -406,7 +406,7 @@ class StockService @Autowired constructor(
 
                 addEntry(stock.freeCashFlowQ, plus(cashFlowQuarterly[i]?.totalCashFromOperatingActivities?.raw, cashFlowQuarterly[i]?.capitalExpenditures?.raw), quarter)
 
-                addEntry(stock.epsQ, multiply(epsQuarterly?.get(i)?.actual?.raw?.toDouble(), exchangeRate), quarter)
+                addEntry(stock.epsQ, multiply(epsQuarterly?.getOrNull(i)?.actual?.raw?.toDouble(), exchangeRate), quarter)
 
             }
         }
@@ -444,7 +444,7 @@ class StockService @Autowired constructor(
 
                 addEntry(stock.freeCashFlow, plus(cashFlow[i]?.totalCashFromOperatingActivities?.raw, cashFlow[i]?.capitalExpenditures?.raw), year)
 
-                addEntry(stock.eps, multiply(annualDilutedEPS?.get(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
+                addEntry(stock.eps, multiply(annualDilutedEPS?.getOrNull(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
             }
         }
 
@@ -469,7 +469,12 @@ class StockService @Autowired constructor(
     }
 
     private fun round(valueAtDate: Double): Double {
-        return BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble()
+        try {
+            return BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble()
+        } catch (e: NumberFormatException ){
+            log.error("Failed to round $valueAtDate", e)
+            return valueAtDate
+        }
     }
 
     private fun processAnalysis(analysis: AnalysisResponse, stock: Stock) {
