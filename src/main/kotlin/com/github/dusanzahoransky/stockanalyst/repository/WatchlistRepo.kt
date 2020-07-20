@@ -79,7 +79,7 @@ class WatchlistRepo {
         return setOf(
 //            Ticker.fromString("ALXN:NASDAQ")
 //            Ticker.fromString("GOOGL:NASDAQ"),
-            Ticker.fromString("MSFT:NASDAQ")
+            Ticker.fromString("AMAT:NASDAQ")
 //            Ticker.fromString("BKNG:NASDAQ")
 //            Ticker.fromString("REGI:NASDAQ"),
 //            Ticker.fromString("CLDR:NYSE"),
@@ -249,8 +249,8 @@ class WatchlistRepo {
             Ticker.fromString("ZPRA:DAX"),      //SPDR S&P Pan Asia Dividend Aristocrats UCITS ETF
             Ticker.fromString("SPYW:DAX"),      //SPDR S&P Euro Dividend Aristocrats UCITS ETF
             Ticker.fromString("ZPRV:DAX"),
-            Ticker.fromString("LYMS:DAX"),
-            Ticker.fromString("LYXINR:DAX")
+            Ticker.fromString("LYMS:DAX")
+//            Ticker.fromString("LYXINR:DAX")
         )
     }
 
