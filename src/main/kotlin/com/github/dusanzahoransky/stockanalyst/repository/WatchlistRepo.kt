@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class WatchlistRepo {
 
-    fun getWatchlist(watchlist: Watchlist): Set<Ticker> {
+    fun getWatchlistTickers(watchlist: Watchlist): Set<Ticker> {
         return when (watchlist) {
             //Test
             TEST -> test()
@@ -79,11 +79,11 @@ class WatchlistRepo {
         return setOf(
 //            Ticker.fromString("ALXN:NASDAQ")
 //            Ticker.fromString("GOOGL:NASDAQ"),
-            Ticker.fromString("MSFT:NASDAQ"),
-            Ticker.fromString("BKNG:NASDAQ"),
+            Ticker.fromString("AMAT:NASDAQ")
+//            Ticker.fromString("BKNG:NASDAQ")
 //            Ticker.fromString("REGI:NASDAQ"),
-            Ticker.fromString("CLDR:NYSE"),
-            Ticker.fromString("TCOM:NASDAQ")
+//            Ticker.fromString("CLDR:NYSE"),
+//            Ticker.fromString("TCOM:NASDAQ")
 //            Ticker.fromString("GRPN:NASDAQ"),
 //            Ticker.fromString("NOK:NYSE"),
 //            Ticker.fromString("INTC:NASDAQ"),
@@ -137,7 +137,7 @@ class WatchlistRepo {
 
     fun test(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("TSM:NYSE")
+            Ticker.fromString("MSFT:NASDAQ")
         )
     }
 
@@ -250,6 +250,7 @@ class WatchlistRepo {
             Ticker.fromString("SPYW:DAX"),      //SPDR S&P Euro Dividend Aristocrats UCITS ETF
             Ticker.fromString("ZPRV:DAX"),
             Ticker.fromString("LYMS:DAX")
+//            Ticker.fromString("LYXINR:DAX")
         )
     }
 
@@ -297,7 +298,12 @@ class WatchlistRepo {
             Ticker.fromString("MA:NYSE"),
             Ticker.fromString("EMR:NYSE"),
             Ticker.fromString("CHTR:NASDAQ"),
-            Ticker.fromString("CMCSA:NASDAQ")
+            Ticker.fromString("CMCSA:NASDAQ"),
+            Ticker.fromString("BILI:NASDAQ"),
+            Ticker.fromString("SHOP:NASDAQ"),
+            Ticker.fromString("WIX:NASDAQ"),
+            Ticker.fromString("DDOG:NASDAQ"),
+            Ticker.fromString("WDC:NASDAQ")
         )
     }
 
@@ -442,7 +448,8 @@ class WatchlistRepo {
             Ticker.fromString("ASIA:ASX"),
 /*            StockTicker.fromString("AAXJ:NASDAQ"),*/
             Ticker.fromString("VGE:ASX"),
-            Ticker.fromString("VAE:ASX")
+            Ticker.fromString("VAE:ASX"),
+            Ticker.fromString("IIND:ASX")
         )
     }
 

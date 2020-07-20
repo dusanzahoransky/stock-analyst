@@ -11,25 +11,28 @@ class CalcUtils {
 
         private val log: Logger = LoggerFactory.getLogger(CalcUtils::class.java)
 
-        fun cumulativeGrowthRate(currentValue: Double?, previousValue: Double?, numberOfYears: Int, statName: String, signThreshold: Double = 100.0): Double? {
+        fun <N : Number> cumulativeGrowthRate(currentValue: N?, previousValue: N?, numberOfYears: Int, statName: String, signThreshold: Double = 100.0): Double? {
             if (currentValue == null || previousValue == null || previousValue == 0.0) {
                 return null
             }
-            if (abs(previousValue) < signThreshold) {   //the previous value is too small to get any meaningful result
-                log.debug("Skipping $statName cumulative growth rate calculation, value $previousValue is too insignificant")
+
+            val currValueD = currentValue.toDouble()
+            val prevValueD = previousValue.toDouble()
+            if (abs(prevValueD) < signThreshold) {   //the previous value is too small to get any meaningful result
+                log.debug("Skipping $statName cumulative growth rate calculation, value $prevValueD is too insignificant")
                 return null
             }
-            if ((previousValue > 0.0 && signThreshold < 0.0) || (previousValue < 0.0 && signThreshold > 0.0)) {
+            if ((prevValueD > 0.0 && signThreshold < 0.0) || (prevValueD < 0.0 && signThreshold > 0.0)) {
                 return null
             }
-            val currDivPrev = currentValue / previousValue
+            val currDivPrev = currValueD / prevValueD
             if (currDivPrev < 0) {    //imaginary number, can't calculate
                 return null
             }
             return (currDivPrev.pow(1.0 / numberOfYears) - 1) * 100
         }
 
-        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String, signThreshold: Double = 100.0): Double? {
+        fun <N : Number> percentGrowth(currentValue: N?, previousValue: N?, statName: String = "", signThreshold: Double = 100.0): Double? {
             if (currentValue == null || previousValue == null) {
                 return null
             }
@@ -68,14 +71,14 @@ class CalcUtils {
          * Null-safe division of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        fun <N : Number> div(value1: N?, value2: N?): N? {
+        fun <N : Number> div(value1: N?, value2: N?): Double? {
             return if (value1 == null || value2 == null) {
                 null
             } else {
                 if (value1 is Double && value2 is Double)
-                    (value1 / value2) as N
+                    value1 / value2
                 else if (value1 is Long && value2 is Long)
-                    (value1 / value2) as N
+                    value1.toDouble() / value2.toDouble()
                 else
                     throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }
@@ -149,16 +152,11 @@ class CalcUtils {
          * Null-safe percentage multiplier of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
-        fun <N : Number> percent(value1: N?): N? {
+        fun percent(value1: Double?): Double? {
             return if (value1 == null) {
                 null
             } else {
-                if (value1 is Double)
-                    (value1 * 100) as N
-                else if (value1 is Long)
-                    (value1 * 100) as N
-                else
-                    throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}}")
+                value1 * 100
             }
         }
 
