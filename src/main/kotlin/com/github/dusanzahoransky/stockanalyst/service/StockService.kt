@@ -383,6 +383,11 @@ class StockService @Autowired constructor(
                 val netIncomeQ = incomeStmQuarterly[i]?.netIncome?.raw
                 addEntry(stock.netIncomeQ, netIncomeQ, quarter)
                 addEntry(stock.profitMarginPQ, percent(div(netIncomeQ, revenueQ)), quarter)
+                val operatingIncomeQ = incomeStmQuarterly[i]?.operatingIncome?.raw?.toDouble()
+                addEntry(stock.operatingIncomeQ, operatingIncomeQ, quarter)
+                val interestExpenseQ = incomeStmQuarterly[i]?.interestExpense?.raw?.toDouble()
+                addEntry(stock.interestExpenseQ, interestExpenseQ, quarter)
+                addEntry(stock.interestExpenseToOperativeIncomePQ, percent(div(interestExpenseQ, operatingIncomeQ)), quarter)
 
                 addEntry(stock.operatingCashFlowQ, cashFlowQuarterly[i]?.totalCashFromOperatingActivities?.raw, quarter)
                 addEntry(stock.capitalExpendituresQ, cashFlowQuarterly[i]?.capitalExpenditures?.raw, quarter)
@@ -421,6 +426,11 @@ class StockService @Autowired constructor(
                 val netIncome = incomeStm[i]?.netIncome?.raw
                 addEntry(stock.netIncome, netIncome, year)
                 addEntry(stock.profitMarginP, percent(div(netIncome, revenue)), year)
+                val operatingIncome = incomeStm[i]?.operatingIncome?.raw?.toDouble()
+                addEntry(stock.operatingIncome, operatingIncome, year)
+                val interestExpense = incomeStm[i]?.interestExpense?.raw?.toDouble()
+                addEntry(stock.interestExpense, interestExpense, year)
+                addEntry(stock.interestExpenseToOperativeIncomeP, percent(div(interestExpense, operatingIncome)), year)
 
                 addEntry(stock.operatingCashFlow, cashFlow[i]?.totalCashFromOperatingActivities?.raw, year)
                 addEntry(stock.capitalExpenditures, cashFlow[i]?.capitalExpenditures?.raw, year)
@@ -606,6 +616,7 @@ class StockService @Autowired constructor(
         stock.ebitGrowthQ = calcGrowth(stock.ebitQ, "ebitGrowthQ", 100.0)
         stock.netIncomeGrowthQ = calcGrowth(stock.netIncomeQ, "netIncomeGrowthQ", 100.0)
         stock.profitMarginGrowthQ = calcGrowth(stock.profitMarginPQ, "profitMarginGrowthQ", 0.01)
+        stock.interestExpenseToOperativeIncomeGrowthQ = calcGrowth(stock.interestExpenseToOperativeIncomePQ, "interestExpenseToOperativeIncomeGrowthQ", 0.01)
         stock.operatingCashFlowGrowthQ = calcGrowth(stock.operatingCashFlowQ, "totalCashFromOperatingActivitiesGrowthQ", 100.0)
         stock.capitalExpendituresGrowthQ = calcGrowth(stock.capitalExpendituresQ, "capitalExpendituresGrowthQ", 100.0)
         stock.freeCashFlowGrowthQ = calcGrowth(stock.freeCashFlowQ, "freeCashFlowGrowthQ", 100.0)
@@ -629,6 +640,7 @@ class StockService @Autowired constructor(
         stock.ebitGrowth = calcGrowth(stock.ebit, "ebit", 100.0)
         stock.netIncomeGrowth = calcGrowth(stock.netIncome, "netIncome", 100.0)
         stock.profitMarginGrowth = calcGrowth(stock.profitMarginP, "profitMargin", 0.01)
+        stock.interestExpenseToOperativeIncomeGrowth = calcGrowth(stock.interestExpenseToOperativeIncomeP, "interestExpenseToOperativeIncomeGrowth", 0.01)
         stock.operatingCashFlowGrowth = calcGrowth(stock.operatingCashFlow, "totalCashFromOperatingActivities", 100.0)
         stock.capitalExpendituresGrowth = calcGrowth(stock.capitalExpenditures, "capitalExpenditures", 100.0)
         stock.freeCashFlowGrowth = calcGrowth(stock.freeCashFlow, "freeCashFlow", 100.0)
