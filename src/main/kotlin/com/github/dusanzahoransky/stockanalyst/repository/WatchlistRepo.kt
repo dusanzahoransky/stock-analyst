@@ -79,7 +79,7 @@ class WatchlistRepo {
         return setOf(
 //            Ticker.fromString("ALXN:NASDAQ")
 //            Ticker.fromString("GOOGL:NASDAQ"),
-            Ticker.fromString("AMAT:NASDAQ")
+            Ticker.fromString("MSFT:NASDAQ")
 //            Ticker.fromString("BKNG:NASDAQ")
 //            Ticker.fromString("REGI:NASDAQ"),
 //            Ticker.fromString("CLDR:NYSE"),
@@ -131,7 +131,8 @@ class WatchlistRepo {
 
     fun testEtfs(): Set<Ticker> {
         return setOf(
-            Ticker.fromString("VTS:ASX")
+            Ticker.fromString("VGE:ASX"),
+            Ticker.fromString("VFEM:FTSE")
         )
     }
 
@@ -197,6 +198,7 @@ class WatchlistRepo {
 
     fun euInvestedIn(): Set<Ticker> {
         return setOf(
+            Ticker.fromString("LISN:SIX")
         )
     }
 
