@@ -46,6 +46,7 @@ enum class Watchlist {
     EU_ALL,
     EU_INVESTED_IN,
     EU_WATCHLIST,
+    EU_AIRLINES,
 
     GB_ALL,
     GB_INVESTED_IN,

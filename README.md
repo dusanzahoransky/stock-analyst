@@ -26,13 +26,13 @@ spring.data.mongodb.port=27017
 
 ### Finance APIs
 
-Set Yahoo and Morning Star host and API key in `application.properties`
+Set Yahoo and Morning Star host and API key as process env variables or specify them in `application.properties`
 
 ```
-yahoo.client.xRapidapiKey=${x-rapidapi-key}
-yahoo.client.xRapidapiHost=${x-rapidapi-host}
-morningstar.client.xRapidapiKey=${x-rapidapi-key}
-morningstar.client.xRapidapiHost=${x-rapidapi-host}
+yahoo.client.xRapidapiKey=${yahoo-x-rapidapi-key}
+yahoo.client.xRapidapiHost=${yahoo-x-rapidapi-host}
+morningstar.client.xRapidapiKey=${morningstar-x-rapidapi-key}
+morningstar.client.xRapidapiHost=${morningstar-x-rapidapi-host}
 ```
 
 ## Run

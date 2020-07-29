@@ -40,7 +40,7 @@ import kotlin.math.pow
 
 @Service
 class StockService @Autowired constructor(
-    val watchlistRepo: WatchlistRepo,
+    val watchlistRepo: WatchlistStaticRepo,
     val stockRepo: StockRepo,
     val yahooFinanceClient: YahooFinanceClient,
     val exchangeRateClient: ExchangeRateClient,
