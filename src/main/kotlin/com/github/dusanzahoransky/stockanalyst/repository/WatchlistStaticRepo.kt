@@ -76,11 +76,18 @@ class WatchlistStaticRepo {
 
     fun toCheck(): Set<Ticker> {
         return setOf(
-//            Ticker.fromString("ALXN:NASDAQ")
-//            Ticker.fromString("GOOGL:NASDAQ"),
-                Ticker.fromString("MSFT:NASDAQ")
-//            Ticker.fromString("BKNG:NASDAQ")
-//            Ticker.fromString("REGI:NASDAQ"),
+                Ticker.fromString("ALXN:NASDAQ"),
+                Ticker.fromString("AMAT:NASDAQ"),
+                Ticker.fromString("MSFT:NASDAQ"),
+                Ticker.fromString("GOOGL:NASDAQ"),
+                Ticker.fromString("AMD:NASDAQ"),
+                Ticker.fromString("INTC:NASDAQ"),
+                Ticker.fromString("T:NYSE"),
+                Ticker.fromString("CMCSA:NASDAQ"),
+                Ticker.fromString("LMT:NYSE"),
+                Ticker.fromString("QCOM:NASDAQ"),
+                Ticker.fromString("TSM:NYSE"),
+                Ticker.fromString("GILD:NASDAQ")
 //            Ticker.fromString("CLDR:NYSE"),
 //            Ticker.fromString("TCOM:NASDAQ")
 //            Ticker.fromString("GRPN:NASDAQ"),
