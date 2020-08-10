@@ -385,7 +385,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.profitMarginPQ, percent(div(netIncomeQ, revenueQ)), quarter)
                 val operatingIncomeQ = incomeStmQuarterly[i]?.operatingIncome?.raw?.toDouble()
                 addEntry(stock.operatingIncomeQ, operatingIncomeQ, quarter)
-                val interestExpenseQ = incomeStmQuarterly[i]?.interestExpense?.raw?.toDouble()
+                val interestExpenseQ = incomeStmQuarterly[i]?.interestExpense?.raw?.toDouble()?.let { it * -1.0 }   //interest expense comes as negative number from Yahoo API
                 addEntry(stock.interestExpenseQ, interestExpenseQ, quarter)
                 addEntry(stock.interestExpenseToOperativeIncomePQ, percent(div(interestExpenseQ, operatingIncomeQ)), quarter)
 
@@ -428,7 +428,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.profitMarginP, percent(div(netIncome, revenue)), year)
                 val operatingIncome = incomeStm[i]?.operatingIncome?.raw?.toDouble()
                 addEntry(stock.operatingIncome, operatingIncome, year)
-                val interestExpense = incomeStm[i]?.interestExpense?.raw?.toDouble()
+                val interestExpense = incomeStm[i]?.interestExpense?.raw?.toDouble() //interest expense comes as negative number from Yahoo API
                 addEntry(stock.interestExpense, interestExpense, year)
                 addEntry(stock.interestExpenseToOperativeIncomeP, percent(div(interestExpense, operatingIncome)), year)
 
