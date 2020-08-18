@@ -200,13 +200,14 @@ class WatchlistStaticRepo {
 /*            StockTicker.fromString("KU2:DAX"),*/
                 Ticker.fromString("SIE:DAX"),
                 Ticker.fromString("SU:PA"),
-                Ticker.fromString("LHA:DAX")
+                Ticker.fromString("LHA:DAX"),
+                Ticker.fromString("LISN:SIX")
         )
     }
 
     fun euInvestedIn(): Set<Ticker> {
         return setOf(
-                Ticker.fromString("LISN:SIX")
+
         )
     }
 
@@ -300,20 +301,18 @@ class WatchlistStaticRepo {
                 /* StockTicker.fromString("INO:NYSE"),*/
                 //TODO need currency conversion /* StockTicker.fromString("SNE:NASDAQ"), */
                 Ticker.fromString("ROK:NYSE"),
-                Ticker.fromString("HON:NYSE"),
                 Ticker.fromString("AAl:NASDAQ"),
                 Ticker.fromString("UAL:NASDAQ"),
 //            StockTicker.fromString("LTM:NYSE"),
                 Ticker.fromString("DAL:NYSE"),
                 Ticker.fromString("MA:NYSE"),
-                Ticker.fromString("EMR:NYSE"),
                 Ticker.fromString("CHTR:NASDAQ"),
                 Ticker.fromString("CMCSA:NASDAQ"),
-                Ticker.fromString("BILI:NASDAQ"),
                 Ticker.fromString("SHOP:NASDAQ"),
                 Ticker.fromString("WIX:NASDAQ"),
                 Ticker.fromString("DDOG:NASDAQ"),
-                Ticker.fromString("WDC:NASDAQ")
+                Ticker.fromString("WDC:NASDAQ"),
+                Ticker.fromString("DIS:NYSE")
         )
     }
 
@@ -347,14 +346,14 @@ class WatchlistStaticRepo {
                 Ticker.fromString("MSFT:NASDAQ"),
                 Ticker.fromString("EB:NYSE"),
                 Ticker.fromString("FB:NASDAQ"),
-                Ticker.fromString("QCOM:NASDAQ"),
-                Ticker.fromString("AVGO:NASDAQ"),
                 Ticker.fromString("CLDR:NYSE")
         )
     }
 
     fun watchListUsdTech(): Set<Ticker> {
         return setOf(
+                Ticker.fromString("QCOM:NASDAQ"),
+                Ticker.fromString("AVGO:NASDAQ"),
                 Ticker.fromString("CTSH:NASDAQ"),
                 Ticker.fromString("EBAY:NASDAQ"),
                 Ticker.fromString("DELL:NYSE"),
