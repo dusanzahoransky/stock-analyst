@@ -77,7 +77,9 @@ class WatchlistStaticRepo {
     fun toCheck(): Set<Ticker> {
         return setOf(
 //                Ticker.fromString("BLNK:NASDAQ"),
-                Ticker.fromString("SKX:NYSE")
+                Ticker.fromString("SKX:NYSE"),
+                Ticker.fromString("TSLA:NASDAQ")
+
 //                Ticker.fromString("STNE:NASDAQ")
 //                Ticker.fromString("MSFT:NASDAQ"),
 //                Ticker.fromString("GOOGL:NASDAQ"),
