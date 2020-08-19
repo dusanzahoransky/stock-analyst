@@ -328,11 +328,9 @@ class WatchlistStaticRepo {
                 Ticker.fromString("GRPN:NASDAQ"),
                 Ticker.fromString("T:NYSE"),
                 Ticker.fromString("SO:NYSE"),
-                Ticker.fromString("TSM:NYSE"),
                 Ticker.fromString("LMT:NYSE"),
                 Ticker.fromString("KO:NYSE"),
                 Ticker.fromString("KO:NYSE"),
-                Ticker.fromString("TSM:NYSE"),
                 *investedInUsdTech().toTypedArray()
         )
     }
@@ -354,6 +352,7 @@ class WatchlistStaticRepo {
 
     fun watchListUsdTech(): Set<Ticker> {
         return setOf(
+                Ticker.fromString("TSM:NYSE"),
                 Ticker.fromString("QCOM:NASDAQ"),
                 Ticker.fromString("AVGO:NASDAQ"),
                 Ticker.fromString("CTSH:NASDAQ"),
@@ -380,7 +379,8 @@ class WatchlistStaticRepo {
                 Ticker.fromString("ESTC:NYSE"),
                 Ticker.fromString("BIDU:NASDAQ"),
                 Ticker.fromString("TRIP:NASDAQ"),
-                Ticker.fromString("TCOM:NASDAQ")
+                Ticker.fromString("TCOM:NASDAQ"),
+                Ticker.fromString("NVDA:NASDAQ")
         )
     }
 
