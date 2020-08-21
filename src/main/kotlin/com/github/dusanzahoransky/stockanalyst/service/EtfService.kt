@@ -23,7 +23,7 @@ import java.time.Period
 
 @Service
 class EtfService @Autowired constructor(
-    val watchlistRepo: WatchlistRepo,
+    val watchlistRepo: WatchlistStaticRepo,
     val etfRepo: EtfRepo,
     val yahooFinanceClient: YahooFinanceClient,
     val etfStatisticsRepo: EtfStatisticsRepo,

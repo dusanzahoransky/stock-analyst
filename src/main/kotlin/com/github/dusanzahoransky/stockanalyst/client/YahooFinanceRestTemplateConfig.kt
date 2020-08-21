@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.client
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
@@ -9,7 +10,7 @@ import org.springframework.web.client.RestTemplate
 import java.time.Duration
 
 @Configuration
-class YahooFinanceRestTemplateConfig {
+class YahooFinanceRestTemplateConfig(val mapper: ObjectMapper) {
 
     @Value("\${yahoo.client.xRapidapiKey}")
     lateinit var xRapidapiKey: String
@@ -22,7 +23,7 @@ class YahooFinanceRestTemplateConfig {
         return builder
             .setReadTimeout(Duration.ofSeconds(30))
             .setConnectTimeout(Duration.ofSeconds(30))
-            .additionalInterceptors(ClientLoggingInterceptor(),
+            .additionalInterceptors(ClientLoggingInterceptor(mapper),
                 ClientHttpRequestInterceptor { request, body, execution ->
                     request.headers.set("x-rapidapi-host", xRapidapiHost)
                     request.headers.set("x-rapidapi-key", xRapidapiKey)

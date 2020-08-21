@@ -12,7 +12,6 @@ import java.time.LocalDate
 @RestController
 @RequestMapping("stocks")
 class StockController @Autowired constructor(
-    val keyRatiosAnalysisService: KeyRatiosAnalysisService,
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService,
     val indexService: EtfService
@@ -31,8 +30,6 @@ class StockController @Autowired constructor(
         val forceRefreshLocalDate = if (refreshOlderThan != null) LocalDate.parse(refreshOlderThan) else LocalDate.now()
 
         return stockService.getWatchlistStocks(watchlist, refreshDynamicData, refreshFinancials, mockData, forceRefreshLocalDate)
-//        val averages = stockAnalysisService.calcStocksAverages(stocks)
-//        return listOf(averages, *stocks.toTypedArray())
     }
 
     @GetMapping("etfWatchlist")
