@@ -330,7 +330,6 @@ class WatchlistStaticRepo {
                 Ticker.fromString("SO:NYSE"),
                 Ticker.fromString("LMT:NYSE"),
                 Ticker.fromString("KO:NYSE"),
-                Ticker.fromString("KO:NYSE"),
                 *investedInUsdTech().toTypedArray()
         )
     }
