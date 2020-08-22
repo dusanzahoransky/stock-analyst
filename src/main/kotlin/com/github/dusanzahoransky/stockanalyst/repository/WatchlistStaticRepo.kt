@@ -78,7 +78,7 @@ class WatchlistStaticRepo {
         return setOf(
 //                Ticker.fromString("BLNK:NASDAQ"),
                 Ticker.fromString("SKX:NYSE"),
-                Ticker.fromString("TSLA:NASDAQ")
+                Ticker.fromString("CIEN:NYSE")
 
 //                Ticker.fromString("STNE:NASDAQ")
 //                Ticker.fromString("MSFT:NASDAQ"),
