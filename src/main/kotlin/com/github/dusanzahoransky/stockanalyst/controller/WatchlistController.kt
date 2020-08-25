@@ -22,4 +22,16 @@ class WatchlistController @Autowired constructor(
     fun list(): List<Watchlist> {
         return watchlistService.getAll()
     }
+
+    @GetMapping("names")
+    @ResponseBody
+    fun listNames(): List<String> {
+        return watchlistService.getAllNames()
+    }
+
+    @GetMapping("{watchlistName}")
+    @ResponseBody
+    fun getByName(@PathVariable watchlistName: String): Watchlist {
+        return watchlistService.getByName(watchlistName)
+    }
 }

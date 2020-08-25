@@ -18,6 +18,14 @@ class WatchlistService @Autowired constructor(
         return watchlistRepo.findAll()
     }
 
+    fun getAllNames(): List<String> {
+        return getAll().map { watchlist -> watchlist.name }
+    }
+
+    fun getByName(watchlistName: String): Watchlist {
+        return watchlistRepo.findById(watchlistName).orElse(null)
+    }
+
     fun save(watchlist: Watchlist): Watchlist {
         return watchlistRepo.save(watchlist)
     }
@@ -73,4 +81,6 @@ class WatchlistService @Autowired constructor(
 
         return createdWatchlists
     }
+
+
 }
