@@ -17,5 +17,5 @@ import java.util.*
 data class Watchlist(
     @Id var name: String,
     var isEtf: Boolean = false,
-    var tickers: Set<String> = mutableSetOf()
+    var tickers: MutableSet<String> = mutableSetOf()
 )

@@ -30,6 +30,18 @@ class WatchlistService @Autowired constructor(
         return watchlistRepo.save(watchlist)
     }
 
+    fun addTickersToWatchlist(watchlistName: String, tickers: Set<String>): Watchlist {
+        val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
+        watchlist.tickers.addAll(tickers)
+        return watchlistRepo.save(watchlist)
+    }
+
+    fun removeTickersToWatchlist(watchlistName: String, tickers: Set<String>): Watchlist {
+        val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
+        watchlist.tickers.removeAll(tickers)
+        return watchlistRepo.save(watchlist)
+    }
+
     fun initPresetWatchlists(): List<Watchlist> {
         val createdWatchlists = mutableListOf<Watchlist>()
 
@@ -81,6 +93,7 @@ class WatchlistService @Autowired constructor(
 
         return createdWatchlists
     }
+
 
 
 }

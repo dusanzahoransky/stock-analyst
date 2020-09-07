@@ -419,40 +419,43 @@ class StockService @Autowired constructor(
         if (yearEnds != null) {
             for (i in yearEnds.indices) {
                 val year = yearEnds[i]
-                val revenue = incomeStm[i]?.totalRevenue?.raw
+                val yearIncomeStm = incomeStm.getOrNull(i)
+                val yearCashFlow = cashFlow.getOrNull(i)
+                val yearBalSheet = balSheet.getOrNull(i)
+                val revenue = yearIncomeStm?.totalRevenue?.raw
                 addEntry(stock.revenue, revenue, year)
-                addEntry(stock.grossIncome, incomeStm[i]?.grossProfit?.raw, year)
-                addEntry(stock.ebit, incomeStm[i]?.ebit?.raw, year)
-                val netIncome = incomeStm[i]?.netIncome?.raw
+                addEntry(stock.grossIncome, yearIncomeStm?.grossProfit?.raw, year)
+                addEntry(stock.ebit, yearIncomeStm?.ebit?.raw, year)
+                val netIncome = yearIncomeStm?.netIncome?.raw
                 addEntry(stock.netIncome, netIncome, year)
                 addEntry(stock.profitMarginP, percent(div(netIncome, revenue)), year)
-                val operatingIncome = incomeStm[i]?.operatingIncome?.raw?.toDouble()
+                val operatingIncome = yearIncomeStm?.operatingIncome?.raw?.toDouble()
                 addEntry(stock.operatingIncome, operatingIncome, year)
-                val interestExpense = incomeStm[i]?.interestExpense?.raw?.toDouble() //interest expense comes as negative number from Yahoo API
+                val interestExpense = yearIncomeStm?.interestExpense?.raw?.toDouble() //interest expense comes as negative number from Yahoo API
                 addEntry(stock.interestExpense, interestExpense, year)
                 addEntry(stock.interestExpenseToOperativeIncomeP, percent(div(interestExpense, operatingIncome)), year)
 
-                addEntry(stock.operatingCashFlow, cashFlow[i]?.totalCashFromOperatingActivities?.raw, year)
-                addEntry(stock.capitalExpenditures, cashFlow[i]?.capitalExpenditures?.raw, year)
-                addEntry(stock.stockRepurchased, cashFlow[i]?.repurchaseOfStock?.raw, year)
+                addEntry(stock.operatingCashFlow, yearCashFlow?.totalCashFromOperatingActivities?.raw, year)
+                addEntry(stock.capitalExpenditures, yearCashFlow?.capitalExpenditures?.raw, year)
+                addEntry(stock.stockRepurchased, yearCashFlow?.repurchaseOfStock?.raw, year)
 
-                addEntry(stock.cash, balSheet[i]?.cash?.raw, year)
-                addEntry(stock.inventory, balSheet[i]?.inventory?.raw, year)
-                val currentAssets = balSheet[i]?.totalCurrentAssets?.raw
+                addEntry(stock.cash, yearBalSheet?.cash?.raw, year)
+                addEntry(stock.inventory, yearBalSheet?.inventory?.raw, year)
+                val currentAssets = yearBalSheet?.totalCurrentAssets?.raw
                 addEntry(stock.currentAssets, currentAssets, year)
-                val currentLiabilities = balSheet[i]?.totalCurrentLiabilities?.raw
+                val currentLiabilities = yearBalSheet?.totalCurrentLiabilities?.raw
                 addEntry(stock.currentLiabilities, currentLiabilities, year)
                 addEntry(stock.workingCapital, minus(currentAssets, currentLiabilities)?.toDouble(), year)
                 addEntry(stock.currentRatio, div(currentAssets, currentLiabilities), year)
-                addEntry(stock.totalAssets, balSheet[i]?.totalAssets?.raw, year)
-                val totalLiabilities = balSheet[i]?.totalLiab?.raw
+                addEntry(stock.totalAssets, yearBalSheet?.totalAssets?.raw, year)
+                val totalLiabilities = yearBalSheet?.totalLiab?.raw
                 addEntry(stock.totalLiabilities, totalLiabilities, year)
-                val totalShareholdersEquity = balSheet[i]?.totalStockholderEquity?.raw
+                val totalShareholdersEquity = yearBalSheet?.totalStockholderEquity?.raw
                 addEntry(stock.totalShareholdersEquity, totalShareholdersEquity, year)
                 addEntry(stock.totalDebtToEquity, div(totalLiabilities, totalShareholdersEquity), year)
                 addEntry(stock.nonCurrentLiabilitiesToIncome, div(minus(totalLiabilities, currentLiabilities), netIncome), year)
 
-                addEntry(stock.freeCashFlow, plus(cashFlow[i]?.totalCashFromOperatingActivities?.raw, cashFlow[i]?.capitalExpenditures?.raw), year)
+                addEntry(stock.freeCashFlow, plus(yearCashFlow?.totalCashFromOperatingActivities?.raw, yearCashFlow?.capitalExpenditures?.raw), year)
 
                 addEntry(stock.eps, multiply(annualDilutedEPS?.getOrNull(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
             }
