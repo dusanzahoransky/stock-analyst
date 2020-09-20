@@ -23,7 +23,7 @@ import java.time.Period
 
 @Service
 class EtfService @Autowired constructor(
-    val watchlistRepo: WatchlistStaticRepo,
+    val watchlistRepo: WatchlistRepo,
     val etfRepo: EtfRepo,
     val yahooFinanceClient: YahooFinanceClient,
     val etfStatisticsRepo: EtfStatisticsRepo,
@@ -32,9 +32,9 @@ class EtfService @Autowired constructor(
 
     val log = LoggerFactory.getLogger(this::class.java)!!
 
-    fun getWatchlistEtfs(watchlist: Watchlist, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<Etf> {
-        val watchlistTickers = watchlistRepo.getWatchlistTickers(watchlist)
-        return watchlistTickers.mapNotNull { ticker -> findOrLoad(ticker, forceRefresh, mockData, forceRefreshDate) }
+    fun getWatchlistEtfs(watchlistName: String, forceRefresh: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): List<Etf> {
+        val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
+        return watchlist.tickers.mapNotNull { ticker -> findOrLoad(Ticker.fromString(ticker), forceRefresh, mockData, forceRefreshDate) }
     }
 
     private fun findOrLoad(ticker: Ticker, forceRefreshCache: Boolean, mockData: Boolean, forceRefreshDate: LocalDate): Etf? {

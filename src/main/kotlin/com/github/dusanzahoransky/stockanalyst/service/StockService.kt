@@ -40,7 +40,7 @@ import kotlin.math.pow
 
 @Service
 class StockService @Autowired constructor(
-    val watchlistRepo: WatchlistStaticRepo,
+    val watchlistRepo: WatchlistRepo,
     val stockRepo: StockRepo,
     val yahooFinanceClient: YahooFinanceClient,
     val exchangeRateClient: ExchangeRateClient,
@@ -61,13 +61,13 @@ class StockService @Autowired constructor(
     val log = LoggerFactory.getLogger(this::class.java)!!
 
 
-    fun getWatchlistStocks(watchlist: Watchlist, refreshDynamicData: Boolean, refreshFinancials: Boolean, mockData: Boolean, refreshOlderThan: LocalDate): List<Stock> {
-        val watchlistTickers = watchlistRepo.getWatchlistTickers(watchlist)
+    fun getWatchlistStocks(watchlistName: String, refreshDynamicData: Boolean, refreshFinancials: Boolean, mockData: Boolean, refreshOlderThan: LocalDate): List<Stock> {
+        val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
 
         val cacheCtx = CacheContext(refreshDynamicData, refreshFinancials, mockData, refreshOlderThan)
 
-        return watchlistTickers.mapNotNull { ticker ->
-            findOrLoadStock(ticker, cacheCtx)
+        return watchlist.tickers.mapNotNull { ticker ->
+            findOrLoadStock(Ticker.fromString(ticker), cacheCtx)
         }
     }
 

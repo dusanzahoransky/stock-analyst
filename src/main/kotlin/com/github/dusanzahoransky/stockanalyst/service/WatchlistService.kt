@@ -27,6 +27,10 @@ class WatchlistService @Autowired constructor(
         return watchlistRepo.findById(watchlistName).orElse(null)
     }
 
+    fun removeWatchlist(watchlistName: String) {
+        watchlistRepo.deleteById(watchlistName)
+    }
+
     fun save(watchlist: Watchlist): Watchlist {
         return watchlistRepo.save(watchlist)
     }

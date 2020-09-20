@@ -35,13 +35,19 @@ class WatchlistController @Autowired constructor(
         return watchlistService.getByName(watchlistName)
     }
 
-    @PostMapping("{watchlistName}/ticker")
+    @DeleteMapping("{watchlistName}")
+    @ResponseBody
+    fun removeWatchlist(@PathVariable watchlistName: String) {
+        watchlistService.removeWatchlist(watchlistName)
+    }
+
+    @PutMapping("{watchlistName}/add")
     @ResponseBody
     fun addTickers(@PathVariable watchlistName: String, @RequestBody tickers: Set<String>): Watchlist {
         return watchlistService.addTickersToWatchlist(watchlistName, tickers)
     }
 
-    @DeleteMapping("{watchlistName}/ticker")
+    @PutMapping("{watchlistName}/remove")
     @ResponseBody
     fun removeTickers(@PathVariable watchlistName: String, @RequestBody tickers: Set<String>): Watchlist {
         return watchlistService.removeTickersFromWatchlist(watchlistName, tickers)
