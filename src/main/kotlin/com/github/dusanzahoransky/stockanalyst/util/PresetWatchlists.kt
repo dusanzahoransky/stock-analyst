@@ -1,62 +1,19 @@
 package com.github.dusanzahoransky.stockanalyst.util
 
+import com.github.dusanzahoransky.stockanalyst.model.enums.WatchlistTag
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Watchlist
 
 class PresetWatchlists {
-    fun test(): Watchlist {
-        val watchlist = Watchlist("TEST")
-        watchlist.tickers = mutableSetOf(
-                "MSFT:NASDAQ"
-        )
-        return watchlist
-    }
-
-    fun testEtfs(): Watchlist {
-        val watchlist = Watchlist("TEST_ETF")
-        watchlist.tickers = mutableSetOf(
-                "VGE:ASX",
-                "VFEM:FTSE"
-        )
-        return watchlist
-    }
 
     fun toCheck(): Watchlist {
         val watchlist = Watchlist("TO_CHECK")
         watchlist.tickers = mutableSetOf(
-                "ALXN:NASDAQ",
-                "GOOGL:NASDAQ",
-                "MSFT:NASDAQ",
-                "BKNG:NASDAQ",
-                "REGI:NASDAQ",
-                "CLDR:NYSE",
-                "TCOM:NASDAQ",
-                "GRPN:NASDAQ",
-                "NOK:NYSE",
-                "INTC:NASDAQ",
-                "AVGO:NASDAQ"
+
         )
         return watchlist
     }
 
     //ETFs
-    fun etfsAll(): Watchlist {
-        val watchlist = Watchlist("ETF_ALL")
-        watchlist.tickers = mutableSetOf(
-                *auEtfsAll().tickers.toTypedArray(),
-                *euEtfsAll().tickers.toTypedArray(),
-                *gbEtfsAll().tickers.toTypedArray()
-        )
-        return watchlist
-    }
-
-    fun auEtfsAll(): Watchlist {
-        val watchlist = Watchlist("AU_ETF_ALL")
-        watchlist.tickers = mutableSetOf(
-                *auEtfsInvestedIn().tickers.toTypedArray(),
-                *auEtfsWatchlist().tickers.toTypedArray()
-        )
-        return watchlist
-    }
 
     fun auEtfsAu(): Watchlist {
         val watchlist = Watchlist("AU_ETF_AU")
@@ -69,6 +26,8 @@ class PresetWatchlists {
                 "VHY:ASX",
                 "VSO:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -80,6 +39,8 @@ class PresetWatchlists {
                 "NDQ:ASX",
                 "UMAX:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -92,6 +53,8 @@ class PresetWatchlists {
                 "VAE:ASX",
                 "IIND:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -106,6 +69,8 @@ class PresetWatchlists {
                 "VCF:ASX",
                 "VEFI:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -123,6 +88,8 @@ class PresetWatchlists {
                 "VAS:ASX",
                 "VSO:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU, WatchlistTag.INVESTED_IN)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -147,16 +114,8 @@ class PresetWatchlists {
                 "VAE:ASX",
                 "VESG:ASX"
         )
-        return watchlist
-    }
-
-    fun gbEtfsAll(): Watchlist {
-        val watchlist = Watchlist("GB_ETF_ALL")
-        watchlist.tickers = mutableSetOf(
-                *gbEtfsInvestedIn().tickers.toTypedArray(),
-                *gbEtfsWatchlist().tickers.toTypedArray(),
-                *gbEtfsBonds().tickers.toTypedArray()
-        )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -165,6 +124,8 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -177,6 +138,8 @@ class PresetWatchlists {
                 "VUKE:FTSE",
                 "VFEM:FTSE"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB, WatchlistTag.INVESTED_IN)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -205,18 +168,11 @@ class PresetWatchlists {
                 "VVAL:FTSE",
                 "IWVL:FTSE"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB)
+        watchlist.isEtf = true
         return watchlist
     }
 
-    fun euEtfsAll(): Watchlist {
-        val watchlist = Watchlist("EU_ETF_ALL")
-        watchlist.tickers = mutableSetOf(
-                *euEtfsInvestedIn().tickers.toTypedArray(),
-                *euEtfsWatchlist().tickers.toTypedArray(),
-                *euEtfsBondEtfs().tickers.toTypedArray()
-        )
-        return watchlist
-    }
 
     fun euEtfsBondEtfs(): Watchlist {
         val watchlist = Watchlist("EU_ETF_BOND")
@@ -226,6 +182,8 @@ class PresetWatchlists {
                 "VGEM:DAX", //Emerging Markets Government Bond
                 "VGEB:DAX"  //Eurozone Government Bond
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -237,6 +195,8 @@ class PresetWatchlists {
                 "SXR8:DAX",
                 "QDVE:DAX"
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU, WatchlistTag.INVESTED_IN)
+        watchlist.isEtf = true
         return watchlist
     }
 
@@ -253,58 +213,29 @@ class PresetWatchlists {
                 "LYMS:DAX"
 //            "LYXINR:DAX")
         )
+        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU)
+        watchlist.isEtf = true
         return watchlist
     }
 
-    fun etfTrading212InvestedIn(): Watchlist {
-        val watchlist = Watchlist("ETF_TRADING_212_INVESTED_IN")
-        watchlist.tickers = mutableSetOf(
-                *euEtfsInvestedIn().tickers.toTypedArray(),
-                *gbEtfsInvestedIn().tickers.toTypedArray()
-        )
-        return watchlist
-    }
-
-    //Stocks
-    fun invested(): Watchlist {
-        val watchlist = Watchlist("ALL_INVESTED")
-        watchlist.tickers = mutableSetOf(
-                *auInvestedIn().tickers.toTypedArray(),
-                *usInvestedIn().tickers.toTypedArray(),
-                *gbInvestedIn().tickers.toTypedArray(),
-                *euInvestedIn().tickers.toTypedArray()
-        )
-        return watchlist
-    }
-
-    fun us(): Watchlist {
-        val watchlist = Watchlist("US_ALL")
-        watchlist.tickers = mutableSetOf(
-                *usInvestedIn().tickers.toTypedArray(),
-                *usWatchList().tickers.toTypedArray(),
-                *dividends().tickers.toTypedArray()
-        )
-        return watchlist
-    }
 
     fun usInvestedIn(): Watchlist {
         val watchlist = Watchlist("US_INVESTED_IN")
         watchlist.tickers = mutableSetOf(
                 "ALXN:NASDAQ",
-                "TMUS:NASDAQ",
+                "SBSW:NASDAQ",
                 "GILD:NASDAQ",
                 "AMAT:NASDAQ",
                 "REGI:NASDAQ",
-                "GRPN:NASDAQ",
                 "T:NYSE",
                 "SO:NYSE",
-                "TSM:NYSE",
+                "SKX:NYSE",
                 "LMT:NYSE",
                 "KO:NYSE",
-                "KO:NYSE",
-                "TSM:NYSE",
+                "CIEN:NYSE",
                 *investedInTech().tickers.toTypedArray()
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.US, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -327,15 +258,7 @@ class PresetWatchlists {
                 "DDOG:NASDAQ",
                 "WDC:NASDAQ"
         )
-        return watchlist
-    }
-
-    fun eu(): Watchlist {
-        val watchlist = Watchlist("EU_ALL")
-        watchlist.tickers = mutableSetOf(
-                *euInvestedIn().tickers.toTypedArray(),
-                *euWatchList().tickers.toTypedArray()
-        )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.US)
         return watchlist
     }
 
@@ -344,6 +267,7 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.EU, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -356,17 +280,10 @@ class PresetWatchlists {
                 "LHA:DAX",
                 "LISN:SIX"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.EU)
         return watchlist
     }
 
-    fun gb(): Watchlist {
-        val watchlist = Watchlist("GB_ALL")
-        watchlist.tickers = mutableSetOf(
-                *gbInvestedIn().tickers.toTypedArray(),
-                *gbWatchlist().tickers.toTypedArray()
-        )
-        return watchlist
-    }
 
     fun gbInvestedIn(): Watchlist {
         val watchlist = Watchlist("GB_INVESTED_IN")
@@ -374,6 +291,7 @@ class PresetWatchlists {
                 "RYA:FTSE",
                 "WIZZ:FTSE"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.GB, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -382,34 +300,25 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
                 "IAG:FTSE"
         )
-        return watchlist
-    }
-
-    fun au(): Watchlist {
-        val watchlist = Watchlist("AU_ALL")
-        watchlist.tickers = mutableSetOf(
-                *auInvestedIn().tickers.toTypedArray(),
-                *auWatchlist().tickers.toTypedArray()
-        )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.GB)
         return watchlist
     }
 
     fun auWatchlist(): Watchlist {
         val watchlist = Watchlist("AU_WATCHLIST")
         watchlist.tickers = mutableSetOf(
-                "CBA:ASX",
-                "ING:ASX",
-                "WBC:ASX",
-                "NAB:ASX",
-                "QAN:ASX",
-                "SYD:ASX",
-                "SEK:ASX",
                 "WTC:ASX",
-                "XRO:ASX",
-                "Z1P:ASX",
+                "LBL:ASX",
                 "APT:ASX",
-                "OPY:ASX"
+                "FMG:ASX",
+                "LYL:ASX",
+                "CI1:ASX",
+                "CXZ:ASX",
+                "MAH:ASX",
+                "RMS:ASX",
+                "VUL:ASX"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.AU)
         return watchlist
     }
 
@@ -417,24 +326,11 @@ class PresetWatchlists {
         val watchlist = Watchlist("AU_INVESTED_IN")
         watchlist.tickers = mutableSetOf(
                 "ANZ:ASX",
-                "WBC:ASX"
+                "WBC:ASX",
+                "ASB:ASX",
+                "ZIM:ASX"
         )
-        return watchlist
-    }
-
-    fun chf(): Watchlist {
-        val watchlist = Watchlist("CHF_ALL")
-        watchlist.tickers = mutableSetOf(
-                *chfWatchlist().tickers.toTypedArray()
-        )
-        return watchlist
-    }
-
-    fun chfWatchlist(): Watchlist {
-        val watchlist = Watchlist("CHF_WATCHLIST")
-        watchlist.tickers = mutableSetOf(
-                "ABBN:SIX"
-        )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.AU, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -448,6 +344,7 @@ class PresetWatchlists {
                 "RYA:FTSE",
                 "WIZZ:FTSE"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -457,6 +354,7 @@ class PresetWatchlists {
                 *investedInTech().tickers.toTypedArray(),
                 *watchListTech().tickers.toTypedArray()
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -466,16 +364,14 @@ class PresetWatchlists {
                 "GOOGL:NASDAQ",
                 //"GOOG:NASDAQ",
                 "INTC:NASDAQ",
-                "MAR:NASDAQ",
-                "GRPN:NASDAQ",
                 "BKNG:NASDAQ",
                 "MSFT:NASDAQ",
                 "EB:NYSE",
                 "FB:NASDAQ",
-                "QCOM:NASDAQ",
                 "AVGO:NASDAQ",
                 "CLDR:NYSE"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -508,6 +404,7 @@ class PresetWatchlists {
                 "TRIP:NASDAQ",
                 "TCOM:NASDAQ"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -618,6 +515,7 @@ class PresetWatchlists {
                 "AAL:NASDAQ",
                 "LBTYA:NASDAQ"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -639,22 +537,17 @@ class PresetWatchlists {
                 "DIS:NYSE",
                 "PEP:NASDAQ"
         )
+        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
-    fun allTrading212(): Watchlist {
-        val watchlist = Watchlist("TRADING_212")
-        watchlist.tickers = mutableSetOf(
-
-        )
-        return watchlist
-    }
 
     fun allTrading212Us(): Watchlist {
         val watchlist = Watchlist("TRADING_212_US")
         watchlist.tickers = mutableSetOf(
 
         )
+        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 
@@ -663,6 +556,7 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
+        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 
@@ -671,6 +565,7 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
+        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 }
