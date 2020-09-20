@@ -1,5 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
+import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Watchlist
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
 import com.github.dusanzahoransky.stockanalyst.util.PresetWatchlists
@@ -32,8 +33,19 @@ class WatchlistService @Autowired constructor(
 
     fun addTickersToWatchlist(watchlistName: String, tickers: Set<String>): Watchlist {
         val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
+        tickers.forEach { validate(it) }
         watchlist.tickers.addAll(tickers)
         return watchlistRepo.save(watchlist)
+    }
+
+    fun removeTickersFromWatchlist(watchlistName: String, tickers: Set<String>): Watchlist {
+        val watchlist = watchlistRepo.findById(watchlistName).orElseThrow()
+        watchlist.tickers.removeAll(tickers)
+        return watchlistRepo.save(watchlist)
+    }
+
+    private fun validate(it: String) {
+        Ticker.fromString(it)
     }
 
     fun removeTickersToWatchlist(watchlistName: String, tickers: Set<String>): Watchlist {

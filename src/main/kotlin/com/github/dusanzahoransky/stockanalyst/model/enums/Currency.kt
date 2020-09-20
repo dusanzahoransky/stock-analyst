@@ -15,5 +15,6 @@ enum class Currency {
     CNY,
     JPY,
     TWD,
-    BRL
+    BRL,
+    ZAR,
 }

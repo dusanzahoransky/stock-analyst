@@ -89,21 +89,27 @@ class StockService @Autowired constructor(
 
             if (stock.financialsLastUpdated.isBefore(partialData.financials.getLastRefreshDate())) {
                 processFinancials(partialData.financials.response, stock)
+                stock.financialsLastUpdated = partialData.financials.getLastRefreshDate()
             }
             if (stock.statisticsLastUpdated.isBefore(partialData.statistics.getLastRefreshDate())) {
                 processStatistics(partialData.statistics.response, stock)
+                stock.statisticsLastUpdated = partialData.statistics.getLastRefreshDate()
             }
             if (stock.analysisLastUpdated.isBefore(partialData.analysis.getLastRefreshDate())) {
                 processAnalysis(partialData.analysis.response, stock)
+                stock.analysisLastUpdated = partialData.analysis.getLastRefreshDate()
             }
             if (stock.holdersLastUpdated.isBefore(partialData.holders.getLastRefreshDate())) {
                 processHolders(partialData.holders.response, stock)
+                stock.holdersLastUpdated = partialData.holders.getLastRefreshDate()
             }
             if (stock.chartLastUpdated.isBefore(partialData.chart.getLastRefreshDate())) {
                 processChart(partialData.chart.response, stock)
+                stock.chartLastUpdated = partialData.chart.getLastRefreshDate()
             }
             if (stock.chartLastUpdated.isBefore(partialData.krf.getLastRefreshDate())) {
                 processKrf(partialData.krf.results, stock)
+                stock.chartLastUpdated = partialData.krf.getLastRefreshDate()
             }
         }
 

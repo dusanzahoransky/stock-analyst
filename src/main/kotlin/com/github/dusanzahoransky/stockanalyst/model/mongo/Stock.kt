@@ -18,11 +18,11 @@ data class Stock(
     val exchange: Exchange,
 
     //last updated timestamp
-    val chartLastUpdated: LocalDate = LocalDate.now(),
-    val financialsLastUpdated: LocalDate = LocalDate.now(),
-    val analysisLastUpdated: LocalDate = LocalDate.now(),
-    val statisticsLastUpdated: LocalDate = LocalDate.now(),
-    val holdersLastUpdated: LocalDate = LocalDate.now(),
+    var chartLastUpdated: LocalDate = LocalDate.now(),
+    var financialsLastUpdated: LocalDate = LocalDate.now(),
+    var analysisLastUpdated: LocalDate = LocalDate.now(),
+    var statisticsLastUpdated: LocalDate = LocalDate.now(),
+    var holdersLastUpdated: LocalDate = LocalDate.now(),
     var krfLastUpdated: LocalDate = LocalDate.now(),
 
     //latest available data
