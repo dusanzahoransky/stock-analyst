@@ -7,7 +7,6 @@ import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Interval
 import com.github.dusanzahoransky.stockanalyst.model.enums.Range
-import com.github.dusanzahoransky.stockanalyst.model.enums.Watchlist
 import com.github.dusanzahoransky.stockanalyst.model.mongo.*
 import com.github.dusanzahoransky.stockanalyst.model.ms.keyratios.Result
 import com.github.dusanzahoransky.stockanalyst.model.yahoo.analysis.AnalysisResponse
@@ -122,7 +121,15 @@ class StockService @Autowired constructor(
             return stock
         }
         log.debug("Saving ${if (stock.id == null) "new" else "updated"} stock $ticker")
-        return stockRepo.save(stock)
+        stockRepo.save(stock)
+
+        reduceData(stock)   //reduce large data sets being sent to UI
+        return stock
+    }
+
+    private fun reduceData(stock: Stock) {
+        val dayOfWeekForSampling = stock.price.lastKey().dayOfWeek
+        stock.price = stock.price.filterKeys { key -> key.dayOfWeek == dayOfWeekForSampling}.toSortedMap()
     }
 
 
