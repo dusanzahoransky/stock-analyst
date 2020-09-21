@@ -419,6 +419,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.totalLiabilitiesQ, totalLiabilitiesQ, quarter)
                 val totalShareholdersEquityQ = balSheetQuarterly[i]?.totalStockholderEquity?.raw
                 addEntry(stock.totalShareholdersEquityQ, totalShareholdersEquityQ, quarter)
+                addEntry(stock.retainedEarningsQ, balSheetQuarterly[i]?.retainedEarnings?.raw, quarter)
                 addEntry(stock.totalDebtToEquityQ, div(totalLiabilitiesQ, totalShareholdersEquityQ), quarter)
                 addEntry(stock.nonCurrentLiabilitiesToIncomeQ, div(minus(totalLiabilitiesQ, currentLiabilitiesQ), multiply(netIncomeQ, 4)), quarter)
 
@@ -465,6 +466,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.totalLiabilities, totalLiabilities, year)
                 val totalShareholdersEquity = yearBalSheet?.totalStockholderEquity?.raw
                 addEntry(stock.totalShareholdersEquity, totalShareholdersEquity, year)
+                addEntry(stock.retainedEarnings, yearBalSheet?.retainedEarnings?.raw, year)
                 addEntry(stock.totalDebtToEquity, div(totalLiabilities, totalShareholdersEquity), year)
                 addEntry(stock.nonCurrentLiabilitiesToIncome, div(minus(totalLiabilities, currentLiabilities), netIncome), year)
 
@@ -645,7 +647,8 @@ class StockService @Autowired constructor(
         stock.totalDebtToEquityGrowthQ = calcGrowth(stock.totalDebtToEquityQ, "totalDebtToEquityGrowthQ", 0.01)
         stock.nonCurrentLiabilitiesToIncomeGrowthQ = calcGrowth(stock.nonCurrentLiabilitiesToIncomeQ, "nonCurrentLiabilitiesToIncomeGrowthQ", 0.01)
         stock.totalAssetsGrowthQ = calcGrowth(stock.totalAssetsQ, "totalAssetsGrowthQ", 100.0)
-        stock.totalShareholdersEquityGrowthQ = calcGrowth(stock.totalShareholdersEquityQ, "totalShareholdersEquityGrowthQ", 100.0)
+        stock.totalShareholdersEquityGrowthQ = calcGrowth(stock.totalShareholdersEquityQ, "totalShareholdersEquityGrowthQ", 10.0)
+        stock.retainedEarningsGrowthQ = calcGrowth(stock.retainedEarningsQ, "retainedEarningsGrowthQ", 1.0)
         stock.stockRepurchasedGrowthQ = calcGrowth(stock.stockRepurchasedQ, "stockRepurchasedGrowthQ", 10.0)
         stock.epsGrowthQ = calcGrowth(stock.epsQ, "epsGrowthQ", 0.01)
         stock.peGrowthQ = calcGrowth(stock.peQ, "peGrowthQ", 0.01)
@@ -669,7 +672,8 @@ class StockService @Autowired constructor(
         stock.totalDebtToEquityGrowth = calcGrowth(stock.totalDebtToEquity, "totalDebtToEquity", 0.01)
         stock.nonCurrentLiabilitiesToIncomeGrowth = calcGrowth(stock.nonCurrentLiabilitiesToIncome, "nonCurrentLiabilitiesToIncomeGrowth", 0.01)
         stock.totalAssetsGrowth = calcGrowth(stock.totalAssets, "totalAssets", 100.0)
-        stock.totalShareholdersEquityGrowth = calcGrowth(stock.totalShareholdersEquity, "totalShareholdersEquity", 0.01)
+        stock.totalShareholdersEquityGrowth = calcGrowth(stock.totalShareholdersEquity, "totalShareholdersEquity", 10.0)
+        stock.retainedEarningsGrowth = calcGrowth(stock.retainedEarnings, "retainedEarningsGrowth", 1.0)
         stock.stockRepurchasedGrowth = calcGrowth(stock.stockRepurchased, "stockRepurchased", 10.0)
         stock.epsGrowth = calcGrowth(stock.eps, "eps", 0.01)
         stock.peGrowth = calcGrowth(stock.pe, "pe", 0.01)
