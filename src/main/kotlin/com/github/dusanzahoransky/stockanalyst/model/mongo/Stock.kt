@@ -37,6 +37,7 @@ data class Stock(
     //timeline data
 
     //basic info & ratios without growth
+    var marketCap: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValue: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalCashPerShare: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalCashPerShareP: SortedMap<LocalDate, Double?> = TreeMap(),

@@ -534,6 +534,7 @@ class StockService @Autowired constructor(
         stock.change = percent(price?.regularMarketChangePercent?.raw)
 
         addEntry(stock.enterpriseValue, defaultKeyStatistics.enterpriseValue?.raw)
+        addEntry(stock.marketCap, stats.summaryDetail.marketCap?.raw)
 
         val targetLowPrice = financialData.targetLowPrice?.raw
         addEntry(stock.targetLowPrice, targetLowPrice)
