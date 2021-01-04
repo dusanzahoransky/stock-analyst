@@ -17,4 +17,5 @@ enum class Currency {
     TWD,
     BRL,
     ZAR,
+    MXN,
 }

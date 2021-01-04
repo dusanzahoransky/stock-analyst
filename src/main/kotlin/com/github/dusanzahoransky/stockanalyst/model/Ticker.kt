@@ -34,6 +34,7 @@ data class Ticker(
             Exchange.SIX -> "XSWX"
             Exchange.PA -> "XPAR"
             Exchange.MCE -> "XMAD"
+            Exchange.PNK -> "PINX"
         }
     }
 }
