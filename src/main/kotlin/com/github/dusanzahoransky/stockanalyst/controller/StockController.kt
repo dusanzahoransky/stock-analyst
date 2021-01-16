@@ -20,7 +20,7 @@ class StockController @Autowired constructor(
     @GetMapping("watchlist")
     @ResponseBody
     fun loadWatchlist(
-        @RequestParam(value = "watchlist") watchlist: Watchlist,
+        @RequestParam(value = "watchlist") watchlist: String,
         @RequestParam(value = "refreshDynamicData", required = false) refreshDynamicData: Boolean = false,
         @RequestParam(value = "refreshFinancials", required = false) refreshFinancials: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
@@ -35,7 +35,7 @@ class StockController @Autowired constructor(
     @GetMapping("etfWatchlist")
     @ResponseBody
     fun loadEtfsWatchlist(
-        @RequestParam(value = "watchlist") watchlist: Watchlist,
+        @RequestParam(value = "watchlist") watchlist: String,
         @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
         @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?

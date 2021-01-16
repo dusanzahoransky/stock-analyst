@@ -18,11 +18,11 @@ data class Stock(
     val exchange: Exchange,
 
     //last updated timestamp
-    val chartLastUpdated: LocalDate = LocalDate.now(),
-    val financialsLastUpdated: LocalDate = LocalDate.now(),
-    val analysisLastUpdated: LocalDate = LocalDate.now(),
-    val statisticsLastUpdated: LocalDate = LocalDate.now(),
-    val holdersLastUpdated: LocalDate = LocalDate.now(),
+    var chartLastUpdated: LocalDate = LocalDate.now(),
+    var financialsLastUpdated: LocalDate = LocalDate.now(),
+    var analysisLastUpdated: LocalDate = LocalDate.now(),
+    var statisticsLastUpdated: LocalDate = LocalDate.now(),
+    var holdersLastUpdated: LocalDate = LocalDate.now(),
     var krfLastUpdated: LocalDate = LocalDate.now(),
 
     //latest available data
@@ -37,6 +37,7 @@ data class Stock(
     //timeline data
 
     //basic info & ratios without growth
+    var marketCap: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValue: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalCashPerShare: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalCashPerShareP: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -178,6 +179,10 @@ data class Stock(
     var totalShareholdersEquity: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalShareholdersEquityGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalShareholdersEquityGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var retainedEarningsQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    var retainedEarnings: SortedMap<LocalDate, Long?> = TreeMap(),
+    var retainedEarningsGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var retainedEarningsGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var stockRepurchasedQ: SortedMap<LocalDate, Long?> = TreeMap(),
     var stockRepurchased: SortedMap<LocalDate, Long?> = TreeMap(),
     var stockRepurchasedGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),

@@ -76,10 +76,13 @@ class WatchlistStaticRepo {
 
     fun toCheck(): Set<Ticker> {
         return setOf(
+//                Ticker.fromString("RYA:FTSE")
+//                Ticker.fromString("STOR:NYSE")
 //                Ticker.fromString("BLNK:NASDAQ"),
-                Ticker.fromString("SKX:NYSE"),
-                Ticker.fromString("TSLA:NASDAQ")
-
+//                Ticker.fromString("SU:PA"),
+//                Ticker.fromString("AIR:PA"),
+//                Ticker.fromString("HEIA:ENX"),
+//                Ticker.fromString("NESN:SIX")
 //                Ticker.fromString("STNE:NASDAQ")
 //                Ticker.fromString("MSFT:NASDAQ"),
 //                Ticker.fromString("GOOGL:NASDAQ"),
@@ -91,7 +94,10 @@ class WatchlistStaticRepo {
 //                Ticker.fromString("QCOM:NASDAQ"),
 //                Ticker.fromString("TSM:NYSE"),
 //                Ticker.fromString("BKNG:NASDAQ"),
-//            Ticker.fromString("CLDR:NYSE"),
+            Ticker.fromString("PAF:FTSE"),
+            Ticker.fromString("HHFA:DAX"),
+            Ticker.fromString("GLJ:DAX"),
+            Ticker.fromString("SBSW:NYSE")
 //            Ticker.fromString("TCOM:NASDAQ")
 //            Ticker.fromString("GRPN:NASDAQ")
 //            Ticker.fromString("NOK:NYSE"),
@@ -199,11 +205,19 @@ class WatchlistStaticRepo {
 
     fun euWatchList(): Set<Ticker> {
         return setOf(
-/*            StockTicker.fromString("KU2:DAX"),*/
+                Ticker.fromString("KU2:DAX"),
                 Ticker.fromString("SIE:DAX"),
                 Ticker.fromString("SU:PA"),
-                Ticker.fromString("LHA:DAX"),
-                Ticker.fromString("LISN:SIX")
+                Ticker.fromString("AIR:PA"),
+                Ticker.fromString("B4B:DAX"),
+                Ticker.fromString("RNO:PA"),
+                Ticker.fromString("HEIA:ENX"),
+                Ticker.fromString("ABBN:SIX"),
+                Ticker.fromString("NESN:SIX"),
+                Ticker.fromString("TSCO:FTSE")
+
+//                Ticker.fromString("LHA:DAX"),
+//                Ticker.fromString("LISN:SIX")
         )
     }
 
@@ -314,23 +328,24 @@ class WatchlistStaticRepo {
                 Ticker.fromString("WIX:NASDAQ"),
                 Ticker.fromString("DDOG:NASDAQ"),
                 Ticker.fromString("WDC:NASDAQ"),
-                Ticker.fromString("DIS:NYSE")
+                Ticker.fromString("DIS:NYSE"),
+                Ticker.fromString("TMUS:NASDAQ"),
+                Ticker.fromString("GRPN:NASDAQ")
         )
     }
 
     fun usInvestedIn(): Set<Ticker> {
         return setOf(
+                Ticker.fromString("CIEN:NYSE"),
                 Ticker.fromString("ALXN:NASDAQ"),
-                Ticker.fromString("TMUS:NASDAQ"),
                 Ticker.fromString("GILD:NASDAQ"),
                 Ticker.fromString("AMAT:NASDAQ"),
                 Ticker.fromString("REGI:NASDAQ"),
-                Ticker.fromString("GRPN:NASDAQ"),
                 Ticker.fromString("T:NYSE"),
                 Ticker.fromString("SO:NYSE"),
                 Ticker.fromString("LMT:NYSE"),
                 Ticker.fromString("KO:NYSE"),
-                Ticker.fromString("KO:NYSE"),
+                Ticker.fromString("SKX:NYSE"),
                 *investedInUsdTech().toTypedArray()
         )
     }
@@ -340,8 +355,6 @@ class WatchlistStaticRepo {
                 Ticker.fromString("GOOGL:NASDAQ"),
                 //StockTicker.fromString("GOOG:NASDAQ"),
                 Ticker.fromString("INTC:NASDAQ"),
-                Ticker.fromString("MAR:NASDAQ"),
-                Ticker.fromString("GRPN:NASDAQ"),
                 Ticker.fromString("BKNG:NASDAQ"),
                 Ticker.fromString("MSFT:NASDAQ"),
                 Ticker.fromString("EB:NYSE"),
@@ -446,18 +459,10 @@ class WatchlistStaticRepo {
 
     fun auWatchlist(): Set<Ticker> {
         return setOf(
-                Ticker.fromString("CBA:ASX"),
-                Ticker.fromString("ING:ASX"),
-                Ticker.fromString("WBC:ASX"),
-                Ticker.fromString("NAB:ASX"),
-                Ticker.fromString("QAN:ASX"),
-                Ticker.fromString("SYD:ASX"),
-                Ticker.fromString("SEK:ASX"),
                 Ticker.fromString("WTC:ASX"),
-                Ticker.fromString("XRO:ASX"),
-//            StockTicker.fromString("Z1P:ASX"),
-                Ticker.fromString("APT:ASX")
-//            StockTicker.fromString("OPY:ASX")
+                Ticker.fromString("LBL:ASX"),
+                Ticker.fromString("FMG:ASX"),
+                Ticker.fromString("LYL:ASX")
         )
     }
 
@@ -545,7 +550,9 @@ class WatchlistStaticRepo {
     fun auInvestedIn(): Set<Ticker> {
         return setOf(
                 Ticker.fromString("ANZ:ASX"),
-                Ticker.fromString("WBC:ASX")
+                Ticker.fromString("WBC:ASX"),
+                Ticker.fromString("ASB:ASX"),
+                Ticker.fromString("ZIM:ASX")
         )
     }
 

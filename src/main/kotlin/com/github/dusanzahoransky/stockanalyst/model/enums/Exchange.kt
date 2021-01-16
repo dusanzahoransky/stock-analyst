@@ -12,5 +12,6 @@ enum class Exchange(
     ENX("Euronext Netherlands", "AS"),
     SIX("SIX Swiss", "SW"),
     PA("Euronext Paris", "PA"),
-    MCE("Bolsa de Madrid", "MC");
+    MCE("Bolsa de Madrid", "MC"),
+    PNK("Pink Sheets", "OTC")
 }
