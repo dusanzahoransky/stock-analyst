@@ -748,19 +748,82 @@ class StockService @Autowired constructor(
 
         //multiple slightly different ways how to calculate, common one is (net income - dividends) / (total assets - current liabilities - cash and cash equivalents)
 
+        for (netIncomeEntry in stock.netIncomeQ.entries) {
+            val quarter = netIncomeEntry.key
+            val netIncome = netIncomeEntry.value
+            val totalAssets = stock.totalAssetsQ[quarter]
+            val cash = stock.cashQ[quarter]
+
+            addEntry(stock.roicPQ, percent(
+                div(
+                    netIncome,
+                    minus(totalAssets, cash)
+                )
+            ), quarter)
+        }
+
         for (netIncomeEntry in stock.netIncome.entries) {
             val year = netIncomeEntry.key
             val netIncome = netIncomeEntry.value
-            val dividends = stock.dividends[year] ?: 0.0
-            val shares = stock.shares[year] ?: 0.0
             val totalAssets = stock.totalAssets[year]
-            val currentLiabilities = stock.currentLiabilities[year]
             val cash = stock.cash[year]
 
             addEntry(stock.roicP, percent(
                 div(
-                    minus(netIncome, multiply(dividends, shares)?.toLong()),
-                    minus(plus(totalAssets, currentLiabilities), cash)
+                    netIncome,
+                    minus(totalAssets, cash)
+                )
+            ), year)
+        }
+
+        for (netIncomeEntry in stock.netIncomeQ.entries) {
+            val quarter = netIncomeEntry.key
+            val netIncome = netIncomeEntry.value
+            val equity = stock.totalShareholdersEquityQ[quarter]
+
+            addEntry(stock.roePQ, percent(
+                div(
+                    netIncome,
+                    equity
+                )
+            ), quarter)
+        }
+
+        for (netIncomeEntry in stock.netIncome.entries) {
+            val year = netIncomeEntry.key
+            val netIncome = netIncomeEntry.value
+            val equity = stock.totalShareholdersEquity[year]
+
+            addEntry(stock.roeP, percent(
+                div(
+                    netIncome,
+                    equity
+                )
+            ), year)
+        }
+
+        for (netIncomeEntry in stock.netIncomeQ.entries) {
+            val quarter = netIncomeEntry.key
+            val netIncome = netIncomeEntry.value
+            val equity = stock.totalAssetsQ[quarter]
+
+            addEntry(stock.roaPQ, percent(
+                div(
+                    netIncome,
+                    equity
+                )
+            ), quarter)
+        }
+
+        for (netIncomeEntry in stock.netIncome.entries) {
+            val year = netIncomeEntry.key
+            val netIncome = netIncomeEntry.value
+            val equity = stock.totalAssets[year]
+
+            addEntry(stock.roaP, percent(
+                div(
+                    netIncome,
+                    equity
                 )
             ), year)
         }
