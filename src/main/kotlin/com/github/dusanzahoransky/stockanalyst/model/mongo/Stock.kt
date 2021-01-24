@@ -33,7 +33,6 @@ data class Stock(
     var change: Double? = null,
     var currentPrice: Double? = null,
 
-
     //timeline data
 
     //basic info & ratios without growth
@@ -193,12 +192,18 @@ data class Stock(
 
     var roicPQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var roicP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roicGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roicGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var roePQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var roeP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roeGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roeGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var roaPQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var roaP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roaGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roaGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var growthEstimate5y: SortedMap<LocalDate, Double?> = TreeMap(),
 

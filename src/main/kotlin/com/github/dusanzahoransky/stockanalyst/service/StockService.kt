@@ -654,6 +654,9 @@ class StockService @Autowired constructor(
         stock.epsGrowthQ = calcGrowth(stock.epsQ, "epsGrowthQ", 0.01)
         stock.peGrowthQ = calcGrowth(stock.peQ, "peGrowthQ", 0.01)
         stock.workingCapitalGrowthQ = calcGrowth(stock.workingCapitalQ, "workingCapitalQ", 100.0)
+        stock.roicGrowthQ = calcGrowth(stock.roicPQ, "roicPQ", 0.01)
+        stock.roaGrowthQ = calcGrowth(stock.roaPQ, "roaPQ", 0.01)
+        stock.roeGrowthQ = calcGrowth(stock.roePQ, "roePQ", 0.01)
 
         stock.revenueGrowth = calcGrowth(stock.revenue, "revenue", 1000.0)
         stock.grossIncomeGrowth = calcGrowth(stock.grossIncome, "grossIncome", 100.0)
@@ -687,6 +690,9 @@ class StockService @Autowired constructor(
         stock.operatingMarginGrowth = calcGrowth(stock.operatingMargin, "operatingMargin", 0.01)
         stock.sharesGrowth = calcGrowth(stock.shares, "shares", 100.0)
         stock.workingCapitalGrowth = calcGrowth(stock.workingCapital, "workingCapital", 100.0)
+        stock.roicGrowth = calcGrowth(stock.roicP, "roicP", 0.01)
+        stock.roaGrowth = calcGrowth(stock.roaP, "roaP", 0.01)
+        stock.roeGrowth = calcGrowth(stock.roeP, "roeP", 0.01)
     }
 
     private fun <T : Number> calcGrowth(statPeriods: SortedMap<LocalDate, T?>, statName: String, significanceThreshold: Double): SortedMap<LocalDate, Double?> {
@@ -750,7 +756,7 @@ class StockService @Autowired constructor(
 
         for (netIncomeEntry in stock.netIncomeQ.entries) {
             val quarter = netIncomeEntry.key
-            val netIncome = netIncomeEntry.value
+            val netIncome = multiply(netIncomeEntry.value, 4)
             val totalAssets = stock.totalAssetsQ[quarter]
             val cash = stock.cashQ[quarter]
 
@@ -778,7 +784,7 @@ class StockService @Autowired constructor(
 
         for (netIncomeEntry in stock.netIncomeQ.entries) {
             val quarter = netIncomeEntry.key
-            val netIncome = netIncomeEntry.value
+            val netIncome = multiply(netIncomeEntry.value, 4)
             val equity = stock.totalShareholdersEquityQ[quarter]
 
             addEntry(stock.roePQ, percent(
@@ -804,7 +810,7 @@ class StockService @Autowired constructor(
 
         for (netIncomeEntry in stock.netIncomeQ.entries) {
             val quarter = netIncomeEntry.key
-            val netIncome = netIncomeEntry.value
+            val netIncome = multiply(netIncomeEntry.value, 4)
             val equity = stock.totalAssetsQ[quarter]
 
             addEntry(stock.roaPQ, percent(
