@@ -413,7 +413,8 @@ class StockService @Autowired constructor(
                 val currentLiabilitiesQ = balSheetQuarterly[i]?.totalCurrentLiabilities?.raw
                 addEntry(stock.currentLiabilitiesQ, currentLiabilitiesQ, quarter)
                 addEntry(stock.workingCapitalQ, minus(currentAssetsQ, currentLiabilitiesQ)?.toDouble(), quarter)
-                addEntry(stock.currentRatioQ, div(currentAssetsQ, currentLiabilitiesQ), quarter)
+                val inventoryQ = balSheetQuarterly[i]?.inventory?.raw
+                addEntry(stock.currentRatioQ, div(minus(currentAssetsQ, inventoryQ), currentLiabilitiesQ), quarter)
                 addEntry(stock.totalAssetsQ, balSheetQuarterly[i]?.totalAssets?.raw, quarter)
                 val totalLiabilitiesQ = balSheetQuarterly[i]?.totalLiab?.raw
                 addEntry(stock.totalLiabilitiesQ, totalLiabilitiesQ, quarter)
@@ -460,7 +461,8 @@ class StockService @Autowired constructor(
                 val currentLiabilities = yearBalSheet?.totalCurrentLiabilities?.raw
                 addEntry(stock.currentLiabilities, currentLiabilities, year)
                 addEntry(stock.workingCapital, minus(currentAssets, currentLiabilities)?.toDouble(), year)
-                addEntry(stock.currentRatio, div(currentAssets, currentLiabilities), year)
+                val inventory = yearBalSheet?.inventory?.raw
+                addEntry(stock.currentRatio, div(minus(currentAssets, inventory), currentLiabilities), year)
                 addEntry(stock.totalAssets, yearBalSheet?.totalAssets?.raw, year)
                 val totalLiabilities = yearBalSheet?.totalLiab?.raw
                 addEntry(stock.totalLiabilities, totalLiabilities, year)
