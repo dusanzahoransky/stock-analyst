@@ -187,6 +187,7 @@ data class Stock(
     var stockRepurchasedGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var stockRepurchasedGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
+    var currentShares: SortedMap<LocalDate, Double?> = TreeMap(),
     var shares: SortedMap<LocalDate, Double?> = TreeMap(),
     var sharesGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 

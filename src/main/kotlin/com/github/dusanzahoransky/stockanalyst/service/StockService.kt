@@ -585,7 +585,7 @@ class StockService @Autowired constructor(
         addEntry(stock.trailingAnnualDividendYield, percent(summaryDetail.trailingAnnualDividendYield?.raw))
         addEntry(stock.payoutRatioP, percent(summaryDetail.payoutRatio?.raw))
 
-        addEntry(stock.shares, defaultKeyStatistics.sharesOutstanding?.raw)
+        addEntry(stock.currentShares, defaultKeyStatistics.sharesOutstanding?.raw)
     }
 
 
