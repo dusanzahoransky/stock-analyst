@@ -21,6 +21,7 @@ import com.github.dusanzahoransky.stockanalyst.util.CacheUtils.Companion.useCach
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.average
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.cumulativeGrowthRate
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.div
+import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.min
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.minus
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.multiply
 import com.github.dusanzahoransky.stockanalyst.util.CalcUtils.Companion.percent
@@ -446,7 +447,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.profitMarginP, percent(div(netIncome, revenue)), year)
                 val operatingIncome = yearIncomeStm?.operatingIncome?.raw?.toDouble()
                 addEntry(stock.operatingIncome, operatingIncome, year)
-                val interestExpense = yearIncomeStm?.interestExpense?.raw?.toDouble() //interest expense comes as negative number from Yahoo API
+                val interestExpense = yearIncomeStm?.interestExpense?.raw?.toDouble()?.let { it * -1.0 }  //interest expense comes as negative number from Yahoo API
                 addEntry(stock.interestExpense, interestExpense, year)
                 addEntry(stock.interestExpenseToOperativeIncomeP, percent(div(interestExpense, operatingIncome)), year)
 
@@ -841,7 +842,7 @@ class StockService @Autowired constructor(
 
         val estimatedEpsGrowthRate = getCurrentYear(stock.bps9Y) ?: getCurrentYear(stock.bps5Y)
         ?: getCurrentYear(stock.bps3Y)
-        addEntry(stock.rule1GrowthRate, average(estimatedEpsGrowthRate, getCurrentYear(stock.growthEstimate5y)))
+        addEntry(stock.rule1GrowthRate, min(estimatedEpsGrowthRate, getCurrentYear(stock.growthEstimate5y)))
         addEntry(stock.defaultPE, multiply(getCurrentYear(stock.rule1GrowthRate), 2.0))
         addEntry(stock.historicalPE, average(*stock.pe.values.toTypedArray()))
         addEntry(stock.rule1PE, average(getCurrentYear(stock.historicalPE), getCurrentYear(stock.defaultPE)))

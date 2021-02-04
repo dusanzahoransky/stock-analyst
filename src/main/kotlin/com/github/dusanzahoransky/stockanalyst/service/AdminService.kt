@@ -15,7 +15,8 @@ class AdminService @Autowired constructor(
     val log = LoggerFactory.getLogger(this::class.java)!!
 
     fun runDi() {
-        fixShares()
+        fixInterestExpense()
+        interestExpenseToOperativeIncome()
     }
 
     private fun interestExpenseToOperativeIncome() {
@@ -36,10 +37,16 @@ class AdminService @Autowired constructor(
         for (stock in allStocks) {
             log.debug("Applying DI on $stock")
             for (entry in stock.interestExpense) {
-                stock.interestExpense[entry.key] = entry.value?.let { it * -1 }
+                val interestExpense = stock.interestExpense[entry.key]
+                if(interestExpense != null && interestExpense < 0) {
+                    stock.interestExpense[entry.key] = entry.value?.let { it * -1 }
+                }
             }
             for (entry in stock.interestExpenseQ) {
-                stock.interestExpenseQ[entry.key] = entry.value?.let { it * -1 }
+                val interestExpenseQ = stock.interestExpenseQ[entry.key]
+                if(interestExpenseQ != null && interestExpenseQ < 0) {
+                    stock.interestExpenseQ[entry.key] = entry.value?.let { it * -1 }
+                }
             }
             stockRepo.save(stock)
         }
