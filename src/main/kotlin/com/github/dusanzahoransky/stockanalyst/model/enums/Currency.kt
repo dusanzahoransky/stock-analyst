@@ -2,7 +2,6 @@ package com.github.dusanzahoransky.stockanalyst.model.enums
 
 enum class Currency {
     GBP,
-
     /**
      * pence GBP * 100
      */
@@ -18,4 +17,5 @@ enum class Currency {
     BRL,
     ZAR,
     MXN,
+    RUB,
 }

@@ -14,5 +14,6 @@ enum class Exchange(
     PA("Euronext Paris", "PA"),
     MCE("Bolsa de Madrid", "MC"),
     PNK("Pink Sheets", "OTC"),
+    MCX("Moscow Exchange", "ME"),
     T("R", "T")
 }

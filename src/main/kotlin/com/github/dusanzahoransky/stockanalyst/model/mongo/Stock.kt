@@ -49,6 +49,7 @@ data class Stock(
     var priceBook: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValueRevenue: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValueEBITDA: SortedMap<LocalDate, Double?> = TreeMap(),
+    var acquirersMultiple: SortedMap<LocalDate, Double?> = TreeMap(),
     var priceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var trailingPriceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var week52ChangeP: SortedMap<LocalDate, Double?> = TreeMap(),
