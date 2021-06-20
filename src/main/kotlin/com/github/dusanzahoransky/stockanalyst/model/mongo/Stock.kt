@@ -32,6 +32,7 @@ data class Stock(
     var financialCurrency: Currency? = null,
     var change: Double? = null,
     var currentPrice: Double? = null,
+    var currentPriceLocal: Double? = null,
 
     //timeline data
 
@@ -159,10 +160,16 @@ data class Stock(
     var currentRatio: SortedMap<LocalDate, Double?> = TreeMap(),
     var currentRatioGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var currentRatioGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("use totalDebtQ")
     var totalLiabilitiesQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    @Deprecated("use totalDebt")
     var totalLiabilities: SortedMap<LocalDate, Long?> = TreeMap(),
+    var totalDebtQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    var totalDebt: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalLiabilitiesGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var totalDebtGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalLiabilitiesGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var totalDebtGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquityQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquity: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquityGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),

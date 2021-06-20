@@ -91,6 +91,8 @@ public class BalanceSheetStatement__1 {
     private Long maxAge;
     @JsonProperty("longTermDebt")
     private LongTermDebt__1 longTermDebt;
+    @JsonProperty("shortLongTermDebt")
+    private ShortLongTermDebt shortLongTermDebt;
     @JsonProperty("inventory")
     private Inventory__1 inventory;
     @JsonProperty("accountsPayable")
@@ -346,6 +348,16 @@ public class BalanceSheetStatement__1 {
     @JsonProperty("longTermDebt")
     public void setLongTermDebt(LongTermDebt__1 longTermDebt) {
         this.longTermDebt = longTermDebt;
+    }
+
+    @JsonProperty("shortLongTermDebt")
+    public ShortLongTermDebt getShortLongTermDebt() {
+        return shortLongTermDebt;
+    }
+
+    @JsonProperty("shortLongTermDebt")
+    public void setShortLongTermDebt(ShortLongTermDebt shortLongTermDebt) {
+        this.shortLongTermDebt = shortLongTermDebt;
     }
 
     @JsonProperty("inventory")

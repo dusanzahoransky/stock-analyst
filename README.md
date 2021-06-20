@@ -33,6 +33,7 @@ yahoo.client.xRapidapiKey=${yahoo-x-rapidapi-key}
 yahoo.client.xRapidapiHost=${yahoo-x-rapidapi-host}
 morningstar.client.xRapidapiKey=${morningstar-x-rapidapi-key}
 morningstar.client.xRapidapiHost=${morningstar-x-rapidapi-host}
+openexchangerates.client.appid=${openexchangerates-appid}
 ```
 
 ## Run

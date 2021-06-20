@@ -1,6 +1,5 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
-import com.github.dusanzahoransky.stockanalyst.client.ExchangeRateClient
 import com.github.dusanzahoransky.stockanalyst.client.MorningStartClient
 import com.github.dusanzahoransky.stockanalyst.client.YahooFinanceClient
 import com.github.dusanzahoransky.stockanalyst.model.Ticker
@@ -43,7 +42,7 @@ class StockService @Autowired constructor(
     val watchlistRepo: WatchlistRepo,
     val stockRepo: StockRepo,
     val yahooFinanceClient: YahooFinanceClient,
-    val exchangeRateClient: ExchangeRateClient,
+    val exchangeRateService: ExchangeRateService,
     val morningStarClient: MorningStartClient,
     val chartRepo: ChartRepo,
     val financialsRepo: FinancialsRepo,
@@ -375,10 +374,10 @@ class StockService @Autowired constructor(
         val timeSeries = financials.timeSeries
         val earnings = financials.earnings
 
-        financials.price?.currency?.let { it -> Currency.valueOf(it) }?.let { stock.currency = it }
-        earnings?.financialCurrency?.let { it -> Currency.valueOf(it) }?.let { stock.financialCurrency = it }
+        stock.currency = financials.price?.currency?.let { Currency.valueOf(it) }
+        stock.financialCurrency = earnings?.financialCurrency?.let { Currency.valueOf(it) }
 
-        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency)
+        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
 
         val yearEnds = timeSeries?.timestamp
             ?.reversed()
@@ -429,6 +428,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.totalAssetsQ, balanceSheetQ?.totalAssets?.raw, quarter)
                 val totalLiabilitiesQ = balanceSheetQ?.totalLiab?.raw
                 addEntry(stock.totalLiabilitiesQ, totalLiabilitiesQ, quarter)
+                addEntry(stock.totalDebtQ, plus(balanceSheetQ?.longTermDebt?.raw, balanceSheetQ?.shortLongTermDebt?.raw), quarter)
                 val totalShareholdersEquityQ = balanceSheetQ?.totalStockholderEquity?.raw
                 addEntry(stock.totalShareholdersEquityQ, totalShareholdersEquityQ, quarter)
                 addEntry(stock.retainedEarningsQ, balanceSheetQ?.retainedEarnings?.raw, quarter)
@@ -437,7 +437,7 @@ class StockService @Autowired constructor(
 
                 addEntry(stock.freeCashFlowQ, plus(cashflowStatementQ?.totalCashFromOperatingActivities?.raw, cashflowStatementQ?.capitalExpenditures?.raw), quarter)
 
-                addEntry(stock.epsQ, multiply(epsQuarterly?.getOrNull(i)?.actual?.raw?.toDouble(), exchangeRate), quarter)
+                addEntry(stock.epsQ, fromLocalCurrency(epsQuarterly?.getOrNull(i)?.actual?.raw?.toDouble(), exchangeRate), quarter)
             }
         }
 
@@ -477,6 +477,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.totalAssets, yearBalSheet?.totalAssets?.raw, year)
                 val totalLiabilities = yearBalSheet?.totalLiab?.raw
                 addEntry(stock.totalLiabilities, totalLiabilities, year)
+                addEntry(stock.totalDebt, plus(yearBalSheet?.longTermDebt?.raw, yearBalSheet?.shortLongTermDebt?.raw), year)
                 val totalShareholdersEquity = yearBalSheet?.totalStockholderEquity?.raw
                 addEntry(stock.totalShareholdersEquity, totalShareholdersEquity, year)
                 addEntry(stock.retainedEarnings, yearBalSheet?.retainedEarnings?.raw, year)
@@ -485,7 +486,7 @@ class StockService @Autowired constructor(
 
                 addEntry(stock.freeCashFlow, plus(yearCashFlow?.totalCashFromOperatingActivities?.raw, yearCashFlow?.capitalExpenditures?.raw), year)
 
-                addEntry(stock.eps, multiply(annualDilutedEPS?.getOrNull(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
+                addEntry(stock.eps, fromLocalCurrency(annualDilutedEPS?.getOrNull(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
             }
         }
 
@@ -510,11 +511,10 @@ class StockService @Autowired constructor(
     }
 
     private fun round(valueAtDate: Double): Double {
-        try {
-            return BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble()
-        } catch (e: NumberFormatException ){
-            log.error("Failed to round $valueAtDate", e)
-            return valueAtDate
+        return if(valueAtDate.isFinite() && !valueAtDate.isNaN()){
+            BigDecimal.valueOf(valueAtDate).setScale(3, RoundingMode.HALF_UP).toDouble()
+        } else {
+            valueAtDate
         }
     }
 
@@ -531,23 +531,34 @@ class StockService @Autowired constructor(
 
     private fun processStatistics(stats: StatisticsResponse, stock: Stock) {
         log.debug("processStatistics $stock")
-        val exchangeRate = getExchangeRate(stock.currency, stock.financialCurrency)
         val financialData = stats.financialData
         val price = stats.price
         val defaultKeyStatistics = stats.defaultKeyStatistics
         val summaryDetail = stats.summaryDetail
         val calendarEvents = stats.calendarEvents
+        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
 
-        price?.currency?.let { it -> Currency.valueOf(it) }?.let { stock.currency = it }
-        financialData?.financialCurrency?.let { it -> Currency.valueOf(it) }?.let { stock.financialCurrency = it }
+        stock.currency = price?.currency?.let { Currency.valueOf(it) }
+        stock.financialCurrency = financialData?.financialCurrency?.let { Currency.valueOf(it) }
 
         stock.companyName = stats.quoteType?.shortName
         val currentPrice = price?.regularMarketPrice?.raw
         stock.currentPrice = currentPrice
+        stock.currentPriceLocal = multiply(currentPrice, exchangeRate)
         stock.change = percent(price?.regularMarketChangePercent?.raw)
 
-        addEntry(stock.enterpriseValue, defaultKeyStatistics.enterpriseValue?.raw)
-        addEntry(stock.marketCap, stats.summaryDetail.marketCap?.raw)
+        val marketCap = stats.summaryDetail.marketCap?.raw
+        addEntry(stock.marketCap, marketCap)
+        if(exchangeRate == 1.0) {
+            addEntry(stock.enterpriseValue, defaultKeyStatistics.enterpriseValue?.raw)
+        } else{
+            //yahoo finance bug, it calculates it wrongly without conversion as USd market cap + cash in local currency - debt in local currency
+            val totalDebt = fromLocalCurrency(getCurrentQuarter(stock.totalDebtQ), exchangeRate)
+            val cash = fromLocalCurrency(getCurrentQuarter(stock.cashQ), exchangeRate)
+            //TODO - short m investments
+            val evLocalCurrency = minus(plus(marketCap, totalDebt), cash)
+            addEntry(stock.enterpriseValue, evLocalCurrency)
+        }
 
         val targetLowPrice = financialData.targetLowPrice?.raw
         addEntry(stock.targetLowPrice, targetLowPrice)
@@ -562,14 +573,8 @@ class StockService @Autowired constructor(
 
         addEntry(stock.trailingPE, summaryDetail.trailingPE?.raw)
         addEntry(stock.forwardPE, summaryDetail.forwardPE?.raw)
-        addEntry(stock.priceToSalesTrailing12Months, summaryDetail.priceToSalesTrailing12Months?.raw)
-        if (exchangeRate == 1.0) {
-            addEntry(stock.priceBook, defaultKeyStatistics.priceToBook?.raw)
-        } else {
-            // P /B = Market Price per Share / BVPS
-            //BVPS = (Total Equity − Preferred Equity) / Total Shares Outstanding
-            //​	https://www.investopedia.com/terms/b/bvps.asp
-        }
+        addEntry(stock.priceToSalesTrailing12Months, toLocalCurrency(summaryDetail.priceToSalesTrailing12Months?.raw, exchangeRate))
+        addEntry(stock.priceBook, toLocalCurrency(defaultKeyStatistics.priceToBook?.raw, exchangeRate))
         addEntry(stock.enterpriseValueRevenue, defaultKeyStatistics.enterpriseToRevenue?.raw)
         addEntry(stock.enterpriseValueEBITDA, defaultKeyStatistics.enterpriseToEbitda?.raw)
 
@@ -599,6 +604,31 @@ class StockService @Autowired constructor(
         addEntry(stock.currentShares, defaultKeyStatistics.sharesOutstanding?.raw)
     }
 
+    private fun <N : Number> toLocalCurrency(value: N?, exchangeRate: Double): Double? {
+        return if (value == null) {
+            null
+        } else {
+            if (value is Double )
+                value * exchangeRate
+            else if (value is Long)
+                value * exchangeRate
+            else
+                throw IllegalArgumentException("Unsupported toLocalCurrency argument type " + value.javaClass)
+        }
+    }
+
+    private fun <N : Number> fromLocalCurrency(value: N?, exchangeRate: Double): Double? {
+        return if (value == null) {
+            null
+        } else {
+            if (value is Double )
+                value / exchangeRate
+            else if (value is Long)
+                value / exchangeRate
+            else
+                throw IllegalArgumentException("Unsupported fromLocalCurrency argument type " + value.javaClass)
+        }
+    }
 
     /**
      * Calculate fields which come from multiple partial responses, this has processed last to have data already added on the stock
@@ -658,6 +688,7 @@ class StockService @Autowired constructor(
         stock.currentLiabilitiesGrowthQ = calcGrowth(stock.currentLiabilitiesQ, "currentLiabilitiesGrowthQ", 100.0)
         stock.currentRatioGrowthQ = calcGrowth(stock.currentRatioQ, "currentRatioGrowthQ", 0.01)
         stock.totalLiabilitiesGrowthQ = calcGrowth(stock.totalLiabilitiesQ, "totalLiabilitiesGrowthQ", 100.0)
+        stock.totalDebtGrowthQ = calcGrowth(stock.totalDebtQ, "totalLiabilitiesGrowthQ", 100.0)
         stock.totalDebtToEquityGrowthQ = calcGrowth(stock.totalDebtToEquityQ, "totalDebtToEquityGrowthQ", 0.01)
         stock.nonCurrentLiabilitiesToIncomeGrowthQ = calcGrowth(stock.nonCurrentLiabilitiesToIncomeQ, "nonCurrentLiabilitiesToIncomeGrowthQ", 0.01)
         stock.totalAssetsGrowthQ = calcGrowth(stock.totalAssetsQ, "totalAssetsGrowthQ", 100.0)
@@ -686,6 +717,7 @@ class StockService @Autowired constructor(
         stock.currentLiabilitiesGrowth = calcGrowth(stock.currentLiabilities, "currentLiabilities", 100.0)
         stock.currentRatioGrowth = calcGrowth(stock.currentRatio, "currentRatio", 0.01)
         stock.totalLiabilitiesGrowth = calcGrowth(stock.totalLiabilities, "totalLiabilities", 100.0)
+        stock.totalDebtGrowth = calcGrowth(stock.totalDebt, "totalLiabilities", 100.0)
         stock.totalDebtToEquityGrowth = calcGrowth(stock.totalDebtToEquity, "totalDebtToEquity", 0.01)
         stock.nonCurrentLiabilitiesToIncomeGrowth = calcGrowth(stock.nonCurrentLiabilitiesToIncome, "nonCurrentLiabilitiesToIncomeGrowth", 0.01)
         stock.totalAssetsGrowth = calcGrowth(stock.totalAssets, "totalAssets", 100.0)
@@ -724,18 +756,6 @@ class StockService @Autowired constructor(
             previousValue = currentValue
         }
         return periodicalGrowth
-    }
-
-
-    private fun getExchangeRate(currency: Currency?, financialCurrency: Currency?): Double {
-//        val differentCurrencies = currency != financialCurrency
-//
-//        return if (differentCurrencies && currency != null && financialCurrency != null) {
-//            exchangeRateClient.getRate(financialCurrency, currency)
-//        } else {
-//            1.0
-//        }
-        return 1.0
     }
 
     fun calculateRule1(stock: Stock) {

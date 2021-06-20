@@ -1,6 +1,7 @@
-package com.github.dusanzahoransky.stockanalyst.client
+package com.github.dusanzahoransky.stockanalyst.config
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.dusanzahoransky.stockanalyst.client.ClientLoggingInterceptor
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
