@@ -313,18 +313,20 @@ class StockService @Autowired constructor(
     private fun processKrf(results: List<Result>, stock: Stock): List<StockRatiosTimeline> {
         val stockRatios = mutableListOf<StockRatiosTimeline>()
 
+        val exchangeRate = exchangeRateService.getRate(stock.currency, stock.financialCurrency)
+
         for (result in results) {
             val periodDate = LocalDate.parse(result.periodEndDate)
             val firstSection = result.sections[0]
 
             for (item in firstSection.lineItems) {
                 when (item.label) {
-                    "BOOK VALUE PER SHARE *" -> addEntry(stock.bookValuePerShare, item.value, periodDate)
+                    "BOOK VALUE PER SHARE *" -> addEntry(stock.bookValuePerShare, fromLocalCurrency(item.value, exchangeRate), periodDate)   //item.value in local currency, converting to the price currency
                     "CAP SPENDING" -> addEntry(stock.capitalExpenditures, item.value?.toLong(), periodDate)
                     "DIVIDENDS" -> addEntry(stock.dividends, item.value, periodDate)
                     "EARNINGS PER SHARE" -> addEntry(stock.eps, item.value, periodDate)
                     "FREE CASH FLOW" -> addEntry(stock.freeCashFlow, item.value?.toLong(), periodDate)
-                    "FREE CASH FLOW PER SHARE *" -> addEntry(stock.freeCashFlowPerShare, item.value, periodDate)
+                    "FREE CASH FLOW PER SHARE *" -> addEntry(stock.freeCashFlowPerShare, fromLocalCurrency(item.value, exchangeRate), periodDate)
                     "GROSS MARGIN %" -> addEntry(stock.grossMargin, item.value, periodDate)
                     "NET INCOME" -> addEntry(stock.netIncome, item.value?.toLong(), periodDate)
                     "OPERATING CASH FLOW" -> addEntry(stock.operatingCashFlow, item.value?.toLong(), periodDate)
@@ -417,6 +419,7 @@ class StockService @Autowired constructor(
 
 
                 addEntry(stock.cashQ, balanceSheetQ?.cash?.raw, quarter)
+                addEntry(stock.cashAndCashEquivalentsQ, plus(balanceSheetQ?.cash?.raw, balanceSheetQ?.shortTermInvestments?.raw), quarter)
                 addEntry(stock.inventoryQ, balanceSheetQ?.inventory?.raw, quarter)
                 val currentAssetsQ = balanceSheetQ?.totalCurrentAssets?.raw
                 addEntry(stock.currentAssetsQ, currentAssetsQ, quarter)
@@ -466,6 +469,7 @@ class StockService @Autowired constructor(
                 addEntry(stock.stockRepurchased, yearCashFlow?.repurchaseOfStock?.raw, year)
 
                 addEntry(stock.cash, yearBalSheet?.cash?.raw, year)
+                addEntry(stock.cashAndCashEquivalents, plus(yearBalSheet?.cash?.raw, yearBalSheet?.shortTermInvestments?.raw), year)
                 addEntry(stock.inventory, yearBalSheet?.inventory?.raw, year)
                 val currentAssets = yearBalSheet?.totalCurrentAssets?.raw
                 addEntry(stock.currentAssets, currentAssets, year)
@@ -554,8 +558,7 @@ class StockService @Autowired constructor(
         } else{
             //yahoo finance bug, it calculates it wrongly without conversion as USd market cap + cash in local currency - debt in local currency
             val totalDebt = fromLocalCurrency(getCurrentQuarter(stock.totalDebtQ), exchangeRate)
-            val cash = fromLocalCurrency(getCurrentQuarter(stock.cashQ), exchangeRate)
-            //TODO - short m investments
+            val cash = fromLocalCurrency(getCurrentQuarter(stock.cashAndCashEquivalentsQ), exchangeRate)
             val evLocalCurrency = minus(plus(marketCap, totalDebt), cash)
             addEntry(stock.enterpriseValue, evLocalCurrency)
         }
@@ -567,9 +570,11 @@ class StockService @Autowired constructor(
         addEntry(stock.targetMedianPrice, targetMedianPrice)
         addEntry(stock.belowTargetMedianPriceP, percent(div(minus(targetMedianPrice, currentPrice), currentPrice)))
 
-        val totalCashPerShare = financialData.totalCashPerShare?.raw
-        addEntry(stock.totalCashPerShare, totalCashPerShare)
-        addEntry(stock.totalCashPerShareP, percent(div(totalCashPerShare, stock.currentPrice)))
+        val cash = getCurrentQuarter(stock.cashAndCashEquivalentsQ)
+        val shares = getCurrentQuarter(stock.currentShares)
+        val cashPerShare = div(cash, shares)
+        addEntry(stock.totalCashPerShare, cashPerShare)
+        addEntry(stock.totalCashPerShareP, percent(div(fromLocalCurrency(cashPerShare, exchangeRate), stock.currentPrice)))
 
         addEntry(stock.trailingPE, summaryDetail.trailingPE?.raw)
         addEntry(stock.forwardPE, summaryDetail.forwardPE?.raw)
@@ -683,6 +688,7 @@ class StockService @Autowired constructor(
         stock.capitalExpendituresGrowthQ = calcGrowth(stock.capitalExpendituresQ, "capitalExpendituresGrowthQ", 100.0)
         stock.freeCashFlowGrowthQ = calcGrowth(stock.freeCashFlowQ, "freeCashFlowGrowthQ", 100.0)
         stock.cashGrowthQ = calcGrowth(stock.cashQ, "cashGrowthQ", 10.0)
+        stock.cashAndCashEquivalentsGrowthQ = calcGrowth(stock.cashAndCashEquivalentsQ, "cashAndCashEquivalentsGrowthQ", 10.0)
         stock.inventoryGrowthQ = calcGrowth(stock.inventoryQ, "inventoryGrowthQ", 1.0)
         stock.currentAssetsGrowthQ = calcGrowth(stock.currentAssetsQ, "currentAssetsGrowthQ", 100.0)
         stock.currentLiabilitiesGrowthQ = calcGrowth(stock.currentLiabilitiesQ, "currentLiabilitiesGrowthQ", 100.0)
@@ -712,6 +718,7 @@ class StockService @Autowired constructor(
         stock.capitalExpendituresGrowth = calcGrowth(stock.capitalExpenditures, "capitalExpenditures", 100.0)
         stock.freeCashFlowGrowth = calcGrowth(stock.freeCashFlow, "freeCashFlow", 100.0)
         stock.cashGrowth = calcGrowth(stock.cash, "cash", 10.0)
+        stock.cashAndCashEquivalentsGrowth = calcGrowth(stock.cashAndCashEquivalents, "cashAndCashEquivalents", 10.0)
         stock.inventoryGrowth = calcGrowth(stock.inventory, "inventory", 1.0)
         stock.currentAssetsGrowth = calcGrowth(stock.currentAssets, "currentAssets", 100.0)
         stock.currentLiabilitiesGrowth = calcGrowth(stock.currentLiabilities, "currentLiabilities", 100.0)
@@ -792,7 +799,7 @@ class StockService @Autowired constructor(
             val quarter = netIncomeEntry.key
             val netIncome = multiply(netIncomeEntry.value, 4)
             val totalAssets = stock.totalAssetsQ[quarter]
-            val cash = stock.cashQ[quarter]
+            val cash = stock.cashAndCashEquivalentsQ[quarter]
 
             addEntry(stock.roicPQ, percent(
                 div(
@@ -806,7 +813,7 @@ class StockService @Autowired constructor(
             val year = netIncomeEntry.key
             val netIncome = netIncomeEntry.value
             val totalAssets = stock.totalAssets[year]
-            val cash = stock.cash[year]
+            val cash = stock.cashAndCashEquivalents[year]
 
             addEntry(stock.roicP, percent(
                 div(
