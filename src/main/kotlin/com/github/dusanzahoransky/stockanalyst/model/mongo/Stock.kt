@@ -49,20 +49,31 @@ data class Stock(
 
     var priceBook: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValueRevenue: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("rename to EBIT")
     var enterpriseValueEBITDA: SortedMap<LocalDate, Double?> = TreeMap(),
     var acquirersMultiple: SortedMap<LocalDate, Double?> = TreeMap(),
     var priceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var trailingPriceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var week52ChangeP: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var week52Low: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var week52AboveLowP: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var week52High: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var week52BelowHighP: SortedMap<LocalDate, Double?> = TreeMap(),
 
+    @Deprecated("will be removed")
     var targetLowPrice: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var belowTargetLowPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var targetMedianPrice: SortedMap<LocalDate, Double?> = TreeMap(),
+    @Deprecated("will be removed")
     var belowTargetMedianPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
+
     var heldByInsidersP: SortedMap<LocalDate, Double?> = TreeMap(),
     var heldByInstitutionsP: SortedMap<LocalDate, Double?> = TreeMap(),
     var buyPercentInsiderShares: SortedMap<LocalDate, Double?> = TreeMap(),

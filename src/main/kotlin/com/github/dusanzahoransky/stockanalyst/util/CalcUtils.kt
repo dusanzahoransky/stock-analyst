@@ -90,6 +90,10 @@ class CalcUtils {
                     value1 / value2
                 else if (value1 is Long && value2 is Long)
                     value1.toDouble() / value2.toDouble()
+                else if (value1 is Long && value2 is Double)
+                    (value1.toDouble() / value2)
+                else if (value1 is Double && value2 is Long)
+                    (value1 / value2.toDouble())
                 else
                     throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }
@@ -117,7 +121,7 @@ class CalcUtils {
         }
 
         /**
-         * Null-safe division of nullable Numbers
+         * Null-safe plus of nullable Numbers
          */
         @Suppress("UNCHECKED_CAST")
         fun <N : Number> plus(value1: N?, value2: N?): N? {
@@ -162,6 +166,10 @@ class CalcUtils {
                     (value1 * value2) as N
                 else if (value1 is Long && value2 is Long)
                     (value1 * value2) as N
+                else if (value1 is Long && value2 is Double)
+                    (value1.toDouble() * value2) as N
+                else if (value1 is Double && value2 is Long)
+                    (value1 * value2.toDouble()) as N
                 else
                     throw IllegalArgumentException("Unsupported div argument types ${value1.javaClass}, ${value2.javaClass}")
             }

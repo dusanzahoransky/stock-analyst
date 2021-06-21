@@ -129,7 +129,9 @@ class StockService @Autowired constructor(
     }
 
     private fun calculateAcquirersMultiple(stock: Stock) {
-        addEntry(stock.acquirersMultiple, div(getCurrentYear(stock.enterpriseValue), getCurrentYear(stock.operatingIncome)))
+        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
+        val evLocalCurrency = toLocalCurrency(getCurrentYear(stock.enterpriseValue), exchangeRate)
+        addEntry(stock.acquirersMultiple, div(evLocalCurrency, getCurrentYear(stock.operatingIncome)))
     }
 
     private fun reduceData(stock: Stock) {
@@ -540,48 +542,50 @@ class StockService @Autowired constructor(
         val defaultKeyStatistics = stats.defaultKeyStatistics
         val summaryDetail = stats.summaryDetail
         val calendarEvents = stats.calendarEvents
-        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
 
         stock.currency = price?.currency?.let { Currency.valueOf(it) }
         stock.financialCurrency = financialData?.financialCurrency?.let { Currency.valueOf(it) }
 
+        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
+
         stock.companyName = stats.quoteType?.shortName
         val currentPrice = price?.regularMarketPrice?.raw
         stock.currentPrice = currentPrice
-        stock.currentPriceLocal = multiply(currentPrice, exchangeRate)
+        stock.currentPriceLocal = toLocalCurrency(currentPrice, exchangeRate)
         stock.change = percent(price?.regularMarketChangePercent?.raw)
+
+        addEntry(stock.currentShares, defaultKeyStatistics.sharesOutstanding?.raw)
 
         val marketCap = stats.summaryDetail.marketCap?.raw
         addEntry(stock.marketCap, marketCap)
-        if(exchangeRate == 1.0) {
-            addEntry(stock.enterpriseValue, defaultKeyStatistics.enterpriseValue?.raw)
-        } else{
-            //yahoo finance bug, it calculates it wrongly without conversion as USd market cap + cash in local currency - debt in local currency
-            val totalDebt = fromLocalCurrency(getCurrentQuarter(stock.totalDebtQ), exchangeRate)
-            val cash = fromLocalCurrency(getCurrentQuarter(stock.cashAndCashEquivalentsQ), exchangeRate)
-            val evLocalCurrency = minus(plus(marketCap, totalDebt), cash)
-            addEntry(stock.enterpriseValue, evLocalCurrency)
-        }
+
+        //yahoo finance bug, it calculates it wrongly without conversion as USd market cap + cash in local currency - debt in local currency
+        val totalDebt = fromLocalCurrency(getCurrentQuarter(stock.totalDebtQ), exchangeRate)
+        val cash = fromLocalCurrency(getCurrentQuarter(stock.cashAndCashEquivalentsQ), exchangeRate)
+        val ev = minus(plus(marketCap, totalDebt), cash)
+        val evLocalCurrency = toLocalCurrency(ev, exchangeRate)
+        addEntry(stock.enterpriseValue, ev)
 
         val targetLowPrice = financialData.targetLowPrice?.raw
         addEntry(stock.targetLowPrice, targetLowPrice)
         addEntry(stock.belowTargetLowPriceP, percent(div(minus(targetLowPrice, currentPrice), currentPrice)))
+
         val targetMedianPrice = financialData.targetMedianPrice?.raw
         addEntry(stock.targetMedianPrice, targetMedianPrice)
         addEntry(stock.belowTargetMedianPriceP, percent(div(minus(targetMedianPrice, currentPrice), currentPrice)))
 
-        val cash = getCurrentQuarter(stock.cashAndCashEquivalentsQ)
         val shares = getCurrentQuarter(stock.currentShares)
         val cashPerShare = div(cash, shares)
         addEntry(stock.totalCashPerShare, cashPerShare)
-        addEntry(stock.totalCashPerShareP, percent(div(fromLocalCurrency(cashPerShare, exchangeRate), stock.currentPrice)))
+        addEntry(stock.totalCashPerShareP, percent(div(cashPerShare, stock.currentPrice)))
 
         addEntry(stock.trailingPE, summaryDetail.trailingPE?.raw)
         addEntry(stock.forwardPE, summaryDetail.forwardPE?.raw)
         addEntry(stock.priceToSalesTrailing12Months, toLocalCurrency(summaryDetail.priceToSalesTrailing12Months?.raw, exchangeRate))
         addEntry(stock.priceBook, toLocalCurrency(defaultKeyStatistics.priceToBook?.raw, exchangeRate))
-        addEntry(stock.enterpriseValueRevenue, defaultKeyStatistics.enterpriseToRevenue?.raw)
-        addEntry(stock.enterpriseValueEBITDA, defaultKeyStatistics.enterpriseToEbitda?.raw)
+
+        addEntry(stock.enterpriseValueRevenue, div(evLocalCurrency, getCurrentYear(stock.revenue)))
+        addEntry(stock.enterpriseValueEBITDA, div(evLocalCurrency,  getCurrentYear(stock.ebit)))
 
         addEntry(stock.priceEarningGrowth, defaultKeyStatistics.pegRatio?.raw)
 
@@ -605,8 +609,6 @@ class StockService @Autowired constructor(
         addEntry(stock.fiveYearAvgDividendYield, summaryDetail.fiveYearAvgDividendYield?.raw)
         addEntry(stock.trailingAnnualDividendYield, percent(summaryDetail.trailingAnnualDividendYield?.raw))
         addEntry(stock.payoutRatioP, percent(summaryDetail.payoutRatio?.raw))
-
-        addEntry(stock.currentShares, defaultKeyStatistics.sharesOutstanding?.raw)
     }
 
     private fun <N : Number> toLocalCurrency(value: N?, exchangeRate: Double): Double? {
@@ -641,16 +643,19 @@ class StockService @Autowired constructor(
     private fun calculateCombinedParts(stock: Stock) {
         log.debug("calculateCombinedParts $stock")
 
-        val cashFlow = getCurrentQuarter(stock.freeCashFlowQ)
+        val exchangeRate =  exchangeRateService.getRate(stock.currency, stock.financialCurrency)
+
+        val cashFlow = fromLocalCurrency(getCurrentQuarter(stock.freeCashFlowQ), exchangeRate)
         addEntry(stock.currentPriceToFreeCashFlow, div(
             div(getCurrentQuarter(stock.price), 4.0),
-            div(cashFlow?.toDouble(), getCurrentQuarter(stock.shares))
+            div(cashFlow, getCurrentQuarter(stock.shares))
         ))
 
-        stock.freeCashFlow.forEach { (date, cashFlow) ->
+        stock.freeCashFlow
+            .forEach { (date, cashFlow) ->
             addEntry(stock.priceToFreeCashFlow, div(
                 priceAt(stock.price, date),
-                div(cashFlow?.toDouble(), stock.shares[date])
+                div(fromLocalCurrency(cashFlow, exchangeRate), stock.shares[date])
             ), date)
         }
         stock.eps.forEach { (date, eps) ->
