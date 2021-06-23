@@ -49,30 +49,10 @@ data class Stock(
 
     var priceBook: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValueRevenue: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("rename to EBIT")
-    var enterpriseValueEBITDA: SortedMap<LocalDate, Double?> = TreeMap(),
+    var enterpriseValueEBIT: SortedMap<LocalDate, Double?> = TreeMap(),
     var acquirersMultiple: SortedMap<LocalDate, Double?> = TreeMap(),
     var priceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var trailingPriceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var week52ChangeP: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var week52Low: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var week52AboveLowP: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var week52High: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var week52BelowHighP: SortedMap<LocalDate, Double?> = TreeMap(),
-
-    @Deprecated("will be removed")
-    var targetLowPrice: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var belowTargetLowPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var targetMedianPrice: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("will be removed")
-    var belowTargetMedianPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var heldByInsidersP: SortedMap<LocalDate, Double?> = TreeMap(),
     var heldByInstitutionsP: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -175,9 +155,7 @@ data class Stock(
     var currentRatio: SortedMap<LocalDate, Double?> = TreeMap(),
     var currentRatioGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var currentRatioGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
-    @Deprecated("use totalDebtQ")
     var totalLiabilitiesQ: SortedMap<LocalDate, Long?> = TreeMap(),
-    @Deprecated("use totalDebt")
     var totalLiabilities: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalDebtQ: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalDebt: SortedMap<LocalDate, Long?> = TreeMap(),
@@ -259,6 +237,7 @@ data class Stock(
     var pe3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var pe5Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var pe9Y: SortedMap<LocalDate, Double?> = TreeMap(),
+
 
     var rule1GrowthRate: SortedMap<LocalDate, Double?> = TreeMap(),
     var defaultPE: SortedMap<LocalDate, Double?> = TreeMap(),

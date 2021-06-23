@@ -566,14 +566,6 @@ class StockService @Autowired constructor(
         val evLocalCurrency = toLocalCurrency(ev, exchangeRate)
         addEntry(stock.enterpriseValue, ev)
 
-        val targetLowPrice = financialData.targetLowPrice?.raw
-        addEntry(stock.targetLowPrice, targetLowPrice)
-        addEntry(stock.belowTargetLowPriceP, percent(div(minus(targetLowPrice, currentPrice), currentPrice)))
-
-        val targetMedianPrice = financialData.targetMedianPrice?.raw
-        addEntry(stock.targetMedianPrice, targetMedianPrice)
-        addEntry(stock.belowTargetMedianPriceP, percent(div(minus(targetMedianPrice, currentPrice), currentPrice)))
-
         val shares = getCurrentQuarter(stock.currentShares)
         val cashPerShare = div(cash, shares)
         addEntry(stock.totalCashPerShare, cashPerShare)
@@ -585,17 +577,9 @@ class StockService @Autowired constructor(
         addEntry(stock.priceBook, toLocalCurrency(defaultKeyStatistics.priceToBook?.raw, exchangeRate))
 
         addEntry(stock.enterpriseValueRevenue, div(evLocalCurrency, getCurrentYear(stock.revenue)))
-        addEntry(stock.enterpriseValueEBITDA, div(evLocalCurrency,  getCurrentYear(stock.ebit)))
+        addEntry(stock.enterpriseValueEBIT, div(evLocalCurrency,  getCurrentYear(stock.ebit)))
 
         addEntry(stock.priceEarningGrowth, defaultKeyStatistics.pegRatio?.raw)
-
-        addEntry(stock.week52ChangeP, percent(defaultKeyStatistics?.get52WeekChange()?.raw))
-        val w52Low = summaryDetail.fiftyTwoWeekLow?.raw
-        addEntry(stock.week52Low, w52Low)
-        addEntry(stock.week52AboveLowP, percent(div(minus(currentPrice, w52Low), currentPrice)))
-        val w52High = summaryDetail.fiftyTwoWeekHigh?.raw
-        addEntry(stock.week52High, w52High)
-        addEntry(stock.week52BelowHighP, percent(div(minus(w52High, currentPrice), currentPrice)))
 
         addEntry(stock.heldByInsidersP, percent(defaultKeyStatistics.heldPercentInsiders?.raw))
         addEntry(stock.heldByInstitutionsP, percent(defaultKeyStatistics.heldPercentInstitutions?.raw))
