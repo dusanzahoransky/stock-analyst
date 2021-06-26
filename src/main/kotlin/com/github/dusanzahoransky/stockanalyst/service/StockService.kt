@@ -65,12 +65,12 @@ class StockService @Autowired constructor(
 
         val cacheCtx = CacheContext(refreshDynamicData, refreshFinancials, mockData, refreshOlderThan)
 
-        return watchlist.tickers.mapNotNull { ticker ->
+        return watchlist.tickers.map { ticker ->
             findOrLoadStock(Ticker.fromString(ticker), cacheCtx)
         }
     }
 
-    private fun findOrLoadStock(ticker: Ticker, cacheCtx: CacheContext): Stock? {
+    private fun findOrLoadStock(ticker: Ticker, cacheCtx: CacheContext): Stock {
         val partialData = loadStock(ticker, cacheCtx)
 
         var stock = stockRepo.findBySymbolAndExchange(ticker.symbol, ticker.exchange)
@@ -106,9 +106,9 @@ class StockService @Autowired constructor(
                 processChart(partialData.chart.response, stock)
                 stock.chartLastUpdated = partialData.chart.getLastRefreshDate()
             }
-            if (stock.chartLastUpdated.isBefore(partialData.krf.getLastRefreshDate())) {
+            if (stock.krfLastUpdated.isBefore(partialData.krf.getLastRefreshDate())) {
                 processKrf(partialData.krf.results, stock)
-                stock.chartLastUpdated = partialData.krf.getLastRefreshDate()
+                stock.krfLastUpdated = partialData.krf.getLastRefreshDate()
             }
         }
 

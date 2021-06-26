@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository
 @Repository
 interface StockRepo : MongoRepository<Stock, String> {
     fun findBySymbolAndExchange(symbol: String, exchange: Exchange): Stock?
-    fun findBySymbol(symbol: String): List<Stock>
 }

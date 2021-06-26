@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository
 @Repository
 interface EtfRepo : MongoRepository<Etf, String> {
     fun findBySymbolAndExchange(symbol: String, exchange: Exchange): Etf?
-    fun findBySymbol(symbol: String): List<Etf>
 }

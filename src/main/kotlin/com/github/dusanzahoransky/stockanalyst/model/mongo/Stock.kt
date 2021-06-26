@@ -260,9 +260,4 @@ data class Stock(
     override fun toString(): String {
         return "$symbol:$exchange"
     }
-
-    @JsonIgnore
-    fun getTicker(): Ticker {
-        return Ticker(this.symbol, this.exchange)
-    }
 }

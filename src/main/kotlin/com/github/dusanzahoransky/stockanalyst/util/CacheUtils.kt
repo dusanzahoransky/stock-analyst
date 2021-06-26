@@ -7,22 +7,13 @@ import java.time.LocalDate
 class CacheUtils {
 
     data class CacheContext(
-        val refreshDynamicData: Boolean,
-        val refreshFinancials: Boolean,
+        val refreshDynamicData: Boolean = false,
+        val refreshFinancials: Boolean = false,
         val mockData: Boolean,
         val refreshOlderThan: LocalDate
     )
 
     companion object {
-        fun useCache(forceRefreshCache: Boolean, refreshableEntity: LastRefreshDate?, forceRefreshDate: LocalDate): Boolean {
-            if (refreshableEntity == null) return false
-
-            if (!forceRefreshCache) return true
-
-            val lastRefreshDate = refreshableEntity.getLastRefreshDate()
-
-            return !lastRefreshDate.isBefore(forceRefreshDate)
-        }
 
         fun useCacheDynamicData(cacheCtx: CacheContext, refreshableEntity: LastRefreshDate?): Boolean {
             if (refreshableEntity == null) return false

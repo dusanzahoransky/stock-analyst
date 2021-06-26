@@ -1,9 +1,7 @@
 package com.github.dusanzahoransky.stockanalyst.model
 
-import com.github.dusanzahoransky.stockanalyst.model.mongo.Etf
-
 data class EtfsAveragesCounter(
-    var averages: Etf,
+    var averages: EtfAverages = EtfAverages(),
     var changeCount: Int = 0,
     var totalAssetsCount: Int = 0,
 
