@@ -391,6 +391,7 @@ class StockService @Autowired constructor(
             ?.map { epochSecToLocalDate(it) }
 
         stock.lastReportedQuarter = quarterEnds?.getOrNull(0)
+        stock.lastReportedYear = yearEnds?.getOrNull(0)
 
         val epsQuarterly = earnings?.earningsChart?.quarterly?.reversed()
         val annualDilutedEPS = timeSeries?.annualDilutedEPS?.reversed()
@@ -670,6 +671,7 @@ class StockService @Autowired constructor(
         stock.revenueGrowthQ = calcGrowth(stock.revenueQ, "revenueGrowthQ", 1000.0)
         stock.grossIncomeGrowthQ = calcGrowth(stock.grossIncomeQ, "grossIncomeGrowthQ", 100.0)
         stock.ebitGrowthQ = calcGrowth(stock.ebitQ, "ebitGrowthQ", 100.0)
+        stock.operatingIncomeGrowthQ = calcGrowth(stock.operatingIncomeQ, "operatingIncomeGrowthQ", 100.0)
         stock.netIncomeGrowthQ = calcGrowth(stock.netIncomeQ, "netIncomeGrowthQ", 100.0)
         stock.profitMarginGrowthQ = calcGrowth(stock.profitMarginPQ, "profitMarginGrowthQ", 0.01)
         stock.interestExpenseToOperativeIncomeGrowthQ = calcGrowth(stock.interestExpenseToOperativeIncomePQ, "interestExpenseToOperativeIncomeGrowthQ", 0.01)

@@ -27,6 +27,7 @@ data class Stock(
 
     //latest available data
     var lastReportedQuarter: LocalDate? = null,
+    var lastReportedYear: LocalDate? = null,
     var companyName: String? = null,
     var currency: Currency? = null,
     var financialCurrency: Currency? = null,
