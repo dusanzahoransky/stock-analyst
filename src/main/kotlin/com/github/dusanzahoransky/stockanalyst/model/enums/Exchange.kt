@@ -13,5 +13,9 @@ enum class Exchange(
     SIX("SIX Swiss", "SW"),
     PA("Euronext Paris", "PA"),
     MCE("Bolsa de Madrid", "MC"),
-    PNK("Pink Sheets", "OTC")
+    PNK("Pink Sheets", "OTC"),
+    MCX("Moscow Exchange", "ME"),
+    TSE("Toronto Stock Exchange", "TO"),
+    T("R", "T"),
+    JSE("Johannesburg Stock Exchange", "JO")
 }

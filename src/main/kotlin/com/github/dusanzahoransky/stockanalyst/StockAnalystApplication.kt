@@ -5,10 +5,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication(
     scanBasePackages = [
-        "com.github.dusanzahoransky.stockanalyst.repository",
-        "com.github.dusanzahoransky.stockanalyst.controller",
-        "com.github.dusanzahoransky.stockanalyst.service",
-        "com.github.dusanzahoransky.stockanalyst.client"
+        "com.github.dusanzahoransky.stockanalyst"
     ]
 )
 class StockAnalystApplication

@@ -27,12 +27,13 @@ data class Stock(
 
     //latest available data
     var lastReportedQuarter: LocalDate? = null,
+    var lastReportedYear: LocalDate? = null,
     var companyName: String? = null,
     var currency: Currency? = null,
     var financialCurrency: Currency? = null,
     var change: Double? = null,
     var currentPrice: Double? = null,
-
+    var currentPriceLocal: Double? = null,
 
     //timeline data
 
@@ -49,19 +50,11 @@ data class Stock(
 
     var priceBook: SortedMap<LocalDate, Double?> = TreeMap(),
     var enterpriseValueRevenue: SortedMap<LocalDate, Double?> = TreeMap(),
-    var enterpriseValueEBITDA: SortedMap<LocalDate, Double?> = TreeMap(),
+    var enterpriseValueEBIT: SortedMap<LocalDate, Double?> = TreeMap(),
+    var acquirersMultiple: SortedMap<LocalDate, Double?> = TreeMap(),
     var priceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var trailingPriceEarningGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
-    var week52ChangeP: SortedMap<LocalDate, Double?> = TreeMap(),
-    var week52Low: SortedMap<LocalDate, Double?> = TreeMap(),
-    var week52AboveLowP: SortedMap<LocalDate, Double?> = TreeMap(),
-    var week52High: SortedMap<LocalDate, Double?> = TreeMap(),
-    var week52BelowHighP: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var targetLowPrice: SortedMap<LocalDate, Double?> = TreeMap(),
-    var belowTargetLowPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
-    var targetMedianPrice: SortedMap<LocalDate, Double?> = TreeMap(),
-    var belowTargetMedianPriceP: SortedMap<LocalDate, Double?> = TreeMap(),
     var heldByInsidersP: SortedMap<LocalDate, Double?> = TreeMap(),
     var heldByInstitutionsP: SortedMap<LocalDate, Double?> = TreeMap(),
     var buyPercentInsiderShares: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -139,6 +132,10 @@ data class Stock(
     var cash: SortedMap<LocalDate, Long?> = TreeMap(),
     var cashGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var cashGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var cashAndCashEquivalentsQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    var cashAndCashEquivalents: SortedMap<LocalDate, Long?> = TreeMap(),
+    var cashAndCashEquivalentsGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var cashAndCashEquivalentsGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var inventoryQ: SortedMap<LocalDate, Long?> = TreeMap(),
     var inventory: SortedMap<LocalDate, Long?> = TreeMap(),
     var inventoryGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -161,8 +158,12 @@ data class Stock(
     var currentRatioGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalLiabilitiesQ: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalLiabilities: SortedMap<LocalDate, Long?> = TreeMap(),
+    var totalDebtQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    var totalDebt: SortedMap<LocalDate, Long?> = TreeMap(),
     var totalLiabilitiesGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var totalDebtGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalLiabilitiesGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var totalDebtGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquityQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquity: SortedMap<LocalDate, Double?> = TreeMap(),
     var totalDebtToEquityGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -188,10 +189,24 @@ data class Stock(
     var stockRepurchasedGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var stockRepurchasedGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
+    var currentShares: SortedMap<LocalDate, Double?> = TreeMap(),
     var shares: SortedMap<LocalDate, Double?> = TreeMap(),
     var sharesGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
+    var roicPQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var roicP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roicGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roicGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+
+    var roePQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roeP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roeGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roeGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+
+    var roaPQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roaP: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roaGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var roaGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var growthEstimate5y: SortedMap<LocalDate, Double?> = TreeMap(),
 
@@ -224,6 +239,7 @@ data class Stock(
     var pe5Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var pe9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
+
     var rule1GrowthRate: SortedMap<LocalDate, Double?> = TreeMap(),
     var defaultPE: SortedMap<LocalDate, Double?> = TreeMap(),
     var historicalPE: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -244,10 +260,5 @@ data class Stock(
     @JsonIgnore
     override fun toString(): String {
         return "$symbol:$exchange"
-    }
-
-    @JsonIgnore
-    fun getTicker(): Ticker {
-        return Ticker(this.symbol, this.exchange)
     }
 }

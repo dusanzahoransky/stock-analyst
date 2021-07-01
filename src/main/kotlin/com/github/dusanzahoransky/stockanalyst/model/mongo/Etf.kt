@@ -1,77 +1,58 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
-import com.github.dusanzahoransky.stockanalyst.model.LastRefreshDate
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
+import java.util.*
 
 @Document("etfInfo")
 data class Etf(
     @Id var id: String? = null,
-    val date: LocalDate = LocalDate.now(),
-    var asOfDate: LocalDate? = null,
     val symbol: String,
     val exchange: Exchange? = null,
+
+    //last updated timestamp
+    var chartLastUpdated: LocalDate = LocalDate.now(),
+    var statisticsLastUpdated: LocalDate = LocalDate.now(),
+
+    var asOfDate: LocalDate? = null,
+
     var companyName: String? = null,
-    var price: Double? = null,
     var currency: Currency? = null,
-    var change: Double? = null,
-    var totalAssets: Long? = null,
+    var totalAssets: SortedMap<LocalDate, Long?> = TreeMap(),
 
-    var yield: Double? = null,
+    var yield: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var ytdReturn: Double? = null,
-    var threeYearAverageReturn: Double? = null,
-    var fiveYearAverageReturn: Double? = null,
+    var ytdReturn: SortedMap<LocalDate, Double?> = TreeMap(),
+    var threeYearAverageReturn: SortedMap<LocalDate, Double?> = TreeMap(),
+    var fiveYearAverageReturn: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var priceToEarnings: Double? = null,
-    var priceToBook: Double? = null,
-    var priceToCashflow: Double? = null,
-    var priceToSales: Double? = null,
+    var priceToEarnings: SortedMap<LocalDate, Double?> = TreeMap(),
+    var priceToBook: SortedMap<LocalDate, Double?> = TreeMap(),
+    var priceToCashflow: SortedMap<LocalDate, Double?> = TreeMap(),
+    var priceToSales: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var fiftyTwoWeekLow: Double? = null,
-    var fiftyTwoWeekHigh: Double? = null,
-    var fiftyTwoAboveLowPercent: Double? = null,
-    var fiftyTwoBelowHighPercent: Double? = null,
+    var oneMonth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var threeMonth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var ytd: SortedMap<LocalDate, Double?> = TreeMap(),
+    var oneYear: SortedMap<LocalDate, Double?> = TreeMap(),
+    var threeYear: SortedMap<LocalDate, Double?> = TreeMap(),
+    var fiveYear: SortedMap<LocalDate, Double?> = TreeMap(),
+    var tenYear: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var oneMonth: Double? = null,
-    var threeMonth: Double? = null,
-    var ytd: Double? = null,
-    var oneYear: Double? = null,
-    var threeYear: Double? = null,
-    var fiveYear: Double? = null,
-    var tenYear: Double? = null,
-
-    var lastBearMkt: Double? = null,
-    var lastBullMkt: Double? = null,
+    var lastBearMkt: SortedMap<LocalDate, Double?> = TreeMap(),
+    var lastBullMkt: SortedMap<LocalDate, Double?> = TreeMap(),
 
 
-    var annualHoldingsTurnover: Double? = null,
-    var annualReportExpenseRatio: Double? = null,
+    var annualHoldingsTurnover: SortedMap<LocalDate, Double?> = TreeMap(),
+    var annualReportExpenseRatio: SortedMap<LocalDate, Double?> = TreeMap(),
 
-    var averageDailyVolume3Month: Long? = null,
-    var averageDailyVolume10Day: Long? = null,
+    var averageDailyVolume3Month: SortedMap<LocalDate, Long?> = TreeMap(),
+    var averageDailyVolume10Day: SortedMap<LocalDate, Long?> = TreeMap(),
 
     var fundInceptionDate: LocalDate? = null,
 
-    var chartData: MutableList<EtfChartData>? = mutableListOf()
-
-    /*
-    risk
-     */
-
-): LastRefreshDate {
-    override fun getLastRefreshDate(): LocalDate {
-        return date
-    }
-}
-
-data class EtfChartData(
-    /**
-     * Epoch sec
-     */
-    val date: Long,
-    var price: Double? = null
+    var price: SortedMap<LocalDate, Double?> = TreeMap()
 )

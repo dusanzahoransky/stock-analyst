@@ -36,7 +36,6 @@ class WatchlistController @Autowired constructor(
     }
 
     @DeleteMapping("{watchlistName}")
-    @ResponseBody
     fun removeWatchlist(@PathVariable watchlistName: String) {
         watchlistService.removeWatchlist(watchlistName)
     }

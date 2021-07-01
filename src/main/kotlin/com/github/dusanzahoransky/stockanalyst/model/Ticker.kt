@@ -30,11 +30,15 @@ data class Ticker(
             Exchange.NYSE -> "XNYS"
             Exchange.FTSE -> "XLON"
             Exchange.DAX -> "XETR"
-            Exchange.ENX -> "XMEX"
+            Exchange.ENX -> "XAMS"
             Exchange.SIX -> "XSWX"
             Exchange.PA -> "XPAR"
             Exchange.MCE -> "XMAD"
             Exchange.PNK -> "PINX"
+            Exchange.T -> "XTKS"
+            Exchange.MCX -> "MISX"
+            Exchange.TSE -> "XTSE"
+            Exchange.JSE -> "XJSE"
         }
     }
 }

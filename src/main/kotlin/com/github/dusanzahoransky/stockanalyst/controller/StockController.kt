@@ -36,12 +36,13 @@ class StockController @Autowired constructor(
     @ResponseBody
     fun loadEtfsWatchlist(
         @RequestParam(value = "watchlist") watchlist: String,
-        @RequestParam(value = "forceRefresh", required = false) forceRefresh: Boolean = false,
+        @RequestParam(value = "refreshDynamicData", required = false) refreshDynamicData: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
-        @RequestParam(value = "forceRefreshDate", required = false) forceRefreshDate: String?
+        @RequestParam(value = "refreshOlderThan", required = false) refreshOlderThan: String?
     ): EtfsAnalysisResult {
-        val forceRefreshLocalDate = if (forceRefreshDate != null) LocalDate.parse(forceRefreshDate) else LocalDate.now()
-        val indices = indexService.getWatchlistEtfs(watchlist, forceRefresh, mockData, forceRefreshLocalDate)
+        val forceRefreshLocalDate = if (refreshOlderThan != null) LocalDate.parse(refreshOlderThan) else LocalDate.now()
+
+        val indices = indexService.getWatchlistEtfs(watchlist, mockData, refreshDynamicData, forceRefreshLocalDate)
         val averages = stockAnalysisService.calcEtfsAverages(indices)
         return EtfsAnalysisResult(averages, indices)
     }
