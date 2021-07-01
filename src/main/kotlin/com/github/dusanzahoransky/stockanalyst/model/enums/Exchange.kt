@@ -15,5 +15,7 @@ enum class Exchange(
     MCE("Bolsa de Madrid", "MC"),
     PNK("Pink Sheets", "OTC"),
     MCX("Moscow Exchange", "ME"),
-    T("R", "T")
+    TSE("Toronto Stock Exchange", "TO"),
+    T("R", "T"),
+    JSE("Johannesburg Stock Exchange", "JO")
 }

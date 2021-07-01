@@ -37,6 +37,8 @@ data class Ticker(
             Exchange.PNK -> "PINX"
             Exchange.T -> "XTKS"
             Exchange.MCX -> "MISX"
+            Exchange.TSE -> "XTSE"
+            Exchange.JSE -> "XJSE"
         }
     }
 }
