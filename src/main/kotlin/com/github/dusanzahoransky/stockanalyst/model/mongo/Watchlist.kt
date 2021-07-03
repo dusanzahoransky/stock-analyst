@@ -11,7 +11,5 @@ import org.springframework.data.mongodb.core.mapping.Document
 data class Watchlist(
         @Id var name: String,
         var isEtf: Boolean = false,
-        var isGroup: Boolean = false,
-        var tags: Set<WatchlistTag> = setOf(),
         var tickers: MutableSet<String> = mutableSetOf()
 )

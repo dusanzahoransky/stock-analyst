@@ -4,10 +4,11 @@ package com.github.dusanzahoransky.stockanalyst.controller
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Watchlist
 import com.github.dusanzahoransky.stockanalyst.service.WatchlistService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("watchlists")
+@RequestMapping("watchlist")
 class WatchlistController @Autowired constructor(
         val watchlistService: WatchlistService
 ) {
@@ -35,8 +36,14 @@ class WatchlistController @Autowired constructor(
         return watchlistService.getByName(watchlistName)
     }
 
+    @PostMapping()
+    fun createWatchlist(@RequestBody watchlist: Watchlist): Watchlist {
+        return watchlistService.addWatchlist(watchlist)
+    }
+
     @DeleteMapping("{watchlistName}")
-    fun removeWatchlist(@PathVariable watchlistName: String) {
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    fun deleteWatchlist(@PathVariable watchlistName: String) {
         watchlistService.removeWatchlist(watchlistName)
     }
 

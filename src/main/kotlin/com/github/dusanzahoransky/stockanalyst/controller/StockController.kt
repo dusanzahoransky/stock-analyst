@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 
 @RestController
-@RequestMapping("stocks")
+@RequestMapping("stock")
 class StockController @Autowired constructor(
     val stockAnalysisService: StockAnalysisService,
     val stockService: StockService,
     val indexService: EtfService
 ) {
 
-    @GetMapping("watchlist")
+    @GetMapping("watchlist/{watchlist}")
     @ResponseBody
     fun loadWatchlist(
-        @RequestParam(value = "watchlist") watchlist: String,
+        @PathVariable(value = "watchlist") watchlist: String,
         @RequestParam(value = "refreshDynamicData", required = false) refreshDynamicData: Boolean = false,
         @RequestParam(value = "refreshFinancials", required = false) refreshFinancials: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
@@ -32,10 +32,10 @@ class StockController @Autowired constructor(
         return stockService.getWatchlistStocks(watchlist, refreshDynamicData, refreshFinancials, mockData, forceRefreshLocalDate)
     }
 
-    @GetMapping("etfWatchlist")
+    @GetMapping("etfWatchlist/{watchlist}")
     @ResponseBody
     fun loadEtfsWatchlist(
-        @RequestParam(value = "watchlist") watchlist: String,
+        @PathVariable(value = "watchlist") watchlist: String,
         @RequestParam(value = "refreshDynamicData", required = false) refreshDynamicData: Boolean = false,
         @RequestParam(value = "mockData", required = false) mockData: Boolean = false,
         @RequestParam(value = "refreshOlderThan", required = false) refreshOlderThan: String?
