@@ -1,66 +1,24 @@
 package com.github.dusanzahoransky.stockanalyst.service
 
 import com.github.dusanzahoransky.stockanalyst.model.Ticker
-import com.github.dusanzahoransky.stockanalyst.model.enums.WatchlistGroup
-import com.github.dusanzahoransky.stockanalyst.model.enums.WatchlistTag
 import com.github.dusanzahoransky.stockanalyst.model.mongo.Watchlist
 import com.github.dusanzahoransky.stockanalyst.repository.WatchlistRepo
 import com.github.dusanzahoransky.stockanalyst.util.PresetWatchlists
-import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import java.lang.IllegalArgumentException
 
 @Service
 class WatchlistService @Autowired constructor(
         val watchlistRepo: WatchlistRepo
 ) {
-    val log = LoggerFactory.getLogger(this::class.java)!!
     val presetWatchlists = PresetWatchlists()
-
-    fun loadWatchListOrGroup(watchlistName: String): Watchlist{
-        if(isGroup(watchlistName)){
-            log.debug("Loading watchlist group $watchlistName")
-            val groupWatchlists = when(WatchlistGroup.valueOf(watchlistName)) {
-                WatchlistGroup.ALL_INVESTED -> loadWatchListOrGroup(setOf(WatchlistTag.INVESTED_IN))
-                WatchlistGroup.ETF_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.ETF))
-                WatchlistGroup.AU_ETF_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.AU, WatchlistTag.ETF))
-                WatchlistGroup.GB_ETF_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.GB, WatchlistTag.ETF))
-                WatchlistGroup.EU_ETF_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.EU, WatchlistTag.ETF))
-                WatchlistGroup.ETF_TRADING_212_INVESTED_IN -> loadWatchListOrGroup(setOf(WatchlistTag.TRADING_212, WatchlistTag.ETF, WatchlistTag.INVESTED_IN))
-                WatchlistGroup.US_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.US, WatchlistTag.STOCK))
-                WatchlistGroup.EU_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.EU, WatchlistTag.STOCK))
-                WatchlistGroup.GB_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.GB, WatchlistTag.STOCK))
-                WatchlistGroup.AU_ALL -> loadWatchListOrGroup(setOf(WatchlistTag.AU, WatchlistTag.STOCK))
-                WatchlistGroup.TRADING_212 -> loadWatchListOrGroup(setOf(WatchlistTag.TRADING_212))
-            }
-            val watchlistGroup = Watchlist(watchlistName)
-            watchlistGroup.isGroup = true
-            watchlistGroup.tickers = groupWatchlists.flatMap { watchlist -> watchlist.tickers }.toMutableSet()
-            watchlistGroup.isEtf = groupWatchlists.all { watchlist -> watchlist.isEtf }
-            return watchlistGroup
-        }
-        log.debug("Loading watchlist $watchlistName")
-        return getByName(watchlistName)
-    }
-    fun loadWatchListOrGroup(tags: Set<WatchlistTag>): List<Watchlist>{
-        return getAll().filter { watchlist -> watchlist.tags.containsAll(tags)}
-    }
-
-    fun isGroup(watchlistName: String): Boolean{
-        return WatchlistGroup.values().any { group -> group.name == watchlistName }
-    }
 
     fun getAll(): List<Watchlist> {
         return watchlistRepo.findAll()
     }
 
     fun getAllNames(includeGroups: Boolean): List<String> {
-        val watchlists = getAll().map { watchlist -> watchlist.name }.toMutableList()
-        if(includeGroups) {
-            watchlists.addAll(WatchlistGroup.values().map { it.name })
-        }
-        return watchlists
+        return getAll().map { watchlist -> watchlist.name }.sorted()
     }
 
     fun getByName(watchlistName: String): Watchlist {
@@ -71,10 +29,15 @@ class WatchlistService @Autowired constructor(
         watchlistRepo.deleteById(watchlistName)
     }
 
-    fun save(watchlist: Watchlist): Watchlist {
-        if(isGroup(watchlist.name)){
-            throw IllegalArgumentException("Watchlist group $watchlist can not be persisted, only single watchlists can")
+    fun addWatchlist(watchlist: Watchlist): Watchlist {
+        val existingWatchlist = watchlistRepo.findById(watchlist.name)
+        if( existingWatchlist.isEmpty){
+            watchlistRepo.save(watchlist)
         }
+        return watchlist
+    }
+
+    fun save(watchlist: Watchlist): Watchlist {
         return watchlistRepo.save(watchlist)
     }
 
@@ -101,6 +64,7 @@ class WatchlistService @Autowired constructor(
         return watchlistRepo.save(watchlist)
     }
 
+    @Deprecated("use dynamic watchlists")
     fun initPresetWatchlists(): List<Watchlist> {
         val createdWatchlists = mutableListOf<Watchlist>()
 

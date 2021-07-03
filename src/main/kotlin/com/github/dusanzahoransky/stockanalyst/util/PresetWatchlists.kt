@@ -26,7 +26,6 @@ class PresetWatchlists {
                 "VHY:ASX",
                 "VSO:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -39,7 +38,6 @@ class PresetWatchlists {
                 "NDQ:ASX",
                 "UMAX:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -53,7 +51,6 @@ class PresetWatchlists {
                 "VAE:ASX",
                 "IIND:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -69,7 +66,6 @@ class PresetWatchlists {
                 "VCF:ASX",
                 "VEFI:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -88,7 +84,6 @@ class PresetWatchlists {
                 "VAS:ASX",
                 "VSO:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU, WatchlistTag.INVESTED_IN)
         watchlist.isEtf = true
         return watchlist
     }
@@ -114,7 +109,6 @@ class PresetWatchlists {
                 "VAE:ASX",
                 "VESG:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.AU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -124,7 +118,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB)
         watchlist.isEtf = true
         return watchlist
     }
@@ -138,7 +131,6 @@ class PresetWatchlists {
                 "VUKE:FTSE",
                 "VFEM:FTSE"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB, WatchlistTag.INVESTED_IN)
         watchlist.isEtf = true
         return watchlist
     }
@@ -168,7 +160,6 @@ class PresetWatchlists {
                 "VVAL:FTSE",
                 "IWVL:FTSE"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.GB)
         watchlist.isEtf = true
         return watchlist
     }
@@ -182,7 +173,6 @@ class PresetWatchlists {
                 "VGEM:DAX", //Emerging Markets Government Bond
                 "VGEB:DAX"  //Eurozone Government Bond
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -195,7 +185,6 @@ class PresetWatchlists {
                 "SXR8:DAX",
                 "QDVE:DAX"
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU, WatchlistTag.INVESTED_IN)
         watchlist.isEtf = true
         return watchlist
     }
@@ -213,7 +202,6 @@ class PresetWatchlists {
                 "LYMS:DAX"
 //            "LYXINR:DAX")
         )
-        watchlist.tags = setOf(WatchlistTag.ETF, WatchlistTag.EU)
         watchlist.isEtf = true
         return watchlist
     }
@@ -235,7 +223,6 @@ class PresetWatchlists {
                 "CIEN:NYSE",
                 *investedInTech().tickers.toTypedArray()
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.US, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -258,7 +245,6 @@ class PresetWatchlists {
                 "DDOG:NASDAQ",
                 "WDC:NASDAQ"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.US)
         return watchlist
     }
 
@@ -267,7 +253,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.EU, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -280,7 +265,6 @@ class PresetWatchlists {
                 "LHA:DAX",
                 "LISN:SIX"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.EU)
         return watchlist
     }
 
@@ -291,7 +275,6 @@ class PresetWatchlists {
                 "RYA:FTSE",
                 "WIZZ:FTSE"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.GB, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -300,7 +283,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
                 "IAG:FTSE"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.GB)
         return watchlist
     }
 
@@ -318,7 +300,6 @@ class PresetWatchlists {
                 "RMS:ASX",
                 "VUL:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.AU)
         return watchlist
     }
 
@@ -330,7 +311,6 @@ class PresetWatchlists {
                 "ASB:ASX",
                 "ZIM:ASX"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.AU, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -344,7 +324,6 @@ class PresetWatchlists {
                 "RYA:FTSE",
                 "WIZZ:FTSE"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -354,7 +333,6 @@ class PresetWatchlists {
                 *investedInTech().tickers.toTypedArray(),
                 *watchListTech().tickers.toTypedArray()
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -371,7 +349,6 @@ class PresetWatchlists {
                 "AVGO:NASDAQ",
                 "CLDR:NYSE"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK, WatchlistTag.INVESTED_IN)
         return watchlist
     }
 
@@ -404,7 +381,6 @@ class PresetWatchlists {
                 "TRIP:NASDAQ",
                 "TCOM:NASDAQ"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -515,7 +491,6 @@ class PresetWatchlists {
                 "AAL:NASDAQ",
                 "LBTYA:NASDAQ"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -537,7 +512,6 @@ class PresetWatchlists {
                 "DIS:NYSE",
                 "PEP:NASDAQ"
         )
-        watchlist.tags = setOf(WatchlistTag.STOCK)
         return watchlist
     }
 
@@ -547,7 +521,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
-        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 
@@ -556,7 +529,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
-        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 
@@ -565,7 +537,6 @@ class PresetWatchlists {
         watchlist.tickers = mutableSetOf(
 
         )
-        watchlist.tags = setOf(WatchlistTag.TRADING_212)
         return watchlist
     }
 }
