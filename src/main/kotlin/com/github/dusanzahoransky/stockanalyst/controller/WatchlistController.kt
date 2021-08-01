@@ -26,8 +26,8 @@ class WatchlistController @Autowired constructor(
 
     @GetMapping("names")
     @ResponseBody
-    fun listNames(@RequestParam(value = "includeGroups", required = false) includeGroups: Boolean = false): List<String> {
-        return watchlistService.getAllNames(includeGroups)
+    fun listNames(): List<String> {
+        return watchlistService.getAllNames()
     }
 
     @GetMapping("{watchlistName}")

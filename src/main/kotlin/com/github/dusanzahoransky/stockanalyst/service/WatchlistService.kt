@@ -14,10 +14,10 @@ class WatchlistService @Autowired constructor(
     val presetWatchlists = PresetWatchlists()
 
     fun getAll(): List<Watchlist> {
-        return watchlistRepo.findAll()
+        return watchlistRepo.findAll().sortedBy { w -> w.name }
     }
 
-    fun getAllNames(includeGroups: Boolean): List<String> {
+    fun getAllNames(): List<String> {
         return getAll().map { watchlist -> watchlist.name }.sorted()
     }
 
