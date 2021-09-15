@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 /**
- * Raw data cached from MorningStar API
+ * Raw data cached from YahooFinance API
  */
 @Document
 data class Watchlist(

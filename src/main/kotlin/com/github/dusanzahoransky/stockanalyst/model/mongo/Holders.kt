@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
 
 /**
- * Raw data cached from MorningStar API
+ * Raw data cached from YahooFinance API
  */
 @Document
 data class Holders(
