@@ -276,42 +276,6 @@ class StockService @Autowired constructor(
         return statisticsRepo.insert(data)
     }
 
-//    private fun processKrf(results: List<Result>, stock: Stock): List<StockRatiosTimeline> {
-//        val stockRatios = mutableListOf<StockRatiosTimeline>()
-//
-//        val exchangeRate = exchangeRateService.getRate(stock.currency, stock.financialCurrency)
-//
-//        for (result in results) {
-//            val periodDate = LocalDate.parse(result.periodEndDate)
-//            val firstSection = result.sections[0]
-//
-//            for (item in firstSection.lineItems) {
-//                when (item.label) {
-//                    "BOOK VALUE PER SHARE *" -> addEntry(stock.bookValuePerShare, fromLocalCurrency(item.value, exchangeRate), periodDate)   //item.value in local currency, converting to the price currency
-//                    *"CAP SPENDING" -> addEntry(stock.capitalExpenditures, item.value?.toLong(), periodDate)
-//                    *"DIVIDENDS" -> addEntry(stock.dividends, item.value, periodDate)
-//                    "EARNINGS PER SHARE" -> addEntry(stock.eps, item.value, periodDate)
-//                    *"FREE CASH FLOW" -> addEntry(stock.freeCashFlow, item.value?.toLong(), periodDate)
-//                    "FREE CASH FLOW PER SHARE *" -> addEntry(stock.freeCashFlowPerShare, fromLocalCurrency(item.value, exchangeRate), periodDate)
-//                    "GROSS MARGIN %" -> addEntry(stock.grossMargin, item.value, periodDate)
-//                    "NET INCOME" -> addEntry(stock.netIncome, item.value?.toLong(), periodDate)
-//                    "OPERATING CASH FLOW" -> addEntry(stock.operatingCashFlow, item.value?.toLong(), periodDate)
-//                    "OPERATING INCOME" -> addEntry(stock.operatingIncome, item.value, periodDate)
-//                    "OPERATING MARGIN %" -> addEntry(stock.operatingMargin, item.value, periodDate)
-//                    "PAYOUT RATIO % *" -> addEntry(stock.payoutRatioP, item.value, periodDate)
-//                    "REVENUE" -> addEntry(stock.revenue, item.value?.toLong(), periodDate)
-//                    "SHARES" -> addEntry(stock.shares, item.value, periodDate)
-//                    "WORKING CAPITAL" -> addEntry(stock.workingCapital, item.value, periodDate)
-//                }
-//
-//            }
-//
-//            stock.profitMarginP[periodDate] = percent(div(stock.netIncome[periodDate], stock.revenue[periodDate]))
-//        }
-//
-//        return stockRatios
-//    }
-
     private fun processChart(chart: ChartResponse, stock: Stock) {
         log.debug("processChart $stock")
         val result = chart.chart?.result?.getOrNull(0) ?: return
@@ -472,8 +436,8 @@ class StockService @Autowired constructor(
                 addEntry(stock.eps, fromLocalCurrency(annualDilutedEPSTimeSeries?.getOrNull(i)?.reportedValue?.raw?.toDouble(), exchangeRate), year)
                 val shares = sharesTimeSeries?.getOrNull(i)?.reportedValue?.raw?.toDouble()
                 addEntry(stock.shares, shares, year)
-                addEntry(stock.freeCashFlowPerShare, div(freeCashFlow , shares), year)
-                addEntry(stock.bookValuePerShare, div(bookValue , shares), year)
+                addEntry(stock.freeCashFlowPerShare, fromLocalCurrency(div(freeCashFlow , shares), exchangeRate), year)
+                addEntry(stock.bookValuePerShare, fromLocalCurrency(div(bookValue , shares), exchangeRate), year)
             }
         }
     }
