@@ -7,7 +7,6 @@ Backend services for ETF and stock data retrieved from multiple financial APIs. 
 ## Prerequisites
 
 * [Yahoo Finance API](https://rapidapi.com/apidojo/api/yahoo-finance1) key
-* [Morning Star API](https://rapidapi.com/apidojo/api/morning-star) key
 * Mongo DB 
 
 ## Setup
@@ -26,13 +25,11 @@ spring.data.mongodb.port=27017
 
 ### Finance APIs
 
-Set Yahoo and Morning Star host and API key as process env variables or specify them in `application.properties`
+Set Yahoo host and API key as process env variables or specify them in `application.properties`
 
 ```
 yahoo.client.xRapidapiKey=${yahoo-x-rapidapi-key}
 yahoo.client.xRapidapiHost=${yahoo-x-rapidapi-host}
-morningstar.client.xRapidapiKey=${morningstar-x-rapidapi-key}
-morningstar.client.xRapidapiHost=${morningstar-x-rapidapi-host}
 openexchangerates.client.appid=${openexchangerates-appid}
 ```
 

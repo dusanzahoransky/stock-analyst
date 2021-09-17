@@ -11,7 +11,7 @@ import java.time.LocalDate
 import java.util.*
 
 /**
- * Raw data cached from MorningStar API
+ * Raw data cached from YahooFinance API
  */
 @Document
 data class Financials(

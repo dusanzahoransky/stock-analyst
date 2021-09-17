@@ -52,14 +52,5 @@ class AdminService @Autowired constructor(
         }
     }
 
-    private fun fixShares() {
-        val allStocks = stockRepo.findAll()
-        for (stock in allStocks) {
-            log.debug("Applying DI on $stock")
-            stock.shares.clear()
-            stockRepo.save(stock)
-        }
-    }
-
 
 }

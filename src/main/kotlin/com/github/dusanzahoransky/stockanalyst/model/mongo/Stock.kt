@@ -1,7 +1,6 @@
 package com.github.dusanzahoransky.stockanalyst.model.mongo
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.github.dusanzahoransky.stockanalyst.model.Ticker
 import com.github.dusanzahoransky.stockanalyst.model.enums.Currency
 import com.github.dusanzahoransky.stockanalyst.model.enums.Exchange
 import org.springframework.data.annotation.Id
@@ -66,8 +65,6 @@ data class Stock(
     var fiveYearAvgDividendYield: SortedMap<LocalDate, Double?> = TreeMap(),
     var trailingAnnualDividendYield: SortedMap<LocalDate, Double?> = TreeMap(),
     var payoutRatioP: SortedMap<LocalDate, Double?> = TreeMap(),
-    var dividends: SortedMap<LocalDate, Double?> = TreeMap(),
-    var dividendsGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var epsQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var eps: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -90,6 +87,8 @@ data class Stock(
     var grossIncome: SortedMap<LocalDate, Long?> = TreeMap(),
     var grossIncomeGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var grossIncomeGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var grossMarginQ: SortedMap<LocalDate, Double?> = TreeMap(),
+    var grossMarginGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var grossMargin: SortedMap<LocalDate, Double?> = TreeMap(),
     var grossMarginGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var ebitQ: SortedMap<LocalDate, Long?> = TreeMap(),
@@ -107,7 +106,9 @@ data class Stock(
     var operatingIncomeGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var operatingIncomeGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
     var operatingMargin: SortedMap<LocalDate, Double?> = TreeMap(),
+    var operatingMarginQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var operatingMarginGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var operatingMarginGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var netIncomeQ: SortedMap<LocalDate, Long?> = TreeMap(),
     var netIncome: SortedMap<LocalDate, Long?> = TreeMap(),
     var netIncomeGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -188,6 +189,8 @@ data class Stock(
     var stockRepurchased: SortedMap<LocalDate, Long?> = TreeMap(),
     var stockRepurchasedGrowthQ: SortedMap<LocalDate, Double?> = TreeMap(),
     var stockRepurchasedGrowth: SortedMap<LocalDate, Double?> = TreeMap(),
+    var bookValueQ: SortedMap<LocalDate, Long?> = TreeMap(),
+    var bookValue: SortedMap<LocalDate, Long?> = TreeMap(),
 
     var currentShares: SortedMap<LocalDate, Double?> = TreeMap(),
     var shares: SortedMap<LocalDate, Double?> = TreeMap(),
@@ -217,27 +220,22 @@ data class Stock(
     var revenue1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var revenue3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var revenue5Y: SortedMap<LocalDate, Double?> = TreeMap(),
-    var revenue9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var eps1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var eps3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var eps5Y: SortedMap<LocalDate, Double?> = TreeMap(),
-    var eps9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var bps1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var bps3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var bps5Y: SortedMap<LocalDate, Double?> = TreeMap(),
-    var bps9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var cash1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var cash3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var cash5Y: SortedMap<LocalDate, Double?> = TreeMap(),
-    var cash9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
     var pe1Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var pe3Y: SortedMap<LocalDate, Double?> = TreeMap(),
     var pe5Y: SortedMap<LocalDate, Double?> = TreeMap(),
-    var pe9Y: SortedMap<LocalDate, Double?> = TreeMap(),
 
 
     var rule1GrowthRate: SortedMap<LocalDate, Double?> = TreeMap(),
