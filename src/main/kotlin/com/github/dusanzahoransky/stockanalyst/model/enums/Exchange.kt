@@ -17,5 +17,6 @@ enum class Exchange(
     MCX("Moscow Exchange", "ME"),
     TSE("Toronto Stock Exchange", "TO"),
     T("R", "T"),
+    HKG("HongKong exchange", "HK"),
     JSE("Johannesburg Stock Exchange", "JO")
 }

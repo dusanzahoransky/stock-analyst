@@ -39,6 +39,7 @@ data class Ticker(
             Exchange.MCX -> "MISX"
             Exchange.TSE -> "XTSE"
             Exchange.JSE -> "XJSE"
+            Exchange.HKG -> "XHKG"
         }
     }
 }
